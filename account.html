@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Account | REE Global</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .auth-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 0 60px;
+      background: var(--black-900);
+    }
+
+    .auth-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .auth-card {
+      background: var(--w08);
+      border: 1px solid var(--gold-border);
+      border-radius: var(--radius-xl);
+      padding: 44px 40px;
+    }
+
+    .auth-title {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .auth-sub {
+      color: var(--w50);
+      font-size: 0.9rem;
+      margin-bottom: 36px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--gold-300);
+      margin-bottom: 8px;
+    }
+
+    .form-group input {
+      width: 100%;
+      background: var(--black-900);
+      border: 1px solid var(--gold-border);
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--gold-300);
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+    }
+
+    .forgot-link {
+      text-align: right;
+      margin-top: -10px;
+      margin-bottom: 20px;
+    }
+
+    .forgot-link a {
+      font-size: 0.8rem;
+      color: var(--gold-300);
+    }
+
+    .divider-or {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 24px 0;
+      color: var(--w50);
+      font-size: 0.85rem;
+    }
+
+    .divider-or::before,
+    .divider-or::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--gold-border);
+    }
+
+    .social-auth {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .social-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 13px 20px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--gold-border);
+      background: transparent;
+      color: var(--w70);
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .social-btn:hover {
+      background: var(--gold-fill);
+      color: var(--gold-300);
+    }
+
+    .benefits-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 32px;
+    }
+
+    .benefits-list li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+
+    .benefit-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--gold-fill);
+      border: 1px solid var(--gold-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1rem;
+    }
+
+    .benefit-text strong {
+      display: block;
+      color: #fff;
+      font-size: 0.95rem;
+      margin-bottom: 2px;
+    }
+
+    .benefit-text span {
+      font-size: 0.82rem;
+      color: var(--w50);
+    }
+
+    @media(max-width: 768px) {
+      .auth-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav id="main-nav" class="main-nav scrolled" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo" aria-label="REE Global Home">
+        <div class="nav-logo-img-wrap">
+          <img src="../Images/BG/logo%20bg.png" alt="REE Global Logo" class="nav-logo-img"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+          <div class="nav-logo-crown" style="display:none">⚜</div>
+        </div>
+        <div class="nav-logo-text"><span class="nav-brand-name">REE Global</span><span class="nav-brand-sub">Royalty
+            Executive Empire</span></div>
+      </a>
+      <ul class="nav-links" id="nav-links" role="list">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link">About REE</a></li>
+        <li><a href="shop.html" class="nav-link">Shop</a></li>
+        <li><a href="contact.html" class="nav-link nav-link-cta">Contact Us</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="cart.html" class="nav-icon cart-icon" aria-label="Shopping Cart"><svg viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="1.5">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <path d="M16 10a4 4 0 0 1-8 0" />
+          </svg><span class="cart-count">0</span></a>
+      </div>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span
+          class="ham-line"></span><span class="ham-line"></span><span class="ham-line"></span></button>
+    </div>
+    <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
+  </nav>
+
+  <div class="auth-section">
+    <div class="auth-container">
+      <!-- Login Form -->
+      <div class="auth-card reveal-left">
+        <div class="auth-title">Sign <span class="gold-text">In</span></div>
+        <div class="auth-sub">Welcome back to your REE Global account.</div>
+        <form id="login-form">
+          <div class="form-group">
+            <label for="login-email">Username or Email</label>
+            <input type="email" id="login-email" placeholder="you@example.com" required />
+          </div>
+          <div class="form-group">
+            <label for="login-pass">Password</label>
+            <input type="password" id="login-pass" placeholder="••••••••••" required />
+          </div>
+          <div class="forgot-link"><a href="#">Forgot password?</a></div>
+          <button type="submit" class="btn-gold" style="width:100%; justify-content:center;"><span>Sign
+              In</span></button>
+        </form>
+        <div class="divider-or">or sign in with</div>
+        <div class="social-auth">
+          <button class="social-btn">🇬 &nbsp; Continue with Google</button>
+          <button class="social-btn">📘 &nbsp; Continue with Facebook</button>
+        </div>
+      </div>
+
+      <!-- Register Form + Benefits -->
+      <div class="auth-card reveal-right">
+        <div class="auth-title">Create <span class="gold-text">Account</span></div>
+        <div class="auth-sub">Join the REE Global executive community today.</div>
+        <form id="register-form">
+          <div class="form-group">
+            <label for="reg-name">Full Name</label>
+            <input type="text" id="reg-name" placeholder="Your full name" required />
+          </div>
+          <div class="form-group">
+            <label for="reg-email">Email Address</label>
+            <input type="email" id="reg-email" placeholder="you@example.com" required />
+          </div>
+          <div class="form-group">
+            <label for="reg-pass">Password</label>
+            <input type="password" id="reg-pass" placeholder="Minimum 8 characters" required />
+          </div>
+          <button type="submit" class="btn-gold" style="width:100%; justify-content:center;"><span>Create
+              Account</span></button>
+        </form>
+        <ul class="benefits-list" style="margin-top: 28px;">
+          <li>
+            <div class="benefit-icon">🛍️</div>
+            <div class="benefit-text"><strong>Exclusive Member Pricing</strong><span>Get special discounts on all luxury
+                products.</span></div>
+          </li>
+          <li>
+            <div class="benefit-icon">📦</div>
+            <div class="benefit-text"><strong>Order Tracking</strong><span>Track your orders in real-time from your
+                dashboard.</span></div>
+          </li>
+          <li>
+            <div class="benefit-icon">⚜</div>
+            <div class="benefit-text"><strong>Executive Newsletter</strong><span>Be first to receive REE business
+                insights and launches.</span></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-bar">
+      <div class="container">
+        <p class="footer-copy">&copy; <span id="footer-year"></span> REE Global. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+
+</html>

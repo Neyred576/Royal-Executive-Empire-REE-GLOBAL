@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio | REE Global</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .portfolio-filters { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-bottom: 48px; }
+    .pf-tab { padding: 10px 24px; border-radius: 999px; border: 1px solid var(--gold-border); color: var(--w70); font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.3s; background: transparent; }
+    .pf-tab.active, .pf-tab:hover { background: var(--gold-gradient); color: var(--black-900); border-color: transparent; }
+    .portfolio-masonry { columns: 3; column-gap: 24px; }
+    .pf-item { break-inside: avoid; margin-bottom: 24px; border-radius: var(--radius-lg); overflow: hidden; position: relative; cursor: pointer; }
+    .pf-item.hidden { display: none; }
+    .pf-item-inner { background: var(--black-700); border: 1px solid var(--gold-border); border-radius: var(--radius-lg); overflow:hidden; transition: all 0.3s; }
+    .pf-item-inner:hover { box-shadow: var(--gold-glow-sm); border-color: var(--gold-300); }
+    .pf-visual { display: flex; align-items: center; justify-content: center; font-size: 4rem; }
+    .pf-overlay { padding: 20px; background: var(--black-900); }
+    .pf-cat-tag { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gold-300); margin-bottom: 6px; }
+    .pf-title { font-family: var(--font-display); font-size: 1.1rem; color: #fff; margin-bottom: 4px; }
+    .pf-location { font-size: 0.8rem; color: var(--w50); }
+    @media(max-width:992px) { .portfolio-masonry { columns: 2; } }
+    @media(max-width:576px) { .portfolio-masonry { columns: 1; } }
+  </style>
+</head>
+<body>
+<div class="bg-animated-glow"></div>
+
+<nav id="main-nav" class="main-nav scrolled" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="REE Global Home">
+      <div class="nav-logo-img-wrap">
+        <img src="../Images/BG/logo%20bg.png" alt="REE Global Logo" class="nav-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+        <div class="nav-logo-crown" style="display:none">⚜</div>
+      </div>
+      <div class="nav-logo-text"><span class="nav-brand-name">REE Global</span><span class="nav-brand-sub">Royalty Executive Empire</span></div>
+    </a>
+    <ul class="nav-links" id="nav-links" role="list">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="about.html" class="nav-link">About REE</a></li>
+      <li class="nav-item-dropdown">
+        <a href="#" class="nav-link">Divisions <span class="drop-arrow">▾</span></a>
+        <ul class="nav-dropdown">
+          <li><a href="real-estate.html">Real Estate</a></li>
+          <li><a href="music-store.html">Music & Entertainment</a></li>
+          <li><a href="index.html#services">Consulting</a></li>
+        </ul>
+      </li>
+      <li><a href="shop.html" class="nav-link">Shop</a></li>
+      <li><a href="portfolio.html" class="nav-link active">Portfolio</a></li>
+      <li><a href="blog.html" class="nav-link">Blog</a></li>
+      <li><a href="contact.html" class="nav-link nav-link-cta">Contact Us</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="cart.html" class="nav-icon cart-icon" aria-label="Shopping Cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="cart-count">0</span></a>
+    </div>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span class="ham-line"></span><span class="ham-line"></span><span class="ham-line"></span></button>
+  </div>
+  <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
+</nav>
+
+<section style="padding: 140px 0 60px; background: var(--black-900); border-bottom: 1px solid var(--gold-border); position:relative; overflow:hidden;">
+  <div style="position:absolute; inset:0; background: radial-gradient(ellipse at 70% 50%, rgba(212,175,55,0.06) 0%, transparent 70%);"></div>
+  <div class="container" style="position:relative; z-index:2; text-align:center;">
+    <div class="hero-eyebrow" style="justify-content:center;"><span class="eyebrow-line"></span><span>Our Work</span><span class="eyebrow-line"></span></div>
+    <h1 class="section-heading" style="font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 12px;">Our <span class="gold-text">Portfolio</span></h1>
+    <p style="color: var(--w50); max-width: 540px; margin: 0 auto;">A showcase of our landmark projects, strategic investments, and executive achievements across all divisions.</p>
+  </div>
+</section>
+
+<section class="section section--dark">
+  <div class="container" id="dynamic-portfolio-container">
+    <div style="background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(212,175,55,0.04) 100%); border: 1px solid rgba(212,175,55,0.25); border-radius: var(--radius-xl); padding: 80px 40px; text-align: center; max-width: 700px; margin: 40px auto; box-shadow: 0 30px 80px rgba(0,0,0,0.5), inset 0 1px 0 rgba(212,175,55,0.15);">
+      <h2 style="font-family: var(--font-display); font-size: 2.5rem; color: #fff; margin-bottom: 16px;">Coming <span class="gold-text">Soon</span></h2>
+      <p style="color: var(--w50); max-width: 400px; margin: 0 auto;">Our global portfolio is currently being curated. Check back shortly to explore our landmark projects, strategic investments, and executive achievements.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-bar"><div class="container"><p class="footer-copy">&copy; <span id="footer-year"></span> REE Global. All Rights Reserved.</p></div></div>
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>

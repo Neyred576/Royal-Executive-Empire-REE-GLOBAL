@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | REE Global</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<div class="bg-animated-glow"></div>
+
+<div id="preloader">
+  <div class="preloader-inner">
+    <div class="preloader-logo-wrap">
+      <div class="preloader-ring"></div>
+      <img src="../Images/BG/logo%20bg.png" alt="REE Global" class="preloader-logo-img" onerror="this.style.display='none';document.querySelector('.preloader-crown').style.display='flex'" />
+      <div class="preloader-crown" style="display:none"><span>⚜</span></div>
+    </div>
+    <div class="preloader-bar-wrap">
+      <div class="preloader-bar"><div class="preloader-fill" id="preloader-fill"></div></div>
+    </div>
+  </div>
+</div>
+
+<nav id="main-nav" class="main-nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="REE Global Home">
+      <div class="nav-logo-img-wrap">
+        <img src="../Images/BG/logo%20bg.png" alt="REE Global Logo" class="nav-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+        <div class="nav-logo-crown" style="display:none">⚜</div>
+      </div>
+      <div class="nav-logo-text">
+        <span class="nav-brand-name">REE Global</span>
+        <span class="nav-brand-sub">Royalty Executive Empire</span>
+      </div>
+    </a>
+    <ul class="nav-links" id="nav-links" role="list">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="about.html" class="nav-link">About REE</a></li>
+      <li class="nav-item-dropdown">
+        <a href="#" class="nav-link">Divisions <span class="drop-arrow">▾</span></a>
+        <ul class="nav-dropdown" aria-label="Divisions submenu">
+          <li><a href="reel-power.html">REEL Power</a></li>
+          <li><a href="reel-branding.html">REEL Branding</a></li>
+          <li><a href="reel-smart.html">REEL Smart</a></li>
+          <li><a href="index.html#business-solutions">Business Solutions</a></li>
+        </ul>
+      </li>
+      <li><a href="shop.html" class="nav-link">Shop</a></li>
+      <li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+      <li><a href="blog.html" class="nav-link">Blog</a></li>
+      <li><a href="contact.html" class="nav-link nav-link-cta">Contact Us</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="cart.html" class="nav-icon cart-icon" aria-label="Shopping Cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="cart-count">0</span>
+      </a>
+    </div>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+      <span class="ham-line"></span><span class="ham-line"></span><span class="ham-line"></span>
+    </button>
+  </div>
+  <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
+</nav>
+
+<section class="section-hero page-hero" style="padding: 160px 0 60px; min-height: auto; position:relative;">
+  <div class="hero-bg" style="position:absolute; inset:0; z-index:-1;">
+    <div class="hero-bg-gradient" style="position:absolute; inset:0; background: linear-gradient(to bottom, rgba(11,11,11,0.5), rgba(11,11,11,1));"></div>
+  </div>
+  <div class="container" style="position:relative; z-index:2; width:100%; text-align:center;">
+    <img src="../Images/BG/logo%20bg.png" alt="REE Global Logo" style="height: 100px; display: block; margin: 0 auto 24px auto; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));" />
+    <div class="hero-eyebrow" data-anim="fade-up" data-delay="0" style="justify-content:center;"><span class="eyebrow-line"></span><span>Our Global Story</span><span class="eyebrow-line"></span></div>
+    <h1 class="hero-headline" data-anim="fade-up" data-delay="1">About <span class="gold-text">REE Global</span></h1>
+  </div>
+</section>
+
+<section class="section section--dark">
+  <div class="container">
+    <div class="founder-layout" style="margin-bottom: 80px;">
+      <div class="founder-visual reveal-left">
+        <div class="founder-img-card" style="height:500px; background:var(--w08); border-radius:var(--radius-xl); overflow:hidden; position:relative;">
+          <img src="../Images/Prince Ose/About/DSC_4985 copy.jpg" alt="About REEL" style="width:100%; height:100%; object-fit:cover;" onerror="this.src='../Images/Prince Ose/About/DSC_4999 copy.jpg'" />
+        </div>
+      </div>
+      <div class="founder-content reveal-right">
+        <div class="section-eyebrow">About Us</div>
+        <h2 class="section-heading">Defining African Luxury & <span class="gold-text">Executive Excellence</span></h2>
+        <div class="gold-rule"></div>
+        <p class="body-text" style="font-size: 1.25rem; color: var(--w90); font-weight: 300; line-height: 1.8; margin-bottom: 24px;">Royalty Executive Empire Limited (REEL) is a premium lifestyle and corporate branding company specialising in customisable executive gadgets, luxury electronics, and high-end promotional products.</p>
+        <p class="body-text">Headquartered in Lagos with a branch office in Benin City, REEL provides innovative, stylish, and functional technology solutions designed for businesses, professionals, institutions, and luxury consumers across Africa.</p>
+        <p class="body-text">At the heart of REEL's identity is a simple conviction: luxury, innovation, and branding excellence must work together to help organisations elevate their corporate identity. Every product that leaves our workshop is designed to combine premium executive gifting with genuine functionality, ensuring that our partners create lasting impressions in every boardroom, conference, and client interaction.</p>
+        <p class="body-text">Our commitment is centred on quality, professionalism, creativity, and customer satisfaction, delivering world-class products that distinguish REEL as a trusted name in executive branding and luxury corporate gifting.</p>
+      </div>
+    </div>
+
+    <!-- Vision & Mission -->
+    <div class="founder-layout" style="margin-bottom: 100px; align-items:stretch;">
+      <div class="founder-content reveal-left" style="background: linear-gradient(145deg, rgba(20,20,20,1) 0%, rgba(10,10,10,1) 100%); padding: 50px; border-radius: var(--radius-xl); border: 1px solid var(--w10); position: relative; overflow: hidden; transition: all 0.4s ease; box-shadow: 0 20px 40px rgba(0,0,0,0.4);" onmouseover="this.style.borderColor='var(--gold-500)'; this.style.transform='translateY(-5px)';" onmouseout="this.style.borderColor='var(--w10)'; this.style.transform='translateY(0)';">
+        <div style="position: absolute; top: -20px; right: -20px; font-size: 8rem; opacity: 0.03; transform: rotate(15deg);">👁️</div>
+        <div style="width: 60px; height: 60px; border-radius: 50%; background: rgba(212,175,55,0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 24px; border: 1px solid rgba(212,175,55,0.3);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold-400)" stroke-width="1.5" width="28" height="28"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        </div>
+        <h3 style="font-family:var(--font-display); font-size:2.5rem; color:var(--gold-400); margin-bottom:20px;">Our Vision</h3>
+        <p class="body-text" style="color: var(--w80); line-height: 1.8;">To become Africa's leading premium executive gadget and corporate branding company, delivering innovative luxury technology solutions that elevate businesses, empower brands, and redefine executive gifting standards. In parallel, REEL is building a globally recognised African luxury brand, known for premium customisable gadgets, executive innovation, and world-class corporate branding solutions that create lasting impressions.</p>
+      </div>
+      <div class="founder-content reveal-right" style="background: linear-gradient(145deg, rgba(20,20,20,1) 0%, rgba(10,10,10,1) 100%); padding: 50px; border-radius: var(--radius-xl); border: 1px solid var(--w10); position: relative; overflow: hidden; transition: all 0.4s ease; box-shadow: 0 20px 40px rgba(0,0,0,0.4);" onmouseover="this.style.borderColor='var(--gold-500)'; this.style.transform='translateY(-5px)';" onmouseout="this.style.borderColor='var(--w10)'; this.style.transform='translateY(0)';">
+        <div style="position: absolute; top: -20px; right: -20px; font-size: 8rem; opacity: 0.03; transform: rotate(-15deg);">🎯</div>
+        <div style="width: 60px; height: 60px; border-radius: 50%; background: rgba(212,175,55,0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 24px; border: 1px solid rgba(212,175,55,0.3);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold-400)" stroke-width="1.5" width="28" height="28"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <h3 style="font-family:var(--font-display); font-size:2.5rem; color:var(--gold-400); margin-bottom:20px;">Our Mission</h3>
+        <p class="body-text" style="color: var(--w80); line-height: 1.8;">REEL exists to provide premium customisable gadgets, luxury electronics, and executive branding solutions that help businesses enhance their corporate identity through innovation, quality, and exceptional customer service — while delivering world-class executive products and corporate gifting solutions that combine luxury, technology, and professionalism, and building long-term partnerships across Africa and beyond.</p>
+      </div>
+    </div>
+
+    <!-- Core Values -->
+    <header class="section-header reveal-up">
+      <div class="section-eyebrow">What Drives Us</div>
+      <h2 class="section-heading">Our Core <span class="gold-text">Values</span></h2>
+      <div class="gold-rule center-rule"></div>
+    </header>
+    
+    <div class="divisions-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-bottom: 120px;">
+      
+      <div class="division-card glass-card reveal-up" style="padding: 32px; display: flex; flex-direction: column; align-items: flex-start;">
+        <div style="width: 48px; height: 48px; border-radius: 8px; background: rgba(212,175,55,0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; border: 1px solid rgba(212,175,55,0.2);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold-300)" stroke-width="2" width="24" height="24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <h3 style="font-size: 1.25rem; margin-bottom: 12px; color: #fff;">Excellence</h3>
+        <p style="color: var(--w70); font-size: 0.95rem; line-height: 1.6;">A commitment to superior quality and outstanding results that consistently exceed expectations in every project.</p>
+      </div>
+
+      <div class="division-card glass-card reveal-up" style="padding: 32px; display: flex; flex-direction: column; align-items: flex-start; transition-delay: 0.1s;">
+        <div style="width: 48px; height: 48px; border-radius: 8px; background: rgba(212,175,55,0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; border: 1px solid rgba(212,175,55,0.2);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold-300)" stroke-width="2" width="24" height="24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3 style="font-size: 1.25rem; margin-bottom: 12px; color: #fff;">Integrity</h3>
+        <p style="color: var(--w70); font-size: 0.95rem; line-height: 1.6;">Radical transparency and unwavering honesty form the foundation of all our business relationships.</p>
+      </div>
+
+      <div class="division-card glass-card reveal-up" style="padding: 32px; display: flex; flex-direction: column; align-items: flex-start; transition-delay: 0.2s;">
+        <div style="width: 48px; height: 48px; border-radius: 8px; background: rgba(212,175,55,0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; border: 1px solid rgba(212,175,55,0.2);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold-300)" stroke-width="2" width="24" height="24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        </div>
+        <h3 style="font-size: 1.25rem; margin-bottom: 12px; color: #fff;">Innovation</h3>
+        <p style="color: var(--w70); font-size: 0.95rem; line-height: 1.6;">Creative thinking and forward-looking solutions that define the future of luxury and corporate branding.</p>
+      </div>
+
+      <div class="division-card glass-card reveal-up" style="padding: 32px; display: flex; flex-direction: column; align-items: flex-start;">
+        <div style="width: 48px; height: 48px; border-radius: 8px; background: rgba(212,175,55,0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; border: 1px solid rgba(212,175,55,0.2);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold-300)" stroke-width="2" width="24" height="24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <h3 style="font-size: 1.25rem; margin-bottom: 12px; color: #fff;">Global Perspective</h3>
+        <p style="color: var(--w70); font-size: 0.95rem; line-height: 1.6;">Operating with world-class standards while fostering inclusivity across borders and cultures.</p>
+      </div>
+
+      <div class="division-card glass-card reveal-up" style="padding: 32px; display: flex; flex-direction: column; align-items: flex-start; transition-delay: 0.1s;">
+        <div style="width: 48px; height: 48px; border-radius: 8px; background: rgba(212,175,55,0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; border: 1px solid rgba(212,175,55,0.2);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold-300)" stroke-width="2" width="24" height="24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <h3 style="font-size: 1.25rem; margin-bottom: 12px; color: #fff;">Social Responsibility</h3>
+        <p style="color: var(--w70); font-size: 0.95rem; line-height: 1.6;">Giving back to our communities through empowerment, education, and sustainable development initiatives.</p>
+      </div>
+
+      <div class="division-card glass-card reveal-up" style="padding: 32px; display: flex; flex-direction: column; align-items: flex-start; transition-delay: 0.2s;">
+        <div style="width: 48px; height: 48px; border-radius: 8px; background: rgba(212,175,55,0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; border: 1px solid rgba(212,175,55,0.2);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold-300)" stroke-width="2" width="24" height="24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        </div>
+        <h3 style="font-size: 1.25rem; margin-bottom: 12px; color: #fff;">Sustainable Growth</h3>
+        <p style="color: var(--w70); font-size: 0.95rem; line-height: 1.6;">Driving long-term value creation and scalability that benefits our partners, clients, and society.</p>
+      </div>
+
+    </div>
+
+    <!-- Message from CEO -->
+    <div class="founder-layout" style="margin-bottom: 80px;">
+      <div class="founder-content reveal-left">
+        <div class="section-eyebrow">Leadership</div>
+        <h2 class="section-heading">Message From <span class="gold-text">The CEO</span></h2>
+        <div class="gold-rule"></div>
+        
+        <div style="position: relative; padding: 30px 0 0 30px; margin-top: 20px;">
+          <div style="position: absolute; top: 0; left: -10px; font-family: var(--font-display); font-size: 8rem; color: rgba(212,175,55,0.15); line-height: 1;">&ldquo;</div>
+          <p class="body-text" style="font-size: 1.15rem; color: var(--w90); font-style: italic;">Welcome to Royalty Executive Empire Limited (REEL).</p>
+          <p class="body-text" style="font-size: 1.05rem;">At REEL, we believe that luxury, innovation, and professionalism should work together to create products that leave lasting impressions. Our mission is to redefine executive branding and premium corporate gifting across Africa through high-quality, customizable gadgets and luxury technology solutions.</p>
+          <p class="body-text" style="font-size: 1.05rem;">In today's competitive business environment, brands must stand out with excellence and sophistication. This is why REEL is committed to delivering premium products that combine functionality, elegance, and corporate identity enhancement.</p>
+          <p class="body-text" style="font-size: 1.05rem;">As we continue to grow, our vision remains clear: to become Africa's leading executive gadget and luxury branding company, known for innovation, trust, and exceptional service delivery. Thank you for choosing REEL as your premium branding and technology partner.</p>
+        </div>
+
+        <div style="margin-top:40px; display: flex; align-items: center; gap: 20px;">
+          <div style="width: 50px; height: 2px; background: var(--gold-400);"></div>
+          <div>
+            <h4 style="color:#fff; font-family:var(--font-display); font-size:1.6rem; margin-bottom:4px; letter-spacing: 0.5px;">Onosedeba Israel Ose</h4>
+            <span style="color:var(--gold-500); font-size:0.85rem; text-transform:uppercase; letter-spacing:2px; font-weight: 600;">Chief Executive Officer</span>
+          </div>
+        </div>
+      </div>
+      <div class="founder-visual reveal-right">
+        <div class="founder-img-card" style="height:600px; background:var(--w08); border-radius:var(--radius-xl); overflow:hidden; position:relative; box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+          <img src="../Images/Prince Ose/About/DSC_4978 copy.jpg" alt="Onosedeba Israel Ose - CEO" style="width:100%; height:100%; object-fit:cover;" onerror="this.src='../Images/Prince Ose/About/DSC_4939 copy.jpg'" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Global Presence -->
+    <header class="section-header reveal-up">
+      <h2 class="section-heading">Our Global <span class="gold-text">Presence</span></h2>
+      <div class="gold-rule center-rule"></div>
+    </header>
+    <div class="divisions-grid" style="display: flex; justify-content: center; gap: 32px; flex-wrap: wrap;">
+      <div class="division-card glass-card reveal-up" style="min-width: 300px;">
+        <div class="div-body" style="text-align:center;">
+          <div style="width:64px;height:64px;border-radius:50%;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.3);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold-300)" stroke-width="1.5" width="30" height="30" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <h3 style="margin-top:0;">Abu Dhabi, UAE</h3>
+          <p>Global Headquarters</p>
+        </div>
+      </div>
+      <div class="division-card glass-card reveal-up" style="min-width: 300px;">
+        <div class="div-body" style="text-align:center;">
+          <div style="width:64px;height:64px;border-radius:50%;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.3);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold-300)" stroke-width="1.5" width="30" height="30" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <h3 style="margin-top:0;">Lagos, Nigeria</h3>
+          <p>Regional Office</p>
+        </div>
+      </div>
+    </div>
+    
+    <header class="section-header reveal-up" style="margin-top: 80px;">
+      <h2 class="section-heading">Future <span class="gold-text">Goals</span></h2>
+      <div class="gold-rule center-rule"></div>
+    </header>
+    
+    <div class="divisions-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+      <div class="division-card glass-card reveal-up">
+        <div class="div-body">
+          <h3 style="margin-bottom:12px; font-size:1.4rem;">Market Expansion</h3>
+          <p>Expand into major African markets, including Ghana, Kenya, South Africa, and Rwanda.</p>
+        </div>
+      </div>
+      <div class="division-card glass-card reveal-up">
+        <div class="div-body">
+          <h3 style="margin-bottom:12px; font-size:1.4rem;">Royalty Lifestyle Hub</h3>
+          <p>Launch the Royalty Lifestyle Hub, a digital platform connecting Africa's luxury consumers and innovators.</p>
+        </div>
+      </div>
+      <div class="division-card glass-card reveal-up">
+        <div class="div-body">
+          <h3 style="margin-bottom:12px; font-size:1.4rem;">REE Foundation</h3>
+          <p>Establish the REE Foundation for youth empowerment and creative industry growth.</p>
+        </div>
+      </div>
+      <div class="division-card glass-card reveal-up">
+        <div class="div-body">
+          <h3 style="margin-bottom:12px; font-size:1.4rem;">Global Partnerships</h3>
+          <p>Forge strategic partnerships with international luxury and technology brands to bring global standards to Africa.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-body">
+    <div class="footer-glow-l" aria-hidden="true"></div>
+    <div class="footer-glow-r" aria-hidden="true"></div>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col footer-brand-col">
+          <a href="index.html" class="footer-logo-link" aria-label="REE Global Home">
+            <img src="../Images/BG/logo%20bg.png" alt="REE Global" class="footer-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+            <div class="footer-logo-fallback" style="display:none">⚜ REE</div>
+          </a>
+          <p class="footer-brand-desc">Royalty Executive Empire — Building Wealth, Creating Opportunities, and Creating Global Impact across Africa and the world.</p>
+        </div>
+        <div class="footer-col">
+          <h3 class="footer-heading">Quick Links</h3>
+          <nav aria-label="Footer quick links">
+            <ul class="footer-links-list">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="about.html">About REE</a></li>
+              <li><a href="shop.html">Shop</a></li>
+              <li><a href="portfolio.html">Portfolio</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="footer-col">
+          <h3 class="footer-heading">Divisions</h3>
+          <nav aria-label="Footer divisions links">
+            <ul class="footer-links-list">
+              <li><a href="reel-power.html">REEL Power</a></li>
+              <li><a href="reel-branding.html">REEL Branding</a></li>
+              <li><a href="reel-smart.html">REEL Smart</a></li>
+              <li><a href="index.html#business-solutions">Business Solutions</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="footer-col footer-news-col">
+          <h3 class="footer-heading">Stay Connected</h3>
+          <form class="footer-newsletter" id="footer-newsletter-form">
+            <input type="email" id="footer-email" placeholder="Enter your email" required />
+            <button type="submit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
+          </form>
+          <div class="footer-contact-details">
+            <p><a href="mailto:admin@royaltyexecutiveempire.com">admin@royaltyexecutiveempire.com</a></p>
+            <p><a href="tel:+971561347581">+971 56 134 7581</a></p>
+            <p><a href="tel:+2348067029444">+234 806 702 9444</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bar"><div class="container"><p class="footer-copy">&copy; <span id="footer-year"></span> REE Global. All Rights Reserved.</p></div></div>
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>

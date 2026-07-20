@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Music & Entertainment | REE Global</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .artists-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .artist-card { background: var(--w08); border: 1px solid var(--gold-border); border-radius: var(--radius-xl); overflow: hidden; transition: all 0.3s; text-align: center; }
+    .artist-card:hover { transform: translateY(-6px); box-shadow: var(--gold-glow-sm); border-color: var(--gold-300); }
+    .artist-photo { width: 100%; height: 260px; background: linear-gradient(135deg, #0a0a1a, #10103a); display: flex; align-items: center; justify-content: center; font-size: 5rem; }
+    .artist-info { padding: 24px; }
+    .artist-genre { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gold-300); margin-bottom: 8px; }
+    .artist-name { font-family: var(--font-display); font-size: 1.5rem; color: #fff; margin-bottom: 8px; }
+    .artist-bio { font-size: 0.85rem; color: var(--w70); line-height: 1.6; }
+    .services-music { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .music-service { background: var(--w08); border: 1px solid var(--gold-border); border-radius: var(--radius-lg); padding: 28px; display: flex; gap: 20px; transition: all 0.3s; }
+    .music-service:hover { border-color: var(--gold-300); background: var(--gold-fill); }
+    .music-svc-icon { font-size: 2rem; flex-shrink: 0; }
+    .music-svc-title { font-size: 1.05rem; color: #fff; font-weight: 600; margin-bottom: 8px; }
+    .music-svc-desc { font-size: 0.85rem; color: var(--w70); line-height: 1.6; }
+    @media(max-width:992px) { .artists-grid { grid-template-columns: repeat(2, 1fr); } .services-music { grid-template-columns: 1fr; } }
+    @media(max-width:576px) { .artists-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+<div class="bg-animated-glow"></div>
+
+<nav id="main-nav" class="main-nav scrolled" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="REE Global Home">
+      <div class="nav-logo-img-wrap">
+        <img src="../Images/BG/logo%20bg.png" alt="REE Global Logo" class="nav-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+        <div class="nav-logo-crown" style="display:none">⚜</div>
+      </div>
+      <div class="nav-logo-text"><span class="nav-brand-name">REE Global</span><span class="nav-brand-sub">Royalty Executive Empire</span></div>
+    </a>
+    <ul class="nav-links" id="nav-links" role="list">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="about.html" class="nav-link">About REE</a></li>
+      <li class="nav-item-dropdown">
+        <a href="#" class="nav-link active">Divisions <span class="drop-arrow">▾</span></a>
+        <ul class="nav-dropdown">
+          <li><a href="real-estate.html">Real Estate</a></li>
+          <li><a href="music-store.html">Music & Entertainment</a></li>
+          <li><a href="index.html#services">Consulting</a></li>
+        </ul>
+      </li>
+      <li><a href="shop.html" class="nav-link">Shop</a></li>
+      <li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+      <li><a href="blog.html" class="nav-link">Blog</a></li>
+      <li><a href="contact.html" class="nav-link nav-link-cta">Contact Us</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="cart.html" class="nav-icon cart-icon" aria-label="Shopping Cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="cart-count">0</span></a>
+    </div>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span class="ham-line"></span><span class="ham-line"></span><span class="ham-line"></span></button>
+  </div>
+  <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
+</nav>
+
+<section style="padding: 140px 0 80px; background: linear-gradient(to bottom, #050514, #0a0a0a); position:relative; overflow:hidden; border-bottom: 1px solid var(--gold-border);">
+  <div style="position:absolute; inset:0; background: radial-gradient(ellipse at 50% 30%, rgba(80,60,200,0.12) 0%, transparent 50%), radial-gradient(ellipse at 80% 70%, rgba(212,175,55,0.08) 0%, transparent 50%);"></div>
+  <div class="container" style="position:relative; z-index:2; text-align:center;">
+    <div class="hero-eyebrow" style="justify-content:center;"><span class="eyebrow-line"></span><span>REE Division</span><span class="eyebrow-line"></span></div>
+    <h1 class="section-heading" style="font-size: clamp(2.5rem, 6vw, 5rem);">Music & <span class="gold-text">Entertainment</span></h1>
+    <p class="body-text" style="max-width: 600px; margin: 0 auto 40px; font-size: 1.05rem;">Connecting Africa's most gifted artists with global stages. From talent management to studio production, we elevate music careers to legendary status.</p>
+    <div style="display:flex; gap:16px; flex-wrap:wrap; justify-content:center;">
+      <a href="contact.html" class="btn-gold"><span>Work With Us</span></a>
+      <a href="#artists" class="btn-ghost"><span>Meet Our Artists</span></a>
+    </div>
+  </div>
+</section>
+
+<section id="artists" class="section section--dark">
+  <div class="container">
+    <header class="section-header reveal-up">
+      <h2 class="section-heading">Our <span class="gold-text">Artists</span></h2>
+      <div class="gold-rule center-rule"></div>
+      <p class="section-sub">Talented individuals signed and managed under the REE Music umbrella.</p>
+    </header>
+    <div style="background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(212,175,55,0.04) 100%); border: 1px solid rgba(212,175,55,0.25); border-radius: var(--radius-xl); padding: 80px 40px; text-align: center; max-width: 700px; margin: 0 auto; box-shadow: 0 30px 80px rgba(0,0,0,0.5), inset 0 1px 0 rgba(212,175,55,0.15);">
+      <h2 style="font-family: var(--font-display); font-size: 2.5rem; color: #fff; margin-bottom: 16px;">Coming <span class="gold-text">Soon</span></h2>
+      <p style="color: var(--w50); max-width: 450px; margin: 0 auto;">Our official artist roster is currently being updated. Check back shortly to meet the talented individuals signed and managed under the REE Music umbrella.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background: var(--black-800);">
+  <div class="container">
+    <header class="section-header reveal-up">
+      <h2 class="section-heading">Music <span class="gold-text">Services</span></h2>
+      <div class="gold-rule center-rule"></div>
+    </header>
+    <div class="services-music">
+      <div class="music-service reveal-up"><div class="music-svc-icon">🎙️</div><div><div class="music-svc-title">Artist Management</div><div class="music-svc-desc">Full-service career management for emerging and established artists, from bookings to brand deals.</div></div></div>
+      <div class="music-service reveal-up" style="transition-delay:0.1s;"><div class="music-svc-icon">🎛️</div><div><div class="music-svc-title">Studio Production</div><div class="music-svc-desc">World-class recording and production services in our fully equipped, state-of-the-art studios.</div></div></div>
+      <div class="music-service reveal-up" style="transition-delay:0.2s;"><div class="music-svc-icon">🌍</div><div><div class="music-svc-title">Global Touring & Booking</div><div class="music-svc-desc">We connect artists with international stages, festivals, and corporate events across all continents.</div></div></div>
+      <div class="music-service reveal-up" style="transition-delay:0.3s;"><div class="music-svc-icon">📱</div><div><div class="music-svc-title">Digital Distribution</div><div class="music-svc-desc">Get your music on Spotify, Apple Music, YouTube, and all major streaming platforms with full royalty management.</div></div></div>
+      <div class="music-service reveal-up" style="transition-delay:0.4s;"><div class="music-svc-icon">🎓</div><div><div class="music-svc-title">Music Education</div><div class="music-svc-desc">Through our partner institutes, we nurture the next generation of African music talent and producers.</div></div></div>
+      <div class="music-service reveal-up" style="transition-delay:0.5s;"><div class="music-svc-icon">📢</div><div><div class="music-svc-title">Brand Partnerships</div><div class="music-svc-desc">We negotiate premium brand endorsements and partnerships that elevate your artist profile globally.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-bar"><div class="container"><p class="footer-copy">&copy; <span id="footer-year"></span> REE Global. All Rights Reserved.</p></div></div>
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>

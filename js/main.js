@@ -1,0 +1,601 @@
+/**
+ * ====================================================================
+ * REE GLOBAL — ROYALTY EXECUTIVE EMPIRE
+ * Main Application Logic
+ * ====================================================================
+ */
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  // 1. PRELOADER
+  const preloader = document.getElementById('preloader');
+  const body = document.body;
+  body.classList.add('no-scroll');
+  
+  // Give the CSS animation time to complete
+  if (preloader) {
+    setTimeout(() => {
+      preloader.classList.add('done');
+      body.classList.remove('no-scroll');
+      initHeroAnimations();
+    }, 2500);
+  } else {
+    // No preloader on this page — show content immediately
+    body.classList.remove('no-scroll');
+    initHeroAnimations();
+  }
+
+  // 2. COOKIE CONSENT
+  const cookieBanner = document.getElementById('cookie-consent');
+  const btnAccept = document.getElementById('cookie-accept');
+  const btnDecline = document.getElementById('cookie-decline');
+  
+  if (cookieBanner && !localStorage.getItem('ree_cookie_consent')) {
+    setTimeout(() => {
+      cookieBanner.classList.add('show');
+    }, 3500);
+  }
+  
+  if (btnAccept) {
+    btnAccept.addEventListener('click', () => {
+      localStorage.setItem('ree_cookie_consent', 'accepted');
+      if (cookieBanner) cookieBanner.classList.remove('show');
+    });
+  }
+  
+  if (btnDecline) {
+    btnDecline.addEventListener('click', () => {
+      localStorage.setItem('ree_cookie_consent', 'declined');
+      if (cookieBanner) cookieBanner.classList.remove('show');
+    });
+  }
+
+  // 3. NAVIGATION HEADER
+  const mainNav = document.getElementById('main-nav');
+  const scrollTopBtn = document.getElementById('scroll-top-btn');
+  
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    // Header Blur
+    if (y > 50) {
+      mainNav.classList.add('scrolled');
+    } else {
+      mainNav.classList.remove('scrolled');
+    }
+    // Scroll To Top Button
+    if (scrollTopBtn) {
+      if (y > 600) {
+        scrollTopBtn.classList.add('show');
+      } else {
+        scrollTopBtn.classList.remove('show');
+      }
+    }
+  }, { passive: true });
+
+  if (scrollTopBtn) {
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // 4. MOBILE MENU
+  const hamburger = document.getElementById('nav-hamburger');
+  const navLinks = document.getElementById('nav-links');
+  const navOverlay = document.getElementById('nav-overlay');
+  
+  const toggleMenu = () => {
+    const isOpen = hamburger.classList.contains('open');
+    if (isOpen) {
+      hamburger.classList.remove('open');
+      navLinks.classList.remove('open');
+      navOverlay.classList.remove('show');
+      hamburger.setAttribute('aria-expanded', 'false');
+      body.classList.remove('no-scroll');
+    } else {
+      hamburger.classList.add('open');
+      navLinks.classList.add('open');
+      navOverlay.classList.add('show');
+      hamburger.setAttribute('aria-expanded', 'true');
+      body.classList.add('no-scroll');
+    }
+  };
+  
+  hamburger.addEventListener('click', toggleMenu);
+  navOverlay.addEventListener('click', toggleMenu);
+  
+  // Close menu on link click
+  navLinks.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      if (hamburger.classList.contains('open')) {
+        toggleMenu();
+      }
+    });
+  });
+
+  // 5. ACTIVE LINK HIGHLIGHTING
+  // 5. ACTIVE LINK HIGHLIGHTING
+  const navItems = document.querySelectorAll('.nav-link');
+  let currentUrl = window.location.pathname.split('/').pop() || 'index.html';
+  
+  navItems.forEach(link => {
+    link.classList.remove('active');
+    const href = link.getAttribute('href');
+    if (href && (href === currentUrl || (currentUrl === '' && href === 'index.html'))) {
+      link.classList.add('active');
+    }
+  });
+
+  // Mobile Dropdown Toggle
+  const dropdownToggles = document.querySelectorAll('.nav-item-dropdown > .nav-link');
+  dropdownToggles.forEach(toggle => {
+    toggle.addEventListener('click', (e) => {
+      if (window.innerWidth <= 768) {
+        e.preventDefault();
+        const dropdown = toggle.nextElementSibling;
+        if (dropdown.style.visibility === 'visible') {
+          dropdown.style.visibility = 'hidden';
+          dropdown.style.opacity = '0';
+          dropdown.style.transform = 'translateY(10px)';
+        } else {
+          dropdown.style.visibility = 'visible';
+          dropdown.style.opacity = '1';
+          dropdown.style.transform = 'translateY(0)';
+        }
+      }
+    });
+  });
+
+
+  // 6. SCROLL REVEAL ANIMATIONS (Intersection Observer)
+  const revealElements = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right');
+  
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    root: null,
+    threshold: 0.15,
+    rootMargin: "0px 0px -50px 0px"
+  });
+  
+  revealElements.forEach(el => revealObserver.observe(el));
+
+
+  // 7. COUNTER ANIMATION
+  const counterItems = document.querySelectorAll('.ctr-number');
+  let hasCounted = false;
+  
+  const startCounters = () => {
+    counterItems.forEach(counter => {
+      const target = +counter.getAttribute('data-target');
+      const suffix = counter.getAttribute('data-suffix');
+      const duration = 2000; 
+      const increment = target / (duration / 16); 
+      let current = 0;
+      
+      const updateCounter = () => {
+        current += increment;
+        if (current < target) {
+          counter.innerText = Math.ceil(current) + suffix;
+          requestAnimationFrame(updateCounter);
+        } else {
+          // Add commas for large numbers
+          counter.innerText = target.toLocaleString() + suffix;
+        }
+      };
+      updateCounter();
+    });
+  };
+
+  const statsSection = document.getElementById('statistics');
+  if (statsSection) {
+    const statsObserver = new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      if (entry.isIntersecting && !hasCounted) {
+        hasCounted = true;
+        setTimeout(startCounters, 200);
+      }
+    }, { threshold: 0.5 });
+    statsObserver.observe(statsSection);
+  }
+
+
+  // 8. PORTFOLIO FILTER
+  const pfTabs = document.querySelectorAll('.pf-tab');
+  const pfItems = document.querySelectorAll('.pf-item');
+  
+  pfTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      // Remove active class
+      pfTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      
+      const filter = tab.getAttribute('data-filter');
+      
+      pfItems.forEach(item => {
+        // Reset animation state
+        item.classList.remove('in-view');
+        
+        if (filter === 'all' || item.getAttribute('data-cat') === filter) {
+          item.classList.remove('hidden');
+          // small timeout to allow display:block to apply before animating opacity
+          setTimeout(() => {
+            item.classList.add('in-view');
+          }, 50);
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+    });
+  });
+
+
+  // 9. TESTIMONIALS CAROUSEL
+  const track = document.getElementById('testi-track');
+  if(track) {
+    const slides = Array.from(track.children);
+    const nextButton = document.getElementById('testi-next');
+    const prevButton = document.getElementById('testi-prev');
+    const dotsNav = document.getElementById('testi-dots');
+    
+    if(slides.length > 0) {
+      // Create dots
+      slides.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.classList.add('testi-dot');
+        dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+        if (i === 0) dot.classList.add('active');
+        dotsNav.appendChild(dot);
+      });
+      const dots = Array.from(dotsNav.children);
+      
+      let currentIndex = 0;
+      
+      const moveToSlide = (index) => {
+        if (index < 0) index = slides.length - 1;
+        if (index >= slides.length) index = 0;
+        
+        track.style.transform = 'translateX(-' + (index * 100) + '%)';
+        dots.forEach(d => d.classList.remove('active'));
+        dots[index].classList.add('active');
+        currentIndex = index;
+      };
+      
+      nextButton.addEventListener('click', () => moveToSlide(currentIndex + 1));
+      prevButton.addEventListener('click', () => moveToSlide(currentIndex - 1));
+      
+      dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => moveToSlide(i));
+      });
+      
+      // Auto advance
+      let autoPlay = setInterval(() => moveToSlide(currentIndex + 1), 3500);
+      
+      // Pause on hover
+      const carouselContainer = document.querySelector('.testi-carousel');
+      if (carouselContainer) {
+        carouselContainer.addEventListener('mouseenter', () => clearInterval(autoPlay));
+        carouselContainer.addEventListener('mouseleave', () => {
+          autoPlay = setInterval(() => moveToSlide(currentIndex + 1), 3500);
+        });
+      }
+    }
+  }
+
+
+  // 10. HERO PARTICLES ANIMATION (Gold Dust)
+  const canvas = document.getElementById('hero-canvas');
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let particles = [];
+    
+    const resizeCanvas = () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    };
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+    
+    class Particle {
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.size = Math.random() * 2.5 + 0.5;
+        this.speedX = Math.random() * 0.5 - 0.25;
+        this.speedY = Math.random() * -1 - 0.5; // Always float up slowly
+        this.opacity = Math.random() * 0.5 + 0.1;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        
+        // Wrap around
+        if (this.y < -10) {
+          this.y = height + 10;
+          this.x = Math.random() * width;
+        }
+        if (this.x < -10) this.x = width + 10;
+        if (this.x > width + 10) this.x = -10;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(212, 175, 55, ${this.opacity})`;
+        ctx.fill();
+        // Add subtle glow to larger particles
+        if(this.size > 2) {
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = 'rgba(212, 175, 55, 0.8)';
+        } else {
+            ctx.shadowBlur = 0;
+        }
+      }
+    }
+    
+    const initParticles = () => {
+      particles = [];
+      const particleCount = Math.min(window.innerWidth / 15, 100); // Responsive count
+      for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+      }
+    };
+    
+    const animateParticles = () => {
+      ctx.clearRect(0, 0, width, height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animateParticles);
+    };
+    
+    initParticles();
+    animateParticles();
+  }
+
+  // Set hero text animations after preloader
+  function initHeroAnimations() {
+    const heroAnims = document.querySelectorAll('[data-anim]');
+    heroAnims.forEach(el => {
+      // Small delay just to let UI settle
+      setTimeout(() => {
+        el.setAttribute('data-anim', 'fade-up'); // Ensure CSS triggers
+      }, parseInt(el.getAttribute('data-delay') || '0') * 100);
+    });
+  }
+
+
+  // 11. CONTACT FORM — Send via WhatsApp
+  const contactForm = document.getElementById('contact-form');
+  const successMsg = document.getElementById('form-success-msg');
+  const submitBtn = document.getElementById('cf-submit');
+
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      // Basic validation
+      let isValid = true;
+      contactForm.querySelectorAll('[required]').forEach(input => {
+        if (!input.value.trim()) {
+          isValid = false;
+          input.style.borderColor = '#e74c3c';
+          input.style.boxShadow = '0 0 0 3px rgba(231,76,60,0.15)';
+        } else {
+          input.style.borderColor = '';
+          input.style.boxShadow = '';
+        }
+      });
+
+      if (!isValid) return;
+
+      // Collect form data
+      const name    = document.getElementById('cf-name')?.value.trim() || '';
+      const email   = document.getElementById('cf-email')?.value.trim() || '';
+      const phone   = document.getElementById('cf-phone')?.value.trim() || 'N/A';
+      const subject = document.getElementById('cf-subject')?.value.trim() || 'General Inquiry';
+      const message = document.getElementById('cf-msg')?.value.trim() || '';
+
+      // Build WhatsApp message
+      const text = 
+        `👋 *New Inquiry — REE Global Website*\n\n` +
+        `*Name:* ${name}\n` +
+        `*Email:* ${email}\n` +
+        `*Phone:* ${phone}\n` +
+        `*Subject:* ${subject}\n\n` +
+        `*Message:*\n${message}\n\n` +
+        `---\n_Sent from royaltyexecutiveempire.com_`;
+
+      const whatsappURL = `https://wa.me/971561347581?text=${encodeURIComponent(text)}`;
+
+      // Show success state on button
+      const originalHTML = submitBtn.innerHTML;
+      submitBtn.innerHTML = '<span>✅ Opening WhatsApp...</span>';
+      submitBtn.style.background = 'linear-gradient(135deg, #25D366, #128C7E)';
+      submitBtn.disabled = true;
+
+      if (successMsg) {
+        successMsg.style.display = 'block';
+        successMsg.innerHTML = '✅ Opening WhatsApp! Complete the send to reach our team instantly.';
+      }
+
+      // Open WhatsApp
+      window.open(whatsappURL, '_blank');
+
+      // Reset after 4 seconds
+      setTimeout(() => {
+        submitBtn.innerHTML = originalHTML;
+        submitBtn.disabled = false;
+        submitBtn.style.background = '';
+        contactForm.reset();
+        if (successMsg) successMsg.style.display = 'none';
+      }, 4000);
+    });
+  }
+
+  // 12. FOOTER YEAR
+  const yearEl = document.getElementById('footer-year');
+  if (yearEl) {
+    yearEl.textContent = new Date().getFullYear();
+  }
+
+  // 13. CUSTOM LUXURY CURSOR
+  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  if (!isTouchDevice) {
+    const cursor = document.createElement('div');
+    cursor.classList.add('custom-cursor');
+    const cursorDot = document.createElement('div');
+    cursorDot.classList.add('custom-cursor-dot');
+    document.body.appendChild(cursor);
+    document.body.appendChild(cursorDot);
+
+    let mouseX = 0, mouseY = 0;
+    let cursorX = 0, cursorY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      // Dot follows immediately
+      cursorDot.style.left = `${mouseX}px`;
+      cursorDot.style.top = `${mouseY}px`;
+    });
+
+    // Ring follows with easing
+    const animateCursor = () => {
+      let distX = mouseX - cursorX;
+      let distY = mouseY - cursorY;
+      cursorX += distX * 0.2;
+      cursorY += distY * 0.2;
+      cursor.style.left = `${cursorX}px`;
+      cursor.style.top = `${cursorY}px`;
+      requestAnimationFrame(animateCursor);
+    };
+    animateCursor();
+
+    // Hover effect on interactables
+    const interactables = document.querySelectorAll('a, button, input, textarea, select, .product-card, .division-card, .glass-card, .btn-primary, .btn-secondary, .listing-card');
+    interactables.forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.classList.add('hovered');
+        cursorDot.classList.add('hovered');
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.classList.remove('hovered');
+        cursorDot.classList.remove('hovered');
+      });
+    });
+  }
+
+  // 14. DYNAMIC ADMIN RENDER (Prototype LocalStorage)
+  const renderDynamicContent = () => {
+    // --- SHOP PAGE ---
+    const shopContainer = document.getElementById('dynamic-shop-container');
+    if (shopContainer) {
+      const products = JSON.parse(localStorage.getItem('ree_products')) || [];
+      if (products.length > 0) {
+        // Build the luxury grid
+        shopContainer.innerHTML = `
+          <div class="shop-layout">
+            <aside class="shop-sidebar reveal-left">
+              <h3>Categories</h3>
+              <ul class="cat-list">
+                <li><a href="#">All Categories</a></li>
+                <li><a href="#">Electronics</a></li>
+                <li><a href="#">Corporate Gifts</a></li>
+                <li><a href="#">Apparel</a></li>
+                <li><a href="#">Accessories</a></li>
+              </ul>
+            </aside>
+            <main class="products-grid reveal-right" id="products-grid-inner"></main>
+          </div>
+        `;
+        
+        const gridInner = document.getElementById('products-grid-inner');
+        products.forEach(p => {
+          gridInner.innerHTML += `
+            <div class="product-card">
+              <div class="product-img" style="background: url('${p.image}') center/cover; min-height:240px;"></div>
+              <div class="product-info">
+                <div class="product-cat">${p.category}</div>
+                <h3 class="product-title">${p.name}</h3>
+                <div class="product-price">$${Number(p.price).toFixed(2)}</div>
+                <button class="btn-gold" style="width:100%; justify-content:center;">Add to Cart</button>
+              </div>
+            </div>
+          `;
+        });
+      }
+    }
+
+    // --- PORTFOLIO PAGE ---
+    const pfContainer = document.getElementById('dynamic-portfolio-container');
+    if (pfContainer) {
+      const portfolio = JSON.parse(localStorage.getItem('ree_portfolio')) || [];
+      if (portfolio.length > 0) {
+        pfContainer.innerHTML = `
+          <div class="portfolio-filters reveal-up">
+            <button class="pf-tab active" data-filter="all">All Projects</button>
+            <button class="pf-tab" data-filter="REEL Real Estate">Real Estate</button>
+            <button class="pf-tab" data-filter="REEL Branding">Branding</button>
+            <button class="pf-tab" data-filter="REEL Power">Power</button>
+            <button class="pf-tab" data-filter="REEL Music">Music</button>
+          </div>
+          <div class="portfolio-masonry reveal-up" id="pf-masonry-inner" style="columns: 3; column-gap: 24px;"></div>
+        `;
+        
+        const pfInner = document.getElementById('pf-masonry-inner');
+        portfolio.forEach(p => {
+          pfInner.innerHTML += `
+            <div class="pf-item" style="break-inside: avoid; margin-bottom: 24px; border-radius: var(--radius-lg); overflow: hidden; position: relative;">
+              <div class="pf-item-inner" style="background: var(--black-700); border: 1px solid var(--gold-border); border-radius: var(--radius-lg); overflow:hidden;">
+                <div style="background: url('${p.image}') center/cover; min-height: 300px;"></div>
+                <div class="pf-overlay" style="padding: 20px; background: var(--black-900);">
+                  <div class="pf-cat-tag" style="font-size: 0.7rem; text-transform: uppercase; color: var(--gold-300); margin-bottom: 6px;">${p.category}</div>
+                  <h3 class="pf-title" style="font-family: var(--font-display); font-size: 1.1rem; color: #fff;">${p.title}</h3>
+                </div>
+              </div>
+            </div>
+          `;
+        });
+      }
+    }
+
+    // --- BLOG PAGE ---
+    const blogContainer = document.getElementById('dynamic-blog-container');
+    if (blogContainer) {
+      const blogs = JSON.parse(localStorage.getItem('ree_blogs')) || [];
+      if (blogs.length > 0) {
+        blogContainer.innerHTML = ''; // Clear Coming Soon
+        blogs.forEach(b => {
+          blogContainer.innerHTML += `
+            <article style="background: var(--w08); border: 1px solid var(--gold-border); border-radius: var(--radius-xl); overflow: hidden; margin-bottom: 40px; transition: all 0.3s;" onmouseover="this.style.boxShadow='var(--gold-glow-sm)'" onmouseout="this.style.boxShadow='none'">
+              <div style="height: 350px; background: url('${b.image}') center/cover;"></div>
+              <div style="padding: 40px;">
+                <div style="display:flex; gap:16px; margin-bottom: 16px; font-size: 0.85rem; color: var(--gold-300); text-transform: uppercase; letter-spacing: 1px;">
+                  <span>${b.category}</span>
+                  <span style="color:var(--w50)">${b.date}</span>
+                </div>
+                <h2 style="font-family: var(--font-display); font-size: 2rem; color: #fff; margin-bottom: 16px;">${b.title}</h2>
+                <p style="color: var(--w60); line-height: 1.8; margin-bottom: 24px;">${b.content.substring(0, 150)}...</p>
+                <a href="#" class="gold-link" style="font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem;">Read Full Article &rarr;</a>
+              </div>
+            </article>
+          `;
+        });
+      }
+    }
+  };
+
+  renderDynamicContent();
+  
+  // Listen for storage events (if changed in another tab)
+  window.addEventListener('storage', () => {
+    renderDynamicContent();
+  });
+
+});

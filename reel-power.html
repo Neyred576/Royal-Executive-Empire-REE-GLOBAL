@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>REEL Power | Premium Charging Infrastructure — REE Global</title>
+  <meta name="description" content="REEL Power delivers premium mobile charging infrastructure — from power bank rental kiosks to secure charging lockers and bespoke corporate hubs." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .div-hero { padding: 160px 0 80px; text-align: center; background: var(--black-900); position: relative; overflow: hidden; }
+    .div-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 100%, rgba(212,175,55,0.1) 0%, transparent 60%); }
+    .div-hero-content { position: relative; z-index: 2; }
+    .div-hero-icon { width: 100px; height: 100px; border-radius: 50%; background: var(--gold-fill); border: 1px solid var(--gold-border); display: flex; align-items: center; justify-content: center; margin: 0 auto 32px; font-size: 2.5rem; }
+    .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .product-card { background: var(--w08); border: 1px solid var(--gold-border); border-radius: var(--radius-lg); padding: 32px 28px; transition: all 0.3s; position: relative; overflow: hidden; }
+    .product-card::before { content: ''; position: absolute; inset: 0; background: var(--gold-gradient); opacity: 0; transition: opacity 0.3s; }
+    .product-card:hover { border-color: var(--gold-300); transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+    .product-card:hover::before { opacity: 0.03; }
+    .product-icon { font-size: 2.5rem; margin-bottom: 16px; }
+    .product-card h3 { font-family: var(--font-display); font-size: 1.25rem; color: #fff; margin-bottom: 10px; }
+    .product-card p { color: var(--w50); font-size: 0.9rem; line-height: 1.6; }
+    .tier-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .tier-card { border: 1px solid var(--gold-border); border-radius: var(--radius-lg); padding: 36px 28px; text-align: center; transition: all 0.3s; }
+    .tier-card.featured { border-color: var(--gold-300); background: var(--gold-fill); }
+    .tier-badge { font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold-300); margin-bottom: 12px; }
+    .tier-name { font-family: var(--font-display); font-size: 1.8rem; color: #fff; margin-bottom: 8px; }
+    .tier-price { font-size: 1rem; color: var(--w50); margin-bottom: 24px; }
+    .tier-features { list-style: none; text-align: left; margin-bottom: 28px; }
+    .tier-features li { padding: 8px 0; color: var(--w70); font-size: 0.9rem; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; gap: 10px; align-items: center; }
+    .tier-features li::before { content: '⚜'; color: var(--gold-300); font-size: 0.7rem; flex-shrink: 0; }
+    @media (max-width: 768px) { .products-grid, .tier-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<nav id="main-nav" class="main-nav scrolled" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="REE Global Home">
+      <div class="nav-logo-img-wrap">
+        <img src="../Images/BG/logo%20bg.png" alt="REE Global Logo" class="nav-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+        <div class="nav-logo-crown" style="display:none">⚜</div>
+      </div>
+      <div class="nav-logo-text"><span class="nav-brand-name">REE Global</span><span class="nav-brand-sub">Royalty Executive Empire</span></div>
+    </a>
+    <ul class="nav-links" id="nav-links" role="list">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="about.html" class="nav-link">About REE</a></li>
+      <li class="nav-item-dropdown">
+        <a href="#" class="nav-link active">Divisions <span class="drop-arrow">▾</span></a>
+        <ul class="nav-dropdown">
+          <li><a href="reel-power.html">REEL Power</a></li>
+          <li><a href="reel-branding.html">REEL Branding</a></li>
+          <li><a href="reel-smart.html">REEL Smart</a></li>
+          <li><a href="index.html#business-solutions">Business Solutions</a></li>
+        </ul>
+      </li>
+      <li><a href="shop.html" class="nav-link">Shop</a></li>
+      <li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+      <li><a href="blog.html" class="nav-link">Blog</a></li>
+      <li><a href="contact.html" class="nav-link nav-link-cta">Contact Us</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="cart.html" class="nav-icon cart-icon" aria-label="Shopping Cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="cart-count">0</span></a>
+    </div>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span class="ham-line"></span><span class="ham-line"></span><span class="ham-line"></span></button>
+  </div>
+  <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
+</nav>
+
+<!-- Hero -->
+<section class="div-hero">
+  <div class="div-hero-content container">
+    <div class="div-hero-icon">⚡</div>
+    <div class="hero-eyebrow" style="justify-content:center;"><span class="eyebrow-line"></span><span>Division 01</span><span class="eyebrow-line"></span></div>
+    <h1 class="section-heading" style="font-size: clamp(2.5rem, 5vw, 4.5rem);">REEL <span class="gold-text">Power</span></h1>
+    <div class="gold-rule center-rule"></div>
+    <p style="color: var(--w50); max-width: 600px; margin: 0 auto 40px; font-size: 1.1rem; line-height: 1.7;">Premium Mobile Charging Infrastructure. Never let a low battery interrupt a high-value moment.</p>
+    <a href="contact.html" class="btn-gold" id="power-cta">
+      <span>Get a Quote</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- Overview -->
+<section class="section section--glow">
+  <div class="container">
+    <header class="section-header reveal-up">
+      <div class="section-eyebrow">What We Deliver</div>
+      <h2 class="section-heading">Charging <span class="gold-text">Solutions</span></h2>
+      <div class="gold-rule center-rule"></div>
+      <p class="section-desc">From high-traffic public venues to exclusive executive environments, REEL Power delivers reliable, premium-quality charging infrastructure that keeps people connected.</p>
+    </header>
+
+    <div class="products-grid">
+      <div class="product-card reveal-up">
+        <div class="product-icon">🔋</div>
+        <h3>Power Bank Rental Kiosks</h3>
+        <p>Self-service charging kiosks placed in high-traffic areas. Clients rent, charge, and return — a seamless, technology-driven experience for malls, airports, and events.</p>
+      </div>
+      <div class="product-card reveal-up">
+        <div class="product-icon">🗄️</div>
+        <h3>Secure Charging Lockers</h3>
+        <p>Branded, lockable charging stations for hotels, offices, conferences, and co-working spaces. Devices stay safe while charging to full.</p>
+      </div>
+      <div class="product-card reveal-up">
+        <div class="product-icon">🏢</div>
+        <h3>Corporate Charging Hubs</h3>
+        <p>Bespoke multi-device charging stations custom-branded for corporate environments, executive lounges, and boardrooms.</p>
+      </div>
+      <div class="product-card reveal-up">
+        <div class="product-icon">🎪</div>
+        <h3>Event Charging Stations</h3>
+        <p>Portable, branded charging stations deployed at conferences, summits, product launches, and corporate galas — keeping guests powered throughout.</p>
+      </div>
+      <div class="product-card reveal-up">
+        <div class="product-icon">🎁</div>
+        <h3>Branded Power Banks</h3>
+        <p>Premium custom-branded power banks as executive gifts, corporate giveaways, and VIP welcome packages that leave a lasting impression.</p>
+      </div>
+      <div class="product-card reveal-up">
+        <div class="product-icon">🔌</div>
+        <h3>Smart Charging Cables</h3>
+        <p>Multi-compatible, high-speed charging cables with premium branding for executive kits, staff uniforms, and retail.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Who We Serve -->
+<section class="section section--dark">
+  <div class="container">
+    <header class="section-header reveal-up">
+      <div class="section-eyebrow">Ideal Clients</div>
+      <h2 class="section-heading">Who We <span class="gold-text">Power</span></h2>
+      <div class="gold-rule center-rule"></div>
+    </header>
+    <div class="services-grid">
+      <div class="service-card reveal-up"><div class="svc-icon">✈️</div><h3>Airports & Transit</h3><p>Keep international travellers charged and ready from arrival to departure.</p></div>
+      <div class="service-card reveal-up"><div class="svc-icon">🏨</div><h3>Hotels & Hospitality</h3><p>Elevate the guest experience with in-room and lobby charging solutions.</p></div>
+      <div class="service-card reveal-up"><div class="svc-icon">🛍️</div><h3>Malls & Retail</h3><p>Increase dwell time and shopper satisfaction with accessible charging kiosks.</p></div>
+      <div class="service-card reveal-up"><div class="svc-icon">🏛️</div><h3>Universities & Institutions</h3><p>Keep students and staff connected across campuses and libraries.</p></div>
+      <div class="service-card reveal-up"><div class="svc-icon">🎭</div><h3>Events & Conferences</h3><p>Ensure every delegate stays powered at summits, expos, and galas.</p></div>
+      <div class="service-card reveal-up"><div class="svc-icon">🏢</div><h3>Corporate Offices</h3><p>Premium charging infrastructure for boardrooms, reception areas, and open offices.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="padding: 80px 0; background: var(--black-900); text-align: center; border-top: 1px solid var(--gold-border);">
+  <div class="container">
+    <h2 class="section-heading reveal-up">Ready to <span class="gold-text">Power Up?</span></h2>
+    <p style="color: var(--w50); max-width: 500px; margin: 0 auto 36px;" class="reveal-up">Contact our team to discuss a custom REEL Power solution for your venue or event.</p>
+    <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;" class="reveal-up">
+      <a href="contact.html" class="btn-gold" id="power-contact-cta"><span>Get In Touch</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <a href="shop.html" class="btn-outline" id="power-shop-cta"><span>Browse Products</span></a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-bar"><div class="container"><p class="footer-copy">&copy; <span id="footer-year"></span> Royalty Executive Empire (REE Global). All Rights Reserved.</p></div></div>
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>

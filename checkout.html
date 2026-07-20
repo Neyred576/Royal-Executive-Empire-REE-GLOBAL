@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout | REE Global</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .checkout-section { min-height: 100vh; padding: 140px 0 80px; background: var(--black-900); }
+    .checkout-layout { display: grid; grid-template-columns: 1fr 400px; gap: 40px; align-items: start; }
+    .checkout-form-wrap { background: var(--w08); border: 1px solid var(--gold-border); border-radius: var(--radius-xl); padding: 40px; }
+    .checkout-step-title { font-family: var(--font-display); font-size: 1.5rem; color: #fff; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--gold-border); }
+    .form-group { margin-bottom: 20px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .form-group label { display: block; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--gold-300); margin-bottom: 8px; }
+    .form-group input, .form-group select { width: 100%; background: var(--black-900); border: 1px solid var(--gold-border); border-radius: var(--radius-md); padding: 14px 18px; color: #fff; font-family: var(--font-body); font-size: 0.95rem; transition: border-color 0.3s; }
+    .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--gold-300); box-shadow: 0 0 0 3px rgba(212,175,55,0.1); }
+    .payment-methods { display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; }
+    .pay-method { padding: 12px 20px; border: 2px solid var(--gold-border); border-radius: var(--radius-md); cursor: pointer; color: var(--w70); font-size: 0.85rem; font-weight: 600; transition: all 0.3s; display:flex; align-items:center; gap:8px; }
+    .pay-method.selected { border-color: var(--gold-300); background: var(--gold-fill); color: var(--gold-300); }
+    .pay-method:hover { border-color: var(--gold-300); }
+    .order-summary-card { background: var(--w08); border: 1px solid var(--gold-border); border-radius: var(--radius-xl); padding: 32px; position: sticky; top: 100px; }
+    .order-item { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--gold-border); }
+    .order-item:last-of-type { margin-bottom: 0; padding-bottom: 0; border: none; }
+    .order-thumb { width: 50px; height: 50px; border-radius: var(--radius-sm); background: var(--black-700); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink:0; }
+    .order-item-name { font-size: 0.9rem; color: #fff; font-weight: 600; }
+    .order-item-qty { font-size: 0.8rem; color: var(--w50); }
+    .order-item-price { margin-left: auto; color: var(--gold-300); font-weight: 700; white-space:nowrap; }
+    .order-totals { margin-top: 20px; }
+    .total-row { display: flex; justify-content: space-between; padding: 10px 0; font-size: 0.9rem; color: var(--w70); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .total-row.grand { font-size: 1.1rem; font-weight: 800; color: #fff; border: none; padding-top: 16px; }
+    .total-row.grand .price { color: var(--gold-300); }
+    .security-badges { display: flex; gap: 16px; margin-top: 20px; justify-content: center; font-size: 0.75rem; color: var(--w50); flex-wrap:wrap; }
+    @media(max-width:992px) { .checkout-layout { grid-template-columns: 1fr; } .order-summary-card { position: static; } }
+    @media(max-width: 576px) { .form-row { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<nav id="main-nav" class="main-nav scrolled" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="REE Global Home">
+      <div class="nav-logo-img-wrap">
+        <img src="../Images/BG/logo%20bg.png" alt="REE Global Logo" class="nav-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+        <div class="nav-logo-crown" style="display:none">⚜</div>
+      </div>
+      <div class="nav-logo-text"><span class="nav-brand-name">REE Global</span><span class="nav-brand-sub">Royalty Executive Empire</span></div>
+    </a>
+    <ul class="nav-links" id="nav-links" role="list">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="shop.html" class="nav-link">Shop</a></li>
+      <li><a href="cart.html" class="nav-link">Cart</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="cart.html" class="nav-icon cart-icon" aria-label="Shopping Cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="cart-count">2</span></a>
+    </div>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span class="ham-line"></span><span class="ham-line"></span><span class="ham-line"></span></button>
+  </div>
+  <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
+</nav>
+
+<section class="checkout-section">
+  <div class="container">
+    <div style="margin-bottom: 32px;">
+      <div class="hero-eyebrow"><span class="eyebrow-line"></span><span>Secure Payment</span></div>
+      <h1 class="section-heading" style="font-size: 2.5rem;">Check<span class="gold-text">out</span></h1>
+    </div>
+
+    <div class="checkout-layout">
+      <!-- Checkout Form -->
+      <form id="checkout-form">
+        <!-- Billing Details -->
+        <div class="checkout-form-wrap" style="margin-bottom: 24px;">
+          <div class="checkout-step-title">🏠 &nbsp;Billing Details</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="co-fname">First Name *</label>
+              <input type="text" id="co-fname" required placeholder="Israel" />
+            </div>
+            <div class="form-group">
+              <label for="co-lname">Last Name *</label>
+              <input type="text" id="co-lname" required placeholder="Ose" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="co-company">Company Name (Optional)</label>
+            <input type="text" id="co-company" placeholder="Royalty Executive Empire" />
+          </div>
+          <div class="form-group">
+            <label for="co-country">Country / Region *</label>
+            <select id="co-country" required>
+              <option value="">Select country...</option>
+              <option value="NG">Nigeria</option>
+              <option value="ZM">Zambia</option>
+              <option value="UG">Uganda</option>
+              <option value="GH">Ghana</option>
+              <option value="KE">Kenya</option>
+              <option value="US">United States</option>
+              <option value="GB">United Kingdom</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="co-address">Street Address *</label>
+            <input type="text" id="co-address" required placeholder="House number and street name" />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="co-city">Town / City *</label>
+              <input type="text" id="co-city" required placeholder="Lagos" />
+            </div>
+            <div class="form-group">
+              <label for="co-postal">Postcode / ZIP</label>
+              <input type="text" id="co-postal" placeholder="100001" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="co-email">Email Address *</label>
+              <input type="email" id="co-email" required placeholder="you@example.com" />
+            </div>
+            <div class="form-group">
+              <label for="co-phone">Phone *</label>
+              <input type="tel" id="co-phone" required placeholder="+234 800 000 0000" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Payment Method -->
+        <div class="checkout-form-wrap">
+          <div class="checkout-step-title">💳 &nbsp;Payment Method</div>
+          <div class="payment-methods">
+            <div class="pay-method selected" data-method="card">💳 Credit / Debit Card</div>
+            <div class="pay-method" data-method="paypal">🅿 PayPal</div>
+            <div class="pay-method" data-method="bank">🏦 Bank Transfer</div>
+          </div>
+          <!-- Card Fields -->
+          <div id="card-fields">
+            <div class="form-group">
+              <label for="co-card">Card Number</label>
+              <input type="text" id="co-card" placeholder="1234 5678 9012 3456" maxlength="19" />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="co-expiry">Expiry Date</label>
+                <input type="text" id="co-expiry" placeholder="MM / YY" maxlength="7" />
+              </div>
+              <div class="form-group">
+                <label for="co-cvv">CVV</label>
+                <input type="text" id="co-cvv" placeholder="123" maxlength="4" />
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn-gold" style="width:100%; justify-content:center; font-size: 1rem; padding: 18px 40px; margin-top: 8px;">
+            <span>🔒 &nbsp;Place Order Securely</span>
+          </button>
+          <div class="security-badges">
+            <span>🔒 256-bit SSL</span>
+            <span>✅ PCI Compliant</span>
+            <span>🛡️ Buyer Protected</span>
+          </div>
+        </div>
+      </form>
+
+      <!-- Order Summary -->
+      <div class="order-summary-card reveal-right">
+        <div style="font-family:var(--font-display); font-size:1.4rem; color:#fff; margin-bottom:24px; padding-bottom:16px; border-bottom:1px solid var(--gold-border);">Your <span class="gold-text">Order</span></div>
+        <div class="order-item">
+          <div class="order-thumb">🎁</div>
+          <div>
+            <div class="order-item-name">Executive Platinum Box</div>
+            <div class="order-item-qty">Qty: 1</div>
+          </div>
+          <div class="order-item-price">$450.00</div>
+        </div>
+        <div class="order-item">
+          <div class="order-thumb">🖋️</div>
+          <div>
+            <div class="order-item-name">Signature Engraved Pen</div>
+            <div class="order-item-qty">Qty: 2</div>
+          </div>
+          <div class="order-item-price">$440.00</div>
+        </div>
+        <div class="order-totals">
+          <div class="total-row"><span>Subtotal</span><span>$890.00</span></div>
+          <div class="total-row"><span>Shipping</span><span>Calculated after address</span></div>
+          <div class="total-row"><span>Tax (7.5%)</span><span>$66.75</span></div>
+          <div class="total-row grand"><span>Total</span><span class="price">$956.75</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-bar"><div class="container"><p class="footer-copy">&copy; <span id="footer-year"></span> REE Global. All Rights Reserved.</p></div></div>
+</footer>
+<script>
+  // Payment method tabs
+  document.querySelectorAll('.pay-method').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.pay-method').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+    });
+  });
+</script>
+<script src="js/main.js"></script>
+</body>
+</html>

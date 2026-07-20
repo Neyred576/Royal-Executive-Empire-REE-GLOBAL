@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us | REE Global</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+    .contact-info-block { margin-bottom: 40px; }
+    .contact-detail { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 24px; }
+    .contact-icon-wrap { width: 48px; height: 48px; border-radius: 50%; background: var(--gold-fill); border: 1px solid var(--gold-border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .contact-icon-wrap svg { width: 20px; height: 20px; color: var(--gold-300); }
+    .contact-detail-text h4 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--gold-300); margin-bottom: 4px; }
+    .contact-detail-text p, .contact-detail-text a { color: var(--w70); font-size: 0.95rem; }
+    .offices-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 40px; }
+    .office-card { background: var(--w08); border: 1px solid var(--gold-border); border-radius: var(--radius-md); padding: 20px; transition: all 0.3s; }
+    .office-card:hover { border-color: var(--gold-300); background: var(--gold-fill); }
+    .office-flag { font-size: 2rem; margin-bottom: 8px; }
+    .office-country { font-size: 0.9rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .office-role { font-size: 0.8rem; color: var(--w50); }
+    .form-group { margin-bottom: 24px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .form-group label { display: block; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--gold-300); margin-bottom: 8px; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; background: var(--w08); border: 1px solid var(--gold-border); border-radius: var(--radius-md); padding: 14px 18px; color: #fff; font-family: var(--font-body); font-size: 0.95rem; transition: border-color 0.3s; resize: vertical; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--gold-300); box-shadow: 0 0 0 3px rgba(212,175,55,0.1); }
+    .form-group textarea { min-height: 140px; }
+    .success-banner { background: var(--gold-fill); border: 1px solid var(--gold-border); border-radius: var(--radius-md); padding: 16px 20px; color: var(--gold-300); font-weight: 600; margin-top: 20px; display: none; }
+    @media (max-width: 992px) { .contact-layout { grid-template-columns: 1fr; } .offices-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 576px) { .form-row { grid-template-columns: 1fr; } .offices-grid { grid-template-columns: 1fr 1fr; } }
+  </style>
+</head>
+<body>
+
+<nav id="main-nav" class="main-nav scrolled" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="REE Global Home">
+      <div class="nav-logo-img-wrap">
+        <img src="../Images/BG/logo%20bg.png" alt="REE Global Logo" class="nav-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+        <div class="nav-logo-crown" style="display:none">⚜</div>
+      </div>
+      <div class="nav-logo-text"><span class="nav-brand-name">REE Global</span><span class="nav-brand-sub">Royalty Executive Empire</span></div>
+    </a>
+    <ul class="nav-links" id="nav-links" role="list">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="about.html" class="nav-link">About REE</a></li>
+      <li class="nav-item-dropdown">
+        <a href="#" class="nav-link">Divisions <span class="drop-arrow">▾</span></a>
+        <ul class="nav-dropdown">
+          <li><a href="reel-power.html">REEL Power</a></li>
+          <li><a href="reel-branding.html">REEL Branding</a></li>
+          <li><a href="reel-smart.html">REEL Smart</a></li>
+          <li><a href="index.html#business-solutions">Business Solutions</a></li>
+        </ul>
+      </li>
+      <li><a href="shop.html" class="nav-link">Shop</a></li>
+      <li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+      <li><a href="blog.html" class="nav-link">Blog</a></li>
+      <li><a href="contact.html" class="nav-link nav-link-cta active">Contact Us</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="cart.html" class="nav-icon cart-icon" aria-label="Shopping Cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="cart-count">0</span></a>
+    </div>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span class="ham-line"></span><span class="ham-line"></span><span class="ham-line"></span></button>
+  </div>
+  <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
+</nav>
+
+<section style="padding: 140px 0 60px; background: var(--black-900); border-bottom: 1px solid var(--gold-border); position:relative; overflow:hidden;">
+  <div style="position:absolute; inset:0; background: radial-gradient(ellipse at 50% 80%, rgba(212,175,55,0.07) 0%, transparent 60%);"></div>
+  <div class="container" style="position:relative; z-index:2; text-align:center;">
+    <div class="hero-eyebrow" style="justify-content:center;"><span class="eyebrow-line"></span><span>Get In Touch</span><span class="eyebrow-line"></span></div>
+    <h1 class="section-heading" style="font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 12px;">Contact <span class="gold-text">REE Global</span></h1>
+    <p style="color: var(--w50); max-width: 500px; margin: 0 auto;">Reach out to our executive team. We're ready to partner with you on your next big opportunity.</p>
+  </div>
+</section>
+
+<section class="section section--dark">
+  <div class="container">
+    <div class="contact-layout">
+      <!-- Left: Info -->
+      <div class="reveal-left">
+        <div class="contact-info-block">
+          <h2 class="section-heading" style="font-size: 2rem;">Let's Build <span class="gold-text">Together</span></h2>
+          <div class="gold-rule"></div>
+          <p class="body-text">Whether you're seeking investment opportunities, executive services, or a strategic partnership — we're here to help you achieve extraordinary results.</p>
+        </div>
+
+        <!-- Email -->
+        <div class="contact-detail">
+          <div class="contact-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div class="contact-detail-text">
+            <h4>Email Us</h4>
+            <a href="mailto:admin@royaltyexecutiveempire.com">admin@royaltyexecutiveempire.com</a>
+          </div>
+        </div>
+
+        <!-- UAE Phone -->
+        <div class="contact-detail">
+          <div class="contact-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.23h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.77a16 16 0 0 0 6 6l.97-.97a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+          <div class="contact-detail-text">
+            <h4>UAE Office (WhatsApp)</h4>
+            <a href="https://wa.me/971561347581">+971 56 134 7581</a>
+          </div>
+        </div>
+
+        <!-- Nigeria Phone -->
+        <div class="contact-detail">
+          <div class="contact-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.23h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.77a16 16 0 0 0 6 6l.97-.97a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+          <div class="contact-detail-text">
+            <h4>Nigeria Office (WhatsApp)</h4>
+            <a href="https://wa.me/2348067029444">+234 806 702 9444</a>
+          </div>
+        </div>
+
+        <!-- UAE Address -->
+        <div class="contact-detail">
+          <div class="contact-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div class="contact-detail-text">
+            <h4>Head Office — UAE</h4>
+            <p>Abu Dhabi, United Arab Emirates</p>
+          </div>
+        </div>
+
+        <!-- Nigeria Address -->
+        <div class="contact-detail">
+          <div class="contact-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div class="contact-detail-text">
+            <h4>Branch Office — Nigeria</h4>
+            <p>Plaza 30, Alatishe, Along Lekki–Epe Expressway,<br />Ibeju-Lekki, Lagos State, Nigeria</p>
+          </div>
+        </div>
+
+        <!-- Global Offices -->
+        <h3 style="font-size: 1rem; color: var(--gold-300); margin: 28px 0 16px; text-transform: uppercase; letter-spacing: 1px;">Our Global Offices</h3>
+        <div class="offices-grid" style="grid-template-columns: 1fr 1fr;">
+          <div class="office-card"><div class="office-flag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><div class="office-country">Abu Dhabi, UAE</div><div class="office-role">Head Office</div></div>
+          <div class="office-card"><div class="office-flag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><div class="office-country">Lagos, Nigeria</div><div class="office-role">Branch Office</div></div>
+        </div>
+
+        <!-- Social Media Links -->
+        <h3 style="font-size: 1rem; color: var(--gold-300); margin: 28px 0 16px; text-transform: uppercase; letter-spacing: 1px;">Follow Us</h3>
+        <div class="footer-social-row" aria-label="Social media links" style="flex-wrap:wrap; gap:12px;">
+          <a href="https://www.facebook.com/Royaltyexecutiveempire" target="_blank" rel="noopener" class="fsoc" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg></a>
+          <a href="https://x.com/Royaltyeel" target="_blank" rel="noopener" class="fsoc" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.74l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg></a>
+          <a href="https://www.instagram.com/royaltyexecutiveempire/" target="_blank" rel="noopener" class="fsoc" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" /></svg></a>
+          <a href="https://www.linkedin.com/in/Royaltyexecutiveempire" target="_blank" rel="noopener" class="fsoc" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" /></svg></a>
+          <a href="https://www.youtube.com/@Royaltyexecutiveempire" target="_blank" rel="noopener" class="fsoc" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.41 19.1C5.12 19.56 12 19.56 12 19.56s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.48z" /><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" style="fill:#0B0B0B" /></svg></a>
+          <a href="https://www.tiktok.com/@royaltyexecutiveempire" target="_blank" rel="noopener" class="fsoc" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.28 6.28 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.2 8.2 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z" /></svg></a>
+          <a href="https://whatsapp.com/channel/0029Vb8f98uFsn0ZxQtIix05" target="_blank" rel="noopener" class="fsoc" aria-label="WhatsApp Channel"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" /></svg></a>
+        </div>
+      </div>
+
+      <!-- Right: Form -->
+      <div class="reveal-right">
+        <div style="
+          background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(212,175,55,0.04) 100%);
+          border: 1px solid rgba(212,175,55,0.25);
+          border-radius: 24px;
+          padding: 48px;
+          position: relative;
+          overflow: hidden;
+          box-shadow: 0 30px 80px rgba(0,0,0,0.5), inset 0 1px 0 rgba(212,175,55,0.15);
+        ">
+          <!-- Decorative top glow -->
+          <div style="position:absolute; top:-60px; right:-60px; width:200px; height:200px; background: radial-gradient(circle, rgba(212,175,55,0.12) 0%, transparent 70%); pointer-events:none;"></div>
+
+          <!-- Form header -->
+          <div style="margin-bottom: 36px;">
+            <p style="font-size:0.75rem; color:var(--gold-400); text-transform:uppercase; letter-spacing:3px; margin-bottom:10px; display:flex; align-items:center; gap:6px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Get In Touch</p>
+            <h3 style="font-family:var(--font-display); font-size:2.2rem; color:#fff; line-height:1.2; margin:0;">Send Us a <span class="gold-text">Message</span></h3>
+            <div style="width:50px; height:2px; background: linear-gradient(90deg, var(--gold-500), transparent); margin-top:16px;"></div>
+          </div>
+
+          <form id="contact-form" novalidate>
+            <!-- Web3Forms hidden fields for direct email delivery -->
+            <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY" id="w3f-key" />
+            <input type="hidden" name="to_email" value="admin@royaltyexecutiveempire.com" />
+            <input type="hidden" name="subject" value="New Inquiry from REE Global Website" />
+            <input type="hidden" name="from_name" value="REE Global Website" />
+            <input type="checkbox" name="botcheck" style="display:none;" />
+
+            <!-- Name + Email row -->
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:20px;">
+              <div class="cf-field">
+                <label for="cf-name">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                  Full Name
+                </label>
+                <input type="text" id="cf-name" name="name" placeholder="e.g. John Doe" required />
+              </div>
+              <div class="cf-field">
+                <label for="cf-email">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                  Email Address
+                </label>
+                <input type="email" id="cf-email" name="email" placeholder="you@example.com" required />
+              </div>
+            </div>
+
+            <!-- Phone + Subject row -->
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:20px;">
+              <div class="cf-field">
+                <label for="cf-phone">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.23h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.77a16 16 0 0 0 6 6l.97-.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                  Phone Number
+                </label>
+                <input type="tel" id="cf-phone" name="phone" placeholder="+1 234 567 8900" />
+              </div>
+              <div class="cf-field">
+                <label for="cf-subject">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                  Subject
+                </label>
+                <select id="cf-subject" name="subject" required>
+                  <option value="">— Select a Division —</option>
+                  <option>General Inquiry</option>
+                  <option>REEL Power — Charging Solutions</option>
+                  <option>REEL Branding — Corporate Branding</option>
+                  <option>REEL Smart — Tech &amp; Gadgets</option>
+                  <option>Business Solutions &amp; Advisory</option>
+                  <option>Partnership Opportunity</option>
+                  <option>Shop / Products</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Message -->
+            <div class="cf-field" style="margin-bottom:28px;">
+              <label for="cf-msg">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                Your Message
+              </label>
+              <textarea id="cf-msg" name="message" placeholder="Tell us about your project, inquiry, or partnership idea..." required style="min-height:150px;"></textarea>
+            </div>
+
+            <!-- Submit button -->
+            <button type="submit" id="cf-submit" style="
+              width: 100%;
+              padding: 18px 32px;
+              background: linear-gradient(135deg, #c9a227 0%, #f0d060 50%, #c9a227 100%);
+              background-size: 200% auto;
+              border: none;
+              border-radius: 12px;
+              color: #0b0b0b;
+              font-family: var(--font-body);
+              font-size: 1rem;
+              font-weight: 700;
+              letter-spacing: 1.5px;
+              text-transform: uppercase;
+              cursor: pointer;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: 10px;
+              transition: background-position 0.4s, box-shadow 0.3s, transform 0.2s;
+              box-shadow: 0 8px 24px rgba(212,175,55,0.3);
+            "
+            onmouseover="this.style.backgroundPosition='right center'; this.style.boxShadow='0 12px 36px rgba(212,175,55,0.5)'; this.style.transform='translateY(-2px)';"
+            onmouseout="this.style.backgroundPosition='left center'; this.style.boxShadow='0 8px 24px rgba(212,175,55,0.3)'; this.style.transform='translateY(0)';">
+              <span>Send Your Message</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+
+            <div id="form-success-msg" class="success-banner" style="display:none; margin-top:20px; background: rgba(212,175,55,0.1); border:1px solid rgba(212,175,55,0.4); border-radius:12px; padding:18px 24px; color:var(--gold-300); font-weight:600; text-align:center;">
+              ✅ Message sent! Our team will be in touch within 24 hours.
+            </div>
+          </form>
+        </div>
+
+        <!-- Additional form styles -->
+        <style>
+          .cf-field { display:flex; flex-direction:column; gap:8px; }
+          .cf-field label { font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--gold-400); display:flex; align-items:center; gap:6px; }
+          .cf-field label svg { color:var(--gold-500); }
+          .cf-field input, .cf-field select, .cf-field textarea {
+            width:100%; background:rgba(255,255,255,0.04); border:1px solid rgba(212,175,55,0.2);
+            border-radius:10px; padding:14px 18px; color:#fff; font-family:var(--font-body);
+            font-size:0.95rem; transition:all 0.3s; resize:vertical; box-sizing:border-box;
+          }
+          .cf-field select { background-color:#111; color:#ccc; }
+          .cf-field select option { background:#111; color:#fff; }
+          .cf-field input:focus, .cf-field select:focus, .cf-field textarea:focus {
+            outline:none; border-color:rgba(212,175,55,0.7);
+            background:rgba(212,175,55,0.05);
+            box-shadow:0 0 0 3px rgba(212,175,55,0.1);
+          }
+          .cf-field input::placeholder, .cf-field textarea::placeholder { color:rgba(255,255,255,0.3); }
+          @media(max-width:600px) {
+            .cf-field-row { grid-template-columns:1fr !important; }
+          }
+        </style>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-body">
+    <div class="footer-glow-l" aria-hidden="true"></div>
+    <div class="footer-glow-r" aria-hidden="true"></div>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col footer-brand-col">
+          <a href="index.html" class="footer-logo-link" aria-label="REE Global Home">
+            <img src="../Images/BG/logo%20bg.png" alt="REE Global" class="footer-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+            <div class="footer-logo-fallback" style="display:none">⚜ REE</div>
+          </a>
+          <p class="footer-brand-desc">Royalty Executive Empire — Building Wealth, Creating Opportunities, and Creating Global Impact across Africa and the world.</p>
+        </div>
+        <div class="footer-col">
+          <h3 class="footer-heading">Quick Links</h3>
+          <nav aria-label="Footer quick links">
+            <ul class="footer-links-list">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="about.html">About REE</a></li>
+              <li><a href="shop.html">Shop</a></li>
+              <li><a href="portfolio.html">Portfolio</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="footer-col">
+          <h3 class="footer-heading">Divisions</h3>
+          <nav aria-label="Footer divisions links">
+            <ul class="footer-links-list">
+              <li><a href="reel-power.html">REEL Power</a></li>
+              <li><a href="reel-branding.html">REEL Branding</a></li>
+              <li><a href="reel-smart.html">REEL Smart</a></li>
+              <li><a href="index.html#business-solutions">Business Solutions</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="footer-col footer-news-col">
+          <h3 class="footer-heading">Contact</h3>
+          <ul class="footer-links-list">
+            <li><a href="mailto:admin@royaltyexecutiveempire.com">admin@royaltyexecutiveempire.com</a></li>
+            <li><a href="tel:+971561347581">+971 56 134 7581 (UAE)</a></li>
+            <li><a href="tel:+2348067029444">+234 806 702 9444 (Nigeria)</a></li>
+          </ul>
+          <div class="footer-social-row" aria-label="Social media links" style="margin-top:16px; flex-wrap:wrap; gap:10px;">
+            <a href="https://www.facebook.com/Royaltyexecutiveempire" target="_blank" rel="noopener" class="fsoc" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+            <a href="https://x.com/Royaltyeel" target="_blank" rel="noopener" class="fsoc" aria-label="Twitter/X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.74l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+            <a href="https://www.instagram.com/royaltyexecutiveempire/" target="_blank" rel="noopener" class="fsoc" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+            <a href="https://www.linkedin.com/in/Royaltyexecutiveempire" target="_blank" rel="noopener" class="fsoc" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+            <a href="https://www.youtube.com/@Royaltyexecutiveempire" target="_blank" rel="noopener" class="fsoc" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.41 19.1C5.12 19.56 12 19.56 12 19.56s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.48z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" style="fill:#0B0B0B"/></svg></a>
+            <a href="https://www.tiktok.com/@royaltyexecutiveempire" target="_blank" rel="noopener" class="fsoc" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.28 6.28 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.2 8.2 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/></svg></a>
+            <a href="https://whatsapp.com/channel/0029Vb8f98uFsn0ZxQtIix05" target="_blank" rel="noopener" class="fsoc" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bar"><div class="container"><p class="footer-copy">&copy; <span id="footer-year"></span> REE Global. All Rights Reserved.</p></div></div>
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>
