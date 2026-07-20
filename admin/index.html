@@ -1128,12 +1128,23 @@
       });
     });
 
+    // ── Auto-fix image URLs (e.g. imgur page → direct image) ──
+    const normalizeImageUrl = (url) => {
+      // Convert: https://imgur.com/erqEPjG → https://i.imgur.com/erqEPjG.jpg
+      const imgurPage = url.match(/^https?:\/\/(?:www\.)?imgur\.com\/([a-zA-Z0-9]+)$/);
+      if (imgurPage) {
+        return `https://i.imgur.com/${imgurPage[1]}.jpg`;
+      }
+      return url; // return as-is for all other URLs
+    };
+
     // ── Forms (NO file upload — uses image URL directly) ──
     const handleForm = (formId, imageInputId, builder, collectionName, arr, listId, type) => {
       document.getElementById(formId).addEventListener('submit', async e => {
         e.preventDefault();
-        const imageUrl = document.getElementById(imageInputId).value.trim();
-        if (!imageUrl) { showToast('No Image URL', 'Please paste an image URL.', 'delete'); return; }
+        const rawUrl = document.getElementById(imageInputId).value.trim();
+        if (!rawUrl) { showToast('No Image URL', 'Please paste an image URL.', 'delete'); return; }
+        const imageUrl = normalizeImageUrl(rawUrl);
         
         const btn = e.target.querySelector('button[type="submit"]');
         const oldText = btn.innerHTML;
