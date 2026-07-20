@@ -14,6 +14,5 @@ if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
 
-// Export database and storage to global window object
+// Export database to global window object
 window.db = firebase.firestore();
-window.storage = firebase.storage();
