@@ -808,8 +808,18 @@
             </div>
             <div class="form-group">
               <label>Cover Image URL</label>
-              <input type="url" id="blog-img" placeholder="Paste image link e.g. https://i.imgur.com/abc.jpg" required />
-              <small style="color:var(--w50);font-size:0.78rem;margin-top:6px;display:block;">Upload your image to <a href="https://imgur.com" target="_blank" style="color:var(--gold-300)">imgur.com</a>, right-click → Copy Image Address, then paste here.</small>
+              <input type="url" id="blog-img" placeholder="Paste image link e.g. https://imgur.com/erqEPjG" required />
+              <small style="color:var(--w50);font-size:0.78rem;margin-top:6px;display:block;">Upload to <a href="https://imgur.com" target="_blank" style="color:var(--gold-300)">imgur.com</a> then paste the link here.</small>
+            </div>
+            <div class="form-group">
+              <label>Image Focus (thumbnail position)</label>
+              <select id="blog-img-pos">
+                <option value="center center">Center (default)</option>
+                <option value="top center">Top — show face/head</option>
+                <option value="bottom center">Bottom</option>
+                <option value="center left">Left side</option>
+                <option value="center right">Right side</option>
+              </select>
             </div>
             <div class="form-group">
               <label>Content</label>
@@ -866,8 +876,18 @@
             </div>
             <div class="form-group">
               <label>Project Image URL</label>
-              <input type="url" id="pf-img" placeholder="Paste image link e.g. https://i.imgur.com/abc.jpg" required />
-              <small style="color:var(--w50);font-size:0.78rem;margin-top:6px;display:block;">Upload your image to <a href="https://imgur.com" target="_blank" style="color:var(--gold-300)">imgur.com</a>, right-click → Copy Image Address, then paste here.</small>
+              <input type="url" id="pf-img" placeholder="Paste image link e.g. https://imgur.com/erqEPjG" required />
+              <small style="color:var(--w50);font-size:0.78rem;margin-top:6px;display:block;">Upload to <a href="https://imgur.com" target="_blank" style="color:var(--gold-300)">imgur.com</a> then paste the link here.</small>
+            </div>
+            <div class="form-group">
+              <label>Image Focus (thumbnail position)</label>
+              <select id="pf-img-pos">
+                <option value="center center">Center (default)</option>
+                <option value="top center">Top — show face/head</option>
+                <option value="bottom center">Bottom</option>
+                <option value="center left">Left side</option>
+                <option value="center right">Right side</option>
+              </select>
             </div>
             <button type="submit" class="btn-submit">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
@@ -924,8 +944,18 @@
             </div>
             <div class="form-group">
               <label>Product Image URL</label>
-              <input type="url" id="shop-img" placeholder="Paste image link e.g. https://i.imgur.com/abc.jpg" required />
-              <small style="color:var(--w50);font-size:0.78rem;margin-top:6px;display:block;">Upload your image to <a href="https://imgur.com" target="_blank" style="color:var(--gold-300)">imgur.com</a>, right-click → Copy Image Address, then paste here.</small>
+              <input type="url" id="shop-img" placeholder="Paste image link e.g. https://imgur.com/erqEPjG" required />
+              <small style="color:var(--w50);font-size:0.78rem;margin-top:6px;display:block;">Upload to <a href="https://imgur.com" target="_blank" style="color:var(--gold-300)">imgur.com</a> then paste the link here.</small>
+            </div>
+            <div class="form-group">
+              <label>Image Focus (thumbnail position)</label>
+              <select id="shop-img-pos">
+                <option value="center center">Center (default)</option>
+                <option value="top center">Top — show face/head</option>
+                <option value="bottom center">Bottom</option>
+                <option value="center left">Left side</option>
+                <option value="center right">Right side</option>
+              </select>
             </div>
             <button type="submit" class="btn-submit">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
@@ -1178,6 +1208,7 @@
         category: document.getElementById('blog-cat').value,
         content: document.getElementById('blog-content').value,
         image: img,
+        imagePos: document.getElementById('blog-img-pos').value,
         date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
         timestamp: firebase.firestore.FieldValue.serverTimestamp()
       }),
@@ -1189,6 +1220,7 @@
         title: document.getElementById('pf-title').value,
         category: document.getElementById('pf-cat').value,
         image: img,
+        imagePos: document.getElementById('pf-img-pos').value,
         timestamp: firebase.firestore.FieldValue.serverTimestamp()
       }),
       'portfolio', portfolio, 'portfolio-list', 'portfolio'
@@ -1200,6 +1232,7 @@
         price: document.getElementById('shop-price').value,
         category: document.getElementById('shop-cat').value,
         image: img,
+        imagePos: document.getElementById('shop-img-pos').value,
         timestamp: firebase.firestore.FieldValue.serverTimestamp()
       }),
       'products', products, 'product-list', 'product'

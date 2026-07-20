@@ -527,7 +527,7 @@ document.addEventListener('DOMContentLoaded', () => {
           products.forEach(p => {
             gridInner.innerHTML += `
               <div class="product-card">
-                <div class="product-img" style="background: url('${p.image}') center/cover; min-height:240px;"></div>
+                <div class="product-img" style="background: url('${p.image}') ${p.imagePos || 'center center'}/cover; min-height:240px;"></div>
                 <div class="product-info">
                   <div class="product-cat">${p.category}</div>
                   <h3 class="product-title">${p.name}</h3>
@@ -566,7 +566,7 @@ document.addEventListener('DOMContentLoaded', () => {
             pfInner.innerHTML += `
               <div class="pf-item" style="break-inside: avoid; margin-bottom: 24px; border-radius: var(--radius-lg); overflow: hidden; position: relative;">
                 <div class="pf-item-inner" style="background: var(--black-700); border: 1px solid var(--gold-border); border-radius: var(--radius-lg); overflow:hidden;">
-                  <div style="background: url('${p.image}') center/cover; min-height: 300px;"></div>
+                  <div style="background: url('${p.image}') ${p.imagePos || 'center center'}/cover; min-height: 300px;"></div>
                   <div class="pf-overlay" style="padding: 20px; background: var(--black-900);">
                     <div class="pf-cat-tag" style="font-size: 0.7rem; text-transform: uppercase; color: var(--gold-300); margin-bottom: 6px;">${p.category}</div>
                     <h3 class="pf-title" style="font-family: var(--font-display); font-size: 1.1rem; color: #fff;">${p.title}</h3>
@@ -592,7 +592,7 @@ document.addEventListener('DOMContentLoaded', () => {
           blogs.forEach(b => {
             blogContainer.innerHTML += `
               <article style="background: var(--w08); border: 1px solid var(--gold-border); border-radius: var(--radius-xl); overflow: hidden; margin-bottom: 40px; transition: all 0.3s;" onmouseover="this.style.boxShadow='var(--gold-glow-sm)'" onmouseout="this.style.boxShadow='none'">
-                <div style="height: 350px; background: url('${b.image}') center/cover;"></div>
+                <div style="height: 350px; background: url('${b.image}') ${b.imagePos || 'center center'}/cover;"></div>
                 <div style="padding: 40px;">
                   <div style="display:flex; gap:16px; margin-bottom: 16px; font-size: 0.85rem; color: var(--gold-300); text-transform: uppercase; letter-spacing: 1px;">
                     <span>${b.category}</span>
