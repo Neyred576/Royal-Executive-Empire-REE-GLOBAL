@@ -532,7 +532,7 @@ document.addEventListener('DOMContentLoaded', () => {
                   <div class="product-cat">${p.category}</div>
                   <h3 class="product-title">${p.name}</h3>
                   <div class="product-price">$${Number(p.price).toFixed(2)}</div>
-                  <button class="btn-gold" style="width:100%; justify-content:center;">Add to Cart</button>
+                  <button class="btn-gold" style="width:100%; justify-content:center;" onclick="addToCart('${p.id}', '${p.name.replace(/'/g, "\\'")}', ${Number(p.price)}, '${p.image}')">Add to Cart</button>
                 </div>
               </div>
             `;
@@ -612,5 +612,125 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Give Firebase a tiny moment to init if scripts loaded out of order
   setTimeout(renderDynamicContent, 100);
+
+  // 15. SHOPPING CART LOGIC
+  let cart = JSON.parse(localStorage.getItem('ree_cart')) || [];
+
+  window.addToCart = (id, name, price, image) => {
+    const existing = cart.find(item => item.id === id);
+    if (existing) {
+      existing.qty += 1;
+    } else {
+      cart.push({ id, name, price, image, qty: 1 });
+    }
+    localStorage.setItem('ree_cart', JSON.stringify(cart));
+    updateCartCount();
+    
+    // Custom Toast for Cart
+    const t = document.createElement('div');
+    t.className = 'toast';
+    t.innerHTML = `
+      <div class="toast-icon">🛍️</div>
+      <div class="toast-content">
+        <h4>Added to Cart</h4>
+        <p>${name}</p>
+      </div>
+    `;
+    document.body.appendChild(t);
+    setTimeout(() => t.classList.add('show'), 10);
+    setTimeout(() => {
+      t.classList.remove('show');
+      setTimeout(() => t.remove(), 300);
+    }, 3000);
+  };
+
+  const updateCartCount = () => {
+    const count = cart.reduce((acc, item) => acc + item.qty, 0);
+    document.querySelectorAll('.cart-count').forEach(el => {
+      el.textContent = count;
+      el.style.display = count > 0 ? 'flex' : 'none';
+    });
+  };
+  
+  // Render Cart Page if we are on it
+  const renderCartPage = () => {
+    const container = document.getElementById('cart-items-container');
+    if (!container) return; // not on cart page
+
+    if (cart.length === 0) {
+      container.innerHTML = `
+        <div class="cart-empty" style="text-align: center; padding: 80px 40px;">
+          <div class="cart-empty-icon" style="font-size: 4rem; margin-bottom: 16px;">🛍️</div>
+          <h3 style="font-family: var(--font-display); font-size: 1.8rem; color: #fff; margin-bottom: 8px;">Your cart is empty</h3>
+          <p style="color: var(--w50); margin-bottom: 28px;">Looks like you haven't added anything to your cart yet.</p>
+        </div>
+      `;
+      document.getElementById('cart-total-price').textContent = '$0.00';
+      return;
+    }
+
+    container.innerHTML = '';
+    let total = 0;
+    cart.forEach((item, index) => {
+      const subtotal = item.price * item.qty;
+      total += subtotal;
+      container.innerHTML += `
+        <div class="cart-row">
+          <div class="cart-item-info">
+            <div class="cart-thumb"><img src="${item.image}" alt="" style="width:100%; height:100%; object-fit:cover; border-radius:4px;"></div>
+            <div>
+              <div class="cart-item-name">${item.name}</div>
+            </div>
+          </div>
+          <div class="cart-price">$${item.price.toFixed(2)}</div>
+          <input type="number" class="qty-input" value="${item.qty}" min="1" max="99" onchange="updateCartQty(${index}, this.value)" />
+          <div class="cart-price subtotal-col">$${subtotal.toFixed(2)}</div>
+          <button class="cart-remove" title="Remove item" onclick="removeFromCart(${index})">✕</button>
+        </div>
+      `;
+    });
+
+    document.getElementById('cart-total-price').textContent = '$' + total.toFixed(2);
+  };
+
+  window.updateCartQty = (index, newQty) => {
+    const qty = parseInt(newQty);
+    if (qty > 0) {
+      cart[index].qty = qty;
+      localStorage.setItem('ree_cart', JSON.stringify(cart));
+      renderCartPage();
+      updateCartCount();
+    }
+  };
+
+  window.removeFromCart = (index) => {
+    cart.splice(index, 1);
+    localStorage.setItem('ree_cart', JSON.stringify(cart));
+    renderCartPage();
+    updateCartCount();
+  };
+
+  // WhatsApp Checkout
+  const waBtn = document.getElementById('whatsapp-checkout-btn');
+  if (waBtn) {
+    waBtn.addEventListener('click', () => {
+      if (cart.length === 0) return alert("Your cart is empty!");
+      let text = "Hello REE Global, I would like to place an order:%0A%0A";
+      let total = 0;
+      cart.forEach(item => {
+        text += `- ${item.qty}x ${item.name} ($${item.price.toFixed(2)} each)%0A`;
+        total += (item.price * item.qty);
+      });
+      text += `%0A*Total: $${total.toFixed(2)}*`;
+      
+      // REPLACE 1234567890 WITH YOUR ACTUAL WHATSAPP NUMBER IN INTERNATIONAL FORMAT (e.g. 234800000000)
+      const phoneNumber = "2348000000000"; 
+      const waLink = `https://wa.me/${phoneNumber}?text=${text}`;
+      window.open(waLink, '_blank');
+    });
+  }
+
+  updateCartCount();
+  renderCartPage();
 
 });
