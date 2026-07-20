@@ -57,10 +57,12 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', () => {
     const y = window.scrollY;
     // Header Blur
-    if (y > 50) {
-      mainNav.classList.add('scrolled');
-    } else {
-      mainNav.classList.remove('scrolled');
+    if (mainNav) {
+      if (y > 50) {
+        mainNav.classList.add('scrolled');
+      } else {
+        mainNav.classList.remove('scrolled');
+      }
     }
     // Scroll To Top Button
     if (scrollTopBtn) {
@@ -84,6 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const navOverlay = document.getElementById('nav-overlay');
   
   const toggleMenu = () => {
+    if (!hamburger || !navLinks || !navOverlay) return;
     const isOpen = hamburger.classList.contains('open');
     if (isOpen) {
       hamburger.classList.remove('open');
@@ -100,19 +103,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
   
-  hamburger.addEventListener('click', toggleMenu);
-  navOverlay.addEventListener('click', toggleMenu);
+  if (hamburger) hamburger.addEventListener('click', toggleMenu);
+  if (navOverlay) navOverlay.addEventListener('click', toggleMenu);
   
   // Close menu on link click
-  navLinks.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-      if (hamburger.classList.contains('open')) {
-        toggleMenu();
-      }
+  if (navLinks && hamburger) {
+    navLinks.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        if (hamburger.classList.contains('open')) {
+          toggleMenu();
+        }
+      });
     });
-  });
+  }
 
-  // 5. ACTIVE LINK HIGHLIGHTING
   // 5. ACTIVE LINK HIGHLIGHTING
   const navItems = document.querySelectorAll('.nav-link');
   let currentUrl = window.location.pathname.split('/').pop() || 'index.html';
