@@ -807,8 +807,9 @@
               </select>
             </div>
             <div class="form-group">
-              <label>Cover Image</label>
-              <input type="file" id="blog-img" accept="image/*" required class="file-drop" />
+              <label>Cover Image URL</label>
+              <input type="url" id="blog-img" placeholder="Paste image link e.g. https://i.imgur.com/abc.jpg" required />
+              <small style="color:var(--w50);font-size:0.78rem;margin-top:6px;display:block;">Upload your image to <a href="https://imgur.com" target="_blank" style="color:var(--gold-300)">imgur.com</a>, right-click → Copy Image Address, then paste here.</small>
             </div>
             <div class="form-group">
               <label>Content</label>
@@ -864,8 +865,9 @@
               </select>
             </div>
             <div class="form-group">
-              <label>Project Image</label>
-              <input type="file" id="pf-img" accept="image/*" required class="file-drop" />
+              <label>Project Image URL</label>
+              <input type="url" id="pf-img" placeholder="Paste image link e.g. https://i.imgur.com/abc.jpg" required />
+              <small style="color:var(--w50);font-size:0.78rem;margin-top:6px;display:block;">Upload your image to <a href="https://imgur.com" target="_blank" style="color:var(--gold-300)">imgur.com</a>, right-click → Copy Image Address, then paste here.</small>
             </div>
             <button type="submit" class="btn-submit">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
@@ -921,8 +923,9 @@
               </select>
             </div>
             <div class="form-group">
-              <label>Product Image</label>
-              <input type="file" id="shop-img" accept="image/*" required class="file-drop" />
+              <label>Product Image URL</label>
+              <input type="url" id="shop-img" placeholder="Paste image link e.g. https://i.imgur.com/abc.jpg" required />
+              <small style="color:var(--w50);font-size:0.78rem;margin-top:6px;display:block;">Upload your image to <a href="https://imgur.com" target="_blank" style="color:var(--gold-300)">imgur.com</a>, right-click → Copy Image Address, then paste here.</small>
             </div>
             <button type="submit" class="btn-submit">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
@@ -1125,26 +1128,21 @@
       });
     });
 
-    // ── Forms ──
-    const handleForm = (formId, fileId, builder, collectionName, arr, listId, type) => {
+    // ── Forms (NO file upload — uses image URL directly) ──
+    const handleForm = (formId, imageInputId, builder, collectionName, arr, listId, type) => {
       document.getElementById(formId).addEventListener('submit', async e => {
         e.preventDefault();
-        const file = document.getElementById(fileId).files[0];
-        if (!file) { showToast('No Image', 'Please select an image.', 'delete'); return; }
+        const imageUrl = document.getElementById(imageInputId).value.trim();
+        if (!imageUrl) { showToast('No Image URL', 'Please paste an image URL.', 'delete'); return; }
         
         const btn = e.target.querySelector('button[type="submit"]');
         const oldText = btn.innerHTML;
-        btn.innerHTML = 'Uploading...';
+        btn.innerHTML = 'Publishing...';
         btn.disabled = true;
 
         try {
-          // Upload to Firebase Storage
-          const storageRef = window.storage.ref(collectionName + '/' + Date.now() + '_' + file.name);
-          const snapshot = await storageRef.put(file);
-          const downloadURL = await snapshot.ref.getDownloadURL();
-
-          // Build object and add to Firestore
-          const docData = builder(downloadURL);
+          // Save directly to Firestore — no storage upload needed
+          const docData = builder(imageUrl);
           const docRef = await window.db.collection(collectionName).add(docData);
           
           // Add locally and render
@@ -1155,7 +1153,7 @@
           showToast('Success!', `${type.charAt(0).toUpperCase() + type.slice(1)} item published.`);
         } catch(err) {
           console.error(err);
-          showToast('Error', 'Failed to publish.', 'delete');
+          showToast('Error', 'Failed to publish. Check your internet connection.', 'delete');
         } finally {
           btn.innerHTML = oldText;
           btn.disabled = false;
