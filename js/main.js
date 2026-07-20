@@ -491,111 +491,126 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 14. DYNAMIC ADMIN RENDER (Prototype LocalStorage)
-  const renderDynamicContent = () => {
+  // 14. DYNAMIC ADMIN RENDER (Firebase Firestore)
+  const renderDynamicContent = async () => {
+    if (!window.db) {
+      console.warn("Firebase not initialized yet.");
+      return;
+    }
+
     // --- SHOP PAGE ---
     const shopContainer = document.getElementById('dynamic-shop-container');
     if (shopContainer) {
-      const products = JSON.parse(localStorage.getItem('ree_products')) || [];
-      if (products.length > 0) {
-        // Build the luxury grid
-        shopContainer.innerHTML = `
-          <div class="shop-layout">
-            <aside class="shop-sidebar reveal-left">
-              <h3>Categories</h3>
-              <ul class="cat-list">
-                <li><a href="#">All Categories</a></li>
-                <li><a href="#">Electronics</a></li>
-                <li><a href="#">Corporate Gifts</a></li>
-                <li><a href="#">Apparel</a></li>
-                <li><a href="#">Accessories</a></li>
-              </ul>
-            </aside>
-            <main class="products-grid reveal-right" id="products-grid-inner"></main>
-          </div>
-        `;
+      try {
+        const snapshot = await window.db.collection('products').get();
+        const products = [];
+        snapshot.forEach(doc => products.push({ id: doc.id, ...doc.data() }));
         
-        const gridInner = document.getElementById('products-grid-inner');
-        products.forEach(p => {
-          gridInner.innerHTML += `
-            <div class="product-card">
-              <div class="product-img" style="background: url('${p.image}') center/cover; min-height:240px;"></div>
-              <div class="product-info">
-                <div class="product-cat">${p.category}</div>
-                <h3 class="product-title">${p.name}</h3>
-                <div class="product-price">$${Number(p.price).toFixed(2)}</div>
-                <button class="btn-gold" style="width:100%; justify-content:center;">Add to Cart</button>
-              </div>
+        if (products.length > 0) {
+          shopContainer.innerHTML = `
+            <div class="shop-layout">
+              <aside class="shop-sidebar reveal-left">
+                <h3>Categories</h3>
+                <ul class="cat-list">
+                  <li><a href="#">All Categories</a></li>
+                  <li><a href="#">Electronics</a></li>
+                  <li><a href="#">Corporate Gifts</a></li>
+                  <li><a href="#">Apparel</a></li>
+                  <li><a href="#">Accessories</a></li>
+                </ul>
+              </aside>
+              <main class="products-grid reveal-right" id="products-grid-inner"></main>
             </div>
           `;
-        });
-      }
+          
+          const gridInner = document.getElementById('products-grid-inner');
+          products.forEach(p => {
+            gridInner.innerHTML += `
+              <div class="product-card">
+                <div class="product-img" style="background: url('${p.image}') center/cover; min-height:240px;"></div>
+                <div class="product-info">
+                  <div class="product-cat">${p.category}</div>
+                  <h3 class="product-title">${p.name}</h3>
+                  <div class="product-price">$${Number(p.price).toFixed(2)}</div>
+                  <button class="btn-gold" style="width:100%; justify-content:center;">Add to Cart</button>
+                </div>
+              </div>
+            `;
+          });
+        }
+      } catch(e) { console.error("Error fetching products:", e); }
     }
 
     // --- PORTFOLIO PAGE ---
     const pfContainer = document.getElementById('dynamic-portfolio-container');
     if (pfContainer) {
-      const portfolio = JSON.parse(localStorage.getItem('ree_portfolio')) || [];
-      if (portfolio.length > 0) {
-        pfContainer.innerHTML = `
-          <div class="portfolio-filters reveal-up">
-            <button class="pf-tab active" data-filter="all">All Projects</button>
-            <button class="pf-tab" data-filter="REEL Real Estate">Real Estate</button>
-            <button class="pf-tab" data-filter="REEL Branding">Branding</button>
-            <button class="pf-tab" data-filter="REEL Power">Power</button>
-            <button class="pf-tab" data-filter="REEL Music">Music</button>
-          </div>
-          <div class="portfolio-masonry reveal-up" id="pf-masonry-inner" style="columns: 3; column-gap: 24px;"></div>
-        `;
-        
-        const pfInner = document.getElementById('pf-masonry-inner');
-        portfolio.forEach(p => {
-          pfInner.innerHTML += `
-            <div class="pf-item" style="break-inside: avoid; margin-bottom: 24px; border-radius: var(--radius-lg); overflow: hidden; position: relative;">
-              <div class="pf-item-inner" style="background: var(--black-700); border: 1px solid var(--gold-border); border-radius: var(--radius-lg); overflow:hidden;">
-                <div style="background: url('${p.image}') center/cover; min-height: 300px;"></div>
-                <div class="pf-overlay" style="padding: 20px; background: var(--black-900);">
-                  <div class="pf-cat-tag" style="font-size: 0.7rem; text-transform: uppercase; color: var(--gold-300); margin-bottom: 6px;">${p.category}</div>
-                  <h3 class="pf-title" style="font-family: var(--font-display); font-size: 1.1rem; color: #fff;">${p.title}</h3>
+      try {
+        const snapshot = await window.db.collection('portfolio').get();
+        const portfolio = [];
+        snapshot.forEach(doc => portfolio.push({ id: doc.id, ...doc.data() }));
+
+        if (portfolio.length > 0) {
+          pfContainer.innerHTML = `
+            <div class="portfolio-filters reveal-up">
+              <button class="pf-tab active" data-filter="all">All Projects</button>
+              <button class="pf-tab" data-filter="REEL Real Estate">Real Estate</button>
+              <button class="pf-tab" data-filter="REEL Branding">Branding</button>
+              <button class="pf-tab" data-filter="REEL Power">Power</button>
+              <button class="pf-tab" data-filter="REEL Music">Music</button>
+            </div>
+            <div class="portfolio-masonry reveal-up" id="pf-masonry-inner" style="columns: 3; column-gap: 24px;"></div>
+          `;
+          
+          const pfInner = document.getElementById('pf-masonry-inner');
+          portfolio.forEach(p => {
+            pfInner.innerHTML += `
+              <div class="pf-item" style="break-inside: avoid; margin-bottom: 24px; border-radius: var(--radius-lg); overflow: hidden; position: relative;">
+                <div class="pf-item-inner" style="background: var(--black-700); border: 1px solid var(--gold-border); border-radius: var(--radius-lg); overflow:hidden;">
+                  <div style="background: url('${p.image}') center/cover; min-height: 300px;"></div>
+                  <div class="pf-overlay" style="padding: 20px; background: var(--black-900);">
+                    <div class="pf-cat-tag" style="font-size: 0.7rem; text-transform: uppercase; color: var(--gold-300); margin-bottom: 6px;">${p.category}</div>
+                    <h3 class="pf-title" style="font-family: var(--font-display); font-size: 1.1rem; color: #fff;">${p.title}</h3>
+                  </div>
                 </div>
               </div>
-            </div>
-          `;
-        });
-      }
+            `;
+          });
+        }
+      } catch(e) { console.error("Error fetching portfolio:", e); }
     }
 
     // --- BLOG PAGE ---
     const blogContainer = document.getElementById('dynamic-blog-container');
     if (blogContainer) {
-      const blogs = JSON.parse(localStorage.getItem('ree_blogs')) || [];
-      if (blogs.length > 0) {
-        blogContainer.innerHTML = ''; // Clear Coming Soon
-        blogs.forEach(b => {
-          blogContainer.innerHTML += `
-            <article style="background: var(--w08); border: 1px solid var(--gold-border); border-radius: var(--radius-xl); overflow: hidden; margin-bottom: 40px; transition: all 0.3s;" onmouseover="this.style.boxShadow='var(--gold-glow-sm)'" onmouseout="this.style.boxShadow='none'">
-              <div style="height: 350px; background: url('${b.image}') center/cover;"></div>
-              <div style="padding: 40px;">
-                <div style="display:flex; gap:16px; margin-bottom: 16px; font-size: 0.85rem; color: var(--gold-300); text-transform: uppercase; letter-spacing: 1px;">
-                  <span>${b.category}</span>
-                  <span style="color:var(--w50)">${b.date}</span>
+      try {
+        const snapshot = await window.db.collection('blogs').orderBy('timestamp', 'desc').get();
+        const blogs = [];
+        snapshot.forEach(doc => blogs.push({ id: doc.id, ...doc.data() }));
+
+        if (blogs.length > 0) {
+          blogContainer.innerHTML = ''; // Clear Coming Soon
+          blogs.forEach(b => {
+            blogContainer.innerHTML += `
+              <article style="background: var(--w08); border: 1px solid var(--gold-border); border-radius: var(--radius-xl); overflow: hidden; margin-bottom: 40px; transition: all 0.3s;" onmouseover="this.style.boxShadow='var(--gold-glow-sm)'" onmouseout="this.style.boxShadow='none'">
+                <div style="height: 350px; background: url('${b.image}') center/cover;"></div>
+                <div style="padding: 40px;">
+                  <div style="display:flex; gap:16px; margin-bottom: 16px; font-size: 0.85rem; color: var(--gold-300); text-transform: uppercase; letter-spacing: 1px;">
+                    <span>${b.category}</span>
+                    <span style="color:var(--w50)">${b.date}</span>
+                  </div>
+                  <h2 style="font-family: var(--font-display); font-size: 2rem; color: #fff; margin-bottom: 16px;">${b.title}</h2>
+                  <p style="color: var(--w60); line-height: 1.8; margin-bottom: 24px;">${b.content.substring(0, 150)}...</p>
+                  <a href="#" class="gold-link" style="font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem;">Read Full Article &rarr;</a>
                 </div>
-                <h2 style="font-family: var(--font-display); font-size: 2rem; color: #fff; margin-bottom: 16px;">${b.title}</h2>
-                <p style="color: var(--w60); line-height: 1.8; margin-bottom: 24px;">${b.content.substring(0, 150)}...</p>
-                <a href="#" class="gold-link" style="font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem;">Read Full Article &rarr;</a>
-              </div>
-            </article>
-          `;
-        });
-      }
+              </article>
+            `;
+          });
+        }
+      } catch(e) { console.error("Error fetching blogs:", e); }
     }
   };
 
-  renderDynamicContent();
-  
-  // Listen for storage events (if changed in another tab)
-  window.addEventListener('storage', () => {
-    renderDynamicContent();
-  });
+  // Give Firebase a tiny moment to init if scripts loaded out of order
+  setTimeout(renderDynamicContent, 100);
 
 });

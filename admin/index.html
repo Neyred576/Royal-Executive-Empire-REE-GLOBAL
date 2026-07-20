@@ -942,6 +942,12 @@
 
   </main>
 
+  <!-- Firebase Integration -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
+  <script src="../js/firebase-init.js"></script>
+
   <script>
     // ── Security check ──
     if (sessionStorage.getItem('ree_admin_auth') !== 'true') {
@@ -1008,9 +1014,34 @@
     setInterval(updateTime, 1000);
 
     // ── Data ──
-    let blogs    = JSON.parse(localStorage.getItem('ree_blogs'))     || [];
-    let portfolio = JSON.parse(localStorage.getItem('ree_portfolio')) || [];
-    let products  = JSON.parse(localStorage.getItem('ree_products'))  || [];
+    let blogs = [];
+    let portfolio = [];
+    let products = [];
+
+    // ── Load Data from Firebase ──
+    const loadData = async () => {
+      if (!window.db) return;
+      
+      try {
+        const [blogSnap, pfSnap, shopSnap] = await Promise.all([
+          window.db.collection('blogs').orderBy('timestamp', 'desc').get(),
+          window.db.collection('portfolio').get(),
+          window.db.collection('products').get()
+        ]);
+        
+        blogs = blogSnap.docs.map(d => ({ id: d.id, ...d.data() }));
+        portfolio = pfSnap.docs.map(d => ({ id: d.id, ...d.data() }));
+        products = shopSnap.docs.map(d => ({ id: d.id, ...d.data() }));
+        
+        renderList(blogs, 'blog-list', 'blog', 'blogs');
+        renderList(portfolio, 'portfolio-list', 'portfolio', 'portfolio');
+        renderList(products,  'product-list',   'product', 'products');
+        updateStats();
+      } catch(e) {
+        console.error("Error loading data:", e);
+        showToast('Error', 'Failed to load from database.', 'delete');
+      }
+    };
 
     // ── Update stats ──
     const updateStats = () => {
@@ -1022,10 +1053,9 @@
         });
       });
     };
-    updateStats();
 
     // ── Render list ──
-    const renderList = (arr, containerId, type) => {
+    const renderList = (arr, containerId, type, collectionName) => {
       const c = document.getElementById(containerId);
       if (!c) return;
       if (arr.length === 0) {
@@ -1048,7 +1078,7 @@
             <strong>${title}</strong>
             <span>${sub}</span>
           </div>
-          <button class="btn-delete" data-idx="${idx}" data-type="${type}">
+          <button class="btn-delete" data-id="${item.id}" data-idx="${idx}" data-type="${type}" data-col="${collectionName}">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>
             Delete
           </button>
@@ -1056,22 +1086,32 @@
         c.appendChild(div);
       });
       c.querySelectorAll('.btn-delete').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const i = +btn.dataset.idx;
+        btn.addEventListener('click', async () => {
+          const id = btn.dataset.id;
           const t = btn.dataset.type;
+          const col = btn.dataset.col;
+          const i = +btn.dataset.idx;
+          
           if (!confirm('Delete this item permanently?')) return;
-          if (t === 'blog')       { blogs.splice(i,1);     localStorage.setItem('ree_blogs', JSON.stringify(blogs)); renderList(blogs, 'blog-list', 'blog'); }
-          if (t === 'portfolio')  { portfolio.splice(i,1);  localStorage.setItem('ree_portfolio', JSON.stringify(portfolio)); renderList(portfolio, 'portfolio-list', 'portfolio'); }
-          if (t === 'product')    { products.splice(i,1);   localStorage.setItem('ree_products', JSON.stringify(products)); renderList(products, 'product-list', 'product'); }
-          updateStats();
-          showToast('Deleted', 'Item removed successfully.', 'delete');
+          
+          btn.innerHTML = '...';
+          try {
+            await window.db.collection(col).doc(id).delete();
+            
+            if (t === 'blog')       { blogs.splice(i,1); renderList(blogs, 'blog-list', 'blog', col); }
+            if (t === 'portfolio')  { portfolio.splice(i,1); renderList(portfolio, 'portfolio-list', 'portfolio', col); }
+            if (t === 'product')    { products.splice(i,1); renderList(products, 'product-list', 'product', col); }
+            
+            updateStats();
+            showToast('Deleted', 'Item removed successfully.', 'delete');
+          } catch(err) {
+            console.error("Delete error", err);
+            showToast('Error', 'Failed to delete item.', 'delete');
+            renderList(arr, containerId, type, col); // re-render to fix button
+          }
         });
       });
     };
-
-    renderList(blogs,     'blog-list',      'blog');
-    renderList(portfolio, 'portfolio-list', 'portfolio');
-    renderList(products,  'product-list',   'product');
 
     // ── Tab switching ──
     document.querySelectorAll('.admin-nav-link').forEach(link => {
@@ -1086,21 +1126,40 @@
     });
 
     // ── Forms ──
-    const handleForm = (formId, fileId, builder, storageKey, arr, listId, type) => {
-      document.getElementById(formId).addEventListener('submit', e => {
+    const handleForm = (formId, fileId, builder, collectionName, arr, listId, type) => {
+      document.getElementById(formId).addEventListener('submit', async e => {
         e.preventDefault();
         const file = document.getElementById(fileId).files[0];
         if (!file) { showToast('No Image', 'Please select an image.', 'delete'); return; }
-        const reader = new FileReader();
-        reader.onload = evt => {
-          arr.unshift(builder(evt.target.result));
-          localStorage.setItem(storageKey, JSON.stringify(arr));
-          renderList(arr, listId, type);
+        
+        const btn = e.target.querySelector('button[type="submit"]');
+        const oldText = btn.innerHTML;
+        btn.innerHTML = 'Uploading...';
+        btn.disabled = true;
+
+        try {
+          // Upload to Firebase Storage
+          const storageRef = window.storage.ref(collectionName + '/' + Date.now() + '_' + file.name);
+          const snapshot = await storageRef.put(file);
+          const downloadURL = await snapshot.ref.getDownloadURL();
+
+          // Build object and add to Firestore
+          const docData = builder(downloadURL);
+          const docRef = await window.db.collection(collectionName).add(docData);
+          
+          // Add locally and render
+          arr.unshift({ id: docRef.id, ...docData });
+          renderList(arr, listId, type, collectionName);
           updateStats();
           e.target.reset();
           showToast('Success!', `${type.charAt(0).toUpperCase() + type.slice(1)} item published.`);
-        };
-        reader.readAsDataURL(file);
+        } catch(err) {
+          console.error(err);
+          showToast('Error', 'Failed to publish.', 'delete');
+        } finally {
+          btn.innerHTML = oldText;
+          btn.disabled = false;
+        }
       });
     };
 
@@ -1110,18 +1169,20 @@
         category: document.getElementById('blog-cat').value,
         content: document.getElementById('blog-content').value,
         image: img,
-        date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+        date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
       }),
-      'ree_blogs', blogs, 'blog-list', 'blog'
+      'blogs', blogs, 'blog-list', 'blog'
     );
 
     handleForm('form-portfolio', 'pf-img',
       img => ({
         title: document.getElementById('pf-title').value,
         category: document.getElementById('pf-cat').value,
-        image: img
+        image: img,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
       }),
-      'ree_portfolio', portfolio, 'portfolio-list', 'portfolio'
+      'portfolio', portfolio, 'portfolio-list', 'portfolio'
     );
 
     handleForm('form-shop', 'shop-img',
@@ -1129,10 +1190,13 @@
         name: document.getElementById('shop-name').value,
         price: document.getElementById('shop-price').value,
         category: document.getElementById('shop-cat').value,
-        image: img
+        image: img,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
       }),
-      'ree_products', products, 'product-list', 'product'
+      'products', products, 'product-list', 'product'
     );
+
+    setTimeout(loadData, 200);
 
     // ── Logout ──
     document.getElementById('logout-btn').addEventListener('click', e => {
