@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 6. SCROLL REVEAL ANIMATIONS (Intersection Observer)
   const revealElements = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right');
   
-  const revealObserver = new IntersectionObserver((entries, observer) => {
+  window.revealObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('in-view');
@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
     rootMargin: "0px 0px -50px 0px"
   });
   
-  revealElements.forEach(el => revealObserver.observe(el));
+  revealElements.forEach(el => window.revealObserver.observe(el));
 
 
   // 7. COUNTER ANIMATION
@@ -591,7 +591,7 @@ document.addEventListener('DOMContentLoaded', () => {
           blogContainer.innerHTML = ''; // Clear Coming Soon
           blogs.forEach(b => {
             blogContainer.innerHTML += `
-              <article style="background: var(--w08); border: 1px solid var(--gold-border); border-radius: var(--radius-xl); overflow: hidden; margin-bottom: 40px; transition: all 0.3s;" onmouseover="this.style.boxShadow='var(--gold-glow-sm)'" onmouseout="this.style.boxShadow='none'">
+              <article class="reveal-up" style="background: var(--w08); border: 1px solid var(--gold-border); border-radius: var(--radius-xl); overflow: hidden; margin-bottom: 40px; transition: all 0.3s;" onmouseover="this.style.boxShadow='var(--gold-glow-sm)'" onmouseout="this.style.boxShadow='none'">
                 <div style="height: 350px; background: url('${b.image}') ${b.imagePos || 'center center'}/cover;"></div>
                 <div style="padding: 40px;">
                   <div style="display:flex; gap:16px; margin-bottom: 16px; font-size: 0.85rem; color: var(--gold-300); text-transform: uppercase; letter-spacing: 1px;">
@@ -600,11 +600,16 @@ document.addEventListener('DOMContentLoaded', () => {
                   </div>
                   <h2 style="font-family: var(--font-display); font-size: 2rem; color: #fff; margin-bottom: 16px;">${b.title}</h2>
                   <p style="color: var(--w60); line-height: 1.8; margin-bottom: 24px;">${b.content.substring(0, 150)}...</p>
-                  <a href="#" class="gold-link" style="font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem;">Read Full Article &rarr;</a>
+                  <a href="article.html?id=${b.id}" class="gold-link" style="font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem;">Read Full Article &rarr;</a>
                 </div>
               </article>
             `;
           });
+          
+          // Trigger animations on newly loaded blog cards
+          if (typeof window.revealObserver !== 'undefined') {
+            blogContainer.querySelectorAll('.reveal-up').forEach(el => window.revealObserver.observe(el));
+          }
         }
       } catch(e) { console.error("Error fetching blogs:", e); }
     }
