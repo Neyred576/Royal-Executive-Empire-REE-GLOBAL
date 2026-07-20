@@ -183,11 +183,8 @@
           </div>
           <div class="order-item-price">$440.00</div>
         </div>
-        <div class="order-totals">
-          <div class="total-row"><span>Subtotal</span><span>$890.00</span></div>
-          <div class="total-row"><span>Shipping</span><span>Calculated after address</span></div>
-          <div class="total-row"><span>Tax (7.5%)</span><span>$66.75</span></div>
-          <div class="total-row grand"><span>Total</span><span class="price">$956.75</span></div>
+        <div class="order-totals" id="checkout-totals">
+          <!-- Populated dynamically by JS -->
         </div>
       </div>
     </div>
@@ -197,6 +194,9 @@
 <footer class="site-footer">
   <div class="footer-bar"><div class="container"><p class="footer-copy">&copy; <span id="footer-year"></span> REE Global. All Rights Reserved.</p></div></div>
 </footer>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="js/firebase-init.js"></script>
 <script>
   // Payment method tabs
   document.querySelectorAll('.pay-method').forEach(btn => {
@@ -207,5 +207,60 @@
   });
 </script>
 <script src="js/main.js"></script>
+<script>
+  // Dynamically build the checkout totals from cart + Firestore settings
+  const buildCheckoutTotals = async () => {
+    const totalsEl = document.getElementById('checkout-totals');
+    if (!totalsEl) return;
+
+    const cart = JSON.parse(localStorage.getItem('ree_cart')) || [];
+    const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+    let taxEnabled = false, taxLabel = 'Tax', taxRate = 0;
+    let discountCode = '', discountPercent = 0;
+
+    // Fetch settings from Firestore
+    try {
+      if (window.db) {
+        const taxDoc = await window.db.collection('settings').doc('tax').get();
+        if (taxDoc.exists) {
+          const d = taxDoc.data();
+          taxEnabled = d.enabled === 'yes';
+          taxRate    = parseFloat(d.rate) || 0;
+        }
+        const discountDoc = await window.db.collection('settings').doc('discount').get();
+        if (discountDoc.exists) {
+          const d = discountDoc.data();
+          discountCode    = d.code    || '';
+          discountPercent = parseFloat(d.percent) || 0;
+        }
+      }
+    } catch(e) { console.warn('Could not load settings', e); }
+
+    let finalTotal = subtotal;
+
+    // Apply Discount
+    if (discountPercent > 0) {
+      finalTotal = finalTotal - (finalTotal * (discountPercent / 100));
+    }
+
+    // Apply Tax (Hidden calculation)
+    if (taxEnabled && taxRate > 0) {
+      finalTotal = finalTotal + (finalTotal * (taxRate / 100));
+    }
+
+    // Only show the grand total row as requested
+    let html = `<div class="total-row grand"><span>Total</span><span class="price">AED ${finalTotal.toFixed(2)}</span></div>`;
+
+    totalsEl.innerHTML = html;
+  };
+
+  // Wait for Firebase to be ready
+  const waitAndBuild = () => {
+    if (window.db) { buildCheckoutTotals(); }
+    else { setTimeout(waitAndBuild, 100); }
+  };
+  waitAndBuild();
+</script>
 </body>
 </html>

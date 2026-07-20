@@ -658,6 +658,16 @@
           <span class="nav-label">Shop Products</span>
         </a>
       </li>
+      <li>
+        <a href="#" class="admin-nav-link" data-target="sec-settings">
+          <div class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+            </svg>
+          </div>
+          <span class="nav-label">Store Settings</span>
+        </a>
+      </li>
     </ul>
 
     <div class="sb-footer">
@@ -970,6 +980,67 @@
       </div>
     </section>
 
+    <!-- ── STORE SETTINGS ── -->
+    <section id="sec-settings" class="admin-section">
+      <div style="margin-bottom: 32px;">
+        <h2 style="font-family:var(--font-display); font-size: 2rem; color: #fff;">Store <span style="color:var(--gold)">Settings</span></h2>
+        <p style="color:rgba(255,255,255,0.5); margin-top:6px;">Configure tax, VAT, and discount codes applied at checkout.</p>
+      </div>
+
+      <div class="admin-grid">
+        <!-- Tax / VAT Card -->
+        <div class="admin-card">
+          <div class="card-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Tax &amp; VAT Settings
+          </div>
+          <form id="form-tax">
+            <div class="form-group">
+              <label>Enable Tax / VAT?</label>
+              <select id="tax-enabled">
+                <option value="no">No — Do not show tax</option>
+                <option value="yes">Yes — Show tax at checkout</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Tax Label (e.g. VAT, GST, Tax)</label>
+              <input type="text" id="tax-label" placeholder="e.g. VAT" />
+            </div>
+            <div class="form-group">
+              <label>Tax Rate (%)</label>
+              <input type="number" id="tax-rate" placeholder="e.g. 5" min="0" max="100" step="0.1" />
+            </div>
+            <button type="submit" class="btn-publish" style="margin-top:8px;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Save Tax Settings
+            </button>
+          </form>
+        </div>
+
+        <!-- Discount Code Card -->
+        <div class="admin-card">
+          <div class="card-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+            Discount Code
+          </div>
+          <form id="form-discount">
+            <div class="form-group">
+              <label>Discount Code (leave blank to disable)</label>
+              <input type="text" id="discount-code" placeholder="e.g. ROYAL20" style="text-transform:uppercase;"/>
+            </div>
+            <div class="form-group">
+              <label>Discount Amount (%)</label>
+              <input type="number" id="discount-percent" placeholder="e.g. 20" min="0" max="100" step="1" />
+            </div>
+            <button type="submit" class="btn-publish" style="margin-top:8px;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Save Discount Code
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <!-- Firebase Integration -->
@@ -1248,6 +1319,63 @@
     );
 
     setTimeout(loadData, 200);
+
+    // ── Load current store settings into forms ──
+    const loadSettings = async () => {
+      try {
+        const taxDoc = await window.db.collection('settings').doc('tax').get();
+        if (taxDoc.exists) {
+          const d = taxDoc.data();
+          document.getElementById('tax-enabled').value = d.enabled || 'no';
+          document.getElementById('tax-label').value   = d.label   || '';
+          document.getElementById('tax-rate').value    = d.rate    || '';
+        }
+        const discountDoc = await window.db.collection('settings').doc('discount').get();
+        if (discountDoc.exists) {
+          const d = discountDoc.data();
+          document.getElementById('discount-code').value    = d.code    || '';
+          document.getElementById('discount-percent').value = d.percent || '';
+        }
+      } catch(e) { console.warn('Could not load settings', e); }
+    };
+    
+    // Load settings when Settings tab is clicked
+    document.querySelectorAll('.admin-nav-link').forEach(link => {
+      if (link.dataset.target === 'sec-settings') {
+        link.addEventListener('click', () => setTimeout(loadSettings, 50));
+      }
+    });
+
+    // Save Tax settings
+    document.getElementById('form-tax').addEventListener('submit', async e => {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type="submit"]');
+      btn.innerHTML = 'Saving...'; btn.disabled = true;
+      try {
+        await window.db.collection('settings').doc('tax').set({
+          enabled: document.getElementById('tax-enabled').value,
+          label:   document.getElementById('tax-label').value.trim() || 'Tax',
+          rate:    parseFloat(document.getElementById('tax-rate').value) || 0
+        });
+        showToast('Saved!', 'Tax settings updated successfully.');
+      } catch(err) { showToast('Error', 'Failed to save.', 'delete'); }
+      finally { btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Save Tax Settings'; btn.disabled = false; }
+    });
+
+    // Save Discount settings
+    document.getElementById('form-discount').addEventListener('submit', async e => {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type="submit"]');
+      btn.innerHTML = 'Saving...'; btn.disabled = true;
+      try {
+        await window.db.collection('settings').doc('discount').set({
+          code:    document.getElementById('discount-code').value.trim().toUpperCase(),
+          percent: parseFloat(document.getElementById('discount-percent').value) || 0
+        });
+        showToast('Saved!', 'Discount code updated successfully.');
+      } catch(err) { showToast('Error', 'Failed to save.', 'delete'); }
+      finally { btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Save Discount Code'; btn.disabled = false; }
+    });
 
     // ── Logout ──
     document.getElementById('logout-btn').addEventListener('click', e => {

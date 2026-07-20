@@ -531,7 +531,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="product-info">
                   <div class="product-cat">${p.category}</div>
                   <h3 class="product-title">${p.name}</h3>
-                  <div class="product-price">$${Number(p.price).toFixed(2)}</div>
+                  <div class="product-price">AED ${Number(p.price).toFixed(2)}</div>
                   <button class="btn-gold" style="width:100%; justify-content:center;" onclick="addToCart('${p.id}', '${p.name.replace(/'/g, "\\'")}', ${Number(p.price)}, '${p.image}')">Add to Cart</button>
                 </div>
               </div>
@@ -658,7 +658,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
   
   // Render Cart Page if we are on it
-  const renderCartPage = () => {
+  const renderCartPage = async () => {
     const container = document.getElementById('cart-items-container');
     if (!container) return; // not on cart page
 
@@ -670,15 +670,15 @@ document.addEventListener('DOMContentLoaded', () => {
           <p style="color: var(--w50); margin-bottom: 28px;">Looks like you haven't added anything to your cart yet.</p>
         </div>
       `;
-      document.getElementById('cart-total-price').textContent = '$0.00';
+      document.getElementById('cart-total-price').textContent = 'AED 0.00';
       return;
     }
 
     container.innerHTML = '';
-    let total = 0;
+    let subtotal = 0;
     cart.forEach((item, index) => {
-      const subtotal = item.price * item.qty;
-      total += subtotal;
+      const itemTotal = item.price * item.qty;
+      subtotal += itemTotal;
       container.innerHTML += `
         <div class="cart-row">
           <div class="cart-item-info">
@@ -687,15 +687,36 @@ document.addEventListener('DOMContentLoaded', () => {
               <div class="cart-item-name">${item.name}</div>
             </div>
           </div>
-          <div class="cart-price">$${item.price.toFixed(2)}</div>
+          <div class="cart-price">AED ${item.price.toFixed(2)}</div>
           <input type="number" class="qty-input" value="${item.qty}" min="1" max="99" onchange="updateCartQty(${index}, this.value)" />
-          <div class="cart-price subtotal-col">$${subtotal.toFixed(2)}</div>
+          <div class="cart-price subtotal-col">AED ${itemTotal.toFixed(2)}</div>
           <button class="cart-remove" title="Remove item" onclick="removeFromCart(${index})">✕</button>
         </div>
       `;
     });
 
-    document.getElementById('cart-total-price').textContent = '$' + total.toFixed(2);
+    // Wait for DB if not ready
+    if (!window.db) {
+      setTimeout(renderCartPage, 100);
+      return;
+    }
+
+    let finalTotal = subtotal;
+    try {
+      const taxDoc = await window.db.collection('settings').doc('tax').get();
+      if (taxDoc.exists) {
+        const d = taxDoc.data();
+        if (d.enabled === 'yes') finalTotal += finalTotal * (parseFloat(d.rate) / 100);
+      }
+      const discountDoc = await window.db.collection('settings').doc('discount').get();
+      if (discountDoc.exists) {
+        const d = discountDoc.data();
+        const discountPercent = parseFloat(d.percent) || 0;
+        if (discountPercent > 0) finalTotal -= finalTotal * (discountPercent / 100);
+      }
+    } catch(e) { console.warn('Could not load settings', e); }
+
+    document.getElementById('cart-total-price').textContent = 'AED ' + finalTotal.toFixed(2);
   };
 
   window.updateCartQty = (index, newQty) => {
@@ -718,15 +739,33 @@ document.addEventListener('DOMContentLoaded', () => {
   // WhatsApp Checkout
   const waBtn = document.getElementById('whatsapp-checkout-btn');
   if (waBtn) {
-    waBtn.addEventListener('click', () => {
+    waBtn.addEventListener('click', async () => {
       if (cart.length === 0) return alert("Your cart is empty!");
       let text = "Hello REE Global, I would like to place an order:%0A%0A";
-      let total = 0;
+      let subtotal = 0;
       cart.forEach(item => {
-        text += `- ${item.qty}x ${item.name} ($${item.price.toFixed(2)} each)%0A`;
-        total += (item.price * item.qty);
+        text += `- ${item.qty}x ${item.name} (AED ${item.price.toFixed(2)} each)%0A`;
+        subtotal += (item.price * item.qty);
       });
-      text += `%0A*Total: $${total.toFixed(2)}*`;
+      
+      let finalTotal = subtotal;
+      try {
+        if(window.db) {
+          const taxDoc = await window.db.collection('settings').doc('tax').get();
+          if (taxDoc.exists) {
+            const d = taxDoc.data();
+            if (d.enabled === 'yes') finalTotal += finalTotal * (parseFloat(d.rate) / 100);
+          }
+          const discountDoc = await window.db.collection('settings').doc('discount').get();
+          if (discountDoc.exists) {
+            const d = discountDoc.data();
+            const discountPercent = parseFloat(d.percent) || 0;
+            if (discountPercent > 0) finalTotal -= finalTotal * (discountPercent / 100);
+          }
+        }
+      } catch(e) {}
+      
+      text += `%0A*Total: AED ${finalTotal.toFixed(2)}*`;
       
       // REPLACE 1234567890 WITH YOUR ACTUAL WHATSAPP NUMBER IN INTERNATIONAL FORMAT (e.g. 234800000000)
       const phoneNumber = "2348000000000"; 
