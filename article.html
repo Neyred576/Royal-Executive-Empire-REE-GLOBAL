@@ -14,14 +14,10 @@
     .article-meta { display: inline-flex; align-items: center; gap: 16px; margin-bottom: 24px; font-size: 0.9rem; color: var(--gold-300); text-transform: uppercase; letter-spacing: 2px; }
     .article-title { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4.5rem); color: #fff; line-height: 1.1; margin-bottom: 30px; max-width: 900px; margin-left: auto; margin-right: auto; }
     
-    .article-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; padding-bottom: 100px; }
-    @media (max-width: 992px) { .article-layout { grid-template-columns: 1fr; gap: 40px; } }
-    
-    .article-image-wrapper { position: sticky; top: 120px; }
-    .article-hero-img { width: 100%; height: auto; max-height: 75vh; object-fit: cover; border-radius: var(--radius-xl); border: 1px solid var(--gold-border); box-shadow: 0 20px 40px rgba(0,0,0,0.4); transform: translateY(0); transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); }
+    .article-hero-img { width: 100%; height: auto; max-height: 75vh; min-height: 400px; object-fit: cover; border-radius: var(--radius-xl); border: 1px solid var(--gold-border); box-shadow: 0 20px 40px rgba(0,0,0,0.4); margin-bottom: 60px; transform: translateY(0); transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); }
     .article-hero-img:hover { transform: translateY(-5px); box-shadow: var(--gold-glow); }
     
-    .article-content { color: var(--w70); font-size: 1.15rem; line-height: 2; }
+    .article-content { max-width: 900px; margin: 0 auto; color: var(--w70); font-size: 1.15rem; line-height: 2; padding-bottom: 100px; }
     .article-content p { margin-bottom: 24px; }
     .article-content h2, .article-content h3 { color: #fff; font-family: var(--font-display); margin: 40px 0 20px; }
     .article-content blockquote { border-left: 3px solid var(--gold-300); padding-left: 24px; font-size: 1.3rem; font-style: italic; color: #fff; margin: 40px 0; background: var(--w08); padding: 30px; border-radius: 0 var(--radius-lg) var(--radius-lg) 0; }
@@ -153,16 +149,10 @@ document.addEventListener('DOMContentLoaded', async () => {
           <div class="container reveal-up" style="transition-delay: 0.2s">
             <a href="blog.html" class="back-btn">&larr; Back to Blog</a>
             
-            <div class="article-layout">
-              <!-- Left side: Sticky Image -->
-              <div class="article-image-wrapper">
-                <img src="${b.image}" alt="${b.title}" class="article-hero-img" style="object-position: ${b.imagePos || 'center center'};" />
-              </div>
-              
-              <!-- Right side: Text Content -->
-              <div class="article-content">
-                ${formattedContent}
-              </div>
+            <img src="${b.image}" alt="${b.title}" class="article-hero-img" style="object-position: ${b.imagePos || 'center center'};" />
+            
+            <div class="article-content">
+              ${formattedContent}
             </div>
             
           </div>

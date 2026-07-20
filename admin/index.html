@@ -807,9 +807,8 @@
               </select>
             </div>
             <div class="form-group">
-              <label>Cover Image URL</label>
-              <input type="url" id="blog-img" placeholder="Paste image link e.g. https://imgur.com/erqEPjG" required />
-              <small style="color:var(--w50);font-size:0.78rem;margin-top:6px;display:block;">Upload to <a href="https://imgur.com" target="_blank" style="color:var(--gold-300)">imgur.com</a> then paste the link here.</small>
+              <label>Cover Image File</label>
+              <input type="file" id="blog-img" accept="image/*" required class="file-drop" />
             </div>
             <div class="form-group">
               <label>Image Focus (thumbnail position)</label>
@@ -875,9 +874,8 @@
               </select>
             </div>
             <div class="form-group">
-              <label>Project Image URL</label>
-              <input type="url" id="pf-img" placeholder="Paste image link e.g. https://imgur.com/erqEPjG" required />
-              <small style="color:var(--w50);font-size:0.78rem;margin-top:6px;display:block;">Upload to <a href="https://imgur.com" target="_blank" style="color:var(--gold-300)">imgur.com</a> then paste the link here.</small>
+              <label>Project Image File</label>
+              <input type="file" id="pf-img" accept="image/*" required class="file-drop" />
             </div>
             <div class="form-group">
               <label>Image Focus (thumbnail position)</label>
@@ -943,9 +941,8 @@
               </select>
             </div>
             <div class="form-group">
-              <label>Product Image URL</label>
-              <input type="url" id="shop-img" placeholder="Paste image link e.g. https://imgur.com/erqEPjG" required />
-              <small style="color:var(--w50);font-size:0.78rem;margin-top:6px;display:block;">Upload to <a href="https://imgur.com" target="_blank" style="color:var(--gold-300)">imgur.com</a> then paste the link here.</small>
+              <label>Product Image File</label>
+              <input type="file" id="shop-img" accept="image/*" required class="file-drop" />
             </div>
             <div class="form-group">
               <label>Image Focus (thumbnail position)</label>
@@ -1158,31 +1155,43 @@
       });
     });
 
-    // ── Auto-fix image URLs (e.g. imgur page → direct image) ──
-    const normalizeImageUrl = (url) => {
-      // Convert: https://imgur.com/erqEPjG → https://i.imgur.com/erqEPjG.jpg
-      const imgurPage = url.match(/^https?:\/\/(?:www\.)?imgur\.com\/([a-zA-Z0-9]+)$/);
-      if (imgurPage) {
-        return `https://i.imgur.com/${imgurPage[1]}.jpg`;
-      }
-      return url; // return as-is for all other URLs
-    };
+    // ── Forms (Uploads file to ImgBB via API, then saves URL to Firestore) ──
+    const IMGBB_API_KEY = '40fad5b164f7be1f49b470b9563cc0c7';
 
-    // ── Forms (NO file upload — uses image URL directly) ──
-    const handleForm = (formId, imageInputId, builder, collectionName, arr, listId, type) => {
+    const handleForm = (formId, fileInputId, builder, collectionName, arr, listId, type) => {
       document.getElementById(formId).addEventListener('submit', async e => {
         e.preventDefault();
-        const rawUrl = document.getElementById(imageInputId).value.trim();
-        if (!rawUrl) { showToast('No Image URL', 'Please paste an image URL.', 'delete'); return; }
-        const imageUrl = normalizeImageUrl(rawUrl);
+        
+        const fileInput = document.getElementById(fileInputId);
+        const file = fileInput.files[0];
+        
+        if (!file) { showToast('No Image', 'Please select an image file.', 'delete'); return; }
         
         const btn = e.target.querySelector('button[type="submit"]');
         const oldText = btn.innerHTML;
-        btn.innerHTML = 'Publishing...';
+        btn.innerHTML = 'Uploading Image...';
         btn.disabled = true;
 
         try {
-          // Save directly to Firestore — no storage upload needed
+          // 1. Upload to ImgBB
+          const formData = new FormData();
+          formData.append('image', file);
+          
+          const imgbbResponse = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
+            method: 'POST',
+            body: formData
+          });
+          
+          const imgbbData = await imgbbResponse.json();
+          if (!imgbbData.success) {
+            throw new Error('ImgBB Upload Failed');
+          }
+          
+          const imageUrl = imgbbData.data.url; // The live image URL
+          
+          btn.innerHTML = 'Saving...';
+
+          // 2. Save directly to Firestore with the new URL
           const docData = builder(imageUrl);
           const docRef = await window.db.collection(collectionName).add(docData);
           
@@ -1191,7 +1200,7 @@
           renderList(arr, listId, type, collectionName);
           updateStats();
           e.target.reset();
-          showToast('Success!', `${type.charAt(0).toUpperCase() + type.slice(1)} item published.`);
+          showToast('Success!', `${type.charAt(0).toUpperCase() + type.slice(1)} published successfully.`);
         } catch(err) {
           console.error(err);
           showToast('Error', 'Failed to publish. Check your internet connection.', 'delete');
