@@ -12,13 +12,22 @@ document.addEventListener('DOMContentLoaded', () => {
   const body = document.body;
   body.classList.add('no-scroll');
   
-  // Give the CSS animation time to complete
+  // Wait for the window to fully load for a snappy, precise preloader
   if (preloader) {
-    setTimeout(() => {
+    const hidePreloader = () => {
+      if (preloader.classList.contains('done')) return;
       preloader.classList.add('done');
       body.classList.remove('no-scroll');
       initHeroAnimations();
-    }, 2500);
+    };
+
+    if (document.readyState === 'complete') {
+      setTimeout(hidePreloader, 400);
+    } else {
+      window.addEventListener('load', () => setTimeout(hidePreloader, 400));
+      // Fallback in case loading gets stuck (max 1.5s wait)
+      setTimeout(hidePreloader, 1500);
+    }
   } else {
     // No preloader on this page — show content immediately
     body.classList.remove('no-scroll');
