@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Blog & News | REE Global — Royalty Executive Empire</title>
+  <title>Blog &amp; Insights | REE Global — Royalty Executive Empire</title>
   <meta name="description" content="Read the latest articles, news, and insights from Royalty Executive Empire (REE Global) — covering luxury, business, technology, and global impact." />
   <meta name="keywords" content="REE Global blog, Royalty Executive Empire news, luxury insights, business articles, Africa innovation" />
   <meta name="author" content="Onosedeba Israel Ose" />
   <meta name="robots" content="index, follow" />
-  <meta property="og:title" content="Blog & News | REE Global" />
+  <meta property="og:title" content="Blog &amp; News | REE Global" />
   <meta property="og:description" content="Latest trends, inspiration, and innovations from Royalty Executive Empire and our global partners." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="Images/BG/logo%20bg.png" />
@@ -18,37 +18,320 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
   <style>
-    .blog-layout { display: grid; grid-template-columns: 1fr 320px; gap: 48px; }
-    .blog-grid { display: flex; flex-direction: column; gap: 40px; }
-    .blog-card { background: var(--w08); border: 1px solid var(--gold-border); border-radius: var(--radius-xl); overflow: hidden; display: grid; grid-template-columns: 300px 1fr; transition: all 0.3s; }
-    .blog-card:hover { box-shadow: var(--gold-glow-sm); border-color: var(--gold-300); transform: translateX(6px); }
-    .blog-thumb { background: var(--black-700); display: flex; align-items: center; justify-content: center; font-size: 3.5rem; min-height: 220px; }
-    .blog-info { padding: 32px; display: flex; flex-direction: column; justify-content: center; }
-    .blog-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 14px; }
-    .blog-meta .tag { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1.5px; padding: 4px 12px; border-radius: 999px; background: var(--gold-fill); color: var(--gold-300); font-weight: 600; border: 1px solid var(--gold-border); }
-    .blog-meta .date { font-size: 0.8rem; color: var(--w50); }
-    .blog-title { font-family: var(--font-display); font-size: 1.4rem; color: #fff; line-height: 1.35; margin-bottom: 12px; }
-    .blog-excerpt { font-size: 0.9rem; color: var(--w70); line-height: 1.7; margin-bottom: 20px; }
-    .read-more { color: var(--gold-300); font-size: 0.85rem; font-weight: 600; letter-spacing: 0.5px; display: inline-flex; align-items: center; gap: 6px; transition: gap 0.3s; }
-    .read-more:hover { gap: 10px; }
-    .sidebar-widget { background: var(--w08); border: 1px solid var(--gold-border); border-radius: var(--radius-lg); padding: 28px; margin-bottom: 28px; }
-    .widget-title { font-size: 1rem; color: var(--gold-300); margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; padding-bottom: 10px; border-bottom: 1px solid var(--gold-border); }
-    .recent-post { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--w08); }
+    /* ── Hero ── */
+    .blog-hero {
+      position: relative;
+      padding: 160px 0 90px;
+      overflow: hidden;
+      background: var(--black-900);
+      border-bottom: 1px solid var(--gold-border);
+    }
+    .blog-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 60%, rgba(212,175,55,0.10) 0%, transparent 65%),
+                  radial-gradient(ellipse at 80% 20%, rgba(212,175,55,0.05) 0%, transparent 50%);
+    }
+    .blog-hero-inner { position: relative; z-index: 2; }
+    .blog-hero-eyebrow {
+      display: flex; align-items: center; gap: 14px;
+      margin-bottom: 20px;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--gold-300);
+    }
+    .blog-hero-eyebrow::before {
+      content: ''; display: block;
+      width: 40px; height: 1px;
+      background: var(--gold-gradient);
+    }
+    .blog-hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      color: #fff;
+      line-height: 1.0;
+      margin-bottom: 24px;
+    }
+    .blog-hero-title span { color: var(--gold-300); }
+    .blog-hero-desc {
+      color: var(--w50);
+      font-size: 1.1rem;
+      max-width: 500px;
+      line-height: 1.8;
+    }
+
+    /* ── Filter Bar ── */
+    .filter-bar {
+      display: flex; align-items: center; gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 56px;
+    }
+    .filter-chip {
+      padding: 9px 22px;
+      border-radius: 999px;
+      border: 1px solid var(--gold-border);
+      background: transparent;
+      color: var(--w60);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+    .filter-chip:hover, .filter-chip.active {
+      background: var(--gold-gradient);
+      color: var(--black-900);
+      border-color: transparent;
+      box-shadow: 0 4px 16px rgba(212,175,55,0.3);
+    }
+
+    /* ── Layout ── */
+    .blog-page-layout {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 60px;
+      align-items: start;
+    }
+
+    /* ── Featured Card ── */
+    .blog-featured {
+      position: relative;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      cursor: pointer;
+      margin-bottom: 40px;
+      border: 1px solid var(--gold-border);
+      transition: all 0.35s;
+    }
+    .blog-featured:hover { border-color: var(--gold-300); box-shadow: var(--gold-glow); }
+    .blog-featured-img {
+      width: 100%; height: 460px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.2,0.8,0.2,1);
+    }
+    .blog-featured:hover .blog-featured-img { transform: scale(1.03); }
+    .blog-featured-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
+    }
+    .blog-featured-body {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 36px;
+    }
+    .blog-featured-tag {
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 999px;
+      background: var(--gold-fill);
+      border: 1px solid var(--gold-border);
+      color: var(--gold-300);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .blog-featured-title {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .blog-featured-meta {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.55);
+    }
+    .blog-featured-label {
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold-300);
+      margin-bottom: 10px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .blog-featured-label::before {
+      content: '';
+      width: 20px; height: 1px;
+      background: var(--gold-300);
+    }
+
+    /* ── Blog Card ── */
+    .blog-list { display: flex; flex-direction: column; gap: 24px; }
+    .blog-card {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 0;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid var(--gold-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+    .blog-card:hover {
+      border-color: var(--gold-300);
+      box-shadow: var(--gold-glow-sm);
+      transform: translateX(6px);
+    }
+    .blog-card-thumb {
+      background: var(--black-700);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.5rem;
+      min-height: 160px;
+      overflow: hidden;
+      position: relative;
+    }
+    .blog-card-thumb img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      position: absolute; inset: 0;
+      transition: transform 0.5s ease;
+    }
+    .blog-card:hover .blog-card-thumb img { transform: scale(1.06); }
+    .blog-card-body {
+      padding: 22px 24px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .blog-card-tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gold-300);
+      margin-bottom: 8px;
+    }
+    .blog-card-title {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: #fff;
+      line-height: 1.35;
+      margin-bottom: 8px;
+      transition: color 0.3s;
+    }
+    .blog-card:hover .blog-card-title { color: var(--gold-300); }
+    .blog-card-excerpt {
+      font-size: 0.82rem;
+      color: var(--w50);
+      line-height: 1.65;
+      margin-bottom: 12px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .blog-card-date { font-size: 0.75rem; color: var(--w40); }
+
+    /* ── Sidebar ── */
+    .blog-sidebar { position: sticky; top: 100px; }
+    .sidebar-widget {
+      background: rgba(255,255,255,0.025);
+      border: 1px solid var(--gold-border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      margin-bottom: 28px;
+    }
+    .widget-title {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--gold-300);
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--gold-border);
+    }
+    .recent-post { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 18px; padding-bottom: 18px; border-bottom: 1px solid rgba(255,255,255,0.04); }
     .recent-post:last-child { margin-bottom: 0; padding-bottom: 0; border: none; }
-    .rp-thumb { width: 60px; height: 60px; border-radius: var(--radius-sm); background: var(--black-700); flex-shrink: 0; display:flex; align-items:center; justify-content:center; font-size:1.5rem; }
-    .rp-text a { font-size: 0.85rem; color: var(--w70); line-height: 1.4; transition: color 0.3s; }
+    .rp-thumb {
+      width: 58px; height: 58px;
+      border-radius: var(--radius-sm);
+      background: var(--black-700);
+      border: 1px solid var(--gold-border);
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; overflow: hidden; position: relative;
+    }
+    .rp-thumb img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+    .rp-text a {
+      font-size: 0.83rem; color: var(--w70); line-height: 1.4;
+      transition: color 0.3s; text-decoration: none;
+    }
     .rp-text a:hover { color: var(--gold-300); }
-    .rp-date { font-size: 0.75rem; color: var(--w50); margin-top: 4px; }
-    .cat-pill-list { display: flex; flex-wrap: wrap; gap: 10px; }
-    .cat-pill { padding: 6px 16px; border-radius: 999px; border: 1px solid var(--gold-border); color: var(--w70); font-size: 0.8rem; transition: all 0.3s; cursor:pointer; }
-    .cat-pill:hover { background: var(--gold-fill); color: var(--gold-300); }
-    @media (max-width: 992px) { .blog-layout { grid-template-columns: 1fr; } .blog-card { grid-template-columns: 1fr; } .blog-thumb { min-height: 200px; } }
-    @media (max-width: 576px) { .blog-info { padding: 24px; } }
+    .rp-date { font-size: 0.73rem; color: var(--w40); margin-top: 4px; }
+
+    .cat-list { display: flex; flex-wrap: wrap; gap: 8px; }
+    .cat-chip {
+      padding: 6px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--gold-border);
+      color: var(--w60);
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s;
+      background: transparent;
+    }
+    .cat-chip:hover { background: var(--gold-fill); color: var(--gold-300); }
+
+    /* ── Skeleton ── */
+    .skeleton {
+      background: linear-gradient(90deg, var(--black-700) 25%, rgba(255,255,255,0.04) 50%, var(--black-700) 75%);
+      background-size: 200% 100%;
+      animation: skeletonLoading 1.5s infinite;
+      border-radius: 6px;
+    }
+    @keyframes skeletonLoading { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+
+    .skeleton-card {
+      display: grid; grid-template-columns: 160px 1fr;
+      gap: 0;
+      border: 1px solid var(--gold-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+    .sk-thumb { min-height: 160px; }
+    .sk-body { padding: 22px 24px; display: flex; flex-direction: column; gap: 10px; justify-content: center; }
+
+    /* ── Empty State ── */
+    .empty-state {
+      text-align: center; padding: 80px 40px;
+      border: 1px dashed rgba(212,175,55,0.2);
+      border-radius: var(--radius-xl);
+    }
+    .empty-state svg { width: 48px; height: 48px; color: rgba(212,175,55,0.3); margin: 0 auto 16px; display: block; }
+    .empty-state h3 { font-family: var(--font-display); font-size: 1.6rem; color: #fff; margin-bottom: 10px; }
+    .empty-state p { color: var(--w40); font-size: 0.9rem; }
+
+    /* ── Social links ── */
+    .social-link {
+      display: flex; align-items: center; gap: 12px;
+      color: var(--w70); font-size: 0.9rem; font-weight: 500;
+      text-decoration: none; transition: color 0.3s; margin-bottom: 14px;
+    }
+    .social-link:last-child { margin-bottom: 0; }
+    .social-link:hover { color: var(--gold-300); }
+    .social-icon {
+      width: 36px; height: 36px;
+      background: var(--black-700);
+      border: 1px solid var(--gold-border);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold-300); flex-shrink: 0;
+    }
+
+    @media (max-width: 1100px) { .blog-page-layout { grid-template-columns: 1fr; } .blog-sidebar { position: static; } }
+    @media (max-width: 640px) { .blog-card { grid-template-columns: 1fr; } .blog-card-thumb { min-height: 200px; } }
   </style>
 </head>
 <body>
 <div class="bg-animated-glow"></div>
 
+<!-- NAVIGATION -->
 <nav id="main-nav" class="main-nav scrolled" role="navigation" aria-label="Main navigation">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo" aria-label="REE Global Home">
@@ -68,7 +351,7 @@
         <a href="javascript:void(0)" class="nav-link">Divisions <span class="drop-arrow">▾</span></a>
         <ul class="nav-dropdown">
           <li><a href="real-estate.html">Real Estate</a></li>
-          <li><a href="music-store.html">Music & Entertainment</a></li>
+          <li><a href="music-store.html">Music &amp; Entertainment</a></li>
           <li><a href="index.html#services">Consulting</a></li>
         </ul>
       </li>
@@ -78,7 +361,10 @@
       <li><a href="contact.html" class="nav-link nav-link-cta">Contact Us</a></li>
     </ul>
     <div class="nav-actions">
-      <a href="cart.html" class="nav-icon cart-icon" aria-label="Shopping Cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="cart-count">0</span></a>
+      <a href="cart.html" class="nav-icon cart-icon" aria-label="Shopping Cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="cart-count">0</span>
+      </a>
     </div>
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
       <span class="ham-line"></span><span class="ham-line"></span><span class="ham-line"></span>
@@ -87,76 +373,68 @@
   <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
 </nav>
 
-<!-- Page Hero -->
-<section style="padding: 140px 0 60px; background: var(--black-900); border-bottom: 1px solid var(--gold-border); position:relative; overflow:hidden;">
-  <div style="position:absolute; inset:0; background: radial-gradient(ellipse at 30% 50%, rgba(212,175,55,0.06) 0%, transparent 70%);"></div>
-  <div class="container" style="position:relative; z-index:2;">
-    <div class="hero-eyebrow"><span class="eyebrow-line"></span><span>Our Latest News</span></div>
-    <h1 class="section-heading" style="font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 12px;">
-      REE <span class="gold-text">Blog</span>
-    </h1>
-    <p style="color: var(--w50); max-width: 540px;">Latest trends, inspiration, and innovations from Royalty Executive Empire and our global partners.</p>
+<!-- HERO -->
+<section class="blog-hero">
+  <div class="container blog-hero-inner reveal-up">
+    <div class="blog-hero-eyebrow">REE Global Insights</div>
+    <h1 class="blog-hero-title">REE <span>Blog</span></h1>
+    <p class="blog-hero-desc">Latest trends, inspiration, and innovations from Royalty Executive Empire and our global partners.</p>
   </div>
 </section>
 
+<!-- MAIN CONTENT -->
 <section class="section section--dark">
   <div class="container">
-    <div class="blog-layout">
-      <!-- Main Posts -->
-      <main class="blog-grid" id="dynamic-blog-container">
-        <div style="background: var(--w08); border: 1px solid var(--gold-border); border-radius: var(--radius-xl); padding: 60px 40px; text-align: center;">
-          <h2 style="font-family: var(--font-display); font-size: 2rem; color: #fff; margin-bottom: 16px;">Coming <span class="gold-text">Soon</span></h2>
-          <p style="color: var(--w50); max-width: 400px; margin: 0 auto;">Our blog is currently being updated. Stay tuned for exciting insights, company news, and global trends.</p>
+    <!-- Filter chips -->
+    <div class="filter-bar" id="filter-bar">
+      <button class="filter-chip active" data-cat="all">All</button>
+      <button class="filter-chip" data-cat="Real Estate">Real Estate</button>
+      <button class="filter-chip" data-cat="Business">Business</button>
+      <button class="filter-chip" data-cat="Technology">Technology</button>
+      <button class="filter-chip" data-cat="Music &amp; Media">Music &amp; Media</button>
+    </div>
+
+    <div class="blog-page-layout">
+      <!-- Main Content -->
+      <main>
+        <!-- Featured article (dynamically filled) -->
+        <div id="featured-article-wrap"></div>
+        <!-- Blog Cards -->
+        <div class="blog-list" id="blog-list">
+          <!-- Skeletons -->
+          <div class="skeleton-card"><div class="skeleton sk-thumb"></div><div class="sk-body"><div class="skeleton" style="height:12px;width:60px"></div><div class="skeleton" style="height:20px;width:85%"></div><div class="skeleton" style="height:14px;width:100%"></div><div class="skeleton" style="height:14px;width:70%"></div></div></div>
+          <div class="skeleton-card"><div class="skeleton sk-thumb"></div><div class="sk-body"><div class="skeleton" style="height:12px;width:60px"></div><div class="skeleton" style="height:20px;width:80%"></div><div class="skeleton" style="height:14px;width:100%"></div><div class="skeleton" style="height:14px;width:65%"></div></div></div>
+          <div class="skeleton-card"><div class="skeleton sk-thumb"></div><div class="sk-body"><div class="skeleton" style="height:12px;width:55px"></div><div class="skeleton" style="height:20px;width:90%"></div><div class="skeleton" style="height:14px;width:100%"></div><div class="skeleton" style="height:14px;width:75%"></div></div></div>
         </div>
       </main>
 
       <!-- Sidebar -->
-      <aside>
+      <aside class="blog-sidebar">
         <div class="sidebar-widget reveal-right">
-          <h3 class="widget-title">Follow Us</h3>
-          <div style="display:flex; flex-direction:column; gap:16px;">
-            <a href="https://www.facebook.com/Royaltyexecutiveempire" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:12px; color:var(--w70); font-size:0.95rem; font-weight:500; transition: color 0.3s;" onmouseover="this.style.color='var(--gold-300)'" onmouseout="this.style.color='var(--w70)'">
-              <span style="width:36px;height:36px;background:var(--black-700);border:1px solid var(--gold-border);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold-300);">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg>
-              </span> Facebook
-            </a>
-            
-            <a href="https://x.com/Royaltyeel" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:12px; color:var(--w70); font-size:0.95rem; font-weight:500; transition: color 0.3s;" onmouseover="this.style.color='var(--gold-300)'" onmouseout="this.style.color='var(--w70)'">
-              <span style="width:36px;height:36px;background:var(--black-700);border:1px solid var(--gold-border);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold-300);">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.74l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>
-              </span> X (Twitter)
-            </a>
-
-            <a href="https://www.instagram.com/royaltyexecutiveempire/" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:12px; color:var(--w70); font-size:0.95rem; font-weight:500; transition: color 0.3s;" onmouseover="this.style.color='var(--gold-300)'" onmouseout="this.style.color='var(--w70)'">
-              <span style="width:36px;height:36px;background:var(--black-700);border:1px solid var(--gold-border);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold-300);">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" /></svg>
-              </span> Instagram
-            </a>
-
-            <a href="https://www.linkedin.com/in/Royaltyexecutiveempire" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:12px; color:var(--w70); font-size:0.95rem; font-weight:500; transition: color 0.3s;" onmouseover="this.style.color='var(--gold-300)'" onmouseout="this.style.color='var(--w70)'">
-              <span style="width:36px;height:36px;background:var(--black-700);border:1px solid var(--gold-border);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold-300);">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" /></svg>
-              </span> LinkedIn
-            </a>
-
-            <a href="https://www.youtube.com/@Royaltyexecutiveempire" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:12px; color:var(--w70); font-size:0.95rem; font-weight:500; transition: color 0.3s;" onmouseover="this.style.color='var(--gold-300)'" onmouseout="this.style.color='var(--w70)'">
-              <span style="width:36px;height:36px;background:var(--black-700);border:1px solid var(--gold-border);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold-300);">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.41 19.1C5.12 19.56 12 19.56 12 19.56s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.48z" /><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" style="fill:#0B0B0B" /></svg>
-              </span> YouTube
-            </a>
-
-            <a href="https://www.tiktok.com/@royaltyexecutiveempire" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:12px; color:var(--w70); font-size:0.95rem; font-weight:500; transition: color 0.3s;" onmouseover="this.style.color='var(--gold-300)'" onmouseout="this.style.color='var(--w70)'">
-              <span style="width:36px;height:36px;background:var(--black-700);border:1px solid var(--gold-border);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold-300);">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.28 6.28 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.2 8.2 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z" /></svg>
-              </span> TikTok
-            </a>
-
-            <a href="https://whatsapp.com/channel/0029Vb8f98uFsn0ZxQtIix05" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:12px; color:var(--w70); font-size:0.95rem; font-weight:500; transition: color 0.3s;" onmouseover="this.style.color='var(--gold-300)'" onmouseout="this.style.color='var(--w70)'">
-              <span style="width:36px;height:36px;background:var(--black-700);border:1px solid var(--gold-border);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold-300);">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" /></svg>
-              </span> WhatsApp Channel
-            </a>
+          <div class="widget-title">Recent Posts</div>
+          <div id="recent-posts-widget">
+            <div style="display:flex;gap:14px;margin-bottom:16px"><div class="skeleton rp-thumb"></div><div style="flex:1"><div class="skeleton" style="height:14px;width:90%;margin-bottom:6px"></div><div class="skeleton" style="height:10px;width:50%"></div></div></div>
+            <div style="display:flex;gap:14px;margin-bottom:16px"><div class="skeleton rp-thumb"></div><div style="flex:1"><div class="skeleton" style="height:14px;width:85%;margin-bottom:6px"></div><div class="skeleton" style="height:10px;width:45%"></div></div></div>
           </div>
+        </div>
+
+        <div class="sidebar-widget reveal-right" style="transition-delay:0.1s">
+          <div class="widget-title">Categories</div>
+          <div class="cat-list">
+            <button class="cat-chip" onclick="filterBlogBy('Real Estate')">Real Estate</button>
+            <button class="cat-chip" onclick="filterBlogBy('Business')">Business</button>
+            <button class="cat-chip" onclick="filterBlogBy('Technology')">Technology</button>
+            <button class="cat-chip" onclick="filterBlogBy('Music &amp; Media')">Music &amp; Media</button>
+          </div>
+        </div>
+
+        <div class="sidebar-widget reveal-right" style="transition-delay:0.2s">
+          <div class="widget-title">Follow Us</div>
+          <a href="https://www.facebook.com/Royaltyexecutiveempire" target="_blank" rel="noopener" class="social-link"><span class="social-icon"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg></span> Facebook</a>
+          <a href="https://x.com/Royaltyeel" target="_blank" rel="noopener" class="social-link"><span class="social-icon"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.74l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg></span> X (Twitter)</a>
+          <a href="https://www.instagram.com/royaltyexecutiveempire/" target="_blank" rel="noopener" class="social-link"><span class="social-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" /></svg></span> Instagram</a>
+          <a href="https://www.youtube.com/@Royaltyexecutiveempire" target="_blank" rel="noopener" class="social-link"><span class="social-icon"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.41 19.1C5.12 19.56 12 19.56 12 19.56s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.48z" /><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" style="fill:#0B0B0B" /></svg></span> YouTube</a>
+          <a href="https://whatsapp.com/channel/0029Vb8f98uFsn0ZxQtIix05" target="_blank" rel="noopener" class="social-link"><span class="social-icon"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" /></svg></span> WhatsApp Channel</a>
         </div>
       </aside>
     </div>
@@ -179,12 +457,104 @@
     </div>
   </div>
 </footer>
-  <!-- Firebase Integration -->
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
-  <script src="js/firebase-init.js"></script>
 
-  <script src="js/main.js"></script>
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
+<script src="js/firebase-init.js"></script>
+<script src="js/main.js"></script>
+
+<script>
+  let allBlogs = [];
+  let currentFilter = 'all';
+
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+  function getExcerpt(text, len = 120) {
+    if (!text) return '';
+    return text.length > len ? text.substring(0, len).trimEnd() + '…' : text;
+  }
+
+  function renderFeatured(blog) {
+    const wrap = document.getElementById('featured-article-wrap');
+    if (!blog) { wrap.innerHTML = ''; return; }
+    wrap.innerHTML = `
+      <div class="blog-featured-label">Featured Article</div>
+      <a href="article.html?id=${blog.id}" class="blog-featured" style="display:block;text-decoration:none;">
+        ${blog.image ? `<img src="${blog.image}" alt="${blog.title}" class="blog-featured-img" style="object-position:${blog.imagePos || 'center center'}">` : `<div class="blog-featured-img" style="background:linear-gradient(135deg,#1a1000,#0d0800);display:flex;align-items:center;justify-content:center;font-size:5rem;">📰</div>`}
+        <div class="blog-featured-overlay"></div>
+        <div class="blog-featured-body">
+          <div class="blog-featured-tag">${blog.category || 'Uncategorized'}</div>
+          <div class="blog-featured-title">${blog.title}</div>
+          <div class="blog-featured-meta">${blog.date || ''}</div>
+        </div>
+      </a>
+    `;
+  }
+
+  function renderCards(blogs) {
+    const list = document.getElementById('blog-list');
+    if (!blogs.length) {
+      list.innerHTML = `<div class="empty-state"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg><h3>No Articles Yet</h3><p>Check back soon for insights and updates.</p></div>`;
+      return;
+    }
+    list.innerHTML = blogs.map(b => `
+      <a href="article.html?id=${b.id}" class="blog-card" style="text-decoration:none;">
+        <div class="blog-card-thumb">
+          ${b.image ? `<img src="${b.image}" alt="${b.title}" style="object-position:${b.imagePos||'center center'}">` : '📰'}
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-tag">${b.category || ''}</div>
+          <div class="blog-card-title">${b.title}</div>
+          <div class="blog-card-excerpt">${getExcerpt(b.content)}</div>
+          <div class="blog-card-date">${b.date || ''}</div>
+        </div>
+      </a>
+    `).join('');
+  }
+
+  function renderRecentWidget(blogs) {
+    const el = document.getElementById('recent-posts-widget');
+    const recent = blogs.slice(0, 4);
+    if (!recent.length) { el.innerHTML = '<p style="color:var(--w40);font-size:0.85rem;">No posts yet.</p>'; return; }
+    el.innerHTML = recent.map(b => `
+      <div class="recent-post">
+        <div class="rp-thumb">${b.image ? `<img src="${b.image}" alt="${b.title}" style="object-position:${b.imagePos||'center'}">` : '📰'}</div>
+        <div class="rp-text"><a href="article.html?id=${b.id}">${b.title}</a><div class="rp-date">${b.date || ''}</div></div>
+      </div>
+    `).join('');
+  }
+
+  function filterBlogBy(cat) {
+    currentFilter = cat;
+    document.querySelectorAll('.filter-chip').forEach(c => { c.classList.toggle('active', c.dataset.cat === cat || (cat === 'all' && c.dataset.cat === 'all')); });
+    const filtered = cat === 'all' ? allBlogs : allBlogs.filter(b => b.category === cat);
+    renderFeatured(filtered[0] || null);
+    renderCards(filtered.length > 1 ? filtered.slice(1) : []);
+  }
+
+  // Wire filter chips
+  document.getElementById('filter-bar').addEventListener('click', e => {
+    const chip = e.target.closest('.filter-chip');
+    if (!chip) return;
+    filterBlogBy(chip.dataset.cat);
+  });
+
+  function loadBlogs() {
+    if (!window.db) { setTimeout(loadBlogs, 60); return; }
+    window.db.collection('blogs').orderBy('timestamp', 'desc').get().then(snap => {
+      allBlogs = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+      renderFeatured(allBlogs[0] || null);
+      renderCards(allBlogs.length > 1 ? allBlogs.slice(1) : []);
+      renderRecentWidget(allBlogs);
+    }).catch(err => {
+      console.error('Blog load error:', err);
+      document.getElementById('blog-list').innerHTML = `<div class="empty-state"><h3>Could not load articles</h3><p>Please check your connection and refresh.</p></div>`;
+    });
+  }
+
+  loadBlogs();
+</script>
 </body>
 </html>
