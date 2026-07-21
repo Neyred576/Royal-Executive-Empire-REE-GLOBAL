@@ -670,7 +670,26 @@
       </li>
     </ul>
 
-    <div class="sb-footer">
+    <div class="nav-section-label" style="margin-top:16px;">Inbox</div>
+    <ul class="admin-nav">
+      <li>
+        <a href="#" class="admin-nav-link" data-target="sec-orders">
+          <div class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          </div>
+          <span class="nav-label">Orders <span id="orders-badge" style="background:rgba(212,175,55,0.2);color:var(--gold);padding:1px 7px;border-radius:999px;font-size:0.7rem;margin-left:4px;">0</span></span>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="admin-nav-link" data-target="sec-messages">
+          <div class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <span class="nav-label">Messages <span id="msgs-badge" style="background:rgba(212,175,55,0.2);color:var(--gold);padding:1px 7px;border-radius:999px;font-size:0.7rem;margin-left:4px;">0</span></span>
+        </a>
+      </li>
+    </ul>
+
       <div class="sb-stat">
         <span>Blog Posts</span>
         <span class="sb-stat-val" id="sb-count-blog">0</span>
@@ -810,10 +829,8 @@
             <div class="form-group">
               <label>Category</label>
               <select id="blog-cat" required>
-                <option value="Real Estate">Real Estate</option>
                 <option value="Business">Business</option>
                 <option value="Technology">Technology</option>
-                <option value="Music &amp; Media">Music &amp; Media</option>
               </select>
             </div>
             <div class="form-group">
@@ -877,10 +894,8 @@
             <div class="form-group">
               <label>Division</label>
               <select id="pf-cat" required>
-                <option value="REEL Real Estate">REEL Real Estate</option>
                 <option value="REEL Branding">REEL Branding</option>
                 <option value="REEL Power">REEL Power</option>
-                <option value="REEL Music">REEL Music</option>
               </select>
             </div>
             <div class="form-group">
@@ -1041,6 +1056,56 @@
       </div>
     </section>
 
+    <!-- ── ORDERS ── -->
+    <section id="sec-orders" class="admin-section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        </div>
+        <div>
+          <h1>Order Management</h1>
+          <p>Review and process incoming shop orders.</p>
+        </div>
+      </div>
+      <div class="admin-card" style="margin-top:24px;">
+        <div class="card-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          Incoming Orders
+        </div>
+        <div id="orders-list" class="admin-list">
+          <div class="empty-state">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <p>Order history will appear here once the WhatsApp checkout logic integrates with Firebase in the future.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── MESSAGES ── -->
+    <section id="sec-messages" class="admin-section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <div>
+          <h1>Contact Messages</h1>
+          <p>Read messages submitted through the website contact form.</p>
+        </div>
+      </div>
+      <div class="admin-card" style="margin-top:24px;">
+        <div class="card-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          Inbox
+        </div>
+        <div id="messages-list" class="admin-list">
+          <div class="empty-state">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <p>Loading messages...</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <!-- Firebase Integration -->
@@ -1124,19 +1189,74 @@
       if (!window.db) return;
       
       try {
-        const [blogSnap, pfSnap, shopSnap] = await Promise.all([
+        const [blogSnap, pfSnap, shopSnap, msgSnap, orderSnap] = await Promise.all([
           window.db.collection('blogs').orderBy('timestamp', 'desc').get(),
           window.db.collection('portfolio').get(),
-          window.db.collection('products').get()
+          window.db.collection('products').get(),
+          window.db.collection('messages').orderBy('timestamp', 'desc').get(),
+          window.db.collection('orders').orderBy('timestamp', 'desc').get()
         ]);
         
         blogs = blogSnap.docs.map(d => ({ id: d.id, ...d.data() }));
         portfolio = pfSnap.docs.map(d => ({ id: d.id, ...d.data() }));
         products = shopSnap.docs.map(d => ({ id: d.id, ...d.data() }));
+        const messages = msgSnap.docs.map(d => ({ id: d.id, ...d.data() }));
+        const orders = orderSnap.docs.map(d => ({ id: d.id, ...d.data() }));
         
         renderList(blogs, 'blog-list', 'blog', 'blogs');
         renderList(portfolio, 'portfolio-list', 'portfolio', 'portfolio');
         renderList(products,  'product-list',   'product', 'products');
+        
+        // Render Messages
+        const msgList = document.getElementById('messages-list');
+        if (msgList) {
+          if (messages.length === 0) {
+            msgList.innerHTML = `<div class="empty-state"><p>No messages yet.</p></div>`;
+          } else {
+            msgList.innerHTML = messages.map(m => `
+              <div class="admin-list-item" style="flex-direction:column; align-items:flex-start;">
+                <div style="display:flex; justify-content:space-between; width:100%; margin-bottom:8px;">
+                  <strong style="color:var(--gold-300);">${m.name}</strong>
+                  <span style="font-size:0.75rem; color:var(--w50);">${m.date || ''}</span>
+                </div>
+                <div style="font-size:0.85rem; color:var(--w70); margin-bottom:4px;"><strong>Email:</strong> ${m.email} | <strong>Phone:</strong> ${m.phone || 'N/A'}</div>
+                <div style="font-size:0.85rem; color:var(--w70); margin-bottom:8px;"><strong>Subject:</strong> ${m.subject || 'General'}</div>
+                <div style="background:rgba(255,255,255,0.03); padding:12px; border-radius:6px; font-size:0.85rem; width:100%; color:var(--w90); border-left:2px solid var(--gold);">${m.message}</div>
+              </div>
+            `).join('');
+          }
+          const mb = document.getElementById('msgs-badge');
+          if (mb) mb.textContent = messages.length;
+        }
+
+        // Render Orders
+        const orderList = document.getElementById('orders-list');
+        if (orderList) {
+          if (orders.length === 0) {
+            orderList.innerHTML = `<div class="empty-state"><p>No orders yet.</p></div>`;
+          } else {
+            orderList.innerHTML = orders.map(o => `
+              <div class="admin-list-item" style="flex-direction:column; align-items:flex-start;">
+                <div style="display:flex; justify-content:space-between; width:100%; margin-bottom:8px;">
+                  <strong style="color:var(--gold-300);">Order ID: ${o.id.substring(0,8).toUpperCase()}</strong>
+                  <span style="font-size:0.75rem; color:var(--w50);">${o.date || ''}</span>
+                </div>
+                <div style="font-size:0.85rem; color:var(--w70); margin-bottom:12px;"><strong>Total:</strong> AED ${(o.total||0).toFixed(2)}</div>
+                <div style="width:100%;">
+                  ${(o.items||[]).map(i => `
+                    <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:4px; padding-bottom:4px; border-bottom:1px solid rgba(255,255,255,0.05);">
+                      <span>${i.qty}x ${i.name}</span>
+                      <span>AED ${(i.price * i.qty).toFixed(2)}</span>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+            `).join('');
+          }
+          const ob = document.getElementById('orders-badge');
+          if (ob) ob.textContent = orders.length;
+        }
+
         updateStats();
       } catch(e) {
         console.error("Error loading data:", e);

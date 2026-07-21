@@ -149,6 +149,43 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // 5.5 CUSTOM CURSOR LOGIC
+  const cursorDot = document.getElementById('cursor-dot');
+  const cursorRing = document.getElementById('cursor-ring');
+  
+  if (cursorDot && cursorRing) {
+    // Hide default cursor on body if custom cursor is active
+    document.body.style.cursor = 'none';
+    
+    // Mouse move event
+    window.addEventListener('mousemove', (e) => {
+      // Dot follows exactly
+      cursorDot.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+      // Ring follows with slight delay
+      cursorRing.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+    });
+
+    // Hover effects on interactable elements
+    const interactables = document.querySelectorAll('a, button, input, select, textarea, .nav-item-dropdown, .client-chip, .prod-card');
+    interactables.forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursorDot.classList.add('hover');
+        cursorRing.classList.add('hover');
+      });
+      el.addEventListener('mouseleave', () => {
+        cursorDot.classList.remove('hover');
+        cursorRing.classList.remove('hover');
+      });
+      // Click effect
+      el.addEventListener('mousedown', () => cursorRing.classList.add('click'));
+      el.addEventListener('mouseup', () => cursorRing.classList.remove('click'));
+    });
+    
+    // Global click effect
+    window.addEventListener('mousedown', () => cursorRing.style.transform += ' scale(0.9)');
+    window.addEventListener('mouseup', () => cursorRing.style.transform = cursorRing.style.transform.replace(' scale(0.9)', ''));
+  }
+
 
   // 6. SCROLL REVEAL ANIMATIONS (Intersection Observer)
   const revealElements = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right');
@@ -557,10 +594,8 @@ document.addEventListener('DOMContentLoaded', () => {
           pfContainer.innerHTML = `
             <div class="portfolio-filters reveal-up">
               <button class="pf-tab active" data-filter="all">All Projects</button>
-              <button class="pf-tab" data-filter="REEL Real Estate">Real Estate</button>
               <button class="pf-tab" data-filter="REEL Branding">Branding</button>
               <button class="pf-tab" data-filter="REEL Power">Power</button>
-              <button class="pf-tab" data-filter="REEL Music">Music</button>
             </div>
             <div class="portfolio-masonry reveal-up" id="pf-masonry-inner" style="columns: 3; column-gap: 24px;"></div>
           `;
@@ -621,6 +656,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Give Firebase a tiny moment to init if scripts loaded out of order
   setTimeout(renderDynamicContent, 100);
+
+  // 14.b CONTACT FORM INTERCEPTION (Save to Firebase)
+  const contactForm = document.getElementById('contact-form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      // We don't preventDefault if it's Web3Forms, but we can hook in to save to Firebase before it finishes
+      const name = document.getElementById('cf-name').value;
+      const email = document.getElementById('cf-email').value;
+      const phone = document.getElementById('cf-phone').value;
+      const subject = document.getElementById('cf-subject').value;
+      const msg = document.getElementById('cf-msg').value;
+      
+      if (name && email && msg) {
+        if (window.db) {
+          try {
+            await window.db.collection('messages').add({
+              name, email, phone, subject, message: msg,
+              date: new Date().toLocaleString(),
+              timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+              status: 'unread'
+            });
+          } catch(err) { console.warn("Could not save message to Firebase:", err); }
+        }
+      }
+    });
+  }
 
   // 15. SHOPPING CART LOGIC
   let cart = JSON.parse(localStorage.getItem('ree_cart')) || [];
@@ -771,8 +832,27 @@ document.addEventListener('DOMContentLoaded', () => {
       
       text += `%0A*Total: AED ${finalTotal.toFixed(2)}*`;
       
-      // REPLACE 1234567890 WITH YOUR ACTUAL WHATSAPP NUMBER IN INTERNATIONAL FORMAT (e.g. 234800000000)
-      const phoneNumber = "2348000000000"; 
+      // Save order to Firebase
+      if (window.db) {
+        try {
+          await window.db.collection('orders').add({
+            items: cart,
+            subtotal: subtotal,
+            total: finalTotal,
+            date: new Date().toLocaleString(),
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+            status: 'pending'
+          });
+          // Clear cart after order is initiated
+          cart = [];
+          localStorage.removeItem('ree_cart');
+          renderCartPage();
+          updateCartCount();
+        } catch(err) { console.warn("Could not save order to Firebase:", err); }
+      }
+
+      // REE Global WhatsApp Business Numbers
+      const phoneNumber = "971561347581"; // UAE: +971 56 134 7581
       const waLink = `https://wa.me/${phoneNumber}?text=${text}`;
       window.open(waLink, '_blank');
     });

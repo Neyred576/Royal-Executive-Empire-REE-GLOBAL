@@ -4,36 +4,87 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>REEL Branding | Executive Corporate Branding — REE Global</title>
-  <meta name="description" content="REEL Branding delivers executive corporate branding — luxury promotional gifts, vehicle wraps, office graphics, and VIP partnership packages." />
+  <meta name="description" content="REEL Branding delivers premium executive corporate branding — luxury promotional gifts, custom-branded gadgets, vehicle wraps, office graphics, and VIP partnership packages." />
+  <meta name="author" content="Onosedeba Israel Ose" />
+  <meta name="theme-color" content="#D4AF37" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
   <style>
-    .div-hero { padding: 160px 0 80px; text-align: center; background: var(--black-900); position: relative; overflow: hidden; }
-    .div-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 100%, rgba(212,175,55,0.1) 0%, transparent 60%); }
-    .div-hero-content { position: relative; z-index: 2; }
-    .div-hero-icon { width: 100px; height: 100px; border-radius: 50%; background: var(--gold-fill); border: 1px solid var(--gold-border); display: flex; align-items: center; justify-content: center; margin: 0 auto 32px; font-size: 2.5rem; }
-    .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
-    .product-card { background: var(--w08); border: 1px solid var(--gold-border); border-radius: var(--radius-lg); padding: 32px 28px; transition: all 0.3s; }
-    .product-card:hover { border-color: var(--gold-300); transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
-    .product-icon { font-size: 2.5rem; margin-bottom: 16px; }
-    .product-card h3 { font-family: var(--font-display); font-size: 1.25rem; color: #fff; margin-bottom: 10px; }
-    .product-card p { color: var(--w50); font-size: 0.9rem; line-height: 1.6; }
+    .div-page-hero {
+      position: relative; min-height: 92vh;
+      display: flex; align-items: center; overflow: hidden;
+    }
+    .div-hero-bg {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 70% 40%, rgba(212,175,55,0.09) 0%, transparent 60%), var(--black-900);
+    }
+    .div-hero-bg-img {
+      position: absolute; inset: 0;
+      background: url('Images/reel_branding_branded.png') center/cover no-repeat;
+      opacity: 0.12;
+    }
+    .div-hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(105deg, rgba(8,8,8,0.97) 40%, rgba(8,8,8,0.6) 100%);
+    }
+    .div-hero-inner {
+      position: relative; z-index: 2;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    }
+    .div-hero-tag {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 0.72rem; font-weight: 800; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--gold-300); margin-bottom: 24px;
+    }
+    .div-hero-tag::before { content:''; width: 30px; height: 1px; background: var(--gold-gradient); }
+    .div-hero-title { font-family: var(--font-display); font-size: clamp(3rem, 6vw, 5.5rem); line-height: 1.0; color: #fff; margin-bottom: 28px; }
+    .div-hero-title span { color: var(--gold-300); }
+    .div-hero-desc { color: var(--w60); font-size: 1.1rem; line-height: 1.85; max-width: 520px; margin-bottom: 44px; }
+    .div-hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+    .div-hero-visual { display: flex; align-items: center; justify-content: center; }
+    .div-hero-icon-ring { width: 340px; height: 340px; border-radius: 50%; border: 1px solid var(--gold-border); display: flex; align-items: center; justify-content: center; position: relative; animation: slowSpin 20s linear infinite; }
+    @keyframes slowSpin { to { transform: rotate(360deg); } }
+    .div-hero-icon-inner { width: 260px; height: 260px; border-radius: 50%; background: var(--gold-fill); border: 1px solid var(--gold-border); display: flex; align-items: center; justify-content: center; font-size: 6rem; animation: slowSpin 20s linear infinite reverse; box-shadow: 0 0 80px rgba(212,175,55,0.15); }
+    .orbit-dot { position: absolute; width: 12px; height: 12px; border-radius: 50%; background: var(--gold-300); box-shadow: 0 0 15px rgba(212,175,55,0.8); }
+    .orbit-dot:nth-child(1) { top: -6px; left: 50%; transform: translateX(-50%); }
+    .orbit-dot:nth-child(2) { bottom: -6px; left: 50%; transform: translateX(-50%); }
+    .orbit-dot:nth-child(3) { left: -6px; top: 50%; transform: translateY(-50%); }
+
+    .prod-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .prod-card { background: rgba(255,255,255,0.025); border: 1px solid var(--gold-border); border-radius: var(--radius-lg); padding: 36px 28px; transition: all 0.35s; position: relative; overflow: hidden; }
+    .prod-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--gold-gradient); transform: scaleX(0); transition: transform 0.35s; transform-origin: left; }
+    .prod-card:hover { border-color: var(--gold-300); transform: translateY(-6px); box-shadow: 0 24px 48px rgba(0,0,0,0.4); }
+    .prod-card:hover::after { transform: scaleX(1); }
+    .prod-icon-wrap { width: 64px; height: 64px; border-radius: 16px; background: var(--gold-fill); border: 1px solid var(--gold-border); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-bottom: 22px; transition: all 0.3s; }
+    .prod-card:hover .prod-icon-wrap { background: rgba(212,175,55,0.18); box-shadow: 0 0 20px rgba(212,175,55,0.2); }
+    .prod-card h3 { font-family: var(--font-display); font-size: 1.3rem; color: #fff; margin-bottom: 12px; }
+    .prod-card p { color: var(--w50); font-size: 0.9rem; line-height: 1.7; }
+
+    /* Partnership Tiers */
     .tier-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
-    .tier-card { border: 1px solid var(--gold-border); border-radius: var(--radius-lg); padding: 40px 32px; transition: all 0.3s; }
-    .tier-card.featured { border-color: var(--gold-300); background: var(--gold-fill); box-shadow: 0 0 40px rgba(212,175,55,0.15); }
-    .tier-medal { font-size: 3rem; margin-bottom: 16px; }
-    .tier-badge { font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold-300); margin-bottom: 8px; }
-    .tier-name { font-family: var(--font-display); font-size: 2rem; color: #fff; margin-bottom: 6px; }
-    .tier-subtitle { font-size: 0.85rem; color: var(--w50); margin-bottom: 24px; }
-    .tier-features { list-style: none; margin-bottom: 32px; }
-    .tier-features li { padding: 10px 0; color: var(--w70); font-size: 0.9rem; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; gap: 10px; align-items: flex-start; }
-    .tier-features li::before { content: '⚜'; color: var(--gold-300); font-size: 0.7rem; flex-shrink: 0; margin-top: 3px; }
-    @media (max-width: 768px) { .products-grid, .tier-grid { grid-template-columns: 1fr; } }
+    .tier-card { border: 1px solid var(--gold-border); border-radius: var(--radius-xl); padding: 48px 36px; transition: all 0.35s; position: relative; overflow: hidden; }
+    .tier-card.featured { border-color: var(--gold-300); background: var(--gold-fill); box-shadow: 0 0 60px rgba(212,175,55,0.15); }
+    .tier-badge-wrap { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+    .tier-medal { font-size: 2.5rem; }
+    .tier-label { font-size: 0.68rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--gold-300); }
+    .tier-name { font-family: var(--font-display); font-size: 2.2rem; color: #fff; margin-bottom: 6px; }
+    .tier-sub { font-size: 0.85rem; color: var(--w50); margin-bottom: 28px; }
+    .tier-features { list-style: none; margin-bottom: 36px; }
+    .tier-features li { padding: 10px 0; color: var(--w70); font-size: 0.88rem; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; gap: 12px; align-items: flex-start; }
+    .tier-features li::before { content: '⚜'; color: var(--gold-300); font-size: 0.65rem; flex-shrink: 0; margin-top: 3px; }
+
+    .div-cta-banner { padding: 100px 0; background: radial-gradient(ellipse at 50% 100%, rgba(212,175,55,0.12) 0%, transparent 60%), var(--black-900); border-top: 1px solid var(--gold-border); text-align: center; }
+
+    @media(max-width:1024px) { .div-hero-inner { grid-template-columns: 1fr; } .div-hero-visual { display: none; } }
+    @media(max-width:768px) { .prod-grid, .tier-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
+<div class="bg-animated-glow"></div>
+<div class="cursor-dot" id="cursor-dot"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
 
 <nav id="main-nav" class="main-nav scrolled" role="navigation" aria-label="Main navigation">
   <div class="nav-inner">
@@ -69,22 +120,33 @@
   <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
 </nav>
 
-<!-- Hero -->
-<section class="div-hero">
-  <div class="div-hero-content container">
-    <div class="div-hero-icon">👑</div>
-    <div class="hero-eyebrow" style="justify-content:center;"><span class="eyebrow-line"></span><span>Division 02</span><span class="eyebrow-line"></span></div>
-    <h1 class="section-heading" style="font-size: clamp(2.5rem, 5vw, 4.5rem);">REEL <span class="gold-text">Branding</span></h1>
-    <div class="gold-rule center-rule"></div>
-    <p style="color: var(--w50); max-width: 640px; margin: 0 auto 40px; font-size: 1.1rem; line-height: 1.7;">Executive Corporate Branding. Every surface is a statement of your standard.</p>
-    <a href="contact.html" class="btn-gold" id="branding-cta">
-      <span>Start Your Brand Journey</span>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </a>
+<!-- HERO -->
+<section class="div-page-hero">
+  <div class="div-hero-bg"></div>
+  <div class="div-hero-bg-img"></div>
+  <div class="div-hero-overlay"></div>
+  <div class="container div-hero-inner">
+    <div class="reveal-up">
+      <div class="div-hero-tag">Division 02</div>
+      <h1 class="div-hero-title">REEL <span>Branding</span></h1>
+      <p class="div-hero-desc">Executive Corporate Branding &amp; Luxury Promotional Products. We transform your brand identity through premium customisable gadgets, luxury promotional gifts, corporate uniforms, vehicle wraps, and VIP executive gift boxes designed to leave lasting impressions.</p>
+      <div class="div-hero-ctas">
+        <a href="contact.html" class="btn-gold" id="branding-cta-main"><span>Start Your Brand Journey</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="shop.html" class="btn-ghost" id="branding-shop-cta"><span>Browse Products</span></a>
+      </div>
+    </div>
+    <div class="div-hero-visual">
+      <div class="div-hero-icon-ring">
+        <div class="orbit-dot"></div>
+        <div class="orbit-dot"></div>
+        <div class="orbit-dot"></div>
+        <div class="div-hero-icon-inner">👑</div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- Services -->
+<!-- BRANDING SERVICES -->
 <section class="section section--glow">
   <div class="container">
     <header class="section-header reveal-up">
@@ -93,43 +155,42 @@
       <div class="gold-rule center-rule"></div>
       <p class="section-desc">From gifting to environmental graphics, REEL Branding transforms every touchpoint into a premium brand experience.</p>
     </header>
-
-    <div class="products-grid">
-      <div class="product-card reveal-up">
-        <div class="product-icon">🎁</div>
+    <div class="prod-grid">
+      <div class="prod-card reveal-up">
+        <div class="prod-icon-wrap">🎁</div>
         <h3>Luxury Promotional Gifts</h3>
         <p>Premium branded merchandise — power banks, pens, notepads, USB hubs, and executive gift sets — curated for maximum impact and longevity.</p>
       </div>
-      <div class="product-card reveal-up">
-        <div class="product-icon">🖨️</div>
+      <div class="prod-card reveal-up">
+        <div class="prod-icon-wrap">🖨️</div>
         <h3>Corporate Identity Systems</h3>
         <p>Comprehensive branding packages: business cards, letterheads, branded packaging, and identity collateral that commands respect.</p>
       </div>
-      <div class="product-card reveal-up">
-        <div class="product-icon">🚗</div>
-        <h3>Vehicle Wraps & Branding</h3>
-        <p>Turn your fleet into a moving billboard. High-quality vehicle wrapping and decals that make your brand unmissable.</p>
+      <div class="prod-card reveal-up">
+        <div class="prod-icon-wrap">🚗</div>
+        <h3>Vehicle Wraps &amp; Branding</h3>
+        <p>Turn your fleet into a moving billboard. High-quality vehicle wrapping and decals that make your brand unmissable on any road.</p>
       </div>
-      <div class="product-card reveal-up">
-        <div class="product-icon">🏢</div>
+      <div class="prod-card reveal-up">
+        <div class="prod-icon-wrap">🏢</div>
         <h3>Office Environmental Graphics</h3>
         <p>Wall graphics, signage, reception backdrops, and environmental branding that transforms your office into an extension of your brand.</p>
       </div>
-      <div class="product-card reveal-up">
-        <div class="product-icon">👔</div>
+      <div class="prod-card reveal-up">
+        <div class="prod-icon-wrap">👔</div>
         <h3>Corporate Uniforms</h3>
         <p>Premium branded uniforms and workwear for corporate teams, hospitality staff, and executive teams — professionalism that dresses to impress.</p>
       </div>
-      <div class="product-card reveal-up">
-        <div class="product-icon">📦</div>
-        <h3>VIP Gift Boxes</h3>
+      <div class="prod-card reveal-up">
+        <div class="prod-icon-wrap">📦</div>
+        <h3>VIP Executive Gift Boxes</h3>
         <p>Exclusive, curated executive gift boxes for VIP clients, C-suite engagements, onboarding packages, and milestone celebrations.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Partnership Tiers -->
+<!-- PARTNERSHIP TIERS -->
 <section class="section section--dark">
   <div class="container">
     <header class="section-header reveal-up">
@@ -138,14 +199,11 @@
       <div class="gold-rule center-rule"></div>
       <p class="section-desc">REEL Branding offers three structured partnership tiers designed to match the scale and ambition of your business.</p>
     </header>
-
     <div class="tier-grid">
-      <!-- Bronze -->
       <div class="tier-card reveal-up">
-        <div class="tier-medal">🥉</div>
-        <div class="tier-badge">Tier 01</div>
+        <div class="tier-badge-wrap"><div class="tier-medal">🥉</div><div class="tier-label">Tier 01</div></div>
         <div class="tier-name">Bronze</div>
-        <div class="tier-subtitle">Entry-Level Brand Partnership</div>
+        <div class="tier-sub">Entry-Level Brand Partnership</div>
         <ul class="tier-features">
           <li>Branded power banks (custom logo)</li>
           <li>Corporate stationery pack</li>
@@ -153,32 +211,26 @@
           <li>1 product category focus</li>
           <li>Standard delivery timeline</li>
         </ul>
-        <a href="contact.html" class="btn-outline" style="width:100%; justify-content:center;" id="bronze-tier-cta"><span>Get Started</span></a>
+        <a href="contact.html" class="btn-ghost" style="width:100%;justify-content:center;" id="bronze-tier-cta"><span>Get Started</span></a>
       </div>
-
-      <!-- Silver -->
       <div class="tier-card featured reveal-up">
-        <div class="tier-medal">🥈</div>
-        <div class="tier-badge">Tier 02 — Most Popular</div>
+        <div class="tier-badge-wrap"><div class="tier-medal">🥈</div><div class="tier-label">Tier 02 — Most Popular</div></div>
         <div class="tier-name">Silver</div>
-        <div class="tier-subtitle">Professional Brand Partnership</div>
+        <div class="tier-sub">Professional Brand Partnership</div>
         <ul class="tier-features">
           <li>Everything in Bronze</li>
-          <li>VIP gift box curation</li>
+          <li>VIP executive gift box curation</li>
           <li>Vehicle branding (up to 3 vehicles)</li>
           <li>Office reception graphics</li>
           <li>Branded corporate uniforms</li>
           <li>Priority turnaround</li>
         </ul>
-        <a href="contact.html" class="btn-gold" style="width:100%; justify-content:center;" id="silver-tier-cta"><span>Get Started</span></a>
+        <a href="contact.html" class="btn-gold" style="width:100%;justify-content:center;" id="silver-tier-cta"><span>Get Started</span></a>
       </div>
-
-      <!-- Gold -->
       <div class="tier-card reveal-up">
-        <div class="tier-medal">🥇</div>
-        <div class="tier-badge">Tier 03</div>
+        <div class="tier-badge-wrap"><div class="tier-medal">🥇</div><div class="tier-label">Tier 03</div></div>
         <div class="tier-name">Gold</div>
-        <div class="tier-subtitle">Executive Brand Partnership</div>
+        <div class="tier-sub">Executive Brand Partnership</div>
         <ul class="tier-features">
           <li>Everything in Silver</li>
           <li>Full environmental office branding</li>
@@ -188,17 +240,18 @@
           <li>Co-branding opportunities with REEL</li>
           <li>VIP concierge service</li>
         </ul>
-        <a href="contact.html" class="btn-outline" style="width:100%; justify-content:center;" id="gold-tier-cta"><span>Get Started</span></a>
+        <a href="contact.html" class="btn-ghost" style="width:100%;justify-content:center;" id="gold-tier-cta"><span>Get Started</span></a>
       </div>
     </div>
   </div>
 </section>
 
 <!-- CTA -->
-<section style="padding: 80px 0; background: var(--black-900); text-align: center; border-top: 1px solid var(--gold-border);">
+<section class="div-cta-banner">
   <div class="container">
+    <div class="section-eyebrow reveal-up" style="justify-content:center">Elevate Your Brand</div>
     <h2 class="section-heading reveal-up">Elevate Your <span class="gold-text">Brand Today</span></h2>
-    <p style="color: var(--w50); max-width: 500px; margin: 0 auto 36px;" class="reveal-up">Speak with our branding team and discover how REEL Branding can redefine your executive presence.</p>
+    <p style="color:var(--w50);max-width:500px;margin:0 auto 40px;" class="reveal-up">Speak with our branding team and discover how REEL Branding can redefine your executive presence.</p>
     <a href="contact.html" class="btn-gold reveal-up" id="branding-contact-cta"><span>Contact REEL Branding</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
   </div>
 </section>
@@ -220,5 +273,6 @@
   </div>
 </footer>
 <script src="js/main.js"></script>
+<script>document.getElementById('footer-year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
