@@ -118,7 +118,7 @@
         <p>Whether you need a complete corporate restructuring, high-level strategic consulting, or advanced digital transformation, our team of experts is equipped to turn your vision into a scalable reality.</p>
       </div>
       <div class="split-image-wrap">
-        <img src="Images/reel_business_branded.png" alt="Business Solutions" onerror="this.src='Images/BG/logo%20bg.png'" />
+        <img src="Images/new_business_image.jpg" alt="Business Solutions" onerror="this.src='Images/BG/logo%20bg.png'" />
       </div>
     </div>
 
@@ -143,19 +143,146 @@
 </section>
 
 <!-- CTA / CONTACT -->
-<section class="div-cta-banner">
-  <div class="container">
-    <div class="section-eyebrow reveal-up" style="justify-content:center; display:flex; align-items:center; gap:10px; font-size:0.75rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--gold-300); margin-bottom:20px;">Need Help?</div>
-    <h2 class="section-heading reveal-up">Let's Build Your <span class="gold-text">Empire</span></h2>
-    <p style="color:var(--w50);max-width:500px;margin:0 auto 40px;" class="reveal-up">Get in touch with our consulting team today to discuss how we can solve your unique business challenges.</p>
-    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap" class="reveal-up">
-      <a href="contact.html" class="btn-gold"><span>Contact Our Experts</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-    </div>
-    
-    <div class="reveal-up" style="margin-top: 60px; color: var(--w60); display: flex; flex-direction: column; gap: 15px;">
-      <p><strong style="color: #fff;">Email:</strong> hello@reeglobal.com</p>
-      <p><strong style="color: #fff;">Phone:</strong> +971 50 123 4567</p>
-      <p><strong style="color: #fff;">Office:</strong> Business Bay, Dubai, UAE</p>
+<section class="div-cta-banner" style="text-align: left;">
+  <div class="container" style="max-width: 800px; margin: 0 auto;">
+    <div class="reveal-up">
+      <div style="
+        background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(212,175,55,0.04) 100%);
+        border: 1px solid rgba(212,175,55,0.25);
+        border-radius: 24px;
+        padding: 48px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 30px 80px rgba(0,0,0,0.5), inset 0 1px 0 rgba(212,175,55,0.15);
+      ">
+        <!-- Decorative top glow -->
+        <div style="position:absolute; top:-60px; right:-60px; width:200px; height:200px; background: radial-gradient(circle, rgba(212,175,55,0.12) 0%, transparent 70%); pointer-events:none;"></div>
+
+        <!-- Form header -->
+        <div style="margin-bottom: 36px;">
+          <p style="font-size:0.75rem; color:var(--gold-400); text-transform:uppercase; letter-spacing:3px; margin-bottom:10px; display:flex; align-items:center; gap:6px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Need Help?</p>
+          <h3 style="font-family:var(--font-display); font-size:2.2rem; color:#fff; line-height:1.2; margin:0;">Send Us a <span class="gold-text">Message</span></h3>
+          <div style="width:50px; height:2px; background: linear-gradient(90deg, var(--gold-500), transparent); margin-top:16px;"></div>
+        </div>
+
+        <form id="contact-form" novalidate>
+          <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY" id="w3f-key" />
+          <input type="hidden" name="to_email" value="admin@royaltyexecutiveempire.com" />
+          <input type="hidden" name="subject" value="New Inquiry from REE Global Website" />
+          <input type="hidden" name="from_name" value="REE Global Website" />
+          <input type="checkbox" name="botcheck" style="display:none;" />
+
+          <!-- Name + Email row -->
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:20px;">
+            <div class="cf-field">
+              <label for="cf-name">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                Full Name
+              </label>
+              <input type="text" id="cf-name" name="name" placeholder="e.g. John Doe" required />
+            </div>
+            <div class="cf-field">
+              <label for="cf-email">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                Email Address
+              </label>
+              <input type="email" id="cf-email" name="email" placeholder="you@example.com" required />
+            </div>
+          </div>
+
+          <!-- Phone + Subject row -->
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:20px;">
+            <div class="cf-field">
+              <label for="cf-phone">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.23h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.77a16 16 0 0 0 6 6l.97-.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                Phone Number
+              </label>
+              <input type="tel" id="cf-phone" name="phone" placeholder="+1 234 567 8900" />
+            </div>
+            <div class="cf-field">
+              <label for="cf-subject">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                Subject
+              </label>
+              <select id="cf-subject" name="subject" required>
+                <option value="">— Select a Division —</option>
+                <option>General Inquiry</option>
+                <option>REEL Power — Charging Solutions</option>
+                <option>REEL Branding — Corporate Branding</option>
+                <option>REEL Smart — Tech &amp; Gadgets</option>
+                <option selected>Business Solutions &amp; Advisory</option>
+                <option>Partnership Opportunity</option>
+                <option>Shop / Products</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Message -->
+          <div class="cf-field" style="margin-bottom:28px;">
+            <label for="cf-msg">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              Your Message
+            </label>
+            <textarea id="cf-msg" name="message" placeholder="Tell us about your project, inquiry, or partnership idea..." required style="min-height:150px;"></textarea>
+          </div>
+
+          <!-- Submit button -->
+          <button type="submit" id="cf-submit" style="
+            width: 100%;
+            padding: 18px 32px;
+            background: linear-gradient(135deg, #c9a227 0%, #f0d060 50%, #c9a227 100%);
+            background-size: 200% auto;
+            border: none;
+            border-radius: 12px;
+            color: #0b0b0b;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: background-position 0.4s, box-shadow 0.3s, transform 0.2s;
+            box-shadow: 0 8px 24px rgba(212,175,55,0.3);
+          "
+          onmouseover="this.style.backgroundPosition='right center'; this.style.boxShadow='0 12px 36px rgba(212,175,55,0.5)'; this.style.transform='translateY(-2px)';"
+          onmouseout="this.style.backgroundPosition='left center'; this.style.boxShadow='0 8px 24px rgba(212,175,55,0.3)'; this.style.transform='translateY(0)';">
+            <span>Send Your Message</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+
+          <div id="form-success-msg" class="success-banner" style="display:none; margin-top:20px; background: rgba(212,175,55,0.1); border:1px solid rgba(212,175,55,0.4); border-radius:12px; padding:18px 24px; color:var(--gold-300); font-weight:600; text-align:center;">
+            ✅ Message sent! Our team will be in touch within 24 hours.
+          </div>
+        </form>
+      </div>
+
+      <!-- Additional form styles -->
+      <style>
+        .cf-field { display:flex; flex-direction:column; gap:8px; }
+        .cf-field label { font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--gold-400); display:flex; align-items:center; gap:6px; }
+        .cf-field label svg { color:var(--gold-500); }
+        .cf-field input, .cf-field select, .cf-field textarea {
+          width:100%; background:rgba(255,255,255,0.04); border:1px solid rgba(212,175,55,0.2);
+          border-radius:10px; padding:14px 18px; color:#fff; font-family:var(--font-body);
+          font-size:0.95rem; transition:all 0.3s; resize:vertical; box-sizing:border-box;
+        }
+        .cf-field select { background-color:#111; color:#ccc; }
+        .cf-field select option { background:#111; color:#fff; }
+        .cf-field input:focus, .cf-field select:focus, .cf-field textarea:focus {
+          outline:none; border-color:rgba(212,175,55,0.7);
+          background:rgba(212,175,55,0.05);
+          box-shadow:0 0 0 3px rgba(212,175,55,0.1);
+        }
+        .cf-field input::placeholder, .cf-field textarea::placeholder { color:rgba(255,255,255,0.3); }
+        @media(max-width:600px) {
+          .cf-field-row { grid-template-columns:1fr !important; }
+        }
+      </style>
     </div>
   </div>
 </section>
