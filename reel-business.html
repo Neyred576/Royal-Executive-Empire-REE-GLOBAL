@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Business Solutions | REE Global</title>
+  <meta name="description" content="Strategic Business Consulting & Corporate Solutions by Royalty Executive Empire." />
+  <meta name="theme-color" content="#D4AF37" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .div-page-hero { position: relative; min-height: 70vh; display: flex; align-items: center; overflow: hidden; }
+    .div-hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 60% 50%, rgba(212,175,55,0.08) 0%, transparent 60%), var(--black-900); }
+    .div-hero-overlay { position: absolute; inset: 0; background: linear-gradient(105deg, rgba(8,8,8,0.97) 40%, rgba(8,8,8,0.6) 100%); }
+    .div-hero-inner { position: relative; z-index: 2; text-align: center; max-width: 900px; margin: 0 auto; }
+    .div-hero-title { font-family: var(--font-display); font-size: clamp(3rem, 6vw, 5.5rem); line-height: 1.0; color: #fff; margin-bottom: 28px; }
+    .div-hero-title span { color: var(--gold-300); }
+    .div-hero-desc { color: var(--w60); font-size: 1.2rem; line-height: 1.85; margin: 0 auto 44px; }
+    
+    .business-content { padding: 80px 20px; text-align: center; }
+    .business-image { width: 100%; max-width: 900px; margin: 0 auto 60px; border-radius: var(--radius-lg); border: 1px solid var(--gold-border); box-shadow: var(--gold-glow); display: block; }
+    .business-text-block { max-width: 700px; margin: 0 auto 60px; }
+    .business-text-block h2 { font-family: var(--font-display); font-size: 2.5rem; color: #fff; margin-bottom: 20px; }
+    .business-text-block p { color: var(--w60); font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px; }
+
+    .div-cta-banner { padding: 100px 0; background: radial-gradient(ellipse at 50% 100%, rgba(212,175,55,0.12) 0%, transparent 60%), var(--black-900); border-top: 1px solid var(--gold-border); text-align: center; }
+  </style>
+</head>
+<body>
+<div class="bg-animated-glow"></div>
+<!-- Custom Cursor -->
+<div class="cursor-dot" id="cursor-dot"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+
+<nav id="main-nav" class="main-nav scrolled" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="REE Global Home">
+      <div class="nav-logo-img-wrap">
+        <img src="Images/BG/logo%20bg.png" alt="REE Global Logo" class="nav-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+      </div>
+      <div class="nav-logo-text"><span class="nav-brand-name">REE Global</span><span class="nav-brand-sub">Royalty Executive Empire</span></div>
+    </a>
+    <ul class="nav-links" id="nav-links" role="list">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="about.html" class="nav-link">About REE</a></li>
+      <li class="nav-item-dropdown">
+        <a href="javascript:void(0)" class="nav-link active">Divisions <span class="drop-arrow">▾</span></a>
+        <ul class="nav-dropdown">
+          <li><a href="reel-power.html">REEL Power</a></li>
+          <li><a href="reel-branding.html">REEL Branding</a></li>
+          <li><a href="reel-smart.html">REEL Smart</a></li>
+          <li><a href="reel-business.html">Business Solutions</a></li>
+        </ul>
+      </li>
+      <li><a href="shop.html" class="nav-link">Shop</a></li>
+      <li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+      <li><a href="blog.html" class="nav-link">Blog</a></li>
+      <li><a href="contact.html" class="nav-link nav-link-cta">Contact Us</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="cart.html" class="nav-icon cart-icon" aria-label="Shopping Cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="cart-count">0</span></a>
+    </div>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span class="ham-line"></span><span class="ham-line"></span><span class="ham-line"></span></button>
+  </div>
+  <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
+</nav>
+
+<!-- HERO -->
+<section class="div-page-hero">
+  <div class="div-hero-bg"></div>
+  <div class="div-hero-overlay"></div>
+  <div class="container div-hero-inner">
+    <div class="reveal-up">
+      <div class="div-hero-tag" style="display: inline-flex; align-items: center; gap: 10px; font-size: 0.72rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: var(--gold-300); margin-bottom: 24px;">Division 04</div>
+      <h1 class="div-hero-title">Business <span>Solutions</span></h1>
+      <p class="div-hero-desc">Strategic Business Consulting &amp; Corporate Solutions. We solve complex business challenges with executive-level strategy, empowering companies to scale, innovate, and dominate their industries.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<section class="business-content">
+  <div class="container">
+    <img src="Images/reel_business_branded.png" alt="Business Solutions" class="business-image reveal-up" onerror="this.src='Images/BG/logo%20bg.png'" />
+    
+    <div class="business-text-block reveal-up">
+      <h2>We Solve <span class="gold-text">Business Challenges</span></h2>
+      <p>At REE Global, we understand that scaling a modern enterprise requires more than just capital—it requires precision, strategy, and execution. Our Business Solutions division partners with executives and founders to eliminate operational bottlenecks, optimize workflows, and drive unprecedented growth.</p>
+      <p>Whether you need a complete corporate restructuring, high-level strategic consulting, or advanced digital transformation, our team of experts is equipped to turn your vision into a scalable reality. We don't just advise; we execute alongside you.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / CONTACT -->
+<section class="div-cta-banner">
+  <div class="container">
+    <div class="section-eyebrow reveal-up" style="justify-content:center; display:flex; align-items:center; gap:10px; font-size:0.75rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--gold-300); margin-bottom:20px;">Need Help?</div>
+    <h2 class="section-heading reveal-up">Let's Build Your <span class="gold-text">Empire</span></h2>
+    <p style="color:var(--w50);max-width:500px;margin:0 auto 40px;" class="reveal-up">Get in touch with our consulting team today to discuss how we can solve your unique business challenges.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap" class="reveal-up">
+      <a href="contact.html" class="btn-gold"><span>Contact Our Experts</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+    
+    <div class="reveal-up" style="margin-top: 60px; color: var(--w60); display: flex; flex-direction: column; gap: 15px;">
+      <p><strong style="color: #fff;">Email:</strong> hello@reeglobal.com</p>
+      <p><strong style="color: #fff;">Phone:</strong> +971 50 123 4567</p>
+      <p><strong style="color: #fff;">Office:</strong> Business Bay, Dubai, UAE</p>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-bar">
+    <div class="container">
+      <div class="footer-bar-inner">
+        <p class="footer-copy">&copy; <span id="footer-year"></span> Royalty Executive Empire (REE Global). All Rights Reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+<script>document.getElementById('footer-year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
