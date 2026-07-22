@@ -1,5 +1,5 @@
 /**
- * REE Global - Admin Controller
+ * REEL - Admin Controller
  * Handles authentication and saving data to LocalStorage for prototype.
  */
 

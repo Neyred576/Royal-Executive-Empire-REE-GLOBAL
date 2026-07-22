@@ -1,6 +1,6 @@
 /**
  * ====================================================================
- * REE GLOBAL — ROYALTY EXECUTIVE EMPIRE
+ * REEL — ROYALTY EXECUTIVE EMPIRE LIMITED
  * Main Application Logic
  * ====================================================================
  */
@@ -457,7 +457,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Build WhatsApp message
       const text = 
-        `👋 *New Inquiry — REE Global Website*\n\n` +
+        `👋 *New Inquiry — REEL Website*\n\n` +
         `*Name:* ${name}\n` +
         `*Email:* ${email}\n` +
         `*Phone:* ${phone}\n` +
@@ -824,7 +824,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (waBtn) {
     waBtn.addEventListener('click', async () => {
       if (cart.length === 0) return alert("Your cart is empty!");
-      let text = "Hello REE Global, I would like to place an order:%0A%0A";
+      let text = "Hello REEL, I would like to place an order:%0A%0A";
       let subtotal = 0;
       cart.forEach(item => {
         text += `- ${item.qty}x ${item.name} (AED ${item.price.toFixed(2)} each)%0A`;
@@ -869,7 +869,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch(err) { console.warn("Could not save order to Firebase:", err); }
       }
 
-      // REE Global WhatsApp Business Numbers
+      // REEL WhatsApp Business Numbers
       const phoneNumber = "971561347581"; // UAE: +971 56 134 7581
       const waLink = `https://wa.me/${phoneNumber}?text=${text}`;
       window.open(waLink, '_blank');
