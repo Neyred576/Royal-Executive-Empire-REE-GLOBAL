@@ -1394,7 +1394,7 @@
           showToast('Success!', `${type.charAt(0).toUpperCase() + type.slice(1)} published successfully.`);
         } catch(err) {
           console.error(err);
-          showToast('Error', 'Failed to publish. Check your internet connection.', 'delete');
+          showToast('Error', err.message || 'Failed to publish. Check your connection.', 'delete');
         } finally {
           btn.innerHTML = oldText;
           btn.disabled = false;
