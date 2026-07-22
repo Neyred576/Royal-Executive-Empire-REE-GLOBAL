@@ -39,22 +39,26 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnAccept = document.getElementById('cookie-accept');
   const btnDecline = document.getElementById('cookie-decline');
   
-  if (cookieBanner && !localStorage.getItem('ree_cookie_consent')) {
-    setTimeout(() => {
-      cookieBanner.classList.add('show');
-    }, 3500);
+  try {
+    if (cookieBanner && !localStorage.getItem('ree_cookie_consent')) {
+      setTimeout(() => {
+        cookieBanner.classList.add('show');
+      }, 3500);
+    }
+  } catch(e) {
+    console.warn("Local storage unavailable", e);
   }
   
   if (btnAccept) {
     btnAccept.addEventListener('click', () => {
-      localStorage.setItem('ree_cookie_consent', 'accepted');
+      try { localStorage.setItem('ree_cookie_consent', 'accepted'); } catch(e) {}
       if (cookieBanner) cookieBanner.classList.remove('show');
     });
   }
   
   if (btnDecline) {
     btnDecline.addEventListener('click', () => {
-      localStorage.setItem('ree_cookie_consent', 'declined');
+      try { localStorage.setItem('ree_cookie_consent', 'declined'); } catch(e) {}
       if (cookieBanner) cookieBanner.classList.remove('show');
     });
   }
@@ -693,7 +697,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // 15. SHOPPING CART LOGIC
-  let cart = JSON.parse(localStorage.getItem('ree_cart')) || [];
+  let cart = [];
+  try {
+    cart = JSON.parse(localStorage.getItem('ree_cart')) || [];
+  } catch(e) {
+    console.warn("Local storage unavailable for cart", e);
+  }
 
   window.addToCart = (id, name, price, image) => {
     const existing = cart.find(item => item.id === id);
@@ -702,7 +711,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       cart.push({ id, name, price, image, qty: 1 });
     }
-    localStorage.setItem('ree_cart', JSON.stringify(cart));
+    try { localStorage.setItem('ree_cart', JSON.stringify(cart)); } catch(e) {}
     updateCartCount();
     
     // Custom Toast for Cart
@@ -797,7 +806,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const qty = parseInt(newQty);
     if (qty > 0) {
       cart[index].qty = qty;
-      localStorage.setItem('ree_cart', JSON.stringify(cart));
+      try { localStorage.setItem('ree_cart', JSON.stringify(cart)); } catch(e) {}
       renderCartPage();
       updateCartCount();
     }
@@ -805,7 +814,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.removeFromCart = (index) => {
     cart.splice(index, 1);
-    localStorage.setItem('ree_cart', JSON.stringify(cart));
+    try { localStorage.setItem('ree_cart', JSON.stringify(cart)); } catch(e) {}
     renderCartPage();
     updateCartCount();
   };
@@ -854,7 +863,7 @@ document.addEventListener('DOMContentLoaded', () => {
           });
           // Clear cart after order is initiated
           cart = [];
-          localStorage.removeItem('ree_cart');
+          try { localStorage.removeItem('ree_cart'); } catch(e) {}
           renderCartPage();
           updateCartCount();
         } catch(err) { console.warn("Could not save order to Firebase:", err); }
