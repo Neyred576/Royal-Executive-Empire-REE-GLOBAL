@@ -671,9 +671,9 @@ document.addEventListener('DOMContentLoaded', () => {
   setTimeout(renderDynamicContent, 100);
 
   // 14.b CONTACT FORM INTERCEPTION (Save to Firebase)
-  const contactForm = document.getElementById('contact-form');
-  if (contactForm) {
-    contactForm.addEventListener('submit', async (e) => {
+  const firebaseContactForm = document.getElementById('contact-form');
+  if (firebaseContactForm) {
+    firebaseContactForm.addEventListener('submit', async (e) => {
       // We don't preventDefault if it's Web3Forms, but we can hook in to save to Firebase before it finishes
       const name = document.getElementById('cf-name').value;
       const email = document.getElementById('cf-email').value;
