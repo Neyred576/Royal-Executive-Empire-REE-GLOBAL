@@ -18,14 +18,41 @@
     .div-hero-title { font-family: var(--font-display); font-size: clamp(3rem, 6vw, 5.5rem); line-height: 1.0; color: #fff; margin-bottom: 28px; }
     .div-hero-title span { color: var(--gold-300); }
     .div-hero-desc { color: var(--w60); font-size: 1.2rem; line-height: 1.85; margin: 0 auto 44px; }
-    
-    .business-content { padding: 80px 20px; text-align: center; }
-    .business-image { width: 100%; max-width: 900px; margin: 0 auto 60px; border-radius: var(--radius-lg); border: 1px solid var(--gold-border); box-shadow: var(--gold-glow); display: block; }
-    .business-text-block { max-width: 700px; margin: 0 auto 60px; }
-    .business-text-block h2 { font-family: var(--font-display); font-size: 2.5rem; color: #fff; margin-bottom: 20px; }
-    .business-text-block p { color: var(--w60); font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px; }
+
+    /* Split Layout */
+    .section-split-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-bottom: 70px; }
+    .split-text { display: flex; flex-direction: column; gap: 16px; }
+    .split-text h2 { margin: 0; text-align: left; }
+    .split-text p { color: var(--w60); line-height: 1.8; font-size: 1rem; margin: 0; }
+    .split-stats { display: flex; gap: 24px; margin-top: 8px; flex-wrap: wrap; }
+    .split-stat { display: flex; flex-direction: column; }
+    .split-stat strong { font-size: 1.8rem; font-weight: 800; color: var(--gold-300); line-height: 1; }
+    .split-stat span { font-size: 0.75rem; color: var(--w50); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+    .split-image-wrap { position: relative; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--gold-border); box-shadow: 0 0 60px rgba(212,175,55,0.1); }
+    .split-image-wrap::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--gold-gradient); z-index: 2; }
+    .split-image-wrap img { width: 100%; height: 360px; object-fit: cover; display: block; transition: transform 0.5s ease; }
+    .split-image-wrap:hover img { transform: scale(1.04); }
+
+    /* Feature Cards */
+    .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 80px; }
+    .feature-card { background: rgba(255,255,255,0.025); border: 1px solid var(--gold-border); border-radius: var(--radius-lg); padding: 36px 28px; transition: all 0.35s; position: relative; overflow: hidden; }
+    .feature-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--gold-gradient); transform: scaleX(0); transition: transform 0.35s; transform-origin: left; }
+    .feature-card:hover { border-color: var(--gold-300); transform: translateY(-6px); box-shadow: 0 24px 48px rgba(0,0,0,0.4); }
+    .feature-card:hover::after { transform: scaleX(1); }
+    .feature-icon { width: 56px; height: 56px; border-radius: 14px; background: var(--gold-fill); border: 1px solid var(--gold-border); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+    .feature-icon svg { color: var(--gold-300); }
+    .feature-card h3 { font-family: var(--font-display); font-size: 1.2rem; color: #fff; margin-bottom: 10px; }
+    .feature-card p { color: var(--w50); font-size: 0.88rem; line-height: 1.7; }
+
+    /* Contact Info */
+    .contact-info-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-top: 40px; }
+    .contact-pill { display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.04); border: 1px solid var(--gold-border); border-radius: 50px; padding: 14px 24px; color: #fff; font-size: 0.9rem; }
+    .contact-pill svg { color: var(--gold-300); flex-shrink: 0; }
 
     .div-cta-banner { padding: 100px 0; background: radial-gradient(ellipse at 50% 100%, rgba(212,175,55,0.12) 0%, transparent 60%), var(--black-900); border-top: 1px solid var(--gold-border); text-align: center; }
+
+    @media(max-width:1024px) { .section-split-intro { grid-template-columns: 1fr; gap: 40px; } .feature-grid { grid-template-columns: 1fr 1fr; } }
+    @media(max-width:768px) { .feature-grid { grid-template-columns: 1fr; } .contact-info-row { flex-direction: column; align-items: center; } }
   </style>
 </head>
 <body>
@@ -83,12 +110,34 @@
 <!-- CONTENT -->
 <section class="business-content">
   <div class="container">
-    <img src="Images/reel_business_branded.png" alt="Business Solutions" class="business-image reveal-up" onerror="this.src='Images/BG/logo%20bg.png'" />
-    
-    <div class="business-text-block reveal-up">
-      <h2>We Solve <span class="gold-text">Business Challenges</span></h2>
-      <p>At REE Global, we understand that scaling a modern enterprise requires more than just capital—it requires precision, strategy, and execution. Our Business Solutions division partners with executives and founders to eliminate operational bottlenecks, optimize workflows, and drive unprecedented growth.</p>
-      <p>Whether you need a complete corporate restructuring, high-level strategic consulting, or advanced digital transformation, our team of experts is equipped to turn your vision into a scalable reality. We don't just advise; we execute alongside you.</p>
+    <div class="section-split-intro reveal-up">
+      <div class="split-text">
+        <div class="section-eyebrow" style="color:var(--gold-300); font-weight:800; letter-spacing:2px; text-transform:uppercase; font-size:0.75rem; margin-bottom:10px;">Our Expertise</div>
+        <h2>We Solve <span class="gold-text">Business Challenges</span></h2>
+        <p>At REE Global, we understand that scaling a modern enterprise requires precision, strategy, and execution. Our Business Solutions division partners with executives and founders to eliminate operational bottlenecks, optimize workflows, and drive unprecedented growth.</p>
+        <p>Whether you need a complete corporate restructuring, high-level strategic consulting, or advanced digital transformation, our team of experts is equipped to turn your vision into a scalable reality.</p>
+      </div>
+      <div class="split-image-wrap">
+        <img src="Images/reel_business_branded.png" alt="Business Solutions" onerror="this.src='Images/BG/logo%20bg.png'" />
+      </div>
+    </div>
+
+    <div class="feature-grid">
+      <div class="feature-card reveal-up">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg></div>
+        <h3>Strategic Consulting</h3>
+        <p>High-level advisory services designed for C-suite executives and founders to navigate complex market dynamics and scale effectively.</p>
+      </div>
+      <div class="feature-card reveal-up">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg></div>
+        <h3>Corporate Restructuring</h3>
+        <p>Optimize your organizational structure, eliminate operational inefficiencies, and streamline workflows for maximum profitability.</p>
+      </div>
+      <div class="feature-card reveal-up">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg></div>
+        <h3>Digital Transformation</h3>
+        <p>Modernize your legacy systems and integrate cutting-edge technological solutions to stay ahead in a digital-first economy.</p>
+      </div>
     </div>
   </div>
 </section>
