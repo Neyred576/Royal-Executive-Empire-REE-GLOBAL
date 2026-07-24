@@ -1347,7 +1347,7 @@
     });
 
     // ── Forms (Uploads file to ImgBB via API, then saves URL to Firestore) ──
-    const IMGBB_API_KEY = '72e259df981c2a1f8853e3163b43b1b4';
+    const IMGBB_API_KEY = '40fad5b164f7be1f49b470b9563cc0c7';
 
     const handleForm = (formId, fileInputId, builder, collectionName, arr, listId, type) => {
       document.getElementById(formId).addEventListener('submit', async e => {
@@ -1376,23 +1376,23 @@
           // 2. Upload to ImgBB
           const formData = new FormData();
           formData.append('image', base64Image);
-          
+
           const imgbbResponse = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
             method: 'POST',
             body: formData
           });
-          
+
           const imgbbData = await imgbbResponse.json();
           if (!imgbbData.success) {
-            console.error("ImgBB API Response:", imgbbData);
+            console.error('ImgBB API Response:', imgbbData);
             throw new Error('ImgBB Error: ' + (imgbbData.error && imgbbData.error.message ? imgbbData.error.message : 'Upload Failed'));
           }
-          
+
           const imageUrl = imgbbData.data.url; // The live image URL
-          
+
           btn.innerHTML = 'Saving...';
 
-          // 2. Save directly to Firestore with the new URL
+          // 3. Save directly to Firestore with the new URL
           const docData = builder(imageUrl);
           const docRef = await window.db.collection(collectionName).add(docData);
           
