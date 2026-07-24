@@ -167,27 +167,14 @@
         </div>
       </form>
 
-      <!-- Order Summary -->
+      <!-- Order Summary (dynamic) -->
       <div class="order-summary-card reveal-right">
         <div style="font-family:var(--font-display); font-size:1.4rem; color:#fff; margin-bottom:24px; padding-bottom:16px; border-bottom:1px solid var(--gold-border);">Your <span class="gold-text">Order</span></div>
-        <div class="order-item">
-          <div class="order-thumb">🎁</div>
-          <div>
-            <div class="order-item-name">Executive Platinum Box</div>
-            <div class="order-item-qty">Qty: 1</div>
-          </div>
-          <div class="order-item-price">$450.00</div>
-        </div>
-        <div class="order-item">
-          <div class="order-thumb">🖋️</div>
-          <div>
-            <div class="order-item-name">Signature Engraved Pen</div>
-            <div class="order-item-qty">Qty: 2</div>
-          </div>
-          <div class="order-item-price">$440.00</div>
+        <div id="checkout-order-items">
+          <!-- populated by JS -->
         </div>
         <div class="order-totals" id="checkout-totals">
-          <!-- Populated dynamically by JS -->
+          <!-- populated by JS -->
         </div>
       </div>
     </div>
@@ -224,18 +211,57 @@
 </script>
 <script src="js/main.js"></script>
 <script>
+  // Redirect to cart if empty
+  const cartItems = JSON.parse(localStorage.getItem('ree_cart') || '[]');
+  if (!cartItems.length) { window.location.href = 'cart.html'; }
+
+  function formatPrice(num) {
+    const n = parseFloat(num);
+    if (isNaN(n)) return 'AED 0.00';
+    return 'AED ' + n.toLocaleString('en-AE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
+  // Render cart items in order summary
+  function renderOrderItems() {
+    const cart = JSON.parse(localStorage.getItem('ree_cart') || '[]');
+    const el = document.getElementById('checkout-order-items');
+    if (!el) return;
+    el.innerHTML = cart.map(item => `
+      <div class="order-item">
+        <div class="order-thumb" style="overflow:hidden">
+          ${item.image
+            ? `<img src="${item.image}" style="width:100%;height:100%;object-fit:cover" alt="" />`
+            : '🛍️'
+          }
+        </div>
+        <div>
+          <div class="order-item-name">${item.name}</div>
+          <div class="order-item-qty">Qty: ${item.qty || 1}</div>
+        </div>
+        <div class="order-item-price">${formatPrice((parseFloat(item.price)||0)*(item.qty||1))}</div>
+      </div>
+    `).join('');
+  }
+
+  // Payment method tabs
+  document.querySelectorAll('.pay-method').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.pay-method').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+    });
+  });
+
   // Dynamically build the checkout totals from cart + Firestore settings
   const buildCheckoutTotals = async () => {
     const totalsEl = document.getElementById('checkout-totals');
     if (!totalsEl) return;
 
     const cart = JSON.parse(localStorage.getItem('ree_cart')) || [];
-    const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+    const subtotal = cart.reduce((sum, item) => sum + (parseFloat(item.price)||0) * (item.qty||1), 0);
 
-    let taxEnabled = false, taxLabel = 'Tax', taxRate = 0;
-    let discountCode = '', discountPercent = 0;
+    let taxEnabled = false, taxRate = 0;
+    let discountPercent = 0;
 
-    // Fetch settings from Firestore
     try {
       if (window.db) {
         const taxDoc = await window.db.collection('settings').doc('tax').get();
@@ -247,36 +273,34 @@
         const discountDoc = await window.db.collection('settings').doc('discount').get();
         if (discountDoc.exists) {
           const d = discountDoc.data();
-          discountCode    = d.code    || '';
           discountPercent = parseFloat(d.percent) || 0;
         }
       }
     } catch(e) { console.warn('Could not load settings', e); }
 
     let finalTotal = subtotal;
+    if (discountPercent > 0) finalTotal -= finalTotal * (discountPercent / 100);
+    if (taxEnabled && taxRate > 0) finalTotal += finalTotal * (taxRate / 100);
 
-    // Apply Discount
-    if (discountPercent > 0) {
-      finalTotal = finalTotal - (finalTotal * (discountPercent / 100));
-    }
+    totalsEl.innerHTML = `
+      <div class="total-row"><span>Subtotal</span><span>${formatPrice(subtotal)}</span></div>
+      ${taxEnabled && taxRate > 0 ? `<div class="total-row"><span>Tax (${taxRate}%)</span><span>${formatPrice(finalTotal - subtotal)}</span></div>` : ''}
+      <div class="total-row grand"><span>Total</span><span class="price">${formatPrice(finalTotal)}</span></div>
+    `;
 
-    // Apply Tax (Hidden calculation)
-    if (taxEnabled && taxRate > 0) {
-      finalTotal = finalTotal + (finalTotal * (taxRate / 100));
-    }
-
-    // Only show the grand total row as requested
-    let html = `<div class="total-row grand"><span>Total</span><span class="price">AED ${finalTotal.toFixed(2)}</span></div>`;
-
-    totalsEl.innerHTML = html;
+    // Also update nav cart count
+    const totalQty = (JSON.parse(localStorage.getItem('ree_cart'))||[]).reduce((s,i)=>s+(i.qty||1),0);
+    document.querySelectorAll('.cart-count').forEach(el => el.textContent = totalQty);
   };
 
-  // Wait for Firebase to be ready
+  renderOrderItems();
+
   const waitAndBuild = () => {
     if (window.db) { buildCheckoutTotals(); }
     else { setTimeout(waitAndBuild, 100); }
   };
   waitAndBuild();
 </script>
+
 </body>
 </html>
