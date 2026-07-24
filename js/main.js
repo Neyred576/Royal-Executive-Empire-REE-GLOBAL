@@ -130,6 +130,42 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Swipe Gestures for Mobile Menu
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  const handleSwipe = () => {
+    if (window.innerWidth > 992) return; // Only handle on mobile
+    if (!hamburger) return;
+
+    const swipeDist = touchEndX - touchStartX;
+    const minSwipe = 60; // Minimum distance to be considered a swipe
+    const isOpen = hamburger.classList.contains('open');
+
+    // Swipe Left (pulling from the right edge)
+    if (swipeDist < -minSwipe && !isOpen) {
+      toggleMenu();
+    }
+    // Swipe Right (pushing back to the right edge)
+    else if (swipeDist > minSwipe && isOpen) {
+      toggleMenu();
+    }
+    // Fallback: If they swipe right from the left edge and it's closed, open it anyway (user request)
+    else if (swipeDist > minSwipe && !isOpen && touchStartX < 50) {
+      toggleMenu();
+    }
+  };
+
+  document.addEventListener('touchstart', e => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+
+  document.addEventListener('touchend', e => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+  }, { passive: true });
+
+
   // 5. ACTIVE LINK HIGHLIGHTING
   const navItems = document.querySelectorAll('.nav-link');
   let currentUrl = window.location.pathname.split('/').pop() || 'index.html';
