@@ -412,7 +412,9 @@
     if (existing) { existing.qty = (existing.qty || 1) + 1; }
     else { cart.push({ ...product, qty: 1 }); }
     saveCart(cart);
+    // Brief visual feedback then redirect to cart
     showCartToast(product.name);
+    setTimeout(() => { window.location.href = 'cart.html'; }, 400);
   }
 
   function getSorted(arr, sort) {
