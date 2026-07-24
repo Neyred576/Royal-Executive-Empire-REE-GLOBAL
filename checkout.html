@@ -28,7 +28,8 @@
     .order-summary-card { background: var(--w08); border: 1px solid var(--gold-border); border-radius: var(--radius-xl); padding: 32px; position: sticky; top: 100px; }
     .order-item { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--gold-border); }
     .order-item:last-of-type { margin-bottom: 0; padding-bottom: 0; border: none; }
-    .order-thumb { width: 50px; height: 50px; border-radius: var(--radius-sm); background: var(--black-700); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink:0; }
+    .order-thumb { width: 50px; height: 50px; border-radius: var(--radius-sm); background: var(--black-700); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink:0; overflow:hidden; }
+    .order-thumb img { width:100%; height:100%; object-fit:cover; }
     .order-item-name { font-size: 0.9rem; color: #fff; font-weight: 600; }
     .order-item-qty { font-size: 0.8rem; color: var(--w50); }
     .order-item-price { margin-left: auto; color: var(--gold-300); font-weight: 700; white-space:nowrap; }
@@ -38,7 +39,7 @@
     .total-row.grand .price { color: var(--gold-300); }
     .security-badges { display: flex; gap: 16px; margin-top: 20px; justify-content: center; font-size: 0.75rem; color: var(--w50); flex-wrap:wrap; }
     @media(max-width:992px) { .checkout-layout { grid-template-columns: 1fr; } .order-summary-card { position: static; } }
-    @media(max-width: 576px) { .form-row { grid-template-columns: 1fr; } }
+    @media(max-width: 576px) { .form-row { grid-template-columns: 1fr; } .checkout-form-wrap { padding: 24px 18px; } }
   </style>
 </head>
 <body>
@@ -50,7 +51,7 @@
         <img src="Images/BG/logo%20bg.png" alt="REEL Logo" class="nav-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
         <div class="nav-logo-crown" style="display:none">⚜</div>
       </div>
-      <div class="nav-logo-text"><span class="nav-brand-name">REEL</span><span class="nav-brand-sub">Royalty Executive Empire LIMITED</span></div>
+      <div class="nav-logo-text"><span class="nav-brand-name">REEL</span><span class="nav-brand-sub">Royalty Executive Empire Limited</span></div>
     </a>
     <ul class="nav-links" id="nav-links" role="list">
       <li><a href="index.html" class="nav-link">Home</a></li>
@@ -58,7 +59,7 @@
       <li><a href="cart.html" class="nav-link">Cart</a></li>
     </ul>
     <div class="nav-actions">
-      <a href="cart.html" class="nav-icon cart-icon" aria-label="Shopping Cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="cart-count">2</span></a>
+      <a href="cart.html" class="nav-icon cart-icon" aria-label="Shopping Cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="cart-count">0</span></a>
     </div>
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span class="ham-line"></span><span class="ham-line"></span><span class="ham-line"></span></button>
   </div>
@@ -90,19 +91,21 @@
           </div>
           <div class="form-group">
             <label for="co-company">Company Name (Optional)</label>
-            <input type="text" id="co-company" placeholder="Royalty Executive Empire LIMITED" />
+            <input type="text" id="co-company" placeholder="Royalty Executive Empire Limited" />
           </div>
           <div class="form-group">
             <label for="co-country">Country / Region *</label>
             <select id="co-country" required>
               <option value="">Select country...</option>
-              <option value="NG">Nigeria</option>
-              <option value="ZM">Zambia</option>
-              <option value="UG">Uganda</option>
-              <option value="GH">Ghana</option>
-              <option value="KE">Kenya</option>
-              <option value="US">United States</option>
-              <option value="GB">United Kingdom</option>
+              <option value="Nigeria">Nigeria</option>
+              <option value="Zambia">Zambia</option>
+              <option value="Uganda">Uganda</option>
+              <option value="Ghana">Ghana</option>
+              <option value="Kenya">Kenya</option>
+              <option value="United States">United States</option>
+              <option value="United Kingdom">United Kingdom</option>
+              <option value="United Arab Emirates">United Arab Emirates</option>
+              <option value="South Africa">South Africa</option>
             </select>
           </div>
           <div class="form-group">
@@ -133,36 +136,18 @@
 
         <!-- Payment Method -->
         <div class="checkout-form-wrap">
-          <div class="checkout-step-title">💳 &nbsp;Payment Method</div>
-          <div class="payment-methods">
-            <div class="pay-method selected" data-method="card">💳 Credit / Debit Card</div>
-            <div class="pay-method" data-method="paypal">🅿 PayPal</div>
-            <div class="pay-method" data-method="bank">🏦 Bank Transfer</div>
-          </div>
-          <!-- Card Fields -->
-          <div id="card-fields">
-            <div class="form-group">
-              <label for="co-card">Card Number</label>
-              <input type="text" id="co-card" placeholder="1234 5678 9012 3456" maxlength="19" />
-            </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="co-expiry">Expiry Date</label>
-                <input type="text" id="co-expiry" placeholder="MM / YY" maxlength="7" />
-              </div>
-              <div class="form-group">
-                <label for="co-cvv">CVV</label>
-                <input type="text" id="co-cvv" placeholder="123" maxlength="4" />
-              </div>
-            </div>
-          </div>
-          <button type="submit" class="btn-gold" style="width:100%; justify-content:center; font-size: 1rem; padding: 18px 40px; margin-top: 8px;">
-            <span>🔒 &nbsp;Place Order Securely</span>
+          <div class="checkout-step-title">💬 &nbsp;Order via WhatsApp</div>
+          <p style="color:var(--w70); font-size:0.92rem; margin-bottom:24px; line-height:1.7;">
+            Fill in your details above and click the button below. Your order will be sent directly to our WhatsApp for confirmation and delivery arrangement.
+          </p>
+          <button type="submit" id="co-submit-btn" class="btn-gold" style="width:100%; justify-content:center; font-size: 1rem; padding: 18px 40px; margin-top: 8px;">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            <span>&nbsp;Send Order on WhatsApp</span>
           </button>
           <div class="security-badges">
-            <span>🔒 256-bit SSL</span>
-            <span>✅ PCI Compliant</span>
-            <span>🛡️ Buyer Protected</span>
+            <span>🔒 Secure</span>
+            <span>✅ Buyer Protected</span>
+            <span>💬 WhatsApp Confirmed</span>
           </div>
         </div>
       </form>
@@ -185,7 +170,7 @@
   <div class="footer-bar">
     <div class="container">
       <div class="footer-bar-inner">
-        <p class="footer-copy">&copy; <span id="footer-year"></span> Royalty Executive Empire LIMITED (REEL). All Rights Reserved.</p>
+        <p class="footer-copy">&copy; <span id="footer-year"></span> Royalty Executive Empire Limited (REEL). All Rights Reserved.</p>
         <nav aria-label="Legal links">
           <ul class="footer-legal">
             <li><a href="privacy.html">Privacy Policy</a></li>
@@ -197,23 +182,14 @@
     </div>
   </div>
 </footer>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-<script src="js/firebase-init.js"></script>
-<script>
-  // Payment method tabs
-  document.querySelectorAll('.pay-method').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.pay-method').forEach(b => b.classList.remove('selected'));
-      btn.classList.add('selected');
-    });
-  });
-</script>
+
 <script src="js/main.js"></script>
 <script>
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+
   // Redirect to cart if empty
-  const cartItems = JSON.parse(localStorage.getItem('ree_cart') || '[]');
-  if (!cartItems.length) { window.location.href = 'cart.html'; }
+  const reeCart = JSON.parse(localStorage.getItem('ree_cart') || '[]');
+  if (!reeCart.length) { window.location.href = 'cart.html'; }
 
   function formatPrice(num) {
     const n = parseFloat(num);
@@ -221,20 +197,17 @@
     return 'AED ' + n.toLocaleString('en-AE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   }
 
-  // Render cart items in order summary
   function renderOrderItems() {
     const cart = JSON.parse(localStorage.getItem('ree_cart') || '[]');
     const el = document.getElementById('checkout-order-items');
     if (!el) return;
+    if (!cart.length) { el.innerHTML = '<p style="color:var(--w50);text-align:center">No items in cart.</p>'; return; }
     el.innerHTML = cart.map(item => `
       <div class="order-item">
-        <div class="order-thumb" style="overflow:hidden">
-          ${item.image
-            ? `<img src="${item.image}" style="width:100%;height:100%;object-fit:cover" alt="" />`
-            : '🛍️'
-          }
+        <div class="order-thumb">
+          ${item.image ? `<img src="${item.image}" alt="${item.name}" />` : '🛍️'}
         </div>
-        <div>
+        <div style="flex:1;min-width:0;">
           <div class="order-item-name">${item.name}</div>
           <div class="order-item-qty">Qty: ${item.qty || 1}</div>
         </div>
@@ -243,64 +216,77 @@
     `).join('');
   }
 
-  // Payment method tabs
-  document.querySelectorAll('.pay-method').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.pay-method').forEach(b => b.classList.remove('selected'));
-      btn.classList.add('selected');
-    });
-  });
-
-  // Dynamically build the checkout totals from cart + Firestore settings
-  const buildCheckoutTotals = async () => {
+  function buildCheckoutTotals() {
     const totalsEl = document.getElementById('checkout-totals');
     if (!totalsEl) return;
-
-    const cart = JSON.parse(localStorage.getItem('ree_cart')) || [];
-    const subtotal = cart.reduce((sum, item) => sum + (parseFloat(item.price)||0) * (item.qty||1), 0);
-
-    let taxEnabled = false, taxRate = 0;
-    let discountPercent = 0;
-
-    try {
-      if (window.db) {
-        const taxDoc = await window.db.collection('settings').doc('tax').get();
-        if (taxDoc.exists) {
-          const d = taxDoc.data();
-          taxEnabled = d.enabled === 'yes';
-          taxRate    = parseFloat(d.rate) || 0;
-        }
-        const discountDoc = await window.db.collection('settings').doc('discount').get();
-        if (discountDoc.exists) {
-          const d = discountDoc.data();
-          discountPercent = parseFloat(d.percent) || 0;
-        }
-      }
-    } catch(e) { console.warn('Could not load settings', e); }
-
-    let finalTotal = subtotal;
-    if (discountPercent > 0) finalTotal -= finalTotal * (discountPercent / 100);
-    if (taxEnabled && taxRate > 0) finalTotal += finalTotal * (taxRate / 100);
-
+    const cart = JSON.parse(localStorage.getItem('ree_cart') || '[]');
+    const subtotal = cart.reduce((sum, i) => sum + (parseFloat(i.price)||0) * (i.qty||1), 0);
     totalsEl.innerHTML = `
       <div class="total-row"><span>Subtotal</span><span>${formatPrice(subtotal)}</span></div>
-      ${taxEnabled && taxRate > 0 ? `<div class="total-row"><span>Tax (${taxRate}%)</span><span>${formatPrice(finalTotal - subtotal)}</span></div>` : ''}
-      <div class="total-row grand"><span>Total</span><span class="price">${formatPrice(finalTotal)}</span></div>
+      <div class="total-row grand"><span>Total</span><span class="price">${formatPrice(subtotal)}</span></div>
     `;
-
-    // Also update nav cart count
-    const totalQty = (JSON.parse(localStorage.getItem('ree_cart'))||[]).reduce((s,i)=>s+(i.qty||1),0);
-    document.querySelectorAll('.cart-count').forEach(el => el.textContent = totalQty);
-  };
+    const qty = cart.reduce((s,i)=>s+(i.qty||1),0);
+    document.querySelectorAll('.cart-count').forEach(el => el.textContent = qty);
+  }
 
   renderOrderItems();
+  buildCheckoutTotals();
 
-  const waitAndBuild = () => {
-    if (window.db) { buildCheckoutTotals(); }
-    else { setTimeout(waitAndBuild, 100); }
-  };
-  waitAndBuild();
+  // ── Handle Order Submission → WhatsApp ──
+  document.getElementById('checkout-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const fname   = document.getElementById('co-fname').value.trim();
+    const lname   = document.getElementById('co-lname').value.trim();
+    const company = document.getElementById('co-company').value.trim();
+    const country = document.getElementById('co-country').value;
+    const address = document.getElementById('co-address').value.trim();
+    const city    = document.getElementById('co-city').value.trim();
+    const postal  = document.getElementById('co-postal').value.trim();
+    const email   = document.getElementById('co-email').value.trim();
+    const phone   = document.getElementById('co-phone').value.trim();
+
+    if (!fname || !lname || !country || !address || !city || !email || !phone) {
+      alert('Please fill in all required fields (marked with *) before placing your order.');
+      return;
+    }
+
+    const cart = JSON.parse(localStorage.getItem('ree_cart') || '[]');
+    if (!cart.length) { window.location.href = 'cart.html'; return; }
+
+    const subtotal = cart.reduce((sum, i) => sum + (parseFloat(i.price)||0)*(i.qty||1), 0);
+    const itemLines = cart.map(i =>
+      `   • ${i.name} × ${i.qty||1}  →  ${formatPrice((parseFloat(i.price)||0)*(i.qty||1))}`
+    ).join('\n');
+
+    const msg =
+      `🛒 *NEW ORDER — REEL Global Store*\n` +
+      `━━━━━━━━━━━━━━━━━━━━━\n\n` +
+      `👤 *Customer Details*\n` +
+      `   Name: ${fname} ${lname}\n` +
+      (company ? `   Company: ${company}\n` : '') +
+      `   Email: ${email}\n` +
+      `   Phone: ${phone}\n\n` +
+      `📍 *Delivery Address*\n` +
+      `   ${address}, ${city}${postal ? ', ' + postal : ''}, ${country}\n\n` +
+      `🛍️ *Order Items*\n` +
+      `${itemLines}\n\n` +
+      `💰 *Order Total: ${formatPrice(subtotal)}*\n\n` +
+      `---\n_Sent from royaltyexecutiveempire.com_`;
+
+    const waURL = `https://wa.me/2348067029444?text=${encodeURIComponent(msg)}`;
+
+    const btn = document.getElementById('co-submit-btn');
+    btn.innerHTML = '<span>✅ &nbsp;Opening WhatsApp...</span>';
+    btn.disabled = true;
+
+    localStorage.setItem('ree_cart', '[]');
+
+    setTimeout(() => {
+      window.open(waURL, '_blank');
+      setTimeout(() => { window.location.href = 'shop.html'; }, 1200);
+    }, 400);
+  });
 </script>
-
 </body>
 </html>

@@ -598,6 +598,23 @@
     .toast-text { font-size: 0.88rem; }
     .toast-text strong { display: block; color: #fff; margin-bottom: 2px; }
     .toast-text span { color: var(--w40); font-size: 0.78rem; }
+    
+    /* ═══════════ RESPONSIVE ═══════════ */
+    .mobile-menu-btn { display: none; background: transparent; border: none; color: #fff; cursor: pointer; padding: 8px; margin-right: 16px; flex-shrink: 0; }
+    .mobile-menu-btn svg { width: 28px; height: 28px; }
+    @media(max-width: 992px) {
+      .admin-sidebar { position: fixed; left: -100%; top: 0; bottom: 0; z-index: 100; transition: left 0.3s var(--ease); box-shadow: 10px 0 30px rgba(0,0,0,0.5); }
+      .admin-sidebar.show { left: 0; }
+      .admin-main { margin-left: 0; padding: 24px 20px; }
+      .mobile-menu-btn { display: block; }
+      .admin-topbar { flex-direction: column; align-items: flex-start; gap: 16px; margin-bottom: 32px; }
+      .topbar-right-panel { display: flex; align-items: center; width: 100%; justify-content: space-between; }
+      .admin-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .sb-live { position: relative; margin-top: 10px; }
+      .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 99; backdrop-filter: blur(4px); opacity: 0; transition: opacity 0.3s; }
+      .sidebar-overlay.show { display: block; opacity: 1; }
+    }
   </style>
 </head>
 <body id="admin-dashboard">
@@ -658,16 +675,7 @@
           <span class="nav-label">Shop Products</span>
         </a>
       </li>
-      <li>
-        <a href="#" class="admin-nav-link" data-target="sec-settings">
-          <div class="nav-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-            </svg>
-          </div>
-          <span class="nav-label">Store Settings</span>
-        </a>
-      </li>
+
     </ul>
 
     <div class="nav-section-label" style="margin-top:16px;">Inbox</div>
@@ -717,11 +725,18 @@
   <main class="admin-main">
 
     <!-- Top bar -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
     <div class="admin-topbar">
-      <div>
+      <div style="display:flex; align-items:center;">
+        <button class="mobile-menu-btn" id="mobile-menu-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <div>
         <div class="topbar-greeting">Welcome back, CEO</div>
         <div class="topbar-title">Executive <span class="gold">Dashboard</span></div>
       </div>
+      </div>
+      <div class="topbar-right-panel">
       <div class="topbar-date">
         <strong id="topbar-time">—</strong>
         <small id="topbar-date-str">—</small>
@@ -759,6 +774,7 @@
             </optgroup>
           </select>
         </div>
+      </div>
       </div>
     </div>
 
@@ -848,8 +864,18 @@
               </select>
             </div>
             <div class="form-group">
-              <label>Content</label>
-              <textarea id="blog-content" placeholder="Write your full blog post here…" required></textarea>
+              <label>Content
+                <span style="float:right; display:flex; align-items:center; gap:10px;">
+                  <span id="word-count-display" style="font-size:0.72rem; color:var(--w40); font-weight:500;">0 / 1000 words</span>
+                  <span style="font-size:0.72rem; color:var(--w40); font-weight:700; text-transform:uppercase; letter-spacing:1px;">Limit</span>
+                  <label style="position:relative; display:inline-block; width:38px; height:20px; cursor:pointer; margin:0;">
+                    <input type="checkbox" id="word-limit-toggle" checked style="opacity:0;width:0;height:0;position:absolute;">
+                    <span id="toggle-track" style="position:absolute;inset:0;border-radius:20px;background:rgba(212,175,55,0.7);transition:background 0.3s;"></span>
+                    <span id="toggle-thumb" style="position:absolute;top:3px;left:3px;width:14px;height:14px;border-radius:50%;background:#fff;transition:transform 0.3s;"></span>
+                  </label>
+                </span>
+              </label>
+              <textarea id="blog-content" placeholder="Write your full blog post here…" required style="min-height:260px;"></textarea>
             </div>
             <button type="submit" class="btn-submit">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
@@ -995,66 +1021,7 @@
       </div>
     </section>
 
-    <!-- ── STORE SETTINGS ── -->
-    <section id="sec-settings" class="admin-section">
-      <div style="margin-bottom: 32px;">
-        <h2 style="font-family:var(--font-display); font-size: 2rem; color: #fff;">Store <span style="color:var(--gold)">Settings</span></h2>
-        <p style="color:rgba(255,255,255,0.5); margin-top:6px;">Configure tax, VAT, and discount codes applied at checkout.</p>
-      </div>
 
-      <div class="admin-grid">
-        <!-- Tax / VAT Card -->
-        <div class="admin-card">
-          <div class="card-title">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            Tax &amp; VAT Settings
-          </div>
-          <form id="form-tax">
-            <div class="form-group">
-              <label>Enable Tax / VAT?</label>
-              <select id="tax-enabled">
-                <option value="no">No — Do not show tax</option>
-                <option value="yes">Yes — Show tax at checkout</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Tax Label (e.g. VAT, GST, Tax)</label>
-              <input type="text" id="tax-label" placeholder="e.g. VAT" />
-            </div>
-            <div class="form-group">
-              <label>Tax Rate (%)</label>
-              <input type="number" id="tax-rate" placeholder="e.g. 5" min="0" max="100" step="0.1" />
-            </div>
-            <button type="submit" class="btn-publish" style="margin-top:8px;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-              Save Tax Settings
-            </button>
-          </form>
-        </div>
-
-        <!-- Discount Code Card -->
-        <div class="admin-card">
-          <div class="card-title">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
-            Discount Code
-          </div>
-          <form id="form-discount">
-            <div class="form-group">
-              <label>Discount Code (leave blank to disable)</label>
-              <input type="text" id="discount-code" placeholder="e.g. ROYAL20" style="text-transform:uppercase;"/>
-            </div>
-            <div class="form-group">
-              <label>Discount Amount (%)</label>
-              <input type="number" id="discount-percent" placeholder="e.g. 20" min="0" max="100" step="1" />
-            </div>
-            <button type="submit" class="btn-publish" style="margin-top:8px;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-              Save Discount Code
-            </button>
-          </form>
-        </div>
-      </div>
-    </section>
 
     <!-- ── ORDERS ── -->
     <section id="sec-orders" class="admin-section">
@@ -1412,6 +1379,57 @@
       });
     };
 
+    // ── Blog Word Limit Logic ──
+    const blogContent = document.getElementById('blog-content');
+    const wordCountDisplay = document.getElementById('word-count-display');
+    const wordLimitToggle = document.getElementById('word-limit-toggle');
+    const toggleTrack = document.getElementById('toggle-track');
+    const toggleThumb = document.getElementById('toggle-thumb');
+    const WORD_LIMIT = 1000;
+
+    const countWords = (text) => text.trim().split(/\s+/).filter(w => w.length > 0).length;
+
+    const updateWordCount = () => {
+      let words = countWords(blogContent.value);
+      
+      // Update UI toggle
+      if (wordLimitToggle.checked) {
+        toggleTrack.style.background = 'rgba(212,175,55,0.7)';
+        toggleThumb.style.transform = 'translateX(18px)';
+        wordCountDisplay.textContent = `${words} / ${WORD_LIMIT} words`;
+        
+        // Enforce limit
+        if (words > WORD_LIMIT) {
+          blogContent.style.borderColor = '#e74c3c';
+          wordCountDisplay.style.color = '#e74c3c';
+        } else {
+          blogContent.style.borderColor = '';
+          wordCountDisplay.style.color = 'var(--w40)';
+        }
+      } else {
+        toggleTrack.style.background = 'rgba(255,255,255,0.1)';
+        toggleThumb.style.transform = 'translateX(0)';
+        wordCountDisplay.textContent = `${words} words (No limit)`;
+        blogContent.style.borderColor = '';
+        wordCountDisplay.style.color = 'var(--w40)';
+      }
+    };
+
+    if (blogContent && wordLimitToggle) {
+      blogContent.addEventListener('input', updateWordCount);
+      wordLimitToggle.addEventListener('change', updateWordCount);
+      updateWordCount();
+      
+      // Prevent form submission if limit is exceeded and enforced
+      document.getElementById('form-blog').addEventListener('submit', (e) => {
+        if (wordLimitToggle.checked && countWords(blogContent.value) > WORD_LIMIT) {
+          e.preventDefault();
+          e.stopImmediatePropagation();
+          showToast('Limit Exceeded', `Blog content cannot exceed ${WORD_LIMIT} words.`, 'delete');
+        }
+      });
+    }
+
     handleForm('form-blog', 'blog-img',
       img => ({
         title: document.getElementById('blog-title').value,
@@ -1450,62 +1468,7 @@
 
     setTimeout(loadData, 200);
 
-    // ── Load current store settings into forms ──
-    const loadSettings = async () => {
-      try {
-        const taxDoc = await window.db.collection('settings').doc('tax').get();
-        if (taxDoc.exists) {
-          const d = taxDoc.data();
-          document.getElementById('tax-enabled').value = d.enabled || 'no';
-          document.getElementById('tax-label').value   = d.label   || '';
-          document.getElementById('tax-rate').value    = d.rate    || '';
-        }
-        const discountDoc = await window.db.collection('settings').doc('discount').get();
-        if (discountDoc.exists) {
-          const d = discountDoc.data();
-          document.getElementById('discount-code').value    = d.code    || '';
-          document.getElementById('discount-percent').value = d.percent || '';
-        }
-      } catch(e) { console.warn('Could not load settings', e); }
-    };
-    
-    // Load settings when Settings tab is clicked
-    document.querySelectorAll('.admin-nav-link').forEach(link => {
-      if (link.dataset.target === 'sec-settings') {
-        link.addEventListener('click', () => setTimeout(loadSettings, 50));
-      }
-    });
 
-    // Save Tax settings
-    document.getElementById('form-tax').addEventListener('submit', async e => {
-      e.preventDefault();
-      const btn = e.target.querySelector('button[type="submit"]');
-      btn.innerHTML = 'Saving...'; btn.disabled = true;
-      try {
-        await window.db.collection('settings').doc('tax').set({
-          enabled: document.getElementById('tax-enabled').value,
-          label:   document.getElementById('tax-label').value.trim() || 'Tax',
-          rate:    parseFloat(document.getElementById('tax-rate').value) || 0
-        });
-        showToast('Saved!', 'Tax settings updated successfully.');
-      } catch(err) { showToast('Error', 'Failed to save.', 'delete'); }
-      finally { btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Save Tax Settings'; btn.disabled = false; }
-    });
-
-    // Save Discount settings
-    document.getElementById('form-discount').addEventListener('submit', async e => {
-      e.preventDefault();
-      const btn = e.target.querySelector('button[type="submit"]');
-      btn.innerHTML = 'Saving...'; btn.disabled = true;
-      try {
-        await window.db.collection('settings').doc('discount').set({
-          code:    document.getElementById('discount-code').value.trim().toUpperCase(),
-          percent: parseFloat(document.getElementById('discount-percent').value) || 0
-        });
-        showToast('Saved!', 'Discount code updated successfully.');
-      } catch(err) { showToast('Error', 'Failed to save.', 'delete'); }
-      finally { btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Save Discount Code'; btn.disabled = false; }
-    });
 
     // ── Logout ──
     document.getElementById('logout-btn').addEventListener('click', e => {
@@ -1513,6 +1476,27 @@
       sessionStorage.removeItem('ree_admin_auth');
       window.location.href = 'login.html';
     });
+
+    // ── Mobile Sidebar Toggle ──
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const sidebar = document.querySelector('.admin-sidebar');
+    const overlay = document.getElementById('sidebar-overlay');
+    
+    if (mobileBtn && sidebar && overlay) {
+      const toggleMenu = () => {
+        sidebar.classList.toggle('show');
+        overlay.classList.toggle('show');
+      };
+      mobileBtn.addEventListener('click', toggleMenu);
+      overlay.addEventListener('click', toggleMenu);
+      
+      // Close menu when clicking a nav link on mobile
+      document.querySelectorAll('.admin-nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          if (window.innerWidth <= 992) toggleMenu();
+        });
+      });
+    }
   </script>
 </body>
 </html>

@@ -451,7 +451,7 @@
           <div class="product-name">${p.name}</div>
           <div class="product-footer">
             <div class="product-price">${formatPrice(p.price)}</div>
-            <button class="btn-add-cart" data-id="${p.id}" data-name="${p.name}" data-price="${p.price}" data-image="${p.image || ''}">
+            <button class="btn-add-cart" data-id="${p.id}" data-name="${p.name}" data-price="${p.price}" data-image="${p.image || ''}" data-category="${p.category || 'Premium'}">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
               Add to Cart
             </button>
@@ -463,7 +463,7 @@
     // Wire cart buttons
     grid.querySelectorAll('.btn-add-cart').forEach(btn => {
       btn.addEventListener('click', () => {
-        addToCart({ id: btn.dataset.id, name: btn.dataset.name, price: btn.dataset.price, image: btn.dataset.image });
+        addToCart({ id: btn.dataset.id, name: btn.dataset.name, price: btn.dataset.price, image: btn.dataset.image, category: btn.dataset.category || 'Premium' });
       });
     });
   }

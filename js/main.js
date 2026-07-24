@@ -465,7 +465,7 @@ document.addEventListener('DOMContentLoaded', () => {
         `*Message:*\n${message}\n\n` +
         `---\n_Sent from royaltyexecutiveempire.com_`;
 
-      const whatsappURL = `https://wa.me/971561347581?text=${encodeURIComponent(text)}`;
+      const whatsappURL = `https://wa.me/2348067029444?text=${encodeURIComponent(text)}`;
 
       // Show success state on button
       const originalHTML = submitBtn.innerHTML;
