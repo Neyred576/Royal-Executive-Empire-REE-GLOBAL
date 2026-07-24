@@ -615,7 +615,7 @@
         <div class="sb-ring-outer"></div>
         <div class="sb-ring-inner"></div>
         <div class="sb-ring-core">
-          <img src="../Images/BG/logo%20bg.png" alt="REE" onerror="this.outerHTML='<span style=\'font-size:1.4rem\'>⚜</span>'" />
+          <img src="../Images/BG/logo%20bg.png" alt="REEL" onerror="this.outerHTML='<span style=\'font-size:1.4rem\'>⚜</span>'" />
         </div>
       </div>
       <div class="sb-brand">REEL</div>
@@ -1197,9 +1197,9 @@
           window.db.collection('orders').orderBy('timestamp', 'desc').get()
         ]);
         
-        blogs = blogSnap.docs.map(d => ({ id: d.id, ...d.data() }));
-        portfolio = pfSnap.docs.map(d => ({ id: d.id, ...d.data() }));
-        products = shopSnap.docs.map(d => ({ id: d.id, ...d.data() }));
+        blogs.length = 0; blogs.push(...blogSnap.docs.map(d => ({ id: d.id, ...d.data() })));
+        portfolio.length = 0; portfolio.push(...pfSnap.docs.map(d => ({ id: d.id, ...d.data() })));
+        products.length = 0; products.push(...shopSnap.docs.map(d => ({ id: d.id, ...d.data() })));
         const messages = msgSnap.docs.map(d => ({ id: d.id, ...d.data() }));
         const orders = orderSnap.docs.map(d => ({ id: d.id, ...d.data() }));
         
@@ -1516,3 +1516,4 @@
   </script>
 </body>
 </html>
+
