@@ -2174,9 +2174,9 @@ input, textarea, select { font-family: inherit; }
 }
 
 /* ═══════════════════════════════════════════════
-   RESPONSIVE — MOBILE (max 768px)
+   RESPONSIVE — MOBILE (max 992px)
 ═══════════════════════════════════════════════ */
-@media (max-width: 768px) {
+@media (max-width: 992px) {
   :root { --nav-h: 66px; --section-py: 72px; }
   .container { padding: 0 18px; }
 
