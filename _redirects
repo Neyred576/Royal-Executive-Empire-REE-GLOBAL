@@ -1,0 +1,28 @@
+﻿# Netlify Redirects — Old WordPress URLs to New Pages
+# Format: /old-path  /new-path  status-code
+
+# Old WordPress pages
+/shop                   /shop.html              301
+/shop/                  /shop.html              301
+/Biography              /about.html             301
+/Biography/             /about.html             301
+/biography              /about.html             301
+/about-us               /about.html             301
+/blog                   /blog.html              301
+/blog/                  /blog.html              301
+/contact                /contact.html           301
+/contact-us             /contact.html           301
+/contact/               /contact.html           301
+/real-estate            /real-estate.html       301
+/music                  /music-store.html       301
+/music-store            /music-store.html       301
+/portfolio              /portfolio.html         301
+/services               /index.html             301
+/home                   /index.html             301
+/wp-admin               /index.html             301
+/wp-login.php           /index.html             301
+/wp-content/*           /index.html             301
+/wp-includes/*          /index.html             301
+
+# Catch-all: anything not matched goes to 404
+/*                      /404.html               404
