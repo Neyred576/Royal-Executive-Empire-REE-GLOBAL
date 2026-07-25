@@ -333,6 +333,36 @@ input, textarea, select { font-family: inherit; }
   transform: translateY(36px);
   transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
 }
+.div-hero-img-fade {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  height: 550px;
+  margin: 0 auto;
+  border-radius: 20px;
+  overflow: hidden;
+  /* Mask edges so image fades perfectly without cutting too much of the center out */
+  mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+  /* Gentle floating animation */
+  animation: cinematicFloat 8s ease-in-out infinite;
+}
+
+.div-hero-img-fade img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 1.5s var(--ease);
+}
+.div-hero-img-fade:hover img {
+  transform: scale(1.05);
+}
+
+@keyframes cinematicFloat {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 0.9; }
+  50% { transform: translateY(-15px) scale(1.02); opacity: 1; }
+}
 .reveal-left {
   opacity: 0;
   transform: translateX(-50px);
@@ -1337,20 +1367,29 @@ input, textarea, select { font-family: inherit; }
 ═══════════════════════════════════════════════ */
 .divisions-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  max-width: 1300px;
+  margin: 0 auto;
 }
 
-.division-card { overflow: hidden; padding: 0; }
+.division-card { 
+  overflow: hidden; 
+  padding: 0; 
+  display: flex;
+  flex-direction: column;
+}
+
 .div-img-wrap {
   position: relative;
-  height: 230px;
+  height: 380px;
   overflow: hidden;
   background: linear-gradient(135deg, var(--black-700), var(--black-600));
 }
 .div-img {
   width: 100%; height: 100%;
   object-fit: cover;
+  object-position: center;
   transition: transform 0.7s var(--ease);
 }
 .division-card:hover .div-img { transform: scale(1.08); }
@@ -1401,7 +1440,7 @@ input, textarea, select { font-family: inherit; }
   bottom: 16px;
   right: 16px;
   z-index: 2;
-  width: 44px; height: 44px;
+  width: 52px; height: 52px;
   background: rgba(212,175,55,0.15);
   border: 1px solid var(--gold-border);
   border-radius: 50%;
@@ -1412,7 +1451,7 @@ input, textarea, select { font-family: inherit; }
   backdrop-filter: blur(8px);
   transition: all var(--t-med);
 }
-.div-float-icon svg { width: 20px; height: 20px; }
+.div-float-icon svg { width: 26px; height: 26px; }
 .division-card:hover .div-float-icon {
   background: var(--gold-gradient);
   color: var(--black-900);
@@ -1420,7 +1459,12 @@ input, textarea, select { font-family: inherit; }
   transform: rotate(5deg) scale(1.1);
 }
 
-.div-body { padding: 28px 32px 36px; }
+.div-body { 
+  padding: 28px 24px 32px; 
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
 .div-label {
   font-size: 10px;
   font-weight: 700;
@@ -2161,7 +2205,15 @@ input, textarea, select { font-family: inherit; }
   .founder-photo { height: 440px; }
   .founder-info-badge { right: 0; bottom: -16px; }
   .mvv-grid { grid-template-columns: 1fr; }
-  .divisions-grid { grid-template-columns: 1fr 1fr; }
+  
+  /* Fallback to 2 columns for tablet */
+  .divisions-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .div-img-wrap {
+    height: 300px;
+  }
+  
   .pf-grid { grid-template-columns: repeat(2, 1fr); }
   .why-grid { grid-template-columns: repeat(2, 1fr); }
   .services-grid { grid-template-columns: repeat(2, 1fr); }
@@ -2481,4 +2533,89 @@ input, textarea, select { font-family: inherit; }
 }
 @media (max-width: 768px) {
   .footer-qr-col { align-items: flex-start; text-align: left; margin-top: 30px; }
+}
+
+
+/* ============================================================ */
+/* NEW REDESIGNED HERO BUTTONS & DIVISION TAG                   */
+/* ============================================================ */
+
+/* Redesign for the "Division 02" Tag */
+.div-hero-tag {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--gold-400), var(--gold-600));
+    color: #000;
+    font-weight: 700;
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    border-radius: 50px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+    position: relative;
+    z-index: 10;
+}
+
+/* Redesign for the Primary Gold Button */
+.btn-gold {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: linear-gradient(135deg, var(--gold-300), var(--gold-600));
+    color: #050505 !important;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 16px 32px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+    border: 1px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-gold:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(212, 175, 55, 0.6);
+    background: linear-gradient(135deg, var(--gold-200), var(--gold-500));
+    color: #000 !important;
+}
+
+/* Redesign for the Secondary Ghost Button */
+.btn-ghost {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--gold-300) !important;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 16px 32px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(212, 175, 55, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+.btn-ghost:hover {
+    background: rgba(212, 175, 55, 0.1);
+    border-color: var(--gold-400);
+    color: var(--gold-400) !important;
+    transform: translateY(-3px);
+}
+
+/* Ensure CTA wrapper spaces them out nicely */
+.div-hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 40px;
 }

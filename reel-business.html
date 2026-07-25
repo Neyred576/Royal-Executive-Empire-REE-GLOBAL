@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -12,10 +12,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
   <style>
-    .div-page-hero { position: relative; min-height: 70vh; display: flex; align-items: center; overflow: hidden; }
+    .div-page-hero { position: relative; min-height: 70vh; display: flex; align-items: center; overflow: hidden; padding-top: 120px; }
     .div-hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 60% 50%, rgba(212,175,55,0.08) 0%, transparent 60%), var(--black-900); }
     .div-hero-overlay { position: absolute; inset: 0; background: linear-gradient(105deg, rgba(8,8,8,0.97) 40%, rgba(8,8,8,0.6) 100%); }
-    .div-hero-inner { position: relative; z-index: 2; text-align: center; max-width: 900px; margin: 0 auto; }
+    .div-hero-inner { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; max-width: 1200px; margin: 0 auto; text-align: left; }
+    @media(max-width:1024px) { .div-hero-inner { grid-template-columns: 1fr; text-align: center; } .div-hero-visual { display: none; } }
     .div-hero-title { font-family: var(--font-display); font-size: clamp(3rem, 6vw, 5.5rem); line-height: 1.0; color: #fff; margin-bottom: 28px; }
     .div-hero-title span { color: var(--gold-300); }
     .div-hero-desc { color: var(--w60); font-size: 1.2rem; line-height: 1.85; margin: 0 auto 44px; }
@@ -71,22 +72,14 @@
       <div class="nav-logo-text"><span class="nav-brand-name">REEL</span><span class="nav-brand-sub">Royalty Executive Empire Limited</span></div>
     </a>
     <ul class="nav-links" id="nav-links" role="list">
-      <li><a href="index.html" class="nav-link">Home</a></li>
-      <li><a href="about.html" class="nav-link">About REEL</a></li>
-      <li class="nav-item-dropdown">
-        <a href="javascript:void(0)" class="nav-link active">Divisions <span class="drop-arrow">&#9662;</span></a>
-        <ul class="nav-dropdown">
-          <li><a href="reel-power.html">REEL Power</a></li>
-          <li><a href="reel-branding.html">REEL Branding</a></li>
-          <li><a href="reel-smart.html">REEL Smart</a></li>
-          <li><a href="reel-business.html">Business Solutions</a></li>
-        </ul>
-      </li>
-      <li><a href="shop.html" class="nav-link">Shop</a></li>
-      <li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
-      <li><a href="blog.html" class="nav-link">Blog</a></li>
-      <li><a href="contact.html" class="nav-link nav-link-cta">Contact Us</a></li>
-    </ul>
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="reel-power.html" class="nav-link">REEL Power</a></li>
+        <li><a href="reel-branding.html" class="nav-link">REEL Branding</a></li>
+        <li><a href="reel-smart.html" class="nav-link">REEL Smart</a></li>
+        <li><a href="reel-business.html" class="nav-link active">Business Solutions</a></li>
+        <li><a href="blog.html" class="nav-link">Blog</a></li>
+        <li><a href="shop.html" class="nav-link">Shop</a></li>
+      </ul>
     <div class="nav-actions">
       <a href="cart.html" class="nav-icon cart-icon" aria-label="Shopping Cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="cart-count">0</span></a>
     </div>
@@ -104,6 +97,11 @@
       <div class="div-hero-tag" style="display: inline-flex; align-items: center; gap: 10px; font-size: 0.72rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: var(--gold-300); margin-bottom: 24px;">Division 04</div>
       <h1 class="div-hero-title">Business <span>Solutions</span></h1>
       <p class="div-hero-desc">Strategic Business Consulting &amp; Corporate Solutions. We solve complex business challenges with executive-level strategy, empowering companies to scale, innovate, and dominate their industries.</p>
+    </div>
+    <div class="div-hero-visual">
+      <div class="div-hero-img-fade">
+        <img src="Images/Divisions/BUSINESS SOLUTIONS.png" alt="Business Solutions" />
+      </div>
     </div>
   </div>
 </section>

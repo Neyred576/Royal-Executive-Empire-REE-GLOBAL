@@ -30,7 +30,7 @@
       overflow: hidden;
     }
 
-    /* â”€â”€ ANIMATED BACKGROUND â”€â”€ */
+    /* ── ANIMATED BACKGROUND ── */
     .bg-canvas {
       position: fixed;
       inset: 0;
@@ -95,7 +95,7 @@
       background: #0A0A0A;
     }
 
-    /* â”€â”€ LOGIN CARD â”€â”€ */
+    /* ── LOGIN CARD ── */
     .login-wrap {
       position: relative;
       z-index: 10;
@@ -348,13 +348,13 @@
         <div class="ring-outer"></div>
         <div class="ring-inner"></div>
         <div class="ring-logo">
-          <img src="../Images/BG/logo%20bg.png" alt="REEL" onerror="this.outerHTML='<span style=\'font-size:1.8rem\'>âšœ</span>'" />
+          <img src="../Images/BG/logo%20bg.png" alt="REEL" onerror="this.outerHTML='<span style=\'font-size:1.8rem\'>⚜</span>'" />
         </div>
       </div>
 
       <div class="login-eyebrow">Executive Portal</div>
       <h1 class="login-title">Secure <span class="gold">Access</span></h1>
-      <p class="login-sub">Royalty Executive Empire Limited â€” Admin Control Center</p>
+      <p class="login-sub">Royalty Executive Empire Limited — Admin Control Center</p>
 
       <div class="login-divider">
         <span></span><small>Authenticate</small><span></span>
@@ -409,7 +409,7 @@
       const card = document.querySelector('.login-card');
       if (val === MASTER_PASS) {
         sessionStorage.setItem('ree_admin_auth', 'true');
-        document.querySelector('.submit-btn').textContent = 'âœ“ Access Grantedâ€¦';
+        document.querySelector('.submit-btn').textContent = '✓ Access Granted…';
         document.querySelector('.submit-btn').style.background = 'linear-gradient(135deg,#25D366,#128C7E)';
         setTimeout(() => window.location.href = 'index.html', 800);
       } else {

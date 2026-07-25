@@ -55,10 +55,14 @@
       <div class="nav-logo-text"><span class="nav-brand-name">REEL</span><span class="nav-brand-sub">Royalty Executive Empire Limited</span></div>
     </a>
     <ul class="nav-links" id="nav-links" role="list">
-      <li><a href="index.html" class="nav-link">Home</a></li>
-      <li><a href="shop.html" class="nav-link">Shop</a></li>
-      <li><a href="cart.html" class="nav-link">Cart</a></li>
-    </ul>
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="reel-power.html" class="nav-link">REEL Power</a></li>
+        <li><a href="reel-branding.html" class="nav-link">REEL Branding</a></li>
+        <li><a href="reel-smart.html" class="nav-link">REEL Smart</a></li>
+        <li><a href="reel-business.html" class="nav-link">Business Solutions</a></li>
+        <li><a href="blog.html" class="nav-link">Blog</a></li>
+        <li><a href="shop.html" class="nav-link">Shop</a></li>
+      </ul>
     <div class="nav-actions">
       <a href="cart.html" class="nav-icon cart-icon" aria-label="Shopping Cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="cart-count">0</span></a>
     </div>
@@ -137,7 +141,7 @@
 
         <!-- Payment Method -->
         <div class="checkout-form-wrap">
-          <div class="checkout-step-title">ðŸ’¬ &nbsp;Order via WhatsApp</div>
+          <div class="checkout-step-title">💬 &nbsp;Order via WhatsApp</div>
           <p style="color:var(--w70); font-size:0.92rem; margin-bottom:24px; line-height:1.7;">
             Fill in your details above and click the button below. Your order will be sent directly to our WhatsApp for confirmation and delivery arrangement.
           </p>
@@ -146,9 +150,9 @@
             <span>&nbsp;Send Order on WhatsApp</span>
           </button>
           <div class="security-badges">
-            <span>ðŸ”’ Secure</span>
+            <span>🔒 Secure</span>
             <span>&#9989; Buyer Protected</span>
-            <span>ðŸ’¬ WhatsApp Confirmed</span>
+            <span>💬 WhatsApp Confirmed</span>
           </div>
         </div>
       </form>
@@ -206,7 +210,7 @@
     el.innerHTML = cart.map(item => `
       <div class="order-item">
         <div class="order-thumb">
-          ${item.image ? `<img src="${item.image}" alt="${item.name}" />` : 'ðŸ›ï¸'}
+          ${item.image ? `<img src="${item.image}" alt="${item.name}" />` : '🛍️'}
         </div>
         <div style="flex:1;min-width:0;">
           <div class="order-item-name">${item.name}</div>
@@ -257,22 +261,22 @@
 
     const subtotal = cart.reduce((sum, i) => sum + (parseFloat(i.price)||0)*(i.qty||1), 0);
     const itemLines = cart.map(i =>
-      `   â€¢ ${i.name} Ã— ${i.qty||1}  &larr;’  ${formatPrice((parseFloat(i.price)||0)*(i.qty||1))}`
+      `   • ${i.name} × ${i.qty||1}  &larr;’  ${formatPrice((parseFloat(i.price)||0)*(i.qty||1))}`
     ).join('\n');
 
     const msg =
-      `ðŸ›’ *NEW ORDER &mdash; REEL Global Store*\n` +
-      `â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”\n\n` +
-      `ðŸ‘¤ *Customer Details*\n` +
+      `🛒 *NEW ORDER &mdash; REEL Global Store*\n` +
+      `—\n\n` +
+      `👤 *Customer Details*\n` +
       `   Name: ${fname} ${lname}\n` +
       (company ? `   Company: ${company}\n` : '') +
       `   Email: ${email}\n` +
       `   Phone: ${phone}\n\n` +
-      `ðŸ“ *Delivery Address*\n` +
+      `📦*Delivery Address*\n` +
       `   ${address}, ${city}${postal ? ', ' + postal : ''}, ${country}\n\n` +
-      `ðŸ›ï¸ *Order Items*\n` +
+      `🛍️ *Order Items*\n` +
       `${itemLines}\n\n` +
-      `ðŸ’° *Order Total: ${formatPrice(subtotal)}*\n\n` +
+      `💰 *Order Total: ${formatPrice(subtotal)}*\n\n` +
       `---\n_Sent from royaltyexecutiveempire.com_`;
 
     const waURL = `https://wa.me/2348067029444?text=${encodeURIComponent(msg)}`;

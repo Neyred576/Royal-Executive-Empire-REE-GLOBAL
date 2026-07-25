@@ -42,7 +42,7 @@
       overflow-x: hidden;
     }
 
-    /* â•â•â•â•â•â•â•â•â•â•â• BACKGROUND â•â•â•â•â•â•â•â•â•â•â• */
+    /* ═ BACKGROUND ═ */
     .bg-canvas {
       position: fixed; inset: 0; z-index: 0; pointer-events: none;
     }
@@ -68,7 +68,7 @@
       background: #080808;
     }
 
-    /* â•â•â•â•â•â•â•â•â•â•â• SIDEBAR â•â•â•â•â•â•â•â•â•â•â• */
+    /* ═ SIDEBAR ═ */
     @keyframes sidebarIn {
       from { transform: translateX(-100%); opacity: 0; }
       to   { transform: translateX(0); opacity: 1; }
@@ -248,7 +248,7 @@
     }
     .logout-btn svg { width: 16px; height: 16px; }
 
-    /* â•â•â•â•â•â•â•â•â•â•â• MAIN AREA â•â•â•â•â•â•â•â•â•â•â• */
+    /* ═ MAIN AREA ═ */
     .admin-main {
       flex: 1;
       margin-left: var(--sidebar-w);
@@ -354,7 +354,7 @@
     .stat-value { font-family: var(--font-display); font-size: 2rem; color: #fff; line-height: 1; }
     .stat-hint { font-size: 0.72rem; color: var(--gold); margin-top: 3px; }
 
-    /* â•â•â•â•â•â•â•â•â•â•â• SECTIONS â•â•â•â•â•â•â•â•â•â•â• */
+    /* ═ SECTIONS ═ */
     @keyframes sectionIn {
       from { opacity: 0; transform: translateY(24px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -600,7 +600,7 @@
     .toast-text strong { display: block; color: #fff; margin-bottom: 2px; }
     .toast-text span { color: var(--w40); font-size: 0.78rem; }
     
-    /* â•â•â•â•â•â•â•â•â•â•â• RESPONSIVE â•â•â•â•â•â•â•â•â•â•â• */
+    /* ═ RESPONSIVE ═ */
     .mobile-menu-btn { display: none; background: transparent; border: none; color: #fff; cursor: pointer; padding: 8px; margin-right: 16px; flex-shrink: 0; }
     .mobile-menu-btn svg { width: 28px; height: 28px; }
     @media(max-width: 992px) {
@@ -626,14 +626,14 @@
   </div>
   <div class="grid-bg"></div>
 
-  <!-- â•â•â•â•â•â•â•â•â•â•â• SIDEBAR â•â•â•â•â•â•â•â•â•â•â• -->
+  <!-- ═ SIDEBAR ═ -->
   <aside class="admin-sidebar">
     <div class="sb-header">
       <div class="sb-logo-ring">
         <div class="sb-ring-outer"></div>
         <div class="sb-ring-inner"></div>
         <div class="sb-ring-core">
-          <img src="../Images/BG/logo%20bg.png" alt="REEL" onerror="this.outerHTML='<span style=\'font-size:1.4rem\'>âšœ</span>'" />
+          <img src="../Images/BG/logo%20bg.png" alt="REEL" onerror="this.outerHTML='<span style=\'font-size:1.4rem\'>⚜</span>'" />
         </div>
       </div>
       <div class="sb-brand">REEL</div>
@@ -722,7 +722,7 @@
     </div>
   </aside>
 
-  <!-- â•â•â•â•â•â•â•â•â•â•â• MAIN AREA â•â•â•â•â•â•â•â•â•â•â• -->
+  <!-- ═ MAIN AREA ═ -->
   <main class="admin-main">
 
     <!-- Top bar -->
@@ -739,38 +739,38 @@
       </div>
       <div class="topbar-right-panel">
       <div class="topbar-date">
-        <strong id="topbar-time">â€”</strong>
-        <small id="topbar-date-str">â€”</small>
+        <strong id="topbar-time">—</strong>
+        <small id="topbar-date-str">—</small>
         <div class="tz-selector-wrap">
-          <span class="tz-flag" id="tz-flag">ðŸŒ</span>
+          <span class="tz-flag" id="tz-flag">🌍</span>
           <select id="tz-select" title="Select Timezone">
-            <optgroup label="ðŸ‡³ðŸ‡¬ Nigeria">
+            <optgroup label="🇳🇬 Nigeria">
               <option value="Africa/Lagos">Nigeria (WAT, UTC+1)</option>
             </optgroup>
-            <optgroup label="ðŸ‡¦ðŸ‡ª UAE">
+            <optgroup label="🇦🇪 UAE">
               <option value="Asia/Dubai">Dubai (GST, UTC+4)</option>
             </optgroup>
-            <optgroup label="ðŸ‡¬ðŸ‡§ United Kingdom">
+            <optgroup label="🇬🇧 United Kingdom">
               <option value="Europe/London">London (GMT/BST)</option>
             </optgroup>
-            <optgroup label="ðŸ‡ºðŸ‡¸ USA">
+            <optgroup label="🇺🇸 USA">
               <option value="America/New_York">New York (EST/EDT)</option>
               <option value="America/Chicago">Chicago (CST/CDT)</option>
               <option value="America/Los_Angeles">Los Angeles (PST/PDT)</option>
             </optgroup>
-            <optgroup label="ðŸ‡¿ðŸ‡¦ South Africa">
+            <optgroup label="🇿🇦 South Africa">
               <option value="Africa/Johannesburg">Johannesburg (SAST)</option>
             </optgroup>
-            <optgroup label="ðŸ‡¬ðŸ‡­ Ghana">
+            <optgroup label="🇬🇭 Ghana">
               <option value="Africa/Accra">Accra (GMT)</option>
             </optgroup>
-            <optgroup label="ðŸ‡°ðŸ‡ª Kenya">
+            <optgroup label="🇰🇪 Kenya">
               <option value="Africa/Nairobi">Nairobi (EAT, UTC+3)</option>
             </optgroup>
-            <optgroup label="ðŸ‡¸ðŸ‡¬ Singapore">
+            <optgroup label="🇸🇬 Singapore">
               <option value="Asia/Singapore">Singapore (SGT, UTC+8)</option>
             </optgroup>
-            <optgroup label="ðŸ‡¨ðŸ‡³ China">
+            <optgroup label="🇨🇳 China">
               <option value="Asia/Shanghai">Shanghai (CST, UTC+8)</option>
             </optgroup>
           </select>
@@ -819,7 +819,7 @@
       </div>
     </div>
 
-    <!-- â”€â”€ BLOG â”€â”€ -->
+    <!-- ── BLOG ── -->
     <section id="sec-blog" class="admin-section active">
       <div class="section-header">
         <div class="section-icon">
@@ -858,7 +858,7 @@
               <label>Image Focus (thumbnail position)</label>
               <select id="blog-img-pos">
                 <option value="center center">Center (default)</option>
-                <option value="top center">Top â€” show face/head</option>
+                <option value="top center">Top — show face/head</option>
                 <option value="bottom center">Bottom</option>
                 <option value="center left">Left side</option>
                 <option value="center right">Right side</option>
@@ -876,7 +876,7 @@
                   </label>
                 </span>
               </label>
-              <textarea id="blog-content" placeholder="Write your full blog post hereâ€¦" required style="min-height:260px;"></textarea>
+              <textarea id="blog-content" placeholder="Write your full blog post here…" required style="min-height:260px;"></textarea>
             </div>
             <button type="submit" class="btn-submit">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
@@ -894,7 +894,7 @@
       </div>
     </section>
 
-    <!-- â”€â”€ PORTFOLIO â”€â”€ -->
+    <!-- ── PORTFOLIO ── -->
     <section id="sec-portfolio" class="admin-section">
       <div class="section-header">
         <div class="section-icon">
@@ -933,7 +933,7 @@
               <label>Image Focus (thumbnail position)</label>
               <select id="pf-img-pos">
                 <option value="center center">Center (default)</option>
-                <option value="top center">Top â€” show face/head</option>
+                <option value="top center">Top — show face/head</option>
                 <option value="bottom center">Bottom</option>
                 <option value="center left">Left side</option>
                 <option value="center right">Right side</option>
@@ -955,7 +955,7 @@
       </div>
     </section>
 
-    <!-- â”€â”€ SHOP â”€â”€ -->
+    <!-- ── SHOP ── -->
     <section id="sec-shop" class="admin-section">
       <div class="section-header">
         <div class="section-icon">
@@ -1000,7 +1000,7 @@
               <label>Image Focus (thumbnail position)</label>
               <select id="shop-img-pos">
                 <option value="center center">Center (default)</option>
-                <option value="top center">Top â€” show face/head</option>
+                <option value="top center">Top — show face/head</option>
                 <option value="bottom center">Bottom</option>
                 <option value="center left">Left side</option>
                 <option value="center right">Right side</option>
@@ -1024,7 +1024,7 @@
 
 
 
-    <!-- â”€â”€ ORDERS â”€â”€ -->
+    <!-- ── ORDERS ── -->
     <section id="sec-orders" class="admin-section">
       <div class="section-header">
         <div class="section-icon">
@@ -1049,7 +1049,7 @@
       </div>
     </section>
 
-    <!-- â”€â”€ MESSAGES â”€â”€ -->
+    <!-- ── MESSAGES ── -->
     <section id="sec-messages" class="admin-section">
       <div class="section-header">
         <div class="section-icon">
@@ -1083,12 +1083,12 @@
   <script src="../js/firebase-init.js"></script>
 
   <script>
-    // â”€â”€ Security check â”€â”€
+    // ── Security check ──
     if (sessionStorage.getItem('ree_admin_auth') !== 'true') {
       window.location.href = 'login.html';
     }
 
-    // â”€â”€ Toast â”€â”€
+    // ── Toast ──
     function showToast(title, msg, icon = 'check') {
       const svgs = {
         check: '<circle cx="12" cy="12" r="10"/><polyline points="9 12 12 15 16 9"/>',
@@ -1104,19 +1104,19 @@
       setTimeout(() => { t.classList.add('out'); setTimeout(() => t.remove(), 400); }, 3000);
     }
 
-    // â”€â”€ Timezone-aware live clock â”€â”€
+    // ── Timezone-aware live clock ──
     const tzFlags = {
-      'Africa/Lagos': 'ðŸ‡³ðŸ‡¬',
-      'Asia/Dubai': 'ðŸ‡¦ðŸ‡ª',
-      'Europe/London': 'ðŸ‡¬ðŸ‡§',
-      'America/New_York': 'ðŸ‡ºðŸ‡¸',
-      'America/Chicago': 'ðŸ‡ºðŸ‡¸',
-      'America/Los_Angeles': 'ðŸ‡ºðŸ‡¸',
-      'Africa/Johannesburg': 'ðŸ‡¿ðŸ‡¦',
-      'Africa/Accra': 'ðŸ‡¬ðŸ‡­',
-      'Africa/Nairobi': 'ðŸ‡°ðŸ‡ª',
-      'Asia/Singapore': 'ðŸ‡¸ðŸ‡¬',
-      'Asia/Shanghai': 'ðŸ‡¨ðŸ‡³',
+      'Africa/Lagos': '🇳🇬',
+      'Asia/Dubai': '🇦🇪',
+      'Europe/London': '🇬🇧',
+      'America/New_York': '🇺🇸',
+      'America/Chicago': '🇺🇸',
+      'America/Los_Angeles': '🇺🇸',
+      'Africa/Johannesburg': '🇿🇦',
+      'Africa/Accra': '🇬🇭',
+      'Africa/Nairobi': '🇰🇪',
+      'Asia/Singapore': '🇸🇬',
+      'Asia/Shanghai': '🇨🇳',
     };
 
     const tzSelect = document.getElementById('tz-select');
@@ -1134,7 +1134,7 @@
       const flagEl = document.getElementById('tz-flag');
       if (timeEl) timeEl.textContent = timeStr;
       if (dateEl) dateEl.textContent = dateStr;
-      if (flagEl) flagEl.textContent = tzFlags[tz] || 'ðŸŒ';
+      if (flagEl) flagEl.textContent = tzFlags[tz] || '🌍';
     };
 
     // Save and update when timezone changes
@@ -1147,12 +1147,12 @@
     updateTime();
     setInterval(updateTime, 1000);
 
-    // â”€â”€ Data â”€â”€
+    // ── Data ──
     let blogs = [];
     let portfolio = [];
     let products = [];
 
-    // â”€â”€ Load Data from Firebase â”€â”€
+    // ── Load Data from Firebase ──
     const loadData = async () => {
       if (!window.db) return;
       
@@ -1232,7 +1232,7 @@
       }
     };
 
-    // â”€â”€ Update stats â”€â”€
+    // ── Update stats ──
     const updateStats = () => {
       ['blog','pf','shop'].forEach(k => {
         const arr = k === 'blog' ? blogs : k === 'pf' ? portfolio : products;
@@ -1243,7 +1243,7 @@
       });
     };
 
-    // â”€â”€ Render list â”€â”€
+    // ── Render list ──
     const renderList = (arr, containerId, type, collectionName) => {
       const c = document.getElementById(containerId);
       if (!c) return;
@@ -1262,7 +1262,7 @@
         const title = item.title || item.name;
         const sub = item.date || item.category || `$${item.price}`;
         div.innerHTML = `
-          <div class="item-thumb">${imgSrc ? `<img src="${imgSrc}" alt="">` : 'ðŸ“‹'}</div>
+          <div class="item-thumb">${imgSrc ? `<img src="${imgSrc}" alt="">` : '📋'}</div>
           <div class="item-info">
             <strong>${title}</strong>
             <span>${sub}</span>
@@ -1302,7 +1302,7 @@
       });
     };
 
-    // â”€â”€ Tab switching â”€â”€
+    // ── Tab switching ──
     document.querySelectorAll('.admin-nav-link').forEach(link => {
       link.addEventListener('click', e => {
         e.preventDefault();
@@ -1314,7 +1314,7 @@
       });
     });
 
-    // â”€â”€ Forms (Uploads file to ImgBB via API, then saves URL to Firestore) â”€â”€
+    // ── Forms (Uploads file to ImgBB via API, then saves URL to Firestore) ──
     const IMGBB_API_KEY = '40fad5b164f7be1f49b470b9563cc0c7';
 
     const handleForm = (formId, fileInputId, builder, collectionName, arr, listId, type) => {
@@ -1380,7 +1380,7 @@
       });
     };
 
-    // â”€â”€ Blog Word Limit Logic â”€â”€
+    // ── Blog Word Limit Logic ──
     const blogContent = document.getElementById('blog-content');
     const wordCountDisplay = document.getElementById('word-count-display');
     const wordLimitToggle = document.getElementById('word-limit-toggle');
@@ -1471,14 +1471,14 @@
 
 
 
-    // â”€â”€ Logout â”€â”€
+    // ── Logout ──
     document.getElementById('logout-btn').addEventListener('click', e => {
       e.preventDefault();
       sessionStorage.removeItem('ree_admin_auth');
       window.location.href = 'login.html';
     });
 
-    // â”€â”€ Mobile Sidebar Toggle â”€â”€
+    // ── Mobile Sidebar Toggle ──
     const mobileBtn = document.getElementById('mobile-menu-btn');
     const sidebar = document.querySelector('.admin-sidebar');
     const overlay = document.getElementById('sidebar-overlay');
