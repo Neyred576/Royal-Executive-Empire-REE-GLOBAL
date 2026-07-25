@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Checkout | REEL â€” Secure Order</title>
+  <title>Checkout | REEL &mdash; Secure Order</title>
   <link rel="icon" type="image/png" href="/Images/BG/logo%20bg.png" />
   <meta name="description" content="Complete your secure checkout at REEL's luxury store." />
   <meta name="robots" content="noindex, nofollow" />
@@ -50,7 +50,7 @@
     <a href="index.html" class="nav-logo" aria-label="REEL Home">
       <div class="nav-logo-img-wrap">
         <img src="Images/BG/logo%20bg.png" alt="REEL Logo" class="nav-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
-        <div class="nav-logo-crown" style="display:none">âšœ</div>
+        <div class="nav-logo-crown" style="display:none">&#9884;</div>
       </div>
       <div class="nav-logo-text"><span class="nav-brand-name">REEL</span><span class="nav-brand-sub">Royalty Executive Empire Limited</span></div>
     </a>
@@ -147,7 +147,7 @@
           </button>
           <div class="security-badges">
             <span>ðŸ”’ Secure</span>
-            <span>âœ… Buyer Protected</span>
+            <span>&#9989; Buyer Protected</span>
             <span>ðŸ’¬ WhatsApp Confirmed</span>
           </div>
         </div>
@@ -233,7 +233,7 @@
   renderOrderItems();
   buildCheckoutTotals();
 
-  // â”€â”€ Handle Order Submission â†’ WhatsApp â”€â”€
+  // ── Handle Order Submission &larr;’ WhatsApp ──
   document.getElementById('checkout-form').addEventListener('submit', function(e) {
     e.preventDefault();
 
@@ -257,11 +257,11 @@
 
     const subtotal = cart.reduce((sum, i) => sum + (parseFloat(i.price)||0)*(i.qty||1), 0);
     const itemLines = cart.map(i =>
-      `   â€¢ ${i.name} Ã— ${i.qty||1}  â†’  ${formatPrice((parseFloat(i.price)||0)*(i.qty||1))}`
+      `   â€¢ ${i.name} Ã— ${i.qty||1}  &larr;’  ${formatPrice((parseFloat(i.price)||0)*(i.qty||1))}`
     ).join('\n');
 
     const msg =
-      `ðŸ›’ *NEW ORDER â€” REEL Global Store*\n` +
+      `ðŸ›’ *NEW ORDER &mdash; REEL Global Store*\n` +
       `â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”\n\n` +
       `ðŸ‘¤ *Customer Details*\n` +
       `   Name: ${fname} ${lname}\n` +
@@ -278,7 +278,7 @@
     const waURL = `https://wa.me/2348067029444?text=${encodeURIComponent(msg)}`;
 
     const btn = document.getElementById('co-submit-btn');
-    btn.innerHTML = '<span>âœ… &nbsp;Opening WhatsApp...</span>';
+    btn.innerHTML = '<span>&#9989; &nbsp;Opening WhatsApp...</span>';
     btn.disabled = true;
 
     localStorage.setItem('ree_cart', '[]');

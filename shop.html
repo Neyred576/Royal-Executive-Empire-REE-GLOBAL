@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Luxury Shop | REEL â€” Premium Executive Store</title>
+  <title>Luxury Shop | REEL &mdash; Premium Executive Store</title>
   <link rel="icon" type="image/png" href="/Images/BG/logo%20bg.png" />
-  <meta name="description" content="Shop the REEL exclusive collection of premium products â€” luxury executive accessories, power solutions, smart gadgets, and branded merchandise." />
+  <meta name="description" content="Shop the REEL exclusive collection of premium products &mdash; luxury executive accessories, power solutions, smart gadgets, and branded merchandise." />
   <meta name="keywords" content="REEL shop, luxury products, executive accessories, premium merchandise, REEL store" />
   <meta name="author" content="Onosedeba Israel Ose" />
   <meta name="robots" content="index, follow" />
@@ -19,7 +19,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
   <style>
-    /* â”€â”€ Hero â”€â”€ */
+    /* ── Hero ── */
     .shop-hero {
       position: relative;
       padding: 160px 0 90px;
@@ -57,7 +57,7 @@
       max-width: 500px; line-height: 1.8;
     }
 
-    /* â”€â”€ Controls Row â”€â”€ */
+    /* ── Controls Row ── */
     .shop-controls {
       display: flex; align-items: center;
       justify-content: space-between;
@@ -93,14 +93,14 @@
       cursor: pointer; outline: none;
     }
 
-    /* â”€â”€ Product Grid â”€â”€ */
+    /* ── Product Grid ── */
     .shop-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
       gap: 28px;
     }
 
-    /* â”€â”€ Product Card â”€â”€ */
+    /* ── Product Card ── */
     .product-card {
       background: rgba(255,255,255,0.025);
       border: 1px solid var(--gold-border);
@@ -197,7 +197,7 @@
     }
     .btn-add-cart svg { width: 14px; height: 14px; }
 
-    /* â”€â”€ Skeleton â”€â”€ */
+    /* ── Skeleton ── */
     .skeleton {
       background: linear-gradient(90deg, var(--black-700) 25%, rgba(255,255,255,0.04) 50%, var(--black-700) 75%);
       background-size: 200% 100%;
@@ -212,7 +212,7 @@
       overflow: hidden;
     }
 
-    /* â”€â”€ Empty State â”€â”€ */
+    /* ── Empty State ── */
     .empty-state {
       text-align: center; padding: 80px 40px;
       border: 1px dashed rgba(212,175,55,0.2);
@@ -223,7 +223,7 @@
     .empty-state h3 { font-family: var(--font-display); font-size: 1.6rem; color: #fff; margin-bottom: 10px; }
     .empty-state p { color: var(--w40); font-size: 0.9rem; }
 
-    /* â”€â”€ Cart Toast â”€â”€ */
+    /* ── Cart Toast ── */
     .cart-toast {
       position: fixed; bottom: 28px; right: 28px;
       background: rgba(10,10,10,0.96);
@@ -272,7 +272,7 @@
     <a href="index.html" class="nav-logo" aria-label="REEL Home">
       <div class="nav-logo-img-wrap">
         <img src="Images/BG/logo%20bg.png" alt="REEL Logo" class="nav-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
-        <div class="nav-logo-crown" style="display:none">âšœ</div>
+        <div class="nav-logo-crown" style="display:none">&#9884;</div>
       </div>
       <div class="nav-logo-text">
         <span class="nav-brand-name">REEL</span>
@@ -283,7 +283,7 @@
       <li><a href="index.html" class="nav-link">Home</a></li>
       <li><a href="about.html" class="nav-link">About REEL</a></li>
       <li class="nav-item-dropdown">
-        <a href="javascript:void(0)" class="nav-link">Divisions <span class="drop-arrow">â–¾</span></a>
+        <a href="javascript:void(0)" class="nav-link">Divisions <span class="drop-arrow">&#9662;</span></a>
         <ul class="nav-dropdown">
           <li><a href="reel-power.html">REEL Power</a></li>
           <li><a href="reel-branding.html">REEL Branding</a></li>
@@ -382,7 +382,7 @@
 
   function formatPrice(price) {
     const num = parseFloat(price);
-    if (isNaN(num)) return price || 'â€”';
+    if (isNaN(num)) return price || '&mdash;';
     return 'AED ' + num.toLocaleString('en-AE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   }
 

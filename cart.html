@@ -16,7 +16,7 @@
     .cart-section { min-height: 80vh; padding: 140px 0 80px; }
     .cart-layout { display: grid; grid-template-columns: 1fr 360px; gap: 40px; align-items: start; }
 
-    /* â”€â”€ Table â”€â”€ */
+    /* ── Table ── */
     .cart-table-wrap {
       background: var(--w08);
       border: 1px solid var(--gold-border);
@@ -44,7 +44,7 @@
     .cart-row:hover { background: var(--gold-fill); }
     .cart-row.removing { opacity: 0; transform: translateX(30px); }
 
-    /* â”€â”€ Item Info â”€â”€ */
+    /* ── Item Info ── */
     .cart-item-info { display: flex; align-items: center; gap: 16px; }
     .cart-thumb {
       width: 64px; height: 64px; border-radius: var(--radius-sm);
@@ -58,7 +58,7 @@
     .cart-price { color: var(--gold-300); font-weight: 700; font-size: 0.95rem; }
     .cart-subtotal { color: #fff; font-weight: 700; font-size: 0.95rem; }
 
-    /* â”€â”€ Quantity Controls â”€â”€ */
+    /* ── Quantity Controls ── */
     .qty-control {
       display: inline-flex; align-items: center;
       border: 1px solid var(--gold-border);
@@ -80,7 +80,7 @@
       pointer-events: none; user-select: none;
     }
 
-    /* â”€â”€ Remove Button â”€â”€ */
+    /* ── Remove Button ── */
     .cart-remove {
       width: 34px; height: 34px; border-radius: 50%;
       background: transparent; border: 1px solid rgba(255,255,255,0.1);
@@ -89,13 +89,13 @@
     }
     .cart-remove:hover { background: rgba(230,57,70,0.15); border-color: #E63946; color: #E63946; }
 
-    /* â”€â”€ Empty State â”€â”€ */
+    /* ── Empty State ── */
     .cart-empty { text-align: center; padding: 80px 40px; }
     .cart-empty-icon { font-size: 4rem; margin-bottom: 16px; }
     .cart-empty h3 { font-family: var(--font-display); font-size: 1.8rem; color: #fff; margin-bottom: 8px; }
     .cart-empty p { color: var(--w50); margin-bottom: 28px; }
 
-    /* â”€â”€ Summary Card â”€â”€ */
+    /* ── Summary Card ── */
     .cart-summary {
       background: var(--w08); border: 1px solid var(--gold-border);
       border-radius: var(--radius-xl); padding: 32px;
@@ -120,7 +120,7 @@
       font-size: 0.75rem; font-weight: 800; margin-left: 8px;
     }
 
-    /* â”€â”€ Checkout Button â”€â”€ */
+    /* ── Checkout Button ── */
     .btn-checkout {
       width: 100%; display: flex; align-items: center;
       justify-content: center; gap: 10px;
@@ -160,7 +160,7 @@
     <a href="index.html" class="nav-logo" aria-label="REEL Home">
       <div class="nav-logo-img-wrap">
         <img src="Images/BG/logo%20bg.png" alt="REEL Logo" class="nav-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
-        <div class="nav-logo-crown" style="display:none">âšœ</div>
+        <div class="nav-logo-crown" style="display:none">&#9884;</div>
       </div>
       <div class="nav-logo-text"><span class="nav-brand-name">REEL</span><span class="nav-brand-sub">Royalty Executive Empire LIMITED</span></div>
     </a>
@@ -204,7 +204,7 @@
           </div>
         </div>
         <div style="margin-top: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
-          <a href="shop.html" class="btn-ghost"><span>â† Continue Shopping</span></a>
+          <a href="shop.html" class="btn-ghost"><span>&larr; Continue Shopping</span></a>
           <button id="clear-cart-btn" class="btn-ghost" style="color:#E63946; border-color:rgba(230,57,70,0.3); display:none;">
             <span>ðŸ—‘ Clear Cart</span>
           </button>
@@ -264,7 +264,7 @@
 <script>
   document.getElementById('footer-year').textContent = new Date().getFullYear();
 
-  // â”€â”€ Cart helpers â”€â”€
+  // ── Cart helpers ──
   function getCart() {
     try { return JSON.parse(localStorage.getItem('ree_cart') || '[]'); }
     catch(e) { return []; }
@@ -280,7 +280,7 @@
     return 'AED ' + n.toLocaleString('en-AE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   }
 
-  // â”€â”€ Render the entire cart â”€â”€
+  // ── Render the entire cart ──
   function renderCart() {
     const cart = getCart();
     const container = document.getElementById('cart-items-container');
@@ -342,7 +342,7 @@
         </div>
         <div class="cart-price col-unit">${formatPrice(item.price)}</div>
         <div class="qty-control">
-          <button class="qty-btn" data-action="dec" data-idx="${idx}" aria-label="Decrease quantity">âˆ’</button>
+          <button class="qty-btn" data-action="dec" data-idx="${idx}" aria-label="Decrease quantity">&minus;</button>
           <span class="qty-num" id="qty-num-${idx}">${item.qty || 1}</span>
           <button class="qty-btn" data-action="inc" data-idx="${idx}" aria-label="Increase quantity">+</button>
         </div>
@@ -401,7 +401,7 @@
     }
   });
 
-  // â”€â”€ React to localStorage changes from other tabs â”€â”€
+  // ── React to localStorage changes from other tabs ──
   window.addEventListener('storage', e => {
     if (e.key === 'ree_cart') renderCart();
   });

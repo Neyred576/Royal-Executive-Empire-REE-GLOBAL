@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Article | REEL â€” Royalty Executive Empire Limited</title>
+  <title>Article | REEL &mdash; Royalty Executive Empire Limited</title>
   <link rel="icon" type="image/png" href="/Images/BG/logo%20bg.png" />
   <meta name="description" content="Read insightful articles from Royalty Executive Empire Limited (REEL) on business, luxury, technology, and global impact." />
   <meta name="author" content="Onosedeba Israel Ose" />
@@ -16,7 +16,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
   <style>
-    /* â”€â”€ Article Hero â”€â”€ */
+    /* ── Article Hero ── */
     .article-hero {
       position: relative;
       height: 70vh;
@@ -82,7 +82,7 @@
     }
     .article-meta-item svg { width: 14px; height: 14px; opacity: 0.7; }
 
-    /* â”€â”€ Article Body â”€â”€ */
+    /* ── Article Body ── */
     .article-section { padding: 80px 0 100px; }
     .article-layout {
       display: grid;
@@ -91,7 +91,7 @@
       align-items: start;
     }
 
-    /* â”€â”€ Article Content â”€â”€ */
+    /* ── Article Content ── */
     .article-content {
       color: var(--w70);
       font-size: 1.12rem;
@@ -157,7 +157,7 @@
     .share-btn:hover { border-color: var(--gold-300); color: var(--gold-300); background: var(--gold-fill); }
     .share-btn svg { width: 16px; height: 16px; }
 
-    /* â”€â”€ Sidebar â”€â”€ */
+    /* ── Sidebar ── */
     .article-sidebar { position: sticky; top: 100px; }
     .sidebar-card {
       background: rgba(255,255,255,0.025);
@@ -200,7 +200,7 @@
     .rel-post:hover .rel-title { color: var(--gold-300); }
     .rel-date { font-size: 0.72rem; color: var(--w40); margin-top: 4px; }
 
-    /* â”€â”€ Progress bar â”€â”€ */
+    /* ── Progress bar ── */
     .reading-progress {
       position: fixed; top: 0; left: 0;
       height: 3px; width: 0%;
@@ -209,7 +209,7 @@
       transition: width 0.1s linear;
     }
 
-    /* â”€â”€ Skeleton â”€â”€ */
+    /* ── Skeleton ── */
     .skeleton {
       background: linear-gradient(90deg, var(--black-700) 25%, rgba(255,255,255,0.04) 50%, var(--black-700) 75%);
       background-size: 200% 100%;
@@ -231,7 +231,7 @@
     <a href="index.html" class="nav-logo" aria-label="REEL Home">
       <div class="nav-logo-img-wrap">
         <img src="Images/BG/logo%20bg.png" alt="REEL Logo" class="nav-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
-        <div class="nav-logo-crown" style="display:none">âšœ</div>
+        <div class="nav-logo-crown" style="display:none">&#9884;</div>
       </div>
       <div class="nav-logo-text">
         <span class="nav-brand-name">REEL</span>
@@ -242,7 +242,7 @@
       <li><a href="index.html" class="nav-link">Home</a></li>
       <li><a href="about.html" class="nav-link">About REEL</a></li>
       <li class="nav-item-dropdown">
-        <a href="javascript:void(0)" class="nav-link">Divisions <span class="drop-arrow">â–¾</span></a>
+        <a href="javascript:void(0)" class="nav-link">Divisions <span class="drop-arrow">&#9662;</span></a>
         <ul class="nav-dropdown">
 
           <li><a href="reel-business.html">Business Solutions</a></li>
@@ -345,7 +345,7 @@
     const main = document.getElementById('article-main');
 
     if (!articleId) {
-      main.innerHTML = `<div style="text-align:center;padding:200px 20px"><h1 style="color:#fff;font-family:var(--font-display);font-size:3rem">Article Not Found</h1><a href="blog.html" style="color:var(--gold-300);margin-top:20px;display:inline-block">â† Return to Blog</a></div>`;
+      main.innerHTML = `<div style="text-align:center;padding:200px 20px"><h1 style="color:#fff;font-family:var(--font-display);font-size:3rem">Article Not Found</h1><a href="blog.html" style="color:var(--gold-300);margin-top:20px;display:inline-block">&larr; Return to Blog</a></div>`;
       return;
     }
 
@@ -355,7 +355,7 @@
       window.db.collection('blogs').orderBy('timestamp', 'desc').limit(8).get()
     ]).then(([doc, allSnap]) => {
       if (!doc.exists) {
-        main.innerHTML = `<div style="text-align:center;padding:200px 20px"><h1 style="color:#fff;font-family:var(--font-display);font-size:3rem">Article Not Found</h1><a href="blog.html" style="color:var(--gold-300);margin-top:20px;display:inline-block">â† Return to Blog</a></div>`;
+        main.innerHTML = `<div style="text-align:center;padding:200px 20px"><h1 style="color:#fff;font-family:var(--font-display);font-size:3rem">Article Not Found</h1><a href="blog.html" style="color:var(--gold-300);margin-top:20px;display:inline-block">&larr; Return to Blog</a></div>`;
         return;
       }
 
@@ -447,7 +447,7 @@
 
     }).catch(err => {
       console.error('Article load error:', err);
-      document.getElementById('article-main').innerHTML = `<div style="text-align:center;padding:200px 20px"><h1 style="color:#fff;font-family:var(--font-display)">Error Loading Article</h1><p style="color:var(--w50);margin-top:12px">Please check your connection and try again.</p><a href="blog.html" style="color:var(--gold-300);margin-top:20px;display:inline-block">â† Return to Blog</a></div>`;
+      document.getElementById('article-main').innerHTML = `<div style="text-align:center;padding:200px 20px"><h1 style="color:#fff;font-family:var(--font-display)">Error Loading Article</h1><p style="color:var(--w50);margin-top:12px">Please check your connection and try again.</p><a href="blog.html" style="color:var(--gold-300);margin-top:20px;display:inline-block">&larr; Return to Blog</a></div>`;
     });
   }
 
