@@ -1,10 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Blog &amp; Insights | REEL — Royalty Executive Empire Limited</title>
-  <meta name="description" content="Read the latest articles, news, and insights from Royalty Executive Empire Limited (REEL) — covering luxury, business, technology, and global impact." />
+  <title>Blog &amp; Insights | REEL â€” Royalty Executive Empire Limited</title>
+  <link rel="icon" type="image/png" href="/Images/BG/logo%20bg.png" />
+  <meta name="description" content="Read the latest articles, news, and insights from Royalty Executive Empire Limited (REEL) â€” covering luxury, business, technology, and global impact." />
   <meta name="keywords" content="REEL blog, Royalty Executive Empire Limited news, luxury insights, business articles, Africa innovation" />
   <meta name="author" content="Onosedeba Israel Ose" />
   <meta name="robots" content="index, follow" />
@@ -18,7 +19,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
   <style>
-    /* ── Hero ── */
+    /* â”€â”€ Hero â”€â”€ */
     .blog-hero {
       position: relative;
       padding: 160px 0 90px;
@@ -60,7 +61,7 @@
       line-height: 1.8;
     }
 
-    /* ── Filter Bar ── */
+    /* â”€â”€ Filter Bar â”€â”€ */
     .filter-bar {
       display: flex; align-items: center; gap: 10px;
       flex-wrap: wrap;
@@ -85,7 +86,7 @@
       box-shadow: 0 4px 16px rgba(212,175,55,0.3);
     }
 
-    /* ── Layout ── */
+    /* â”€â”€ Layout â”€â”€ */
     .blog-page-layout {
       display: grid;
       grid-template-columns: 1fr 320px;
@@ -93,7 +94,7 @@
       align-items: start;
     }
 
-    /* ── Featured Card ── */
+    /* â”€â”€ Featured Card â”€â”€ */
     .blog-featured {
       position: relative;
       border-radius: var(--radius-xl);
@@ -158,7 +159,7 @@
       background: var(--gold-300);
     }
 
-    /* ── Blog Card ── */
+    /* â”€â”€ Blog Card â”€â”€ */
     .blog-list { display: flex; flex-direction: column; gap: 24px; }
     .blog-card {
       display: grid;
@@ -225,7 +226,7 @@
     }
     .blog-card-date { font-size: 0.75rem; color: var(--w40); }
 
-    /* ── Sidebar ── */
+    /* â”€â”€ Sidebar â”€â”€ */
     .blog-sidebar { position: sticky; top: 100px; }
     .sidebar-widget {
       background: rgba(255,255,255,0.025);
@@ -277,7 +278,7 @@
     }
     .cat-chip:hover { background: var(--gold-fill); color: var(--gold-300); }
 
-    /* ── Skeleton ── */
+    /* â”€â”€ Skeleton â”€â”€ */
     .skeleton {
       background: linear-gradient(90deg, var(--black-700) 25%, rgba(255,255,255,0.04) 50%, var(--black-700) 75%);
       background-size: 200% 100%;
@@ -297,7 +298,7 @@
     .sk-thumb { min-height: 160px; }
     .sk-body { padding: 22px 24px; display: flex; flex-direction: column; gap: 10px; justify-content: center; }
 
-    /* ── Empty State ── */
+    /* â”€â”€ Empty State â”€â”€ */
     .empty-state {
       text-align: center; padding: 80px 40px;
       border: 1px dashed rgba(212,175,55,0.2);
@@ -307,7 +308,7 @@
     .empty-state h3 { font-family: var(--font-display); font-size: 1.6rem; color: #fff; margin-bottom: 10px; }
     .empty-state p { color: var(--w40); font-size: 0.9rem; }
 
-    /* ── Social links ── */
+    /* â”€â”€ Social links â”€â”€ */
     .social-link {
       display: flex; align-items: center; gap: 12px;
       color: var(--w70); font-size: 0.9rem; font-weight: 500;
@@ -337,7 +338,7 @@
     <a href="index.html" class="nav-logo" aria-label="REEL Home">
       <div class="nav-logo-img-wrap">
         <img src="Images/BG/logo%20bg.png" alt="REEL Logo" class="nav-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
-        <div class="nav-logo-crown" style="display:none">⚜</div>
+        <div class="nav-logo-crown" style="display:none">âšœ</div>
       </div>
       <div class="nav-logo-text">
         <span class="nav-brand-name">REEL</span>
@@ -348,7 +349,7 @@
       <li><a href="index.html" class="nav-link">Home</a></li>
       <li><a href="about.html" class="nav-link">About REEL</a></li>
       <li class="nav-item-dropdown">
-        <a href="javascript:void(0)" class="nav-link">Divisions <span class="drop-arrow">▾</span></a>
+        <a href="javascript:void(0)" class="nav-link">Divisions <span class="drop-arrow">â–¾</span></a>
         <ul class="nav-dropdown">
 
           <li><a href="reel-business.html">Business Solutions</a></li>
@@ -470,7 +471,7 @@
 
   function getExcerpt(text, len = 120) {
     if (!text) return '';
-    return text.length > len ? text.substring(0, len).trimEnd() + '…' : text;
+    return text.length > len ? text.substring(0, len).trimEnd() + 'â€¦' : text;
   }
 
   function renderFeatured(blog) {
@@ -479,7 +480,7 @@
     wrap.innerHTML = `
       <div class="blog-featured-label">Featured Article</div>
       <a href="article.html?id=${blog.id}" class="blog-featured" style="display:block;text-decoration:none;">
-        ${blog.image ? `<img src="${blog.image}" alt="${blog.title}" class="blog-featured-img" style="object-position:${blog.imagePos || 'center center'}">` : `<div class="blog-featured-img" style="background:linear-gradient(135deg,#1a1000,#0d0800);display:flex;align-items:center;justify-content:center;font-size:5rem;">📰</div>`}
+        ${blog.image ? `<img src="${blog.image}" alt="${blog.title}" class="blog-featured-img" style="object-position:${blog.imagePos || 'center center'}">` : `<div class="blog-featured-img" style="background:linear-gradient(135deg,#1a1000,#0d0800);display:flex;align-items:center;justify-content:center;font-size:5rem;">ðŸ“°</div>`}
         <div class="blog-featured-overlay"></div>
         <div class="blog-featured-body">
           <div class="blog-featured-tag">${blog.category || 'Uncategorized'}</div>
@@ -499,7 +500,7 @@
     list.innerHTML = blogs.map(b => `
       <a href="article.html?id=${b.id}" class="blog-card" style="text-decoration:none;">
         <div class="blog-card-thumb">
-          ${b.image ? `<img src="${b.image}" alt="${b.title}" style="object-position:${b.imagePos||'center center'}">` : '📰'}
+          ${b.image ? `<img src="${b.image}" alt="${b.title}" style="object-position:${b.imagePos||'center center'}">` : 'ðŸ“°'}
         </div>
         <div class="blog-card-body">
           <div class="blog-card-tag">${b.category || ''}</div>
@@ -517,7 +518,7 @@
     if (!recent.length) { el.innerHTML = '<p style="color:var(--w40);font-size:0.85rem;">No posts yet.</p>'; return; }
     el.innerHTML = recent.map(b => `
       <div class="recent-post">
-        <div class="rp-thumb">${b.image ? `<img src="${b.image}" alt="${b.title}" style="object-position:${b.imagePos||'center'}">` : '📰'}</div>
+        <div class="rp-thumb">${b.image ? `<img src="${b.image}" alt="${b.title}" style="object-position:${b.imagePos||'center'}">` : 'ðŸ“°'}</div>
         <div class="rp-text"><a href="article.html?id=${b.id}">${b.title}</a><div class="rp-date">${b.date || ''}</div></div>
       </div>
     `).join('');
