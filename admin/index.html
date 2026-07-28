@@ -1897,6 +1897,9 @@
           renderList(arr, listId, type, collectionName);
           updateStats();
           e.target.reset();
+          if (formId === 'form-blog' && typeof blogQuill !== 'undefined' && blogQuill) {
+            blogQuill.root.innerHTML = '';
+          }
           showToast('Success!', `${type.charAt(0).toUpperCase() + type.slice(1)} published successfully.`);
         } catch(err) {
           console.error(err);
@@ -2091,11 +2094,6 @@
       },
       'blogs', blogs, 'blog-list', 'blog'
     );
-    
-    // Clear Quill editor on successful submit
-    document.getElementById('form-blog').addEventListener('submit', () => {
-      setTimeout(() => { if (blogQuill) blogQuill.root.innerHTML = ''; }, 1000);
-    });
 
     handleForm('form-portfolio', 'pf-img',
       img => ({
