@@ -58,6 +58,37 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
+    // --- INITIALIZE QUILL EDITOR ---
+    let blogQuill = null;
+    if (document.getElementById('blog-quill-editor') && typeof Quill !== 'undefined') {
+      blogQuill = new Quill('#blog-quill-editor', {
+        theme: 'snow',
+        placeholder: 'Write your full executive blog post here…',
+        modules: {
+          toolbar: [
+            [{ 'header': [1, 2, 3, false] }],
+            ['bold', 'italic', 'underline', 'strike'],
+            [{ 'color': [] }, { 'background': [] }],
+            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+            ['link', 'clean']
+          ]
+        }
+      });
+      
+      // Real-time word count
+      blogQuill.on('text-change', function() {
+        const text = blogQuill.getText().trim();
+        const words = text.length > 0 ? text.split(/\s+/).length : 0;
+        const chars = text.length;
+        
+        const qlInfo = document.getElementById('ql-word-info');
+        const headerInfo = document.getElementById('word-count-display');
+        
+        if (qlInfo) qlInfo.textContent = `${words} words · ${chars} characters`;
+        if (headerInfo) headerInfo.textContent = `${words} words`;
+      });
+    }
+
     // --- FIREBASE INITIALIZATION WAIT ---
     const waitForDb = (callback) => {
       if (window.db) {
@@ -230,7 +261,15 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const title = document.getElementById('blog-title').value;
       const category = document.getElementById('blog-cat').value;
-      const content = document.getElementById('blog-content').value;
+      
+      // Get HTML content from Quill editor, fallback to hidden input just in case
+      const content = blogQuill ? blogQuill.root.innerHTML : document.getElementById('blog-content').value;
+      
+      // Check if editor is practically empty (Quill leaves a <p><br></p> by default)
+      if (!content || content === '<p><br></p>') {
+        alert("Please enter the blog content.");
+        return;
+      }
       const status = document.getElementById('blog-status').value;
       const fileInput = document.getElementById('blog-img');
       
@@ -245,7 +284,9 @@ document.addEventListener('DOMContentLoaded', () => {
             date: new Date().toLocaleDateString('en-US', {month: 'short', day: 'numeric', year: 'numeric'}),
             timestamp: Date.now()
           }).then(() => {
-            e.target.reset(); pendingScheduleTime = null;
+            e.target.reset(); 
+            if (blogQuill) blogQuill.root.innerHTML = '';
+            pendingScheduleTime = null;
             showToast('Published', 'Blog post successfully added to Firebase.');
           });
         };

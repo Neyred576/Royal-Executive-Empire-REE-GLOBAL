@@ -324,7 +324,11 @@
 
   function formatContent(raw) {
     if (!raw) return '<p>No content available.</p>';
-    // Split on double newlines first (paragraphs), then single newlines
+    // If it already contains HTML from the new Rich Text Editor, return as-is
+    if (/<[a-z][\s\S]*>/i.test(raw)) {
+      return raw;
+    }
+    // Fallback for old plain-text blog posts
     return raw.split(/\n\n+/).map(block => {
       block = block.trim();
       if (!block) return '';

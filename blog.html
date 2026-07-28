@@ -475,6 +475,7 @@
 
   function getExcerpt(text, len = 120) {
     if (!text) return '';
+    text = text.replace(/<[^>]*>?/gm, ''); // Strip HTML tags
     return text.length > len ? text.substring(0, len).trimEnd() + '…' : text;
   }
 
@@ -570,6 +571,7 @@
   <script src="/js/pwa.js"></script>
 <script src="/js/notifications.js"></script>
 
+<script>
   // __autopublish__ - Check every 60s if any scheduled items are now due
   setInterval(function() {
     if (!window.db) return;
@@ -591,6 +593,7 @@
         });
       });
   }, 30000); // Check every 30 seconds
+</script>
 
 </body>
 </html>

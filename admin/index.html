@@ -8,6 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <!-- Quill Rich Text Editor -->
+  <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -796,6 +798,131 @@
   <link rel="manifest" href="/manifest.json" />
   <meta name="theme-color" content="#D4AF37" />
   <link rel="apple-touch-icon" href="/Images/icons/icon-192x192.png" />
+
+  <style>
+    /* ═ QUILL RICH TEXT EDITOR - REEL DARK THEME ═ */
+    .ql-editor-wrapper {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: all 0.3s ease;
+    }
+    .ql-editor-wrapper:focus-within {
+      border-color: var(--gold);
+      background: rgba(212,175,55,0.04);
+      box-shadow: 0 0 0 3px rgba(212,175,55,0.1), 0 4px 12px rgba(0,0,0,0.3);
+    }
+    /* Toolbar */
+    .ql-toolbar.ql-snow {
+      background: rgba(20,18,12,0.95);
+      border: none;
+      border-bottom: 1px solid rgba(212,175,55,0.18);
+      padding: 10px 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2px;
+    }
+    .ql-toolbar.ql-snow .ql-formats {
+      margin-right: 8px;
+      border-right: 1px solid rgba(255,255,255,0.08);
+      padding-right: 8px;
+    }
+    .ql-toolbar.ql-snow .ql-formats:last-child {
+      border-right: none;
+    }
+    /* Toolbar buttons */
+    .ql-toolbar.ql-snow button,
+    .ql-toolbar.ql-snow .ql-picker-label {
+      color: rgba(255,255,255,0.55) !important;
+      border-radius: 5px;
+      transition: all 0.2s ease;
+      padding: 4px 6px;
+    }
+    .ql-toolbar.ql-snow button:hover,
+    .ql-toolbar.ql-snow .ql-picker-label:hover {
+      background: rgba(212,175,55,0.12) !important;
+      color: var(--gold) !important;
+    }
+    .ql-toolbar.ql-snow button.ql-active,
+    .ql-toolbar.ql-snow .ql-picker-label.ql-active {
+      background: rgba(212,175,55,0.15) !important;
+      color: var(--gold) !important;
+    }
+    .ql-toolbar.ql-snow button svg .ql-stroke,
+    .ql-toolbar.ql-snow .ql-picker-label svg .ql-stroke { stroke: currentColor !important; }
+    .ql-toolbar.ql-snow button svg .ql-fill,
+    .ql-toolbar.ql-snow .ql-picker-label svg .ql-fill { fill: currentColor !important; }
+    /* Dropdowns */
+    .ql-toolbar.ql-snow .ql-picker-options {
+      background: #111 !important;
+      border: 1px solid rgba(212,175,55,0.25) !important;
+      border-radius: 8px !important;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.6) !important;
+      padding: 6px !important;
+    }
+    .ql-toolbar.ql-snow .ql-picker-item {
+      color: rgba(255,255,255,0.7) !important;
+      border-radius: 4px !important;
+      padding: 4px 8px !important;
+    }
+    .ql-toolbar.ql-snow .ql-picker-item:hover,
+    .ql-toolbar.ql-snow .ql-picker-item.ql-selected {
+      background: rgba(212,175,55,0.12) !important;
+      color: var(--gold) !important;
+    }
+    .ql-snow .ql-picker.ql-expanded .ql-picker-label {
+      color: var(--gold) !important;
+    }
+    /* Editor body */
+    .ql-container.ql-snow {
+      border: none;
+      background: rgba(255,255,255,0.03);
+      min-height: 280px;
+      font-family: var(--font-body) !important;
+      font-size: 0.95rem !important;
+    }
+    .ql-editor {
+      color: #fff !important;
+      min-height: 280px;
+      padding: 16px 18px;
+      line-height: 1.75;
+      font-family: var(--font-body) !important;
+    }
+    .ql-editor.ql-blank::before {
+      color: rgba(255,255,255,0.18) !important;
+      font-style: normal !important;
+      font-family: var(--font-body) !important;
+    }
+    /* Headings inside editor */
+    .ql-editor h1 { font-size: 1.8rem; font-weight: 700; margin: 12px 0 8px; color: #fff; }
+    .ql-editor h2 { font-size: 1.4rem; font-weight: 600; margin: 10px 0 6px; color: #fff; }
+    .ql-editor h3 { font-size: 1.1rem; font-weight: 600; margin: 8px 0 4px; color: #fff; }
+    .ql-editor p  { margin: 0 0 8px; }
+    .ql-editor ul, .ql-editor ol { padding-left: 20px; margin: 8px 0; }
+    .ql-editor li { margin-bottom: 4px; }
+    .ql-editor a  { color: var(--gold); }
+    .ql-editor blockquote {
+      border-left: 3px solid var(--gold);
+      padding-left: 12px;
+      margin: 10px 0;
+      color: rgba(255,255,255,0.6);
+    }
+    /* Color picker swatch adjustments */
+    .ql-color-picker .ql-picker-options { width: 164px !important; }
+    .ql-color-picker .ql-picker-item { width: 18px !important; height: 18px !important; border-radius: 3px !important; margin: 2px !important; }
+    /* Word count bar below editor */
+    .ql-word-count-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 14px;
+      background: rgba(20,18,12,0.9);
+      border-top: 1px solid rgba(212,175,55,0.1);
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.35);
+    }
+    .ql-word-count-bar span { display: flex; align-items: center; gap: 8px; }
+  </style>
 </head>
 <body id="admin-dashboard">
 
@@ -1064,9 +1191,13 @@
               </select>
             </div>
             <div class="form-group">
-              <label>Content
-                <span style="float:right; display:flex; align-items:center; gap:10px;">
-                  <span id="word-count-display" style="font-size:0.72rem; color:var(--w40); font-weight:500;">0 / 1000 words</span>
+              <label style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
+                <span style="display:flex;align-items:center;gap:8px;">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" width="15" height="15"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                  Content Editor
+                </span>
+                <span style="display:flex; align-items:center; gap:10px;">
+                  <span id="word-count-display" style="font-size:0.72rem; color:var(--w40); font-weight:500;">0 words</span>
                   <span style="font-size:0.72rem; color:var(--w40); font-weight:700; text-transform:uppercase; letter-spacing:1px;">Limit</span>
                   <label style="position:relative; display:inline-block; width:38px; height:20px; cursor:pointer; margin:0;">
                     <input type="checkbox" id="word-limit-toggle" checked style="opacity:0;width:0;height:0;position:absolute;">
@@ -1075,7 +1206,16 @@
                   </label>
                 </span>
               </label>
-              <textarea id="blog-content" placeholder="Write your full blog post here…" required style="min-height:260px;"></textarea>
+              <!-- Quill Rich Text Editor -->
+              <div class="ql-editor-wrapper">
+                <div id="blog-quill-editor"></div>
+                <div class="ql-word-count-bar">
+                  <span id="ql-word-info">0 words · 0 characters</span>
+                  <span style="color:rgba(212,175,55,0.5); font-size:0.68rem; letter-spacing:1px;">RICH TEXT EDITOR</span>
+                </div>
+              </div>
+              <!-- Hidden input to hold HTML for form submission -->
+              <input type="hidden" id="blog-content" />
             </div>
             
             <div class="form-group" style="padding:15px; background:rgba(212,175,55,0.03); border-radius:8px; border:1px solid rgba(212,175,55,0.15);">
@@ -1424,6 +1564,8 @@
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging-compat.js"></script>
   <script src="../js/firebase-init.js"></script>
+  <!-- Quill JS -->
+  <script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
 
   <script>
     // ── Security check ──
@@ -1489,6 +1631,38 @@
 
     updateTime();
     setInterval(updateTime, 1000);
+
+    // ── Initialize Quill Editor ──
+    let blogQuill = null;
+    document.addEventListener('DOMContentLoaded', () => {
+      if (document.getElementById('blog-quill-editor') && typeof Quill !== 'undefined') {
+        blogQuill = new Quill('#blog-quill-editor', {
+          theme: 'snow',
+          placeholder: 'Write your full executive blog post here…',
+          modules: {
+            toolbar: [
+              [{ 'header': [1, 2, 3, false] }],
+              ['bold', 'italic', 'underline', 'strike'],
+              [{ 'color': [] }, { 'background': [] }],
+              [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+              ['link', 'clean']
+            ]
+          }
+        });
+        
+        blogQuill.on('text-change', function() {
+          const text = blogQuill.getText().trim();
+          const words = text.length > 0 ? text.split(/\s+/).length : 0;
+          const chars = text.length;
+          
+          const qlInfo = document.getElementById('ql-word-info');
+          const headerInfo = document.getElementById('word-count-display');
+          
+          if (qlInfo) qlInfo.textContent = `${words} words · ${chars} characters`;
+          if (headerInfo) headerInfo.textContent = `${words} words`;
+        });
+      }
+    });
 
     // ── Data ──
     let blogs = [];
@@ -1723,6 +1897,9 @@
           renderList(arr, listId, type, collectionName);
           updateStats();
           e.target.reset();
+          if (formId === 'form-blog' && typeof blogQuill !== 'undefined' && blogQuill) {
+            blogQuill.root.innerHTML = '';
+          }
           showToast('Success!', `${type.charAt(0).toUpperCase() + type.slice(1)} published successfully.`);
         } catch(err) {
           console.error(err);
@@ -1894,17 +2071,27 @@
     waitForDbThenScheduler(15);
 
     handleForm('form-blog', 'blog-img',
-      img => ({
-        title: document.getElementById('blog-title').value,
-        category: document.getElementById('blog-cat').value,
-        content: document.getElementById('blog-content').value,
-        image: img,
-        imagePos: document.getElementById('blog-img-pos').value,
-        date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
-        status: document.getElementById('blog-status').value,
-        scheduleTime: document.getElementById('blog-status').value === 'scheduled' ? pendingScheduleTime : null,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp()
-      }),
+      img => {
+        let contentStr = '';
+        if (blogQuill) {
+          contentStr = blogQuill.root.innerHTML;
+          if (contentStr === '<p><br></p>') contentStr = '';
+        } else {
+          contentStr = document.getElementById('blog-content').value;
+        }
+
+        return {
+          title: document.getElementById('blog-title').value,
+          category: document.getElementById('blog-cat').value,
+          content: contentStr,
+          image: img,
+          imagePos: document.getElementById('blog-img-pos').value,
+          date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+          status: document.getElementById('blog-status').value,
+          scheduleTime: document.getElementById('blog-status').value === 'scheduled' ? pendingScheduleTime : null,
+          timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        };
+      },
       'blogs', blogs, 'blog-list', 'blog'
     );
 
