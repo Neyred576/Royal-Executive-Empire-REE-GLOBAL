@@ -1632,6 +1632,38 @@
     updateTime();
     setInterval(updateTime, 1000);
 
+    // ── Initialize Quill Editor ──
+    let blogQuill = null;
+    document.addEventListener('DOMContentLoaded', () => {
+      if (document.getElementById('blog-quill-editor') && typeof Quill !== 'undefined') {
+        blogQuill = new Quill('#blog-quill-editor', {
+          theme: 'snow',
+          placeholder: 'Write your full executive blog post here…',
+          modules: {
+            toolbar: [
+              [{ 'header': [1, 2, 3, false] }],
+              ['bold', 'italic', 'underline', 'strike'],
+              [{ 'color': [] }, { 'background': [] }],
+              [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+              ['link', 'clean']
+            ]
+          }
+        });
+        
+        blogQuill.on('text-change', function() {
+          const text = blogQuill.getText().trim();
+          const words = text.length > 0 ? text.split(/\s+/).length : 0;
+          const chars = text.length;
+          
+          const qlInfo = document.getElementById('ql-word-info');
+          const headerInfo = document.getElementById('word-count-display');
+          
+          if (qlInfo) qlInfo.textContent = `${words} words · ${chars} characters`;
+          if (headerInfo) headerInfo.textContent = `${words} words`;
+        });
+      }
+    });
+
     // ── Data ──
     let blogs = [];
     let portfolio = [];
@@ -2036,19 +2068,34 @@
     waitForDbThenScheduler(15);
 
     handleForm('form-blog', 'blog-img',
-      img => ({
-        title: document.getElementById('blog-title').value,
-        category: document.getElementById('blog-cat').value,
-        content: document.getElementById('blog-content').value,
-        image: img,
-        imagePos: document.getElementById('blog-img-pos').value,
-        date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
-        status: document.getElementById('blog-status').value,
-        scheduleTime: document.getElementById('blog-status').value === 'scheduled' ? pendingScheduleTime : null,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp()
-      }),
+      img => {
+        let contentStr = '';
+        if (blogQuill) {
+          contentStr = blogQuill.root.innerHTML;
+          if (contentStr === '<p><br></p>') contentStr = '';
+        } else {
+          contentStr = document.getElementById('blog-content').value;
+        }
+
+        return {
+          title: document.getElementById('blog-title').value,
+          category: document.getElementById('blog-cat').value,
+          content: contentStr,
+          image: img,
+          imagePos: document.getElementById('blog-img-pos').value,
+          date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+          status: document.getElementById('blog-status').value,
+          scheduleTime: document.getElementById('blog-status').value === 'scheduled' ? pendingScheduleTime : null,
+          timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        };
+      },
       'blogs', blogs, 'blog-list', 'blog'
     );
+    
+    // Clear Quill editor on successful submit
+    document.getElementById('form-blog').addEventListener('submit', () => {
+      setTimeout(() => { if (blogQuill) blogQuill.root.innerHTML = ''; }, 1000);
+    });
 
     handleForm('form-portfolio', 'pf-img',
       img => ({
