@@ -42,6 +42,10 @@
     @media(max-width:992px) { .checkout-layout { grid-template-columns: 1fr; } .order-summary-card { position: static; } }
     @media(max-width: 576px) { .form-row { grid-template-columns: 1fr; } .checkout-form-wrap { padding: 24px 18px; } }
   </style>
+
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#D4AF37" />
+  <link rel="apple-touch-icon" href="/Images/icons/icon-192x192.png" />
 </head>
 <body>
 
@@ -293,5 +297,8 @@
     }, 400);
   });
 </script>
+
+  <script src="/js/pwa.js"></script>
+<script src="/js/notifications.js"></script>
 </body>
 </html>

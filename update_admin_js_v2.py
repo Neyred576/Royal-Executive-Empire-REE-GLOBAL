@@ -1,4 +1,9 @@
-/**
+import os
+
+def rewrite_admin_js():
+    file_path = r"c:\Users\prosp\Desktop\WEBSITES\Royal Exercutive Empire\Web\admin\js\admin.js"
+    
+    new_js = """/**
  * REEL - Admin Controller
  * Handles authentication and saving data to FIREBASE FIRESTORE.
  */
@@ -375,3 +380,11 @@ document.addEventListener('DOMContentLoaded', () => {
   } // end initAdminPanel
 
 });
+"""
+
+    with open(file_path, 'w', encoding='utf-8') as f:
+        f.write(new_js)
+    print("Updated admin.js")
+
+if __name__ == "__main__":
+    rewrite_admin_js()

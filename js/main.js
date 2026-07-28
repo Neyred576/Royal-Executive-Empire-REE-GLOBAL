@@ -53,6 +53,10 @@ document.addEventListener('DOMContentLoaded', () => {
     btnAccept.addEventListener('click', () => {
       try { localStorage.setItem('ree_cookie_consent', 'accepted'); } catch(e) {}
       if (cookieBanner) cookieBanner.classList.remove('show');
+      // After cookie consent, show the install app modal
+      setTimeout(() => {
+        if (typeof showInstallPromotion === 'function') showInstallPromotion();
+      }, 600);
     });
   }
   

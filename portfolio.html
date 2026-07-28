@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -176,6 +176,10 @@
     @media(max-width:992px){ .pf-grid { columns: 2; } }
     @media(max-width:576px){ .pf-grid { columns: 1; } .pf-stats { gap: 24px; } }
   </style>
+
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#D4AF37" />
+  <link rel="apple-touch-icon" href="/Images/icons/icon-192x192.png" />
 </head>
 <body>
 <div class="bg-animated-glow"></div>
@@ -265,7 +269,8 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
-<script src="js/firebase-init.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging-compat.js"></script>
+  <script src="js/firebase-init.js"></script>
 <script src="js/main.js"></script>
 
 <script>
@@ -317,7 +322,15 @@
   function loadPortfolio() {
     if (!window.db) { setTimeout(loadPortfolio, 60); return; }
     window.db.collection('portfolio').orderBy('timestamp', 'desc').get().then(snap => {
-      allProjects = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+      let _fetched = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+      const _now = new Date();
+      allProjects = _fetched.filter(item => {
+        if(item.status === 'scheduled' && item.scheduleTime) {
+          return new Date(item.scheduleTime) <= _now;
+        }
+        if(item.status === 'draft') return false;
+        return true;
+      });
       renderGrid(allProjects);
     }).catch(err => {
       console.error('Portfolio load error:', err);
@@ -327,6 +340,32 @@
 
   loadPortfolio();
 </script>
+
+  <script src="/js/pwa.js"></script>
+<script src="/js/notifications.js"></script>
+
+  // __autopublish__ - Check every 60s if any scheduled items are now due
+  setInterval(function() {
+    if (!window.db) return;
+    var now = Date.now();
+    window.db.collection('portfolio')
+      .where('status', '==', 'scheduled')
+      .get()
+      .then(function(snap) {
+        snap.forEach(function(doc) {
+          var data = doc.data();
+          if (data.scheduleTime && new Date(data.scheduleTime).getTime() <= now) {
+            // Update status to published so it goes live
+            doc.ref.update({ status: 'published' }).then(function() {
+              console.log('Auto-published: ' + (data.title || data.name));
+              // Refresh the page to show the newly published item
+              window.location.reload();
+            });
+          }
+        });
+      });
+  }, 30000); // Check every 30 seconds
+
 </body>
 </html>
 
