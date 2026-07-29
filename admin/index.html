@@ -1659,7 +1659,7 @@
 
     // ── Data ──
     let blogs = [];
-    let portfolio = [];
+    let properties = [];
     let products = [];
 
     // ── Load Data from Firebase ──
@@ -1856,7 +1856,7 @@
             await window.db.collection(col).doc(id).delete();
             
             if (t === 'blog')       { blogs.splice(i,1); renderList(blogs, 'blog-list', 'blog', col); }
-            if (t === 'portfolio') // Using 'portfolio' collection for REEL Properties  { portfolio.splice(i,1); renderList(portfolio, 'portfolio-list', 'portfolio', col); }
+            if (t === 'property')   { properties.splice(i,1); renderList(properties, 'prop-list', 'property', col); }
             if (t === 'product')    { products.splice(i,1); renderList(products, 'product-list', 'product', col); }
             
             updateStats();
@@ -2089,7 +2089,7 @@
     // ── Real-time Scheduler Listeners ──
     function attachSchedulerListeners() {
       let allScheduled = [];
-      const colMap = { blogs: 'Blog', portfolio: 'Portfolio', products: 'Product' };
+      const colMap = { blogs: 'Blog', properties: 'Property', products: 'Product' };
 
       Object.entries(colMap).forEach(([col, type]) => {
         window.db.collection(col).where('status', '==', 'scheduled').onSnapshot(snap => {
