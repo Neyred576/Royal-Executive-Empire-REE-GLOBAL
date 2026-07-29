@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Business Solutions | REEL</title>
+  <title>REEL BUSINESS | REEL</title>
   <link rel="icon" type="image/png" href="/Images/BG/logo%20bg.png" />
   <meta name="description" content="Strategic Business Consulting & Corporate Solutions by Royalty Executive Empire Limited." />
   <meta name="theme-color" content="#D4AF37" />
@@ -12,49 +12,264 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
   <style>
-    .div-page-hero { position: relative; min-height: 70vh; display: flex; align-items: center; overflow: hidden; padding-top: 120px; }
-    .div-hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 60% 50%, rgba(212,175,55,0.08) 0%, transparent 60%), var(--black-900); }
-    .div-hero-overlay { position: absolute; inset: 0; background: linear-gradient(105deg, rgba(8,8,8,0.97) 40%, rgba(8,8,8,0.6) 100%); }
-    .div-hero-inner { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; max-width: 1200px; margin: 0 auto; text-align: left; }
-    @media(max-width:1024px) { .div-hero-inner { grid-template-columns: 1fr; text-align: center; } .div-hero-visual { display: none; } }
+    .div-page-hero { position: relative; min-height: 80vh; display: flex; align-items: center; overflow: hidden; padding-top: 80px; padding-bottom: 80px; background-color: var(--black-900); }
+    .div-page-hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(rgba(8,8,8,0.45), rgba(8,8,8,0.65)), url('Images/reel_business_hero.png') center 30% / cover no-repeat; animation: heroBgZoom 25s ease-in-out infinite alternate; z-index: 0; will-change: transform; }
+    .div-hero-bg { display: none; }
+    .div-hero-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(8,8,8,0.65) 0%, rgba(8,8,8,0.1) 100%); }
+    .div-hero-inner { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: flex-start; max-width: 700px; text-align: left; }
+    .div-hero-visual { display: none !important; }
     .div-hero-title { font-family: var(--font-display); font-size: clamp(3rem, 6vw, 5.5rem); line-height: 1.0; color: #fff; margin-bottom: 28px; }
     .div-hero-title span { color: var(--gold-300); }
     .div-hero-desc { color: var(--w60); font-size: 1.2rem; line-height: 1.85; margin: 0 auto 44px; }
 
-    /* Split Layout */
-    .section-split-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-bottom: 70px; }
-    .split-text { display: flex; flex-direction: column; gap: 16px; }
-    .split-text h2 { margin: 0; text-align: left; }
-    .split-text p { color: var(--w60); line-height: 1.8; font-size: 1rem; margin: 0; }
-    .split-stats { display: flex; gap: 24px; margin-top: 8px; flex-wrap: wrap; }
-    .split-stat { display: flex; flex-direction: column; }
-    .split-stat strong { font-size: 1.8rem; font-weight: 800; color: var(--gold-300); line-height: 1; }
-    .split-stat span { font-size: 0.75rem; color: var(--w50); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
-    .split-image-wrap { position: relative; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--gold-border); box-shadow: 0 0 60px rgba(212,175,55,0.1); }
-    .split-image-wrap::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--gold-gradient); z-index: 2; }
-    .split-image-wrap img { width: 100%; height: 360px; object-fit: cover; display: block; transition: transform 0.5s ease; }
-    .split-image-wrap:hover img { transform: scale(1.04); }
+    /* ── Stats Banner ── */
+    .biz-stats-band {
+      background: linear-gradient(90deg, rgba(212,175,55,0.08) 0%, rgba(212,175,55,0.03) 100%);
+      border-top: 1px solid var(--gold-border);
+      border-bottom: 1px solid var(--gold-border);
+      padding: 48px 0;
+    }
+    .biz-stats-inner {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+    .biz-stat-item {
+      text-align: center;
+      padding: 20px 32px;
+      border-right: 1px solid var(--gold-border);
+    }
+    .biz-stat-item:last-child { border-right: none; }
+    .biz-stat-num {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--gold-300);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .biz-stat-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--w50);
+    }
 
-    /* Feature Cards */
-    .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 80px; }
-    .feature-card { background: rgba(255,255,255,0.025); border: 1px solid var(--gold-border); border-radius: var(--radius-lg); padding: 36px 28px; transition: all 0.35s; position: relative; overflow: hidden; }
-    .feature-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--gold-gradient); transform: scaleX(0); transition: transform 0.35s; transform-origin: left; }
-    .feature-card:hover { border-color: var(--gold-300); transform: translateY(-6px); box-shadow: 0 24px 48px rgba(0,0,0,0.4); }
-    .feature-card:hover::after { transform: scaleX(1); }
-    .feature-icon { width: 56px; height: 56px; border-radius: 14px; background: var(--gold-fill); border: 1px solid var(--gold-border); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
-    .feature-icon svg { color: var(--gold-300); }
-    .feature-card h3 { font-family: var(--font-display); font-size: 1.2rem; color: #fff; margin-bottom: 10px; }
-    .feature-card p { color: var(--w50); font-size: 0.88rem; line-height: 1.7; }
+    /* ── Intro Section ── */
+    .biz-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      padding-bottom: 80px;
+    }
+    .biz-intro-text .eyebrow {
+      font-size: 0.7rem; font-weight: 800;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--gold-300); margin-bottom: 20px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .biz-intro-text .eyebrow::before {
+      content: ''; width: 32px; height: 1px;
+      background: var(--gold-gradient);
+    }
+    .biz-intro-text h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      line-height: 1.1; color: #fff;
+      margin-bottom: 24px; text-align: left;
+    }
+    .biz-intro-text p {
+      color: var(--w60); font-size: 1rem;
+      line-height: 1.85; margin-bottom: 16px;
+    }
+    .biz-intro-text .check-list {
+      list-style: none; margin-top: 24px;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .biz-intro-text .check-list li {
+      display: flex; align-items: center; gap: 12px;
+      color: var(--w70); font-size: 0.92rem;
+    }
+    .biz-intro-text .check-list li::before {
+      content: '';
+      width: 18px; height: 18px; flex-shrink: 0;
+      border-radius: 50%;
+      background: var(--gold-fill);
+      border: 1px solid var(--gold-border);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23D4AF37' stroke-width='2.5'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+      background-size: 11px; background-position: center; background-repeat: no-repeat;
+    }
+    .biz-intro-visual {
+      position: relative;
+    }
+    .biz-intro-img-wrap {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--gold-border);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(212,175,55,0.05);
+      position: relative;
+    }
+    .biz-intro-img-wrap::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: var(--gold-gradient); z-index: 2;
+    }
+    .biz-intro-img-wrap img {
+      width: 100%; height: 420px;
+      object-fit: cover; display: block;
+      transition: transform 0.6s ease;
+    }
+    .biz-intro-img-wrap:hover img { transform: scale(1.04); }
+    .biz-floating-badge {
+      position: absolute;
+      bottom: -20px; left: -20px;
+      background: linear-gradient(135deg, #0B0B0B, #161616);
+      border: 1px solid var(--gold-border);
+      border-radius: 16px;
+      padding: 18px 24px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+      display: flex; align-items: center; gap: 14px;
+      z-index: 3;
+    }
+    .biz-badge-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      background: var(--gold-fill);
+      border: 1px solid var(--gold-border);
+      display: flex; align-items: center;
+      justify-content: center; color: var(--gold-300);
+      flex-shrink: 0;
+    }
+    .biz-badge-text strong { display: block; color: #fff; font-size: 1rem; }
+    .biz-badge-text span { color: var(--w40); font-size: 0.72rem; }
 
-    /* Contact Info */
-    .contact-info-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-top: 40px; }
-    .contact-pill { display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.04); border: 1px solid var(--gold-border); border-radius: 50px; padding: 14px 24px; color: #fff; font-size: 0.9rem; }
-    .contact-pill svg { color: var(--gold-300); flex-shrink: 0; }
+    /* ── Services Bento Grid ── */
+    .biz-services-section {
+      padding: 0 0 120px;
+    }
+    .biz-services-header {
+      text-align: center; margin-bottom: 56px;
+    }
+    .biz-services-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      color: #fff; margin-bottom: 16px;
+    }
+    .biz-services-header p {
+      color: var(--w50); font-size: 1rem;
+      max-width: 520px; margin: 0 auto;
+    }
+    .biz-bento {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto auto;
+      gap: 20px;
+    }
+    .bento-card {
+      background: rgba(255,255,255,0.025);
+      border: 1px solid var(--gold-border);
+      border-radius: var(--radius-lg);
+      padding: 40px 32px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      cursor: default;
+    }
+    .bento-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(212,175,55,0.07) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .bento-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--gold-gradient);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .bento-card:hover {
+      border-color: rgba(212,175,55,0.5);
+      transform: translateY(-8px);
+      box-shadow: 0 32px 64px rgba(0,0,0,0.5), 0 0 40px rgba(212,175,55,0.06);
+    }
+    .bento-card:hover::before { opacity: 1; }
+    .bento-card:hover::after { transform: scaleX(1); }
+    .bento-card.featured {
+      grid-column: span 2;
+      background: linear-gradient(135deg, rgba(212,175,55,0.07) 0%, rgba(212,175,55,0.02) 100%);
+      border-color: rgba(212,175,55,0.35);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+    .bento-icon {
+      width: 60px; height: 60px;
+      border-radius: 16px;
+      background: var(--gold-fill);
+      border: 1px solid var(--gold-border);
+      display: flex; align-items: center;
+      justify-content: center;
+      color: var(--gold-300);
+      margin-bottom: 24px;
+      transition: all 0.3s;
+    }
+    .bento-card:hover .bento-icon {
+      background: rgba(212,175,55,0.12);
+      border-color: rgba(212,175,55,0.5);
+      box-shadow: 0 0 20px rgba(212,175,55,0.15);
+    }
+    .bento-num {
+      position: absolute; top: 28px; right: 28px;
+      font-family: var(--font-display);
+      font-size: 4rem; font-weight: 700;
+      color: rgba(212,175,55,0.06);
+      line-height: 1;
+      transition: color 0.3s;
+    }
+    .bento-card:hover .bento-num { color: rgba(212,175,55,0.1); }
+    .bento-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem; color: #fff;
+      margin-bottom: 12px; line-height: 1.3;
+    }
+    .bento-card p {
+      color: var(--w50); font-size: 0.9rem;
+      line-height: 1.75;
+    }
+    .bento-tags {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      margin-top: 20px;
+    }
+    .bento-tag {
+      font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--gold-400);
+      background: rgba(212,175,55,0.07);
+      border: 1px solid rgba(212,175,55,0.2);
+      border-radius: 999px; padding: 5px 14px;
+    }
 
-    .div-cta-banner { padding: 100px 0; background: radial-gradient(ellipse at 50% 100%, rgba(212,175,55,0.12) 0%, transparent 60%), var(--black-900); border-top: 1px solid var(--gold-border); text-align: center; }
-
-    @media(max-width:1024px) { .section-split-intro { grid-template-columns: 1fr; gap: 40px; } .feature-grid { grid-template-columns: 1fr 1fr; } }
-    @media(max-width:768px) { .feature-grid { grid-template-columns: 1fr; } .contact-info-row { flex-direction: column; align-items: center; } }
+    @media(max-width:1024px) {
+      .biz-stats-inner { grid-template-columns: repeat(2,1fr); }
+      .biz-stat-item:nth-child(2) { border-right: none; }
+      .biz-stat-item:nth-child(3) { border-top: 1px solid var(--gold-border); }
+      .biz-stat-item:nth-child(4) { border-top: 1px solid var(--gold-border); border-right: none; }
+      .biz-intro { grid-template-columns: 1fr; gap: 48px; }
+      .biz-bento { grid-template-columns: 1fr; }
+      .bento-card.featured { grid-column: span 1; grid-template-columns: 1fr; }
+    }
+    @media(max-width:640px) {
+      .biz-stats-inner { grid-template-columns: 1fr 1fr; }
+      .biz-stat-num { font-size: 2.2rem; }
+    }
   </style>
 
   <link rel="manifest" href="/manifest.json" />
@@ -79,8 +294,8 @@
         <li><a href="index.html" class="nav-link">Home</a></li>
         <li><a href="reel-power.html" class="nav-link">REEL Power</a></li>
         <li><a href="reel-branding.html" class="nav-link">REEL Branding</a></li>
-        <li><a href="reel-smart.html" class="nav-link">REEL Smart</a></li>
-        <li><a href="reel-business.html" class="nav-link active">Business Solutions</a></li>
+        <li><a href="real-estate.html" class="nav-link">REEL Properties</a></li>
+        <li><a href="reel-business.html" class="nav-link active">REEL Business</a></li>
         <li><a href="blog.html" class="nav-link">Blog</a></li>
         <li><a href="shop.html" class="nav-link">Shop</a></li>
       </ul>
@@ -99,54 +314,153 @@
   <div class="container div-hero-inner">
     <div class="reveal-up">
       <div class="div-hero-tag" style="display: inline-flex; align-items: center; gap: 10px; font-size: 0.72rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: var(--gold-300); margin-bottom: 24px;">Division 04</div>
-      <h1 class="div-hero-title">Business <span>Solutions</span></h1>
+      <h1 class="div-hero-title">REEL <span>BUSINESS</span></h1>
       <p class="div-hero-desc">Strategic Business Consulting &amp; Corporate Solutions. We solve complex business challenges with executive-level strategy, empowering companies to scale, innovate, and dominate their industries.</p>
     </div>
     <div class="div-hero-visual">
       <div class="div-hero-img-fade">
-        <img src="Images/Divisions/BUSINESS SOLUTIONS.png" alt="Business Solutions" />
+        <img src="Images/Divisions/BUSINESS SOLUTIONS.png" alt="REEL BUSINESS" />
       </div>
     </div>
   </div>
 </section>
 
-<!-- CONTENT -->
-<section class="business-content">
+
+
+<!-- INTRO SPLIT -->
+<section class="section section--dark" style="padding-top: 60px;">
   <div class="container">
-    <div class="section-split-intro reveal-up">
-      <div class="split-text">
-        <div class="section-eyebrow" style="color:var(--gold-300); font-weight:800; letter-spacing:2px; text-transform:uppercase; font-size:0.75rem; margin-bottom:10px;">Our Expertise</div>
+    <div class="biz-intro reveal-up">
+      <div class="biz-intro-text">
+        <div class="eyebrow">Our Expertise</div>
         <h2>We Solve <span class="gold-text">Business Challenges</span></h2>
         <p>At REEL, we understand that scaling a modern enterprise requires precision, strategy, and execution. Our Business Solutions division partners with executives and founders to eliminate operational bottlenecks, optimize workflows, and drive unprecedented growth.</p>
         <p>Whether you need a complete corporate restructuring, high-level strategic consulting, or advanced digital transformation, our team of experts is equipped to turn your vision into a scalable reality.</p>
+        <ul class="check-list">
+          <li>Executive-level strategy & advisory</li>
+          <li>End-to-end corporate restructuring</li>
+          <li>Digital transformation & systems integration</li>
+          <li>Market entry & global expansion planning</li>
+        </ul>
       </div>
-      <div class="split-image-wrap">
-        <img src="Images/new_business_image.jpg" alt="Business Solutions" onerror="this.src='Images/BG/logo%20bg.png'" />
+      <div class="biz-intro-visual">
+        <div class="biz-intro-img-wrap">
+          <img src="Images/new_business_image.jpg" alt="REEL Business Consulting" onerror="this.src='Images/BG/logo%20bg.png'" />
+        </div>
+
       </div>
     </div>
 
-    <div class="feature-grid">
-      <div class="feature-card reveal-up">
-        <div class="feature-icon"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg></div>
-        <h3>Strategic Consulting</h3>
-        <p>High-level advisory services designed for C-suite executives and founders to navigate complex market dynamics and scale effectively.</p>
+    <!-- BENTO SERVICES -->
+    <div class="biz-services-section">
+      <div class="biz-services-header reveal-up">
+        <div style="display:inline-flex; align-items:center; gap:10px; font-size:0.7rem; font-weight:800; letter-spacing:3px; text-transform:uppercase; color:var(--gold-300); margin-bottom:16px;">What We Offer</div>
+        <h2>Our Core <span class="gold-text">Services</span></h2>
+        <p>Comprehensive business solutions designed for executives who demand excellence and results.</p>
       </div>
-      <div class="feature-card reveal-up">
-        <div class="feature-icon"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg></div>
-        <h3>Corporate Restructuring</h3>
-        <p>Optimize your organizational structure, eliminate operational inefficiencies, and streamline workflows for maximum profitability.</p>
-      </div>
-      <div class="feature-card reveal-up">
-        <div class="feature-icon"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg></div>
-        <h3>Digital Transformation</h3>
-        <p>Modernize your legacy systems and integrate cutting-edge technological solutions to stay ahead in a digital-first economy.</p>
+      <div class="biz-bento">
+        <!-- Featured large card -->
+        <div class="bento-card featured reveal-up">
+          <div>
+            <div class="bento-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+            </div>
+            <h3>Strategic Consulting</h3>
+            <p>High-level advisory services designed for C-suite executives and founders to navigate complex market dynamics, outmanoeuvre competition, and scale effectively across new territories.</p>
+            <div class="bento-tags">
+              <span class="bento-tag">C-Suite Advisory</span>
+              <span class="bento-tag">Market Strategy</span>
+              <span class="bento-tag">Growth Planning</span>
+            </div>
+          </div>
+          <div style="background: rgba(212,175,55,0.05); border-radius: var(--radius-md); padding: 28px; border: 1px solid var(--gold-border);">
+            <div style="font-size:0.7rem; text-transform:uppercase; letter-spacing:2px; color:var(--gold-400); margin-bottom:16px; font-weight:700;">Our Process</div>
+            <div style="display:flex; flex-direction:column; gap:12px;">
+              <div style="display:flex; align-items:center; gap:12px; color:var(--w70); font-size:0.88rem;"><span style="width:24px; height:24px; border-radius:50%; background:var(--gold-fill); border:1px solid var(--gold-border); display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--gold-300); font-weight:700; flex-shrink:0;">1</span> Discovery & Audit</div>
+              <div style="display:flex; align-items:center; gap:12px; color:var(--w70); font-size:0.88rem;"><span style="width:24px; height:24px; border-radius:50%; background:var(--gold-fill); border:1px solid var(--gold-border); display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--gold-300); font-weight:700; flex-shrink:0;">2</span> Strategy Development</div>
+              <div style="display:flex; align-items:center; gap:12px; color:var(--w70); font-size:0.88rem;"><span style="width:24px; height:24px; border-radius:50%; background:var(--gold-fill); border:1px solid var(--gold-border); display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--gold-300); font-weight:700; flex-shrink:0;">3</span> Execution & Implementation</div>
+              <div style="display:flex; align-items:center; gap:12px; color:var(--w70); font-size:0.88rem;"><span style="width:24px; height:24px; border-radius:50%; background:var(--gold-fill); border:1px solid var(--gold-border); display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:var(--gold-300); font-weight:700; flex-shrink:0;">4</span> Review & Scale</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Regular card -->
+        <div class="bento-card reveal-up">
+          <div class="bento-num">02</div>
+          <div class="bento-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+          <h3>Corporate Restructuring</h3>
+          <p>Optimize your organizational structure, eliminate operational inefficiencies, and streamline workflows for maximum profitability and long-term resilience.</p>
+          <div class="bento-tags">
+            <span class="bento-tag">Operations</span>
+            <span class="bento-tag">Efficiency</span>
+          </div>
+        </div>
+
+        <!-- Regular card -->
+        <div class="bento-card reveal-up">
+          <div class="bento-num">03</div>
+          <div class="bento-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+          </div>
+          <h3>Digital Transformation</h3>
+          <p>Modernize legacy systems and integrate cutting-edge technological solutions to thrive in a digital-first economy and stay years ahead of the competition.</p>
+          <div class="bento-tags">
+            <span class="bento-tag">Tech</span>
+            <span class="bento-tag">Innovation</span>
+          </div>
+        </div>
+
+        <!-- Regular card -->
+        <div class="bento-card reveal-up">
+          <div class="bento-num">04</div>
+          <div class="bento-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <h3>Global Market Expansion</h3>
+          <p>Enter new international markets with confidence. We provide localised market intelligence, regulatory guidance, and strategic partnerships across Africa and beyond.</p>
+          <div class="bento-tags">
+            <span class="bento-tag">Global</span>
+            <span class="bento-tag">Market Entry</span>
+          </div>
+        </div>
+
+        <!-- Regular card -->
+        <div class="bento-card reveal-up">
+          <div class="bento-num">05</div>
+          <div class="bento-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>Executive Leadership Development</h3>
+          <p>Elevate your leadership team with bespoke executive coaching programmes, performance frameworks, and high-impact leadership assessment tools.</p>
+          <div class="bento-tags">
+            <span class="bento-tag">Leadership</span>
+            <span class="bento-tag">Coaching</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- CTA / CONTACT -->
-<section class="div-cta-banner" style="text-align: left;">
+<style>
+  .business-cta-section {
+    position: relative; overflow: hidden;
+    padding: 120px 0; text-align: left;
+    background-color: var(--black-900);
+    border-top: 1px solid var(--gold-border);
+  }
+  .business-cta-section::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(rgba(8,8,8,0.7), rgba(8,8,8,0.85)), url('Images/reel_business_cta_bg.png') center center / cover no-repeat;
+    animation: heroBgZoom 20s ease-in-out infinite alternate;
+    z-index: 0; will-change: transform;
+  }
+  .business-cta-section .container { position: relative; z-index: 2; }
+</style>
+<section class="business-cta-section">
   <div class="container" style="max-width: 800px; margin: 0 auto;">
     <div class="reveal-up">
       <div style="
@@ -208,16 +522,16 @@
                 Subject
               </label>
               <select id="cf-subject" name="subject" required>
-                <option value="">&mdash; Select a Division &mdash;</option>
-                <option>General Inquiry</option>
-                <option>REEL Power &mdash; Charging Solutions</option>
-                <option>REEL Branding &mdash; Corporate Branding</option>
-                <option>REEL Smart &mdash; Tech &amp; Gadgets</option>
-                <option selected>Business Solutions &amp; Advisory</option>
-                <option>Partnership Opportunity</option>
-                <option>Shop / Products</option>
-                <option>Other</option>
-              </select>
+                  <option value="">&mdash; Select a Division &mdash;</option>
+                  <option>General Inquiry</option>
+                  <option>REEL Power &mdash; Charging Solutions</option>
+                  <option>REEL Branding &mdash; Corporate Branding</option>
+                  <option>REEL Properties &mdash; Real Estate</option>
+                  <option>REEL Business &mdash; Strategic Advisory</option>
+                  <option>Partnership Opportunity</option>
+                  <option>Shop / Products</option>
+                  <option>Other</option>
+                </select>
             </div>
           </div>
 

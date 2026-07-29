@@ -191,6 +191,11 @@ input, textarea, select { font-family: inherit; }
   padding: 100px 0;
 }
 
+@keyframes heroBgZoom {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.15); }
+}
+
 .section-header {
   text-align: center;
   margin-bottom: 72px;
@@ -670,11 +675,11 @@ input, textarea, select { font-family: inherit; }
   transition: background 0.4s ease, height 0.4s ease, box-shadow 0.4s ease;
 }
 .main-nav.scrolled {
-  background: rgba(11,11,11,0.94);
+  background: rgba(11, 11, 11, 0.45);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   height: 66px;
-  box-shadow: 0 2px 30px rgba(0,0,0,0.5), 0 1px 0 var(--gold-border);
+  box-shadow: 0 2px 30px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(212, 175, 55, 0.15);
 }
 .nav-inner {
   max-width: 1420px;
@@ -2205,15 +2210,8 @@ input, textarea, select { font-family: inherit; }
   .founder-photo { height: 440px; }
   .founder-info-badge { right: 0; bottom: -16px; }
   .mvv-grid { grid-template-columns: 1fr; }
-  
-  /* Fallback to 2 columns for tablet */
-  .divisions-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .div-img-wrap {
-    height: 300px;
-  }
-  
+  .divisions-grid { grid-template-columns: repeat(2, 1fr); }
+  .div-img-wrap { height: 300px; }
   .pf-grid { grid-template-columns: repeat(2, 1fr); }
   .why-grid { grid-template-columns: repeat(2, 1fr); }
   .services-grid { grid-template-columns: repeat(2, 1fr); }
@@ -2226,13 +2224,125 @@ input, textarea, select { font-family: inherit; }
 }
 
 /* ═══════════════════════════════════════════════
+   ALLIANCE CARDS GRID (new design — full color)
+═══════════════════════════════════════════════ */
+.alliance-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  margin-top: 48px;
+}
+.alliance-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: linear-gradient(135deg, rgba(212,175,55,0.06) 0%, rgba(255,255,255,0.03) 100%);
+  border: 1px solid rgba(212,175,55,0.18);
+  border-radius: 18px;
+  padding: 22px 20px;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.35s ease;
+  cursor: pointer;
+}
+.alliance-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(212,175,55,0.12), transparent);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+.alliance-card:hover::before { opacity: 1; }
+.alliance-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(212,175,55,0.5);
+  box-shadow: 0 12px 40px rgba(212,175,55,0.15), 0 0 0 1px rgba(212,175,55,0.2);
+}
+.alliance-logo-wrap {
+  width: 64px;
+  height: 64px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(212,175,55,0.2);
+  flex-shrink: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.35s ease;
+}
+.alliance-card:hover .alliance-logo-wrap {
+  border-color: rgba(212,175,55,0.5);
+  box-shadow: 0 0 20px rgba(212,175,55,0.2);
+}
+.alliance-logo-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: none; /* full color — no grayscale */
+  transition: transform 0.35s ease;
+}
+.alliance-card:hover .alliance-logo-wrap img {
+  transform: scale(1.08);
+}
+.alliance-card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+  z-index: 1;
+}
+.alliance-name {
+  font-family: var(--ff-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.3;
+}
+.alliance-sector {
+  font-size: 0.72rem;
+  color: var(--gold-300);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  font-weight: 500;
+}
+.alliance-arrow {
+  font-size: 1.2rem;
+  color: var(--gold);
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+}
+.alliance-card:hover .alliance-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Keep old marquee rules in case used elsewhere */
+.partner-logo {
+  height: 60px;
+  width: auto;
+  filter: none;
+  transition: all var(--t-med);
+}
+.partner-logo:hover {
+  transform: scale(1.05);
+}
+
+
+/* ╒═══════════════════════════════════════════════
    RESPONSIVE — MOBILE (max 992px)
 ═══════════════════════════════════════════════ */
 @media (max-width: 992px) {
   :root { --nav-h: 66px; --section-py: 72px; }
   .container { padding: 0 18px; }
-
-  /* Mobile Nav */
   .nav-links {
     position: fixed;
     top: 0; right: 0; bottom: 0;

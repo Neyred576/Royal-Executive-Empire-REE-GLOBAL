@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -19,6 +19,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
   <style>
+    .div-page-hero {
+      position: relative; overflow: hidden;
+      min-height: 70vh; display: flex; align-items: center;
+      padding: 180px 0 100px;
+      border-bottom: 1px solid var(--gold-border);
+      background-color: var(--black-900);
+    }
+    .div-page-hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(rgba(10, 10, 10, 0.4), rgba(10, 10, 10, 0.8)), url('Images/real_estate_hero.png') center center / cover no-repeat;
+      animation: heroBgZoom 25s ease-in-out infinite alternate;
+      z-index: 0; will-change: transform;
+    }
     .listings-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
     .listing-card { background: var(--w08); border: 1px solid var(--gold-border); border-radius: var(--radius-xl); overflow: hidden; transition: all 0.3s; }
     .listing-card:hover { transform: translateY(-6px); box-shadow: var(--gold-glow-sm); border-color: var(--gold-300); }
@@ -56,8 +69,8 @@
         <li><a href="index.html" class="nav-link">Home</a></li>
         <li><a href="reel-power.html" class="nav-link">REEL Power</a></li>
         <li><a href="reel-branding.html" class="nav-link">REEL Branding</a></li>
-        <li><a href="reel-smart.html" class="nav-link">REEL Smart</a></li>
-        <li><a href="reel-business.html" class="nav-link">Business Solutions</a></li>
+        <li><a href="real-estate.html" class="nav-link">REEL Properties</a></li>
+        <li><a href="reel-business.html" class="nav-link">REEL Business</a></li>
         <li><a href="blog.html" class="nav-link">Blog</a></li>
         <li><a href="shop.html" class="nav-link">Shop</a></li>
       </ul>
@@ -69,15 +82,13 @@
   <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
 </nav>
 
-<section style="padding: 140px 0 80px; background: linear-gradient(to bottom, #0B0B0B, #111005); position:relative; overflow:hidden; border-bottom: 1px solid var(--gold-border);">
-  <div style="position:absolute; inset:0; background: radial-gradient(ellipse at 20% 60%, rgba(212,175,55,0.08) 0%, transparent 60%);"></div>
+<section class="div-page-hero">
   <div class="container" style="position:relative; z-index:2;">
     <div class="hero-eyebrow"><span class="eyebrow-line"></span><span>REEL Division</span></div>
     <h1 class="section-heading" style="font-size: clamp(2.5rem, 6vw, 5rem);">REEL <span class="gold-text">Real Estate</span></h1>
     <p class="body-text" style="max-width: 600px; font-size: 1.1rem;">Premium property investments, luxury residential developments, and elite commercial real estate across Africa and the world.</p>
     <div style="margin-top: 40px; display: flex; gap: 16px; flex-wrap: wrap;">
       <a href="contact.html" class="btn-gold"><span>Enquire Now</span></a>
-      <a href="portfolio.html" class="btn-ghost"><span>View Projects</span></a>
     </div>
   </div>
 </section>
@@ -85,23 +96,43 @@
 
 
 <!-- Listings -->
-<section class="section section--dark">
+<section id="properties" class="section section--dark">
   <div class="container">
     <header class="section-header reveal-up">
       <h2 class="section-heading">Featured <span class="gold-text">Properties</span></h2>
       <div class="gold-rule center-rule"></div>
     </header>
-    <div style="background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(212,175,55,0.04) 100%); border: 1px solid rgba(212,175,55,0.25); border-radius: var(--radius-xl); padding: 80px 40px; text-align: center; max-width: 700px; margin: 0 auto; box-shadow: 0 30px 80px rgba(0,0,0,0.5), inset 0 1px 0 rgba(212,175,55,0.15);">
+    
+    <div id="properties-grid" class="listings-grid">
+      <!-- Properties loaded dynamically from Firebase -->
+    </div>
+    <div id="properties-empty" style="display:none; background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(212,175,55,0.04) 100%); border: 1px solid rgba(212,175,55,0.25); border-radius: var(--radius-xl); padding: 80px 40px; text-align: center; max-width: 700px; margin: 0 auto; box-shadow: 0 30px 80px rgba(0,0,0,0.5), inset 0 1px 0 rgba(212,175,55,0.15);">
       <h2 style="font-family: var(--font-display); font-size: 2.5rem; color: #fff; margin-bottom: 16px;">Coming <span class="gold-text">Soon</span></h2>
       <p style="color: var(--w50); max-width: 450px; margin: 0 auto;">Our premium property portfolio is currently being updated. Check back shortly to explore our exclusive commercial and luxury residential developments.</p>
     </div>
+
   </div>
 </section>
 
-<section style="padding: 80px 0; background: var(--black-800); border-top: 1px solid var(--gold-border); text-align:center;">
+<style>
+  .properties-cta-section {
+    position: relative; overflow: hidden;
+    padding: 120px 0; text-align: center;
+    background-color: var(--black-900);
+    border-top: 1px solid var(--gold-border);
+  }
+  .properties-cta-section::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(rgba(8,8,8,0.55), rgba(8,8,8,0.75)), url('Images/reel_properties_cta_bg.png') center center / cover no-repeat;
+    animation: heroBgZoom 20s ease-in-out infinite alternate;
+    z-index: 0; will-change: transform;
+  }
+  .properties-cta-section .container { position: relative; z-index: 2; }
+</style>
+<section class="properties-cta-section">
   <div class="container">
     <h2 class="section-heading">Ready to <span class="gold-text">Invest?</span></h2>
-    <p class="body-text" style="max-width: 500px; margin: 0 auto 32px;">Let our real estate experts find or develop your ideal property across Africa and beyond.</p>
+    <p class="body-text" style="max-width: 500px; margin: 0 auto 32px; color: var(--w60);">Let our real estate experts find or develop your ideal property across Africa and beyond.</p>
     <a href="contact.html" class="btn-gold"><span>Schedule a Consultation</span></a>
   </div>
 </section>
@@ -123,9 +154,64 @@
   </div>
 </footer>
 <script src="js/main.js"></script>
+<script>document.getElementById('footer-year').textContent = new Date().getFullYear();</script>
+<script src="/js/pwa.js"></script>
+<script src="/js/notifications.js"></script>
 
-  <script src="/js/pwa.js"></script>
-<script src="/js/notifications.js"></script>
+<!-- Firebase Integration -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="js/firebase-init.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Wait for DB
+    const loadProperties = () => {
+      if(!window.db) { setTimeout(loadProperties, 200); return; }
+      window.db.collection('properties').orderBy('timestamp', 'desc').get().then(snap => {
+        const grid = document.getElementById('properties-grid');
+        const empty = document.getElementById('properties-empty');
+        
+        let props = snap.docs.map(d => ({id: d.id, ...d.data()}));
+        // Filter out scheduled ones
+        props = props.filter(p => p.status !== 'scheduled' || !p.scheduleTime || new Date() >= new Date(p.scheduleTime));
+
+        if(props.length === 0) {
+          empty.style.display = 'block';
+          grid.style.display = 'none';
+        } else {
+          empty.style.display = 'none';
+          grid.style.display = 'grid';
+          grid.innerHTML = props.map((p, i) => `
+            <article class="listing-card reveal-up" style="animation-delay: ${i*0.1}s">
+              <div class="listing-img" style="background: url('${p.image}') center center / cover no-repeat;">
+                ${p.price ? `<div class="listing-badge">${p.price}</div>` : ''}
+              </div>
+              <div class="listing-info">
+                <div class="listing-type">Featured Property</div>
+                <h3 class="listing-name">${p.title}</h3>
+                <div class="listing-loc">${p.caption}</div>
+                <a href="contact.html?property=${encodeURIComponent(p.title)}" class="btn-ghost" style="width:100%; justify-content:center;"><span>Enquire</span></a>
+              </div>
+            </article>
+          `).join('');
+          
+          // Re-trigger reveal animation for newly loaded items
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if(entry.isIntersecting) {
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+          document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
+        }
+      }).catch(err => {
+        console.error("Error loading properties:", err);
+      });
+    };
+    loadProperties();
+  });
+</script>
 </body>
 </html>
-

@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
     setupScheduleToggle('blog-status', 'blog');
-    setupScheduleToggle('portfolio-status', 'portfolio');
+    setupScheduleToggle('prop-status', 'properties');
     setupScheduleToggle('shop-status', 'shop');
 
     // --- RENDER HELPERS ---
@@ -161,14 +161,39 @@ document.addEventListener('DOMContentLoaded', () => {
         const id = docSnap.id;
         const div = document.createElement('div');
         div.className = 'admin-list-item';
+        let editBtn = type === 'blog' ? `<button class="btn-edit" data-id="${id}" data-type="${type}" style="margin-right:8px; background:var(--gold); color:#000;">Edit</button>` : '';
         div.innerHTML = `
           <div class="item-info">
             <strong>${item.title || item.name} ${item.status === 'scheduled' ? '<span style="color:#D4AF37; font-size:0.7rem;">(Scheduled)</span>' : ''}</strong>
             <span class="item-date">${item.date || item.category || item.price}</span>
           </div>
+          ${editBtn}
           <button class="btn-delete" data-id="${id}" data-type="${type}">Delete</button>
         `;
         container.appendChild(div);
+      });
+
+      container.querySelectorAll('.btn-edit').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const id = e.target.getAttribute('data-id');
+          window.db.collection('blogs').doc(id).get().then(doc => {
+            if (doc.exists) {
+              const data = doc.data();
+              document.getElementById('blog-title').value = data.title || '';
+              document.getElementById('blog-cat').value = data.category || 'Business Strategy';
+              document.getElementById('blog-status').value = data.status || 'published';
+              if (blogQuill) {
+                blogQuill.root.innerHTML = data.content || '';
+              } else {
+                document.getElementById('blog-content').value = data.content || '';
+              }
+              window.editBlogId = id;
+              const submitBtn = document.querySelector('#form-blog button[type="submit"]');
+              if (submitBtn) submitBtn.innerHTML = 'Update Blog Post';
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+          });
+        });
       });
 
       container.querySelectorAll('.btn-delete').forEach(btn => {
@@ -236,11 +261,11 @@ document.addEventListener('DOMContentLoaded', () => {
       renderSchedulerList(globalScheduled);
     });
 
-    window.db.collection('portfolio').orderBy('timestamp', 'desc').onSnapshot(snap => {
-      renderAdminList(snap.docs, 'portfolio-list', 'portfolio');
-      globalScheduled = globalScheduled.filter(i => i.type !== 'portfolio');
+    window.db.collection('properties').orderBy('timestamp', 'desc').onSnapshot(snap => {
+      renderAdminList(snap.docs, 'prop-list', 'properties');
+      globalScheduled = globalScheduled.filter(i => i.type !== 'properties');
       snap.forEach(d => {
-        if(d.data().status === 'scheduled') globalScheduled.push({id: d.id, type: 'portfolio', ...d.data()});
+        if(d.data().status === 'scheduled') globalScheduled.push({id: d.id, type: 'properties', ...d.data()});
       });
       renderSchedulerList(globalScheduled);
     });
@@ -274,47 +299,71 @@ document.addEventListener('DOMContentLoaded', () => {
       const fileInput = document.getElementById('blog-img');
       
       let sTime = status === 'scheduled' ? pendingScheduleTime : null;
+      const submitBtn = document.querySelector('#form-blog button[type="submit"]');
+
+      const saveBlog = (imageData) => {
+        const payload = {
+          title, category, content, status, scheduleTime: sTime,
+          date: new Date().toLocaleDateString('en-US', {month: 'short', day: 'numeric', year: 'numeric'})
+        };
+        if (imageData) {
+          payload.image = imageData;
+        }
+
+        let promise;
+        let isEdit = !!window.editBlogId;
+        if (isEdit) {
+          promise = window.db.collection('blogs').doc(window.editBlogId).update(payload);
+        } else {
+          payload.timestamp = Date.now();
+          promise = window.db.collection('blogs').add(payload);
+        }
+
+        promise.then(() => {
+          e.target.reset(); 
+          if (blogQuill) blogQuill.root.innerHTML = '';
+          pendingScheduleTime = null;
+          window.editBlogId = null;
+          if (submitBtn) submitBtn.innerHTML = 'Publish Blog Post';
+          showToast(isEdit ? 'Updated' : 'Published', isEdit ? 'Blog post successfully updated.' : 'Blog post successfully added to Firebase.');
+        });
+      };
 
       if (fileInput.files && fileInput.files[0]) {
         const reader = new FileReader();
         reader.onload = function(evt) {
-          window.db.collection('blogs').add({
-            title, category, content, status, scheduleTime: sTime,
-            image: evt.target.result, 
-            date: new Date().toLocaleDateString('en-US', {month: 'short', day: 'numeric', year: 'numeric'}),
-            timestamp: Date.now()
-          }).then(() => {
-            e.target.reset(); 
-            if (blogQuill) blogQuill.root.innerHTML = '';
-            pendingScheduleTime = null;
-            showToast('Published', 'Blog post successfully added to Firebase.');
-          });
+          saveBlog(evt.target.result);
         };
         reader.readAsDataURL(fileInput.files[0]);
       } else {
-        alert("Please select an image.");
+        if (window.editBlogId) {
+          saveBlog(null);
+        } else {
+          alert("Please select an image.");
+        }
       }
     });
 
-    // Portfolio
-    document.getElementById('form-portfolio').addEventListener('submit', (e) => {
+    // Properties
+    document.getElementById('form-properties').addEventListener('submit', (e) => {
       e.preventDefault();
-      const title = document.getElementById('pf-title').value;
-      const category = document.getElementById('pf-cat').value;
-      const status = document.getElementById('portfolio-status').value;
-      const fileInput = document.getElementById('pf-img');
+      const title = document.getElementById('prop-title').value;
+      const caption = document.getElementById('prop-caption').value;
+      const price = document.getElementById('prop-price').value;
+      const status = document.getElementById('prop-status').value;
+      const fileInput = document.getElementById('prop-img');
       let sTime = status === 'scheduled' ? pendingScheduleTime : null;
       
       if (fileInput.files && fileInput.files[0]) {
         const reader = new FileReader();
         reader.onload = function(evt) {
-          window.db.collection('portfolio').add({
-            title, category, status, scheduleTime: sTime,
+          window.db.collection('properties').add({
+            title, caption, price, status, scheduleTime: sTime,
             image: evt.target.result,
             timestamp: Date.now()
           }).then(() => {
             e.target.reset(); pendingScheduleTime = null;
-            showToast('Added', 'Portfolio project saved.');
+            showToast('Added', 'Property saved.');
           });
         };
         reader.readAsDataURL(fileInput.files[0]);

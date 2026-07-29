@@ -24,14 +24,21 @@
       position: relative;
       padding: 160px 0 90px;
       overflow: hidden;
-      background: var(--black-900);
+      background-color: var(--black-900);
       border-bottom: 1px solid var(--gold-border);
+    }
+    .shop-hero::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(rgba(10, 10, 10, 0.4), rgba(10, 10, 10, 0.7)), url('Images/shop_hero_bg.png?v=4') center center / cover no-repeat;
+      animation: heroBgZoom 25s ease-in-out infinite alternate;
+      z-index: 0; will-change: transform;
     }
     .shop-hero::before {
       content: '';
       position: absolute; inset: 0;
       background: radial-gradient(ellipse at 80% 50%, rgba(212,175,55,0.12) 0%, transparent 65%),
                   radial-gradient(ellipse at 10% 30%, rgba(212,175,55,0.05) 0%, transparent 50%);
+      z-index: 1; pointer-events: none;
     }
     .shop-hero-inner { position: relative; z-index: 2; }
     .shop-hero-eyebrow {
@@ -287,8 +294,8 @@
         <li><a href="index.html" class="nav-link">Home</a></li>
         <li><a href="reel-power.html" class="nav-link">REEL Power</a></li>
         <li><a href="reel-branding.html" class="nav-link">REEL Branding</a></li>
-        <li><a href="reel-smart.html" class="nav-link">REEL Smart</a></li>
-        <li><a href="reel-business.html" class="nav-link">Business Solutions</a></li>
+        <li><a href="real-estate.html" class="nav-link">REEL Properties</a></li>
+        <li><a href="reel-business.html" class="nav-link">REEL Business</a></li>
         <li><a href="blog.html" class="nav-link">Blog</a></li>
         <li><a href="shop.html" class="nav-link active">Shop</a></li>
       </ul>

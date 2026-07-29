@@ -1,4 +1,4 @@
-﻿# Netlify Redirects — Old WordPress URLs to New Pages
+# Netlify Redirects — Old WordPress URLs to New Pages
 # Format: /old-path  /new-path  status-code
 
 # Old WordPress pages
@@ -16,7 +16,7 @@
 /real-estate            /real-estate.html       301
 /music                  /music-store.html       301
 /music-store            /music-store.html       301
-/portfolio              /portfolio.html         301
+
 /services               /index.html             301
 /home                   /index.html             301
 /wp-admin               /index.html             301

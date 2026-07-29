@@ -62,8 +62,8 @@
         <li><a href="index.html" class="nav-link">Home</a></li>
         <li><a href="reel-power.html" class="nav-link">REEL Power</a></li>
         <li><a href="reel-branding.html" class="nav-link">REEL Branding</a></li>
-        <li><a href="reel-smart.html" class="nav-link">REEL Smart</a></li>
-        <li><a href="reel-business.html" class="nav-link">Business Solutions</a></li>
+        <li><a href="real-estate.html" class="nav-link">REEL Properties</a></li>
+        <li><a href="reel-business.html" class="nav-link">REEL Business</a></li>
         <li><a href="blog.html" class="nav-link">Blog</a></li>
         <li><a href="shop.html" class="nav-link">Shop</a></li>
       </ul>
@@ -75,14 +75,35 @@
   <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
 </nav>
 
-<section style="padding: 140px 0 60px; background: var(--black-900); border-bottom: 1px solid var(--gold-border); position:relative; overflow:hidden;">
-  <div style="position:absolute; inset:0; background: radial-gradient(ellipse at 50% 80%, rgba(212,175,55,0.07) 0%, transparent 60%);"></div>
-  <div class="container" style="position:relative; z-index:2; text-align:center;">
+<style>
+  .contact-hero {
+    position: relative; overflow: hidden;
+    min-height: 60vh; display: flex; align-items: center; justify-content: center;
+    padding: 160px 0 80px;
+    border-bottom: 1px solid var(--gold-border);
+    background-color: var(--black-900);
+  }
+  .contact-hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(rgba(8,8,8,0.5), rgba(8,8,8,0.7)), url('Images/contact_hero.png') center center / cover no-repeat;
+    animation: heroBgZoom 25s ease-in-out infinite alternate;
+    z-index: 0; will-change: transform;
+  }
+  .contact-hero::after {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 80%, rgba(212,175,55,0.1) 0%, transparent 60%);
+    z-index: 1; pointer-events: none;
+  }
+  .contact-hero-inner { position: relative; z-index: 2; text-align: center; }
+</style>
+<section class="contact-hero">
+  <div class="container contact-hero-inner">
     <div class="hero-eyebrow" style="justify-content:center;"><span class="eyebrow-line"></span><span>Get In Touch</span><span class="eyebrow-line"></span></div>
     <h1 class="section-heading" style="font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 12px;">Contact <span class="gold-text">REEL</span></h1>
-    <p style="color: var(--w50); max-width: 500px; margin: 0 auto;">Reach out to our executive team. We're ready to partner with you on your next big opportunity.</p>
+    <p style="color: var(--w60); max-width: 500px; margin: 0 auto; font-size: 1.05rem; line-height: 1.8;">Reach out to our executive team. We're ready to partner with you on your next big opportunity.</p>
   </div>
 </section>
+
 
 <section class="section section--dark">
   <div class="container">
@@ -210,8 +231,8 @@
                   <option>General Inquiry</option>
                   <option>REEL Power &mdash; Charging Solutions</option>
                   <option>REEL Branding &mdash; Corporate Branding</option>
-                  <option>REEL Smart &mdash; Tech &amp; Gadgets</option>
-                  <option>Business Solutions &amp; Advisory</option>
+                  <option>REEL Properties &mdash; Real Estate</option>
+                  <option>REEL Business &mdash; Strategic Advisory</option>
                   <option>Partnership Opportunity</option>
                   <option>Shop / Products</option>
                   <option>Other</option>
@@ -309,7 +330,7 @@
               <li><a href="index.html">Home</a></li>
               <li><a href="about.html">About REEL</a></li>
               <li><a href="shop.html">Shop</a></li>
-              <li><a href="portfolio.html">Portfolio</a></li>
+
               <li><a href="contact.html">Contact Us</a></li>
             </ul>
           </nav>
@@ -320,8 +341,8 @@
             <ul class="footer-links-list">
               <li><a href="reel-power.html">REEL Power</a></li>
               <li><a href="reel-branding.html">REEL Branding</a></li>
-              <li><a href="reel-smart.html">REEL Smart</a></li>
-              <li><a href="reel-business.html">Business Solutions</a></li>
+              <li><a href="real-estate.html">REEL Properties</a></li>
+              <li><a href="reel-business.html">REEL Business</a></li>
             </ul>
           </nav>
         </div>

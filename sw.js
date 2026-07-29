@@ -1,9 +1,8 @@
-const CACHE_NAME = 'reel-cache-v1';
+const CACHE_NAME = 'reel-cache-v2';
 const urlsToCache = [
   '/',
   '/index.html',
   '/about.html',
-  '/portfolio.html',
   '/shop.html',
   '/contact.html',
   '/css/styles.css', 

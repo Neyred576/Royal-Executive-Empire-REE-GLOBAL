@@ -963,13 +963,13 @@
         </a>
       </li>
       <li>
-        <a href="#" class="admin-nav-link" data-target="sec-portfolio">
+        <a href="#" class="admin-nav-link" data-target="sec-properties">
           <div class="nav-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
             </svg>
           </div>
-          <span class="nav-label">Portfolio</span>
+          <span class="nav-label">Properties</span>
         </a>
       </li>
       <li>
@@ -1030,8 +1030,8 @@
         <span class="sb-stat-val" id="sb-count-blog">0</span>
       </div>
       <div class="sb-stat">
-        <span>Portfolio Items</span>
-        <span class="sb-stat-val" id="sb-count-pf">0</span>
+        <span>Properties</span>
+        <span class="sb-stat-val" id="sb-count-prop">0</span>
       </div>
       <div class="sb-stat">
         <span>Shop Products</span>
@@ -1126,7 +1126,7 @@
           </svg>
         </div>
         <div>
-          <div class="stat-label">Portfolio</div>
+          <div class="stat-label">REEL Properties</div>
           <div class="stat-value" id="stat-pf">0</div>
           <div class="stat-hint">Projects</div>
         </div>
@@ -1172,8 +1172,10 @@
             <div class="form-group">
               <label>Category</label>
               <select id="blog-cat" required>
-                <option value="Business">Business</option>
-                <option value="Technology">Technology</option>
+                <option value="REEL Power">REEL Power</option>
+                <option value="REEL Branding">REEL Branding</option>
+                <option value="REEL Properties">REEL Properties</option>
+                <option value="REEL Business">REEL Business</option>
               </select>
             </div>
             <div class="form-group">
@@ -1275,50 +1277,41 @@
       </div>
     </section>
 
-    <!-- ── PORTFOLIO ── -->
-    <section id="sec-portfolio" class="admin-section">
+    <!-- ── PROPERTIES ── -->
+    <section id="sec-properties" class="admin-section">
       <div class="section-header">
         <div class="section-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
           </svg>
         </div>
         <div>
-          <h1>Portfolio Manager</h1>
-          <p>Upload completed projects and executive achievements by division.</p>
+          <h1>REEL Properties Manager</h1>
+          <p>Upload new real estate properties, listings, and luxury apartments.</p>
         </div>
       </div>
       <div class="admin-grid">
         <div class="admin-card">
           <div class="card-title">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-            Add New Project
+            Add New Property
           </div>
-          <form id="form-portfolio">
+          <form id="form-properties">
             <div class="form-group">
-              <label>Project Title</label>
-              <input type="text" id="pf-title" placeholder="e.g. Marina Luxury Villas, Dubai" required />
+              <label>Property Title</label>
+              <input type="text" id="prop-title" placeholder="e.g. Marina Luxury Villas, Dubai" required />
             </div>
             <div class="form-group">
-              <label>Division</label>
-              <select id="pf-cat" required>
-                <option value="REEL Branding">REEL Branding</option>
-                <option value="REEL Power">REEL Power</option>
-              </select>
+              <label>Caption / Location</label>
+              <input type="text" id="prop-caption" placeholder="e.g. 4 Beds | 5 Baths | Downtown" required />
             </div>
             <div class="form-group">
-              <label>Project Image File</label>
-              <input type="file" id="pf-img" accept="image/*" required class="file-drop" />
+              <label>Price (Optional)</label>
+              <input type="text" id="prop-price" placeholder="e.g. Contact for Pricing or $5M" />
             </div>
             <div class="form-group">
-              <label>Image Focus (thumbnail position)</label>
-              <select id="pf-img-pos">
-                <option value="center center">Center (default)</option>
-                <option value="top center">Top — show face/head</option>
-                <option value="bottom center">Bottom</option>
-                <option value="center left">Left side</option>
-                <option value="center right">Right side</option>
-              </select>
+              <label>Property Image</label>
+              <input type="file" id="prop-img" accept="image/*" required class="file-drop" />
             </div>
             
             <div class="form-group" style="padding:15px; background:rgba(212,175,55,0.03); border-radius:8px; border:1px solid rgba(212,175,55,0.15);">
@@ -1326,28 +1319,28 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                 Publishing Schedule
               </label>
-              <select id="portfolio-status" style="margin-bottom:12px;">
+              <select id="prop-status" style="margin-bottom:12px;">
                 <option value="published">Publish Immediately</option>
                 <option value="scheduled">Schedule for Later</option>
               </select>
-              <div id="portfolio-schedule-wrap" style="display:none;">
+              <div id="prop-schedule-wrap" style="display:none;">
                 <label style="font-size:0.65rem;">Schedule Date & Time</label>
-                <input type="datetime-local" id="portfolio-schedule-time" style="margin-bottom:5px;" />
-                <span style="font-size:0.7rem; color:var(--w40);">Project will be hidden until this date/time passes.</span>
+                <input type="datetime-local" id="prop-schedule-time" style="margin-bottom:5px;" />
+                <span style="font-size:0.7rem; color:var(--w40);">Property will be hidden until this date/time passes.</span>
               </div>
             </div>
-            <button type="submit" btn-submit">
+            <button type="submit" class="btn-submit">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-              Add Project
+              Add Property
             </button>
           </form>
         </div>
         <div class="admin-card">
           <div class="card-title">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-            Live Portfolio
+            Live Properties
           </div>
-          <div id="portfolio-list" class="admin-list"></div>
+          <div id="prop-list" class="admin-list"></div>
         </div>
       </div>
     </section>
@@ -1685,22 +1678,22 @@
       if (!window.db) { waitForDbThenLoad(10); return; }
       
       try {
-        const [blogSnap, pfSnap, shopSnap, msgSnap, orderSnap] = await Promise.all([
+        const [blogSnap, propSnap, shopSnap, msgSnap, orderSnap] = await Promise.all([
           window.db.collection('blogs').orderBy('timestamp', 'desc').get(),
-          window.db.collection('portfolio').get(),
+          window.db.collection('properties').orderBy('timestamp', 'desc').get(),
           window.db.collection('products').get(),
           window.db.collection('messages').orderBy('timestamp', 'desc').get(),
           window.db.collection('orders').orderBy('timestamp', 'desc').get()
         ]);
         
         blogs.length = 0; blogs.push(...blogSnap.docs.map(d => ({ id: d.id, ...d.data() })));
-        portfolio.length = 0; portfolio.push(...pfSnap.docs.map(d => ({ id: d.id, ...d.data() })));
+        properties.length = 0; properties.push(...propSnap.docs.map(d => ({ id: d.id, ...d.data() })));
         products.length = 0; products.push(...shopSnap.docs.map(d => ({ id: d.id, ...d.data() })));
         const messages = msgSnap.docs.map(d => ({ id: d.id, ...d.data() }));
         const orders = orderSnap.docs.map(d => ({ id: d.id, ...d.data() }));
         
         renderList(blogs, 'blog-list', 'blog', 'blogs');
-        renderList(portfolio, 'portfolio-list', 'portfolio', 'portfolio');
+        renderList(properties, 'prop-list', 'property', 'properties');
         renderList(products,  'product-list',   'product', 'products');
         
         // Render Messages
@@ -1762,8 +1755,8 @@
 
     // ── Update stats ──
     const updateStats = () => {
-      ['blog','pf','shop'].forEach(k => {
-        const arr = k === 'blog' ? blogs : k === 'pf' ? portfolio : products;
+      ['blog','prop','shop'].forEach(k => {
+        const arr = k === 'blog' ? blogs : k === 'prop' ? properties : products;
         ['stat-','sb-count-'].forEach(p => {
           const el = document.getElementById(p + k);
           if (el) el.textContent = arr.length;
@@ -1789,12 +1782,25 @@
         const imgSrc = item.image || '';
         const title = item.title || item.name;
         const sub = item.date || item.category || `$${item.price}`;
+        // Show Edit button only for blogs
+        const editBtnHtml = type === 'blog' ? `
+          <button class="btn-edit-blog" data-id="${item.id}" data-idx="${idx}" style="
+            background: linear-gradient(135deg,#D4AF37,#8B6914);
+            color:#000; border:none; border-radius:8px;
+            padding:8px 14px; font-size:0.78rem; font-weight:700;
+            cursor:pointer; display:flex; align-items:center; gap:6px;
+            margin-right:6px; flex-shrink:0; transition:opacity .2s;
+          ">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            Edit
+          </button>` : '';
         div.innerHTML = `
           <div class="item-thumb">${imgSrc ? `<img src="${imgSrc}" alt="">` : '📋'}</div>
           <div class="item-info">
             <strong>${title}</strong>
             <span>${sub}</span>
           </div>
+          ${editBtnHtml}
           <button class="btn-delete" data-id="${item.id}" data-idx="${idx}" data-type="${type}" data-col="${collectionName}">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>
             Delete
@@ -1802,6 +1808,40 @@
         `;
         c.appendChild(div);
       });
+
+      // Wire Edit buttons for blogs
+      c.querySelectorAll('.btn-edit-blog').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.dataset.id;
+          const blogItem = arr.find(b => b.id === id);
+          if (!blogItem) return;
+          // Switch to blog section
+          document.querySelectorAll('.admin-nav-link').forEach(l => l.classList.remove('active'));
+          document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
+          const blogLink = document.querySelector('[data-target="sec-blog"]');
+          if (blogLink) blogLink.classList.add('active');
+          const blogSec = document.getElementById('sec-blog');
+          if (blogSec) blogSec.classList.add('active');
+          // Pre-fill the form
+          document.getElementById('blog-title').value = blogItem.title || '';
+          const catEl = document.getElementById('blog-cat');
+          if (catEl && blogItem.category) catEl.value = blogItem.category;
+          if (blogQuill) {
+            blogQuill.root.innerHTML = blogItem.content || '';
+          } else if (document.getElementById('blog-content')) {
+            document.getElementById('blog-content').value = blogItem.content || '';
+          }
+          // Store editId on the form for submission
+          const form = document.getElementById('form-blog');
+          form.dataset.editId = id;
+          form.dataset.editImage = blogItem.image || '';
+          // Update submit button
+          const submitBtn = form.querySelector('button[type="submit"]');
+          if (submitBtn) submitBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v14a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Update Blog Post';
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      });
+
       c.querySelectorAll('.btn-delete').forEach(btn => {
         btn.addEventListener('click', async () => {
           const id = btn.dataset.id;
@@ -1816,7 +1856,7 @@
             await window.db.collection(col).doc(id).delete();
             
             if (t === 'blog')       { blogs.splice(i,1); renderList(blogs, 'blog-list', 'blog', col); }
-            if (t === 'portfolio')  { portfolio.splice(i,1); renderList(portfolio, 'portfolio-list', 'portfolio', col); }
+            if (t === 'portfolio') // Using 'portfolio' collection for REEL Properties  { portfolio.splice(i,1); renderList(portfolio, 'portfolio-list', 'portfolio', col); }
             if (t === 'product')    { products.splice(i,1); renderList(products, 'product-list', 'product', col); }
             
             updateStats();
@@ -2070,8 +2110,23 @@
     }
     waitForDbThenScheduler(15);
 
-    handleForm('form-blog', 'blog-img',
-      img => {
+    // ── Blog Form: support both CREATE and EDIT ──
+    (() => {
+      const formId = 'form-blog';
+      const fileInputId = 'blog-img';
+      const collectionName = 'blogs';
+      const IMGBB_API_KEY = '40fad5b164f7be1f49b470b9563cc0c7';
+
+      document.getElementById(formId).addEventListener('submit', async e => {
+        e.preventDefault();
+        const form = e.target;
+        const editId = form.dataset.editId || null;
+        const fileInput = document.getElementById(fileInputId);
+        const file = fileInput.files[0];
+        const btn = form.querySelector('button[type="submit"]');
+        const oldText = btn.innerHTML;
+
+        // Gather content
         let contentStr = '';
         if (blogQuill) {
           contentStr = blogQuill.root.innerHTML;
@@ -2080,7 +2135,7 @@
           contentStr = document.getElementById('blog-content').value;
         }
 
-        return {
+        const buildPayload = (img) => ({
           title: document.getElementById('blog-title').value,
           category: document.getElementById('blog-cat').value,
           content: contentStr,
@@ -2089,23 +2144,77 @@
           date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
           status: document.getElementById('blog-status').value,
           scheduleTime: document.getElementById('blog-status').value === 'scheduled' ? pendingScheduleTime : null,
-          timestamp: firebase.firestore.FieldValue.serverTimestamp()
-        };
-      },
-      'blogs', blogs, 'blog-list', 'blog'
-    );
+        });
 
-    handleForm('form-portfolio', 'pf-img',
+        btn.innerHTML = file ? 'Uploading Image...' : 'Saving...';
+        btn.disabled = true;
+
+        try {
+          let imageUrl = form.dataset.editImage || '';
+
+          if (file) {
+            const getBase64 = (f) => new Promise((resolve, reject) => {
+              const reader = new FileReader();
+              reader.readAsDataURL(f);
+              reader.onload = () => resolve(reader.result.split(',')[1]);
+              reader.onerror = error => reject(error);
+            });
+            const base64Image = await getBase64(file);
+            const fd = new FormData();
+            fd.append('image', base64Image);
+            const res = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, { method: 'POST', body: fd });
+            const data = await res.json();
+            if (!data.success) throw new Error('ImgBB Error: ' + (data.error?.message || 'Upload Failed'));
+            imageUrl = data.data.url;
+            btn.innerHTML = 'Saving...';
+          }
+
+          const payload = buildPayload(imageUrl);
+
+          if (editId) {
+            // UPDATE existing blog
+            await window.db.collection(collectionName).doc(editId).update(payload);
+            // Update local array
+            const i = blogs.findIndex(b => b.id === editId);
+            if (i !== -1) blogs[i] = { id: editId, ...payload };
+            renderList(blogs, 'blog-list', 'blog', collectionName);
+            showToast('Updated!', 'Blog post updated successfully.');
+          } else {
+            // CREATE new blog
+            payload.timestamp = firebase.firestore.FieldValue.serverTimestamp();
+            const docRef = await window.db.collection(collectionName).add(payload);
+            blogs.unshift({ id: docRef.id, ...payload });
+            renderList(blogs, 'blog-list', 'blog', collectionName);
+            showToast('Published!', 'Blog post published successfully.');
+          }
+
+          updateStats();
+          form.reset();
+          delete form.dataset.editId;
+          delete form.dataset.editImage;
+          if (blogQuill) blogQuill.root.innerHTML = '';
+          pendingScheduleTime = null;
+          btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg> Publish Post';
+        } catch(err) {
+          console.error(err);
+          showToast('Error', err.message || 'Failed. Check your connection.', 'delete');
+        } finally {
+          btn.disabled = false;
+        }
+      });
+    })();
+
+    handleForm('form-properties', 'prop-img',
       img => ({
-        title: document.getElementById('pf-title').value,
-        category: document.getElementById('pf-cat').value,
+        title: document.getElementById('prop-title').value,
+        caption: document.getElementById('prop-caption').value,
+        price: document.getElementById('prop-price').value,
         image: img,
-        imagePos: document.getElementById('pf-img-pos').value,
-        status: document.getElementById('portfolio-status').value,
-        scheduleTime: document.getElementById('portfolio-status').value === 'scheduled' ? pendingScheduleTime : null,
+        status: document.getElementById('prop-status').value,
+        scheduleTime: document.getElementById('prop-status').value === 'scheduled' ? pendingScheduleTime : null,
         timestamp: firebase.firestore.FieldValue.serverTimestamp()
       }),
-      'portfolio', portfolio, 'portfolio-list', 'portfolio'
+      'properties', properties, 'prop-list', 'property'
     );
 
     handleForm('form-shop', 'shop-img',
