@@ -207,36 +207,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const cursorRing = document.getElementById('cursor-ring');
 
   if (cursorDot && cursorRing) {
-    // Hide default cursor on body if custom cursor is active
-    document.body.style.cursor = 'none';
-
-    // Mouse move event
-    window.addEventListener('mousemove', (e) => {
-      // Dot follows exactly
-      cursorDot.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-      // Ring follows with slight delay
-      cursorRing.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-    });
-
-    // Hover effects on interactable elements
-    const interactables = document.querySelectorAll('a, button, input, select, textarea, .nav-item-dropdown, .client-chip, .prod-card');
-    interactables.forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        cursorDot.classList.add('hover');
-        cursorRing.classList.add('hover');
-      });
-      el.addEventListener('mouseleave', () => {
-        cursorDot.classList.remove('hover');
-        cursorRing.classList.remove('hover');
-      });
-      // Click effect
-      el.addEventListener('mousedown', () => cursorRing.classList.add('click'));
-      el.addEventListener('mouseup', () => cursorRing.classList.remove('click'));
-    });
-
-    // Global click effect
-    window.addEventListener('mousedown', () => cursorRing.style.transform += ' scale(0.9)');
-    window.addEventListener('mouseup', () => cursorRing.style.transform = cursorRing.style.transform.replace(' scale(0.9)', ''));
+    // Hide custom cursor elements
+    cursorDot.style.display = 'none';
+    cursorRing.style.display = 'none';
+    
+    // Restore default cursor on body
+    document.body.style.cursor = 'auto';
   }
 
 
@@ -539,6 +515,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // 13. CUSTOM LUXURY CURSOR
+  // Disabled by request to restore the normal cursor.
+  /*
   const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
   if (!isTouchDevice) {
     const cursor = document.createElement('div');
@@ -584,6 +562,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+  */
 
   // 14. DYNAMIC ADMIN RENDER (Firebase Firestore)
   const renderDynamicContent = async () => {

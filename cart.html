@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+Ôªø<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -12,6 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
   <style>
     .cart-section { min-height: 80vh; padding: 140px 0 80px; }
     .cart-layout { display: grid; grid-template-columns: 1fr 360px; gap: 40px; align-items: start; }
@@ -212,7 +213,7 @@
           </div>
         </div>
         <div style="margin-top: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
-          <a href="shop.html" class="btn-ghost"><span>&larr;ê Continue Shopping</span></a>
+          <a href="shop.html" class="btn-ghost"><span>&larr;ÔøΩ Continue Shopping</span></a>
           <button id="clear-cart-btn" class="btn-ghost" style="color:#E63946; border-color:rgba(230,57,70,0.3); display:none;">
             <span>?? Clear Cart</span>
           </button>
@@ -325,7 +326,7 @@
     if (cart.length === 0) {
       container.innerHTML = `
         <div class="cart-empty">
-          <div class="cart-empty-icon">???è</div>
+          <div class="cart-empty-icon">???ÔøΩ</div>
           <h3>Your Cart is Empty</h3>
           <p>You haven't added anything yet. Discover our exclusive collection.</p>
           <a href="shop.html" class="btn-gold" style="display:inline-flex;">Browse the Shop</a>
@@ -340,7 +341,7 @@
           <div class="cart-thumb">
             ${item.image
               ? `<img src="${item.image}" alt="${item.name}" />`
-              : '???è'
+              : '???ÔøΩ'
             }
           </div>
           <div>
