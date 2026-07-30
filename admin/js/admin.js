@@ -6,7 +6,7 @@
 const MASTER_PASS = "REEGLOBAL@090021";
 
 document.addEventListener('DOMContentLoaded', () => {
-  
+
   // --- LOGIN LOGIC ---
   const loginForm = document.getElementById('admin-login-form');
   if (loginForm) {
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const passInput = document.getElementById('admin-pass').value;
       const errorMsg = document.getElementById('login-error');
-      
+
       if (passInput === MASTER_PASS) {
         sessionStorage.setItem('ree_admin_auth', 'true');
         window.location.href = 'index.html';
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const navLinks = document.querySelectorAll('.admin-nav-link');
     const sections = document.querySelectorAll('.admin-section');
-    
+
     navLinks.forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
@@ -69,21 +69,21 @@ document.addEventListener('DOMContentLoaded', () => {
             [{ 'header': [1, 2, 3, false] }],
             ['bold', 'italic', 'underline', 'strike'],
             [{ 'color': [] }, { 'background': [] }],
-            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+            [{ 'list': 'ordered' }, { 'list': 'bullet' }],
             ['link', 'clean']
           ]
         }
       });
-      
+
       // Real-time word count
-      blogQuill.on('text-change', function() {
+      blogQuill.on('text-change', function () {
         const text = blogQuill.getText().trim();
         const words = text.length > 0 ? text.split(/\s+/).length : 0;
         const chars = text.length;
-        
+
         const qlInfo = document.getElementById('ql-word-info');
         const headerInfo = document.getElementById('word-count-display');
-        
+
         if (qlInfo) qlInfo.textContent = `${words} words · ${chars} characters`;
         if (headerInfo) headerInfo.textContent = `${words} words`;
       });
@@ -107,18 +107,18 @@ document.addEventListener('DOMContentLoaded', () => {
   let pendingScheduleTime = null;
   let activeScheduleForm = null;
 
-  window.closeScheduleModal = function() {
+  window.closeScheduleModal = function () {
     document.getElementById('schedule-modal-overlay').style.display = 'none';
-    if(activeScheduleForm) {
+    if (activeScheduleForm) {
       // Revert select back to published if they cancel
       const select = document.getElementById(activeScheduleForm + '-status');
-      if(select) select.value = 'published';
+      if (select) select.value = 'published';
     }
   };
 
-  window.confirmScheduleTime = function() {
+  window.confirmScheduleTime = function () {
     const input = document.getElementById('global-schedule-time').value;
-    if(!input) {
+    if (!input) {
       alert("Please select a date and time!");
       return;
     }
@@ -128,11 +128,11 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   function initAdminPanel() {
-    
+
     // --- SCHEDULER TOGGLE MODAL LOGIC ---
     const setupScheduleToggle = (selectId, prefix) => {
       const select = document.getElementById(selectId);
-      if(select) {
+      if (select) {
         select.addEventListener('change', (e) => {
           if (e.target.value === 'scheduled') {
             activeScheduleForm = prefix;
@@ -150,12 +150,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const container = document.getElementById(containerId);
       if (!container) return;
       container.innerHTML = '';
-      
+
       if (docs.length === 0) {
         container.innerHTML = `<div class="empty-state">No ${type} items found.</div>`;
         return;
       }
-      
+
       docs.forEach((docSnap) => {
         const item = docSnap.data();
         const id = docSnap.id;
@@ -202,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const t = e.target.getAttribute('data-type');
           if (confirm(`Are you sure you want to delete this item?`)) {
             let collection = t === 'product' ? 'products' : t;
-            if(t==='blog') collection = 'blogs';
+            if (t === 'blog') collection = 'blogs';
             window.db.collection(collection).doc(id).delete().then(() => showToast("Deleted", "Item removed successfully.", "delete"));
           }
         });
@@ -213,14 +213,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const container = document.getElementById('scheduler-list');
       if (!container) return;
       container.innerHTML = '';
-      
-      if(allScheduled.length === 0) {
+
+      if (allScheduled.length === 0) {
         container.innerHTML = `<div class="empty-state">No scheduled content.</div>`;
         return;
       }
-      
-      allScheduled.sort((a,b) => new Date(a.scheduleTime) - new Date(b.scheduleTime));
-      
+
+      allScheduled.sort((a, b) => new Date(a.scheduleTime) - new Date(b.scheduleTime));
+
       allScheduled.forEach(item => {
         const div = document.createElement('div');
         div.className = 'admin-list-item';
@@ -235,15 +235,15 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
         container.appendChild(div);
       });
-      
+
       container.querySelectorAll('.btn-delete').forEach(btn => {
         btn.addEventListener('click', (e) => {
           const id = e.target.getAttribute('data-id');
           const t = e.target.getAttribute('data-type');
           if (confirm(`Are you sure you want to delete this scheduled item?`)) {
             let col = t === 'product' ? 'products' : t;
-            if(t==='blog') col = 'blogs';
-            window.db.collection(col).doc(id).delete().then(()=> showToast("Deleted", "Scheduled item removed."));
+            if (t === 'blog') col = 'blogs';
+            window.db.collection(col).doc(id).delete().then(() => showToast("Deleted", "Scheduled item removed."));
           }
         });
       });
@@ -251,45 +251,97 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- REALTIME LISTENERS ---
     let globalScheduled = [];
-    
+
     window.db.collection('blogs').orderBy('timestamp', 'desc').onSnapshot(snap => {
       renderAdminList(snap.docs, 'blog-list', 'blog');
       globalScheduled = globalScheduled.filter(i => i.type !== 'blog');
       snap.forEach(d => {
-        if(d.data().status === 'scheduled') globalScheduled.push({id: d.id, type: 'blog', ...d.data()});
+        if (d.data().status === 'scheduled') globalScheduled.push({ id: d.id, type: 'blog', ...d.data() });
       });
       renderSchedulerList(globalScheduled);
+      
+      // Update Dashboard Stats
+      const sbCountBlog = document.getElementById('sb-count-blog');
+      const statBlog = document.getElementById('stat-blog');
+      if (sbCountBlog) sbCountBlog.textContent = snap.size;
+      if (statBlog) statBlog.textContent = snap.size;
     });
 
     window.db.collection('properties').orderBy('timestamp', 'desc').onSnapshot(snap => {
       renderAdminList(snap.docs, 'prop-list', 'properties');
       globalScheduled = globalScheduled.filter(i => i.type !== 'properties');
       snap.forEach(d => {
-        if(d.data().status === 'scheduled') globalScheduled.push({id: d.id, type: 'properties', ...d.data()});
+        if (d.data().status === 'scheduled') globalScheduled.push({ id: d.id, type: 'properties', ...d.data() });
       });
       renderSchedulerList(globalScheduled);
+
+      // Update Dashboard Stats
+      const sbCountProp = document.getElementById('sb-count-prop');
+      const statPf = document.getElementById('stat-pf');
+      if (sbCountProp) sbCountProp.textContent = snap.size;
+      if (statPf) statPf.textContent = snap.size;
     });
 
     window.db.collection('products').orderBy('timestamp', 'desc').onSnapshot(snap => {
       renderAdminList(snap.docs, 'product-list', 'product');
       globalScheduled = globalScheduled.filter(i => i.type !== 'product');
       snap.forEach(d => {
-        if(d.data().status === 'scheduled') globalScheduled.push({id: d.id, type: 'product', ...d.data()});
+        if (d.data().status === 'scheduled') globalScheduled.push({ id: d.id, type: 'product', ...d.data() });
       });
       renderSchedulerList(globalScheduled);
+
+      // Update Dashboard Stats
+      const sbCountShop = document.getElementById('sb-count-shop');
+      const statShop = document.getElementById('stat-shop');
+      if (sbCountShop) sbCountShop.textContent = snap.size;
+      if (statShop) statShop.textContent = snap.size;
     });
 
+    // --- AUTO-PUBLISH ENGINE ---
+    // Runs every 60 seconds. Finds any scheduled item whose scheduleTime has passed
+    // and upgrades its status to 'published' directly in Firestore.
+    const runAutoPublish = async () => {
+      const now = Date.now();
+      const collections = [
+        { name: 'blogs', titleField: 'title' },
+        { name: 'properties', titleField: 'title' },
+        { name: 'products', titleField: 'name' }
+      ];
+      for (const col of collections) {
+        try {
+          const snap = await window.db.collection(col.name)
+            .where('status', '==', 'scheduled')
+            .get();
+          snap.forEach(async (doc) => {
+            const data = doc.data();
+            if (data.scheduleTime && new Date(data.scheduleTime).getTime() <= now) {
+              await window.db.collection(col.name).doc(doc.id).update({
+                status: 'published',
+                scheduleTime: null
+              });
+              console.log(`[AutoPublish] ${col.name}/${doc.id} → published`);
+            }
+          });
+        } catch (err) {
+          console.warn(`[AutoPublish] Error checking ${col.name}:`, err);
+        }
+      }
+    };
+    // Run once immediately on panel load, then every 60 seconds
+    runAutoPublish();
+    setInterval(runAutoPublish, 60000);
+
     // --- FORM SUBMISSIONS (FIREBASE) ---
-    
+
     // Blog
     document.getElementById('form-blog').addEventListener('submit', (e) => {
       e.preventDefault();
       const title = document.getElementById('blog-title').value;
       const category = document.getElementById('blog-cat').value;
-      
+
       // Get HTML content from Quill editor, fallback to hidden input just in case
       const content = blogQuill ? blogQuill.root.innerHTML : document.getElementById('blog-content').value;
-      
+
       // Check if editor is practically empty (Quill leaves a <p><br></p> by default)
       if (!content || content === '<p><br></p>') {
         alert("Please enter the blog content.");
@@ -297,14 +349,20 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       const status = document.getElementById('blog-status').value;
       const fileInput = document.getElementById('blog-img');
-      
+
+      // Guard: user selected 'scheduled' but never confirmed a time
+      if (status === 'scheduled' && !pendingScheduleTime) {
+        alert("Please set a schedule date & time before saving.");
+        return;
+      }
+
       let sTime = status === 'scheduled' ? pendingScheduleTime : null;
       const submitBtn = document.querySelector('#form-blog button[type="submit"]');
 
       const saveBlog = (imageData) => {
         const payload = {
           title, category, content, status, scheduleTime: sTime,
-          date: new Date().toLocaleDateString('en-US', {month: 'short', day: 'numeric', year: 'numeric'})
+          date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
         };
         if (imageData) {
           payload.image = imageData;
@@ -320,7 +378,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         promise.then(() => {
-          e.target.reset(); 
+          e.target.reset();
           if (blogQuill) blogQuill.root.innerHTML = '';
           pendingScheduleTime = null;
           window.editBlogId = null;
@@ -331,7 +389,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (fileInput.files && fileInput.files[0]) {
         const reader = new FileReader();
-        reader.onload = function(evt) {
+        reader.onload = function (evt) {
           saveBlog(evt.target.result);
         };
         reader.readAsDataURL(fileInput.files[0]);
@@ -352,11 +410,18 @@ document.addEventListener('DOMContentLoaded', () => {
       const price = document.getElementById('prop-price').value;
       const status = document.getElementById('prop-status').value;
       const fileInput = document.getElementById('prop-img');
+
+      // Guard: user selected 'scheduled' but never confirmed a time
+      if (status === 'scheduled' && !pendingScheduleTime) {
+        alert("Please set a schedule date & time before saving.");
+        return;
+      }
+
       let sTime = status === 'scheduled' ? pendingScheduleTime : null;
-      
+
       if (fileInput.files && fileInput.files[0]) {
         const reader = new FileReader();
-        reader.onload = function(evt) {
+        reader.onload = function (evt) {
           window.db.collection('properties').add({
             title, caption, price, status, scheduleTime: sTime,
             image: evt.target.result,
@@ -380,11 +445,18 @@ document.addEventListener('DOMContentLoaded', () => {
       const category = document.getElementById('shop-cat').value;
       const status = document.getElementById('shop-status').value;
       const fileInput = document.getElementById('shop-img');
+
+      // Guard: user selected 'scheduled' but never confirmed a time
+      if (status === 'scheduled' && !pendingScheduleTime) {
+        alert("Please set a schedule date & time before saving.");
+        return;
+      }
+
       let sTime = status === 'scheduled' ? pendingScheduleTime : null;
-      
+
       if (fileInput.files && fileInput.files[0]) {
         const reader = new FileReader();
-        reader.onload = function(evt) {
+        reader.onload = function (evt) {
           window.db.collection('products').add({
             name, price, category, status, scheduleTime: sTime,
             image: evt.target.result,
@@ -407,7 +479,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const bcSendBtn = document.getElementById('bc-send-btn');
     const bcHistoryList = document.getElementById('bc-history-list');
 
-    if(bcInput) {
+    if (bcInput) {
       bcInput.addEventListener('input', (e) => {
         const val = e.target.value;
         bcCount.textContent = `${val.length}/300`;
@@ -417,14 +489,14 @@ document.addEventListener('DOMContentLoaded', () => {
       bcSendBtn.addEventListener('click', (e) => {
         e.preventDefault();
         const body = bcInput.value.trim();
-        if(!body) return;
-        
+        if (!body) return;
+
         // Extract a title dynamically, e.g. first 20 chars
         const title = "New Broadcast from REEL";
-        
+
         bcSendBtn.disabled = true;
         bcSendBtn.innerHTML = "Sending...";
-        
+
         window.db.collection('notifications').add({
           title: title,
           message: body,
@@ -445,7 +517,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Listen to notification history
       window.db.collection('notifications').orderBy('timestamp', 'desc').limit(15).onSnapshot(snap => {
-        if(snap.empty) {
+        if (snap.empty) {
           bcHistoryList.innerHTML = `<div class="bc-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path></svg>No broadcast history found</div>`;
           return;
         }
@@ -462,6 +534,24 @@ document.addEventListener('DOMContentLoaded', () => {
         bcHistoryList.innerHTML = hHtml;
       });
     }
+
+    // --- ORDERS & MESSAGES STATS ---
+    window.db.collection('orders').onSnapshot(snap => {
+      const ordersBadge = document.getElementById('orders-badge');
+      if (ordersBadge) {
+        ordersBadge.textContent = snap.size;
+        ordersBadge.style.display = snap.size > 0 ? 'inline-block' : 'none';
+      }
+    });
+
+    window.db.collection('messages').onSnapshot(snap => {
+      const msgsBadge = document.getElementById('msgs-badge');
+      if (msgsBadge) {
+        msgsBadge.textContent = snap.size;
+        msgsBadge.style.display = snap.size > 0 ? 'inline-block' : 'none';
+      }
+    });
+
   } // end initAdminPanel
 
 });

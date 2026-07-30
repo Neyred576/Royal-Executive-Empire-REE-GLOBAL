@@ -980,9 +980,17 @@
             </svg>
           </div>
           <span class="nav-label">Shop Products</span>
+      </li>
+      <li>
+        <a href="#" class="admin-nav-link" data-target="sec-brands">
+          <div class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+          </div>
+          <span class="nav-label">Brands / Alliances</span>
         </a>
       </li>
-
       <li>
         <a href="#" class="admin-nav-link" data-target="sec-scheduler">
           <div class="nav-icon">
@@ -1427,7 +1435,79 @@
         </div>
       </div>
     </section>
+    <!-- ── BRANDS / ALLIANCES ── -->
+    <section id="sec-brands" class="admin-section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+        </div>
+        <div>
+          <h1>Brands & Alliances</h1>
+          <p>Manage strategic partners and alliances for the frontend.</p>
+        </div>
+      </div>
 
+      <div class="two-col" style="margin-top:24px;">
+        <div class="admin-card">
+          <div class="card-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20v-8m0 0V4m0 8h8m-8 0H4"/></svg>
+            Add New Brand
+          </div>
+          <form id="form-brands">
+            <div class="form-group">
+              <label>Brand Name</label>
+              <input type="text" id="brand-name" placeholder="e.g. Pedani" required />
+            </div>
+            <div class="form-group">
+              <label>Sector / Category</label>
+              <input type="text" id="brand-sector" placeholder="e.g. Strategic Partner" required />
+            </div>
+            <div class="form-group">
+              <label>Website Link (Optional)</label>
+              <input type="url" id="brand-link" placeholder="https://example.com" />
+            </div>
+            <div class="form-group">
+              <label style="display:flex; align-items:center; gap:8px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                Link to a Blog Post (Optional)
+              </label>
+              <select id="brand-blog-link" style="margin-bottom:4px;">
+                <option value="">— No linked blog —</option>
+              </select>
+              <span style="font-size:0.7rem; color:var(--w40);">Clicking this brand card will open the selected blog article.</span>
+            </div>
+            <div class="form-group">
+              <label>Brand Logo</label>
+              <div class="file-upload">
+                <input type="file" id="brand-img" accept="image/*" required />
+                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg> Choose Image...</span>
+              </div>
+            </div>
+            <div class="form-group" style="padding:15px; background:rgba(212,175,55,0.03); border-radius:8px; border:1px solid rgba(212,175,55,0.15);">
+              <label style="color:var(--gold); display:flex; align-items:center; gap:8px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                Publishing Status
+              </label>
+              <select id="brand-status" style="margin-bottom:12px;">
+                <option value="published">Publish Immediately</option>
+                <option value="scheduled">Schedule for Later</option>
+              </select>
+            </div>
+            <button type="submit" class="btn-submit">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+              Add Brand
+            </button>
+          </form>
+        </div>
+        <div class="admin-card">
+          <div class="card-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            Live Brands
+          </div>
+          <div id="brands-list" class="admin-list"></div>
+        </div>
+      </div>
+    </section>
 
 
     <!-- ── ORDERS ── -->
@@ -1661,6 +1741,7 @@
     let blogs = [];
     let properties = [];
     let products = [];
+    let brands = [];
 
     // ── Load Data from Firebase ──
     // Wait until window.db is ready (Firebase may take a moment to init)
@@ -1678,23 +1759,26 @@
       if (!window.db) { waitForDbThenLoad(10); return; }
       
       try {
-        const [blogSnap, propSnap, shopSnap, msgSnap, orderSnap] = await Promise.all([
+        const [blogSnap, propSnap, shopSnap, msgSnap, orderSnap, brandSnap] = await Promise.all([
           window.db.collection('blogs').orderBy('timestamp', 'desc').get(),
           window.db.collection('properties').orderBy('timestamp', 'desc').get(),
           window.db.collection('products').get(),
           window.db.collection('messages').orderBy('timestamp', 'desc').get(),
-          window.db.collection('orders').orderBy('timestamp', 'desc').get()
+          window.db.collection('orders').orderBy('timestamp', 'desc').get(),
+          window.db.collection('brands').orderBy('timestamp', 'desc').get()
         ]);
         
         blogs.length = 0; blogs.push(...blogSnap.docs.map(d => ({ id: d.id, ...d.data() })));
         properties.length = 0; properties.push(...propSnap.docs.map(d => ({ id: d.id, ...d.data() })));
         products.length = 0; products.push(...shopSnap.docs.map(d => ({ id: d.id, ...d.data() })));
+        brands.length = 0; brands.push(...brandSnap.docs.map(d => ({ id: d.id, ...d.data() })));
         const messages = msgSnap.docs.map(d => ({ id: d.id, ...d.data() }));
         const orders = orderSnap.docs.map(d => ({ id: d.id, ...d.data() }));
         
         renderList(blogs, 'blog-list', 'blog', 'blogs');
         renderList(properties, 'prop-list', 'property', 'properties');
         renderList(products,  'product-list',   'product', 'products');
+        renderList(brands, 'brands-list', 'brand', 'brands');
         
         // Render Messages
         const msgList = document.getElementById('messages-list');
@@ -1757,10 +1841,14 @@
     const updateStats = () => {
       ['blog','prop','shop'].forEach(k => {
         const arr = k === 'blog' ? blogs : k === 'prop' ? properties : products;
-        ['stat-','sb-count-'].forEach(p => {
-          const el = document.getElementById(p + k);
-          if (el) el.textContent = arr.length;
-        });
+        
+        const statId = k === 'prop' ? 'stat-pf' : 'stat-' + k;
+        const el1 = document.getElementById(statId);
+        if (el1) el1.textContent = arr.length;
+        
+        const sbId = 'sb-count-' + k;
+        const el2 = document.getElementById(sbId);
+        if (el2) el2.textContent = arr.length;
       });
     };
 
@@ -1856,7 +1944,7 @@
             await window.db.collection(col).doc(id).delete();
             
             if (t === 'blog')       { blogs.splice(i,1); renderList(blogs, 'blog-list', 'blog', col); }
-            if (t === 'property')   { properties.splice(i,1); renderList(properties, 'prop-list', 'property', col); }
+            if (t === 'portfolio') // Using 'portfolio' collection for REEL Properties  { portfolio.splice(i,1); renderList(portfolio, 'portfolio-list', 'portfolio', col); }
             if (t === 'product')    { products.splice(i,1); renderList(products, 'product-list', 'product', col); }
             
             updateStats();
@@ -2018,17 +2106,10 @@
       if (!val) { showToast('No Time', 'Please pick a date and time.', 'delete'); return; }
       pendingScheduleTime = val;
       document.getElementById('schedule-modal-overlay').style.display = 'none';
-      showToast('Scheduled', 'Post will go live at: ' + new Date(val).toLocaleString());
-      // Auto-navigate to Scheduler tab
-      document.querySelectorAll('.admin-nav-link').forEach(l => l.classList.remove('active'));
-      document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
-      const schLink = document.querySelector('[data-target="sec-scheduler"]');
-      if (schLink) schLink.classList.add('active');
-      const schSec = document.getElementById('sec-scheduler');
-      if (schSec) schSec.classList.add('active');
+      showToast('Time Set!', 'Time saved. Make sure to click Publish/Save to submit the post.');
     };
 
-    ['blog-status','portfolio-status','shop-status'].forEach(id => {
+    ['blog-status','portfolio-status','shop-status','brand-status'].forEach(id => {
       const sel = document.getElementById(id);
       if (!sel) return;
       sel.addEventListener('change', () => {
@@ -2089,7 +2170,7 @@
     // ── Real-time Scheduler Listeners ──
     function attachSchedulerListeners() {
       let allScheduled = [];
-      const colMap = { blogs: 'Blog', properties: 'Property', products: 'Product' };
+      const colMap = { blogs: 'Blog', portfolio: 'Portfolio', products: 'Product' };
 
       Object.entries(colMap).forEach(([col, type]) => {
         window.db.collection(col).where('status', '==', 'scheduled').onSnapshot(snap => {
@@ -2109,6 +2190,32 @@
       }
     }
     waitForDbThenScheduler(15);
+
+    // --- AUTO-PUBLISH ENGINE ---
+    const runAutoPublish = async () => {
+      if (!window.db) return;
+      const now = Date.now();
+      const collections = ['blogs', 'properties', 'products'];
+      for (const col of collections) {
+        try {
+          const snap = await window.db.collection(col).where('status', '==', 'scheduled').get();
+          snap.forEach(async (doc) => {
+            const data = doc.data();
+            if (data.scheduleTime && new Date(data.scheduleTime).getTime() <= now) {
+              await window.db.collection(col).doc(doc.id).update({
+                status: 'published',
+                scheduleTime: null
+              });
+              console.log(`[AutoPublish] ${col}/${doc.id} → published`);
+            }
+          });
+        } catch(err) {
+          console.warn(`[AutoPublish] Error checking ${col}:`, err);
+        }
+      }
+    };
+    setInterval(runAutoPublish, 60000);
+    setTimeout(runAutoPublish, 3000);
 
     // ── Blog Form: support both CREATE and EDIT ──
     (() => {
@@ -2135,6 +2242,12 @@
           contentStr = document.getElementById('blog-content').value;
         }
 
+        const statusVal = document.getElementById('blog-status').value;
+        if (statusVal === 'scheduled' && !pendingScheduleTime) {
+          showToast('Error', 'Please set a schedule date & time before saving.', 'delete');
+          return;
+        }
+
         const buildPayload = (img) => ({
           title: document.getElementById('blog-title').value,
           category: document.getElementById('blog-cat').value,
@@ -2142,8 +2255,8 @@
           image: img,
           imagePos: document.getElementById('blog-img-pos').value,
           date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
-          status: document.getElementById('blog-status').value,
-          scheduleTime: document.getElementById('blog-status').value === 'scheduled' ? pendingScheduleTime : null,
+          status: statusVal,
+          scheduleTime: statusVal === 'scheduled' ? pendingScheduleTime : null,
         });
 
         btn.innerHTML = file ? 'Uploading Image...' : 'Saving...';
@@ -2204,32 +2317,190 @@
       });
     })();
 
-    handleForm('form-properties', 'prop-img',
-      img => ({
-        title: document.getElementById('prop-title').value,
-        caption: document.getElementById('prop-caption').value,
-        price: document.getElementById('prop-price').value,
-        image: img,
-        status: document.getElementById('prop-status').value,
-        scheduleTime: document.getElementById('prop-status').value === 'scheduled' ? pendingScheduleTime : null,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp()
-      }),
-      'properties', properties, 'prop-list', 'property'
-    );
+    // ── Properties Form Handler (with redirect to REEL Properties page) ──
+    (() => {
+      const propForm = document.getElementById('form-properties');
+      if (!propForm) return;
+
+      propForm.addEventListener('submit', async e => {
+        e.preventDefault();
+
+        const fileInput = document.getElementById('prop-img');
+        const file = fileInput.files[0];
+        if (!file) { showToast('No Image', 'Please select a property image.', 'delete'); return; }
+
+        const statusVal = document.getElementById('prop-status').value;
+        if (statusVal === 'scheduled' && !pendingScheduleTime) {
+          showToast('Error', 'Please set a schedule date & time before saving.', 'delete');
+          return;
+        }
+
+        const btn = propForm.querySelector('button[type="submit"]');
+        const oldText = btn.innerHTML;
+        btn.innerHTML = 'Uploading Image...';
+        btn.disabled = true;
+
+        try {
+          // 1. Convert to base64
+          const base64Image = await new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result.split(',')[1]);
+            reader.onerror = err => reject(err);
+          });
+
+          // 2. Upload to ImgBB
+          const formData = new FormData();
+          formData.append('image', base64Image);
+          const res = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
+            method: 'POST',
+            body: formData
+          });
+          const imgData = await res.json();
+          if (!imgData.success) throw new Error('ImgBB Error: ' + (imgData.error?.message || 'Upload Failed'));
+          const imageUrl = imgData.data.url;
+
+          btn.innerHTML = 'Saving...';
+
+          // 3. Save to Firestore
+          const payload = {
+            title: document.getElementById('prop-title').value.trim(),
+            caption: document.getElementById('prop-caption').value.trim(),
+            price: document.getElementById('prop-price').value.trim(),
+            image: imageUrl,
+            status: statusVal,
+            scheduleTime: statusVal === 'scheduled' ? pendingScheduleTime : null,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+          };
+
+          await window.db.collection('properties').add(payload);
+
+          showToast('Success!', 'Property saved! Redirecting to REEL Properties...');
+
+          // 4. Redirect to the REEL Properties page after a short delay
+          setTimeout(() => {
+            window.open('../real-estate.html', '_blank');
+          }, 1500);
+
+          propForm.reset();
+          pendingScheduleTime = null;
+          loadData();
+
+        } catch (err) {
+          console.error(err);
+          showToast('Error', err.message || 'Failed to save property. Check connection.', 'delete');
+        } finally {
+          btn.innerHTML = oldText;
+          btn.disabled = false;
+        }
+      });
+    })();
 
     handleForm('form-shop', 'shop-img',
-      img => ({
-        name: document.getElementById('shop-name').value,
-        price: document.getElementById('shop-price').value,
-        category: document.getElementById('shop-cat').value,
-        image: img,
-        imagePos: document.getElementById('shop-img-pos').value,
-        status: document.getElementById('shop-status').value,
-        scheduleTime: document.getElementById('shop-status').value === 'scheduled' ? pendingScheduleTime : null,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp()
-      }),
+      img => {
+        const status = document.getElementById('shop-status').value;
+        if (status === 'scheduled' && !pendingScheduleTime) {
+          throw new Error('Please set a schedule date & time before saving.');
+        }
+        return {
+          name: document.getElementById('shop-name').value,
+          price: document.getElementById('shop-price').value,
+          category: document.getElementById('shop-cat').value,
+          image: img,
+          imagePos: document.getElementById('shop-img-pos').value,
+          status: status,
+          scheduleTime: status === 'scheduled' ? pendingScheduleTime : null,
+          timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        };
+      },
       'products', products, 'product-list', 'product'
     );
+
+    // ── Brands Form Handler ──
+    (() => {
+      const brandForm = document.getElementById('form-brands');
+      if (!brandForm) return;
+      const IMGBB_API_KEY = '40fad5b164f7be1f49b470b9563cc0c7';
+
+      // ── Populate blog dropdown in real-time ──
+      const blogDropdown = document.getElementById('brand-blog-link');
+      if (blogDropdown && window.db) {
+        window.db.collection('blogs').orderBy('timestamp', 'desc').onSnapshot(snap => {
+          const current = blogDropdown.value;
+          blogDropdown.innerHTML = '<option value="">— No linked blog —</option>';
+          snap.forEach(doc => {
+            const d = doc.data();
+            const opt = document.createElement('option');
+            opt.value = doc.id;
+            opt.textContent = d.title || '(Untitled)';
+            blogDropdown.appendChild(opt);
+          });
+          // Restore previously selected value if still exists
+          if (current) blogDropdown.value = current;
+        });
+      }
+
+      brandForm.addEventListener('submit', async e => {
+        e.preventDefault();
+        const fileInput = document.getElementById('brand-img');
+        const file = fileInput.files[0];
+        if (!file) { showToast('No Logo', 'Please select a brand logo image.', 'delete'); return; }
+
+        const statusVal = document.getElementById('brand-status').value;
+        if (statusVal === 'scheduled' && !pendingScheduleTime) {
+          showToast('Error', 'Please set a schedule date & time before saving.', 'delete');
+          return;
+        }
+
+        const btn = brandForm.querySelector('button[type="submit"]');
+        btn.innerHTML = 'Uploading Logo...';
+        btn.disabled = true;
+
+        try {
+          const getBase64 = (f) => new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(f);
+            reader.onload = () => resolve(reader.result.split(',')[1]);
+            reader.onerror = err => reject(err);
+          });
+          const base64Image = await getBase64(file);
+          const fd = new FormData();
+          fd.append('image', base64Image);
+          const res = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, { method: 'POST', body: fd });
+          const data = await res.json();
+          if (!data.success) throw new Error('ImgBB Error: ' + (data.error?.message || 'Upload Failed'));
+          const imageUrl = data.data.url;
+
+          btn.innerHTML = 'Saving...';
+
+          const linkedBlogId = document.getElementById('brand-blog-link').value.trim();
+
+          const payload = {
+            name: document.getElementById('brand-name').value.trim(),
+            sector: document.getElementById('brand-sector').value.trim(),
+            link: document.getElementById('brand-link').value.trim(),
+            linkedBlogId: linkedBlogId || null,
+            image: imageUrl,
+            status: statusVal,
+            scheduleTime: statusVal === 'scheduled' ? pendingScheduleTime : null,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+          };
+
+          const docRef = await window.db.collection('brands').add(payload);
+          brands.unshift({ id: docRef.id, ...payload });
+          renderList(brands, 'brands-list', 'brand', 'brands');
+          showToast('Brand Added!', `${payload.name} now appears in Our Alliances.`);
+          brandForm.reset();
+          pendingScheduleTime = null;
+        } catch(err) {
+          console.error(err);
+          showToast('Error', err.message || 'Failed. Check your connection.', 'delete');
+        } finally {
+          btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> Add Brand';
+          btn.disabled = false;
+        }
+      });
+    })();
 
     // Cleaned up form submit listener
 

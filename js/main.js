@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const preloader = document.getElementById('preloader');
   const body = document.body;
   body.classList.add('no-scroll');
-  
+
   // Wait for the window to fully load for a snappy, precise preloader
   if (preloader) {
     const hidePreloader = () => {
@@ -38,20 +38,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const cookieBanner = document.getElementById('cookie-consent');
   const btnAccept = document.getElementById('cookie-accept');
   const btnDecline = document.getElementById('cookie-decline');
-  
+
   try {
     if (cookieBanner && !localStorage.getItem('ree_cookie_consent')) {
       setTimeout(() => {
         cookieBanner.classList.add('show');
       }, 3500);
     }
-  } catch(e) {
+  } catch (e) {
     console.warn("Local storage unavailable", e);
   }
-  
+
   if (btnAccept) {
     btnAccept.addEventListener('click', () => {
-      try { localStorage.setItem('ree_cookie_consent', 'accepted'); } catch(e) {}
+      try { localStorage.setItem('ree_cookie_consent', 'accepted'); } catch (e) { }
       if (cookieBanner) cookieBanner.classList.remove('show');
       // After cookie consent, show the install app modal
       setTimeout(() => {
@@ -59,10 +59,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 600);
     });
   }
-  
+
   if (btnDecline) {
     btnDecline.addEventListener('click', () => {
-      try { localStorage.setItem('ree_cookie_consent', 'declined'); } catch(e) {}
+      try { localStorage.setItem('ree_cookie_consent', 'declined'); } catch (e) { }
       if (cookieBanner) cookieBanner.classList.remove('show');
     });
   }
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 3. NAVIGATION HEADER
   const mainNav = document.getElementById('main-nav');
   const scrollTopBtn = document.getElementById('scroll-top-btn');
-  
+
   window.addEventListener('scroll', () => {
     const y = window.scrollY;
     // Header Blur
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const hamburger = document.getElementById('nav-hamburger');
   const navLinks = document.getElementById('nav-links');
   const navOverlay = document.getElementById('nav-overlay');
-  
+
   const toggleMenu = () => {
     if (!hamburger || !navLinks || !navOverlay) return;
     const isOpen = hamburger.classList.contains('open');
@@ -119,10 +119,10 @@ document.addEventListener('DOMContentLoaded', () => {
       body.classList.add('no-scroll');
     }
   };
-  
+
   if (hamburger) hamburger.addEventListener('click', toggleMenu);
   if (navOverlay) navOverlay.addEventListener('click', toggleMenu);
-  
+
   // Close menu on link click
   if (navLinks && hamburger) {
     navLinks.querySelectorAll('.nav-link').forEach(link => {
@@ -173,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 5. ACTIVE LINK HIGHLIGHTING
   const navItems = document.querySelectorAll('.nav-link');
   let currentUrl = window.location.pathname.split('/').pop() || 'index.html';
-  
+
   navItems.forEach(link => {
     link.classList.remove('active');
     const href = link.getAttribute('href');
@@ -205,11 +205,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // 5.5 CUSTOM CURSOR LOGIC
   const cursorDot = document.getElementById('cursor-dot');
   const cursorRing = document.getElementById('cursor-ring');
-  
+
   if (cursorDot && cursorRing) {
     // Hide default cursor on body if custom cursor is active
     document.body.style.cursor = 'none';
-    
+
     // Mouse move event
     window.addEventListener('mousemove', (e) => {
       // Dot follows exactly
@@ -233,7 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
       el.addEventListener('mousedown', () => cursorRing.classList.add('click'));
       el.addEventListener('mouseup', () => cursorRing.classList.remove('click'));
     });
-    
+
     // Global click effect
     window.addEventListener('mousedown', () => cursorRing.style.transform += ' scale(0.9)');
     window.addEventListener('mouseup', () => cursorRing.style.transform = cursorRing.style.transform.replace(' scale(0.9)', ''));
@@ -242,7 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 6. SCROLL REVEAL ANIMATIONS (Intersection Observer)
   const revealElements = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right');
-  
+
   window.revealObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -255,22 +255,22 @@ document.addEventListener('DOMContentLoaded', () => {
     threshold: 0.15,
     rootMargin: "0px 0px -50px 0px"
   });
-  
+
   revealElements.forEach(el => window.revealObserver.observe(el));
 
 
   // 7. COUNTER ANIMATION
   const counterItems = document.querySelectorAll('.ctr-number');
   let hasCounted = false;
-  
+
   const startCounters = () => {
     counterItems.forEach(counter => {
       const target = +counter.getAttribute('data-target');
       const suffix = counter.getAttribute('data-suffix');
-      const duration = 2000; 
-      const increment = target / (duration / 16); 
+      const duration = 2000;
+      const increment = target / (duration / 16);
       let current = 0;
-      
+
       const updateCounter = () => {
         current += increment;
         if (current < target) {
@@ -301,19 +301,19 @@ document.addEventListener('DOMContentLoaded', () => {
   // 8. PORTFOLIO FILTER
   const pfTabs = document.querySelectorAll('.pf-tab');
   const pfItems = document.querySelectorAll('.pf-item');
-  
+
   pfTabs.forEach(tab => {
     tab.addEventListener('click', () => {
       // Remove active class
       pfTabs.forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
-      
+
       const filter = tab.getAttribute('data-filter');
-      
+
       pfItems.forEach(item => {
         // Reset animation state
         item.classList.remove('in-view');
-        
+
         if (filter === 'all' || item.getAttribute('data-cat') === filter) {
           item.classList.remove('hidden');
           // small timeout to allow display:block to apply before animating opacity
@@ -330,13 +330,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 9. TESTIMONIALS CAROUSEL
   const track = document.getElementById('testi-track');
-  if(track) {
+  if (track) {
     const slides = Array.from(track.children);
     const nextButton = document.getElementById('testi-next');
     const prevButton = document.getElementById('testi-prev');
     const dotsNav = document.getElementById('testi-dots');
-    
-    if(slides.length > 0) {
+
+    if (slides.length > 0) {
       // Create dots
       slides.forEach((_, i) => {
         const dot = document.createElement('button');
@@ -346,29 +346,29 @@ document.addEventListener('DOMContentLoaded', () => {
         dotsNav.appendChild(dot);
       });
       const dots = Array.from(dotsNav.children);
-      
+
       let currentIndex = 0;
-      
+
       const moveToSlide = (index) => {
         if (index < 0) index = slides.length - 1;
         if (index >= slides.length) index = 0;
-        
+
         track.style.transform = 'translateX(-' + (index * 100) + '%)';
         dots.forEach(d => d.classList.remove('active'));
         dots[index].classList.add('active');
         currentIndex = index;
       };
-      
+
       nextButton.addEventListener('click', () => moveToSlide(currentIndex + 1));
       prevButton.addEventListener('click', () => moveToSlide(currentIndex - 1));
-      
+
       dots.forEach((dot, i) => {
         dot.addEventListener('click', () => moveToSlide(i));
       });
-      
+
       // Auto advance
       let autoPlay = setInterval(() => moveToSlide(currentIndex + 1), 3500);
-      
+
       // Pause on hover
       const carouselContainer = document.querySelector('.testi-carousel');
       if (carouselContainer) {
@@ -387,14 +387,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const ctx = canvas.getContext('2d');
     let width, height;
     let particles = [];
-    
+
     const resizeCanvas = () => {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
     };
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
-    
+
     class Particle {
       constructor() {
         this.x = Math.random() * width;
@@ -407,7 +407,7 @@ document.addEventListener('DOMContentLoaded', () => {
       update() {
         this.x += this.speedX;
         this.y += this.speedY;
-        
+
         // Wrap around
         if (this.y < -10) {
           this.y = height + 10;
@@ -422,15 +422,15 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.fillStyle = `rgba(212, 175, 55, ${this.opacity})`;
         ctx.fill();
         // Add subtle glow to larger particles
-        if(this.size > 2) {
-            ctx.shadowBlur = 10;
-            ctx.shadowColor = 'rgba(212, 175, 55, 0.8)';
+        if (this.size > 2) {
+          ctx.shadowBlur = 10;
+          ctx.shadowColor = 'rgba(212, 175, 55, 0.8)';
         } else {
-            ctx.shadowBlur = 0;
+          ctx.shadowBlur = 0;
         }
       }
     }
-    
+
     const initParticles = () => {
       particles = [];
       const particleCount = Math.min(window.innerWidth / 15, 100); // Responsive count
@@ -438,7 +438,7 @@ document.addEventListener('DOMContentLoaded', () => {
         particles.push(new Particle());
       }
     };
-    
+
     const animateParticles = () => {
       ctx.clearRect(0, 0, width, height);
       particles.forEach(p => {
@@ -447,7 +447,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       requestAnimationFrame(animateParticles);
     };
-    
+
     initParticles();
     animateParticles();
   }
@@ -489,14 +489,14 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!isValid) return;
 
       // Collect form data
-      const name    = document.getElementById('cf-name')?.value.trim() || '';
-      const email   = document.getElementById('cf-email')?.value.trim() || '';
-      const phone   = document.getElementById('cf-phone')?.value.trim() || 'N/A';
+      const name = document.getElementById('cf-name')?.value.trim() || '';
+      const email = document.getElementById('cf-email')?.value.trim() || '';
+      const phone = document.getElementById('cf-phone')?.value.trim() || 'N/A';
       const subject = document.getElementById('cf-subject')?.value.trim() || 'General Inquiry';
       const message = document.getElementById('cf-msg')?.value.trim() || '';
 
       // Build WhatsApp message
-      const text = 
+      const text =
         `👋 *New Inquiry — REEL Website*\n\n` +
         `*Name:* ${name}\n` +
         `*Email:* ${email}\n` +
@@ -593,13 +593,27 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- SHOP PAGE ---
+    // Helper: checks if an item should be visible to the public
+    const isLive = (item) => {
+      const now = Date.now();
+      if (!item.status || item.status === 'published') return true;
+      if (item.status === 'scheduled') {
+        // Show if the scheduled time has already passed
+        return item.scheduleTime && new Date(item.scheduleTime).getTime() <= now;
+      }
+      return false;
+    };
+
     const shopContainer = document.getElementById('dynamic-shop-container');
     if (shopContainer) {
       try {
         const snapshot = await window.db.collection('products').get();
         const products = [];
-        snapshot.forEach(doc => products.push({ id: doc.id, ...doc.data() }));
-        
+        snapshot.forEach(doc => {
+          const data = { id: doc.id, ...doc.data() };
+          if (isLive(data)) products.push(data);
+        });
+
         if (products.length > 0) {
           shopContainer.innerHTML = `
             <div class="shop-layout">
@@ -616,7 +630,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <main class="products-grid reveal-right" id="products-grid-inner"></main>
             </div>
           `;
-          
+
           const gridInner = document.getElementById('products-grid-inner');
           products.forEach(p => {
             gridInner.innerHTML += `
@@ -632,7 +646,7 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
           });
         }
-      } catch(e) { console.error("Error fetching products:", e); }
+      } catch (e) { console.error("Error fetching products:", e); }
     }
 
     // --- PORTFOLIO PAGE ---
@@ -652,7 +666,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
             <div class="portfolio-masonry reveal-up" id="pf-masonry-inner" style="columns: 3; column-gap: 24px;"></div>
           `;
-          
+
           const pfInner = document.getElementById('pf-masonry-inner');
           portfolio.forEach(p => {
             pfInner.innerHTML += `
@@ -668,7 +682,7 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
           });
         }
-      } catch(e) { console.error("Error fetching portfolio:", e); }
+      } catch (e) { console.error("Error fetching portfolio:", e); }
     }
 
     // --- BLOG PAGE ---
@@ -677,11 +691,16 @@ document.addEventListener('DOMContentLoaded', () => {
       try {
         const snapshot = await window.db.collection('blogs').orderBy('timestamp', 'desc').get();
         const blogs = [];
-        snapshot.forEach(doc => blogs.push({ id: doc.id, ...doc.data() }));
+        snapshot.forEach(doc => {
+          const data = { id: doc.id, ...doc.data() };
+          if (isLive(data)) blogs.push(data);
+        });
 
         if (blogs.length > 0) {
           blogContainer.innerHTML = ''; // Clear Coming Soon
           blogs.forEach(b => {
+            // Strip HTML tags for safe snippet preview
+            const plainText = b.content ? b.content.replace(/<[^>]+>/g, '') : '';
             blogContainer.innerHTML += `
               <article class="reveal-up" style="background: var(--w08); border: 1px solid var(--gold-border); border-radius: var(--radius-xl); overflow: hidden; margin-bottom: 40px; transition: all 0.3s;" onmouseover="this.style.boxShadow='var(--gold-glow-sm)'" onmouseout="this.style.boxShadow='none'">
                 <div style="height: 350px; background: url('${b.image}') ${b.imagePos || 'center center'}/cover;"></div>
@@ -691,19 +710,95 @@ document.addEventListener('DOMContentLoaded', () => {
                     <span style="color:var(--w50)">${b.date}</span>
                   </div>
                   <h2 style="font-family: var(--font-display); font-size: 2rem; color: #fff; margin-bottom: 16px;">${b.title}</h2>
-                  <p style="color: var(--w60); line-height: 1.8; margin-bottom: 24px;">${b.content.substring(0, 150)}...</p>
+                  <p style="color: var(--w60); line-height: 1.8; margin-bottom: 24px;">${plainText.substring(0, 150)}...</p>
                   <a href="article.html?id=${b.id}" class="gold-link" style="font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem;">Read Full Article &rarr;</a>
                 </div>
               </article>
             `;
           });
-          
+
           // Trigger animations on newly loaded blog cards
           if (typeof window.revealObserver !== 'undefined') {
             blogContainer.querySelectorAll('.reveal-up').forEach(el => window.revealObserver.observe(el));
           }
         }
-      } catch(e) { console.error("Error fetching blogs:", e); }
+      } catch (e) { console.error("Error fetching blogs:", e); }
+    }
+
+    // --- HOMEPAGE RECENT INSIGHTS SLIDER ---
+    const hpBlogSlider = document.getElementById('dynamic-homepage-blogs');
+    if (hpBlogSlider) {
+      try {
+        const snapshot = await window.db.collection('blogs').orderBy('timestamp', 'desc').limit(8).get();
+        const hpBlogs = [];
+        snapshot.forEach(doc => {
+          const data = { id: doc.id, ...doc.data() };
+          if (isLive(data)) hpBlogs.push(data);
+        });
+
+        if (hpBlogs.length > 0) {
+          hpBlogSlider.innerHTML = ''; 
+          // We duplicate the array to ensure seamless infinite scrolling
+          const sliderBlogs = [...hpBlogs, ...hpBlogs, ...hpBlogs]; 
+
+          sliderBlogs.forEach(b => {
+            hpBlogSlider.innerHTML += `
+              <a href="article.html?id=${b.id}" class="hp-blog-card">
+                <img src="${b.image}" alt="${b.title}" class="hp-blog-img" onerror="this.src='Images/BG/logo%20bg.png'"/>
+                <div class="hp-blog-body">
+                  <span class="hp-blog-cat">${b.category || 'Updates'}</span>
+                  <h3 class="hp-blog-title">${b.title}</h3>
+                  <span class="hp-blog-date">${b.date}</span>
+                </div>
+              </a>
+            `;
+          });
+        } else {
+          hpBlogSlider.innerHTML = '<p style="color:var(--w50); padding: 20px;">No insights available yet.</p>';
+        }
+      } catch (e) { console.error("Error fetching homepage blogs:", e); }
+    }
+
+    const allianceContainer = document.getElementById('dynamic-alliance-container');
+    if (allianceContainer) {
+      try {
+        const snapshot = await window.db.collection('brands').orderBy('timestamp', 'asc').get();
+        const brands = [];
+        snapshot.forEach(doc => {
+          const data = { id: doc.id, ...doc.data() };
+          // We can reuse isLive for scheduling, or just push. Let's use isLive.
+          if (isLive(data)) brands.push(data);
+        });
+
+        if (brands.length > 0) {
+          allianceContainer.innerHTML = '';
+          brands.forEach(b => {
+            let linkHref = 'javascript:void(0)';
+            let target = '';
+            
+            if (b.linkedBlogId) {
+              linkHref = `article.html?id=${b.linkedBlogId}`;
+            } else if (b.link) {
+              linkHref = b.link;
+              target = 'target="_blank"';
+            }
+
+            allianceContainer.innerHTML += `
+              <a href="${linkHref}" class="alliance-card" ${target}>
+                <div class="alliance-logo-wrap">
+                  <img src="${b.image}" alt="${b.name}" onerror="this.style.display='none'" />
+                </div>
+                <div class="alliance-card-body">
+                  <span class="alliance-name">${b.name}</span>
+                  <span class="alliance-sector">${b.sector}</span>
+                </div>
+                <div class="alliance-arrow">→</div>
+              </a>
+            `;
+          });
+          // Note: .alliance-card-grid has reveal-up, but cards themselves don't strictly need it if grid has it.
+        }
+      } catch (e) { console.error("Error fetching brands:", e); }
     }
   };
 
@@ -720,7 +815,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const phone = document.getElementById('cf-phone').value;
       const subject = document.getElementById('cf-subject').value;
       const msg = document.getElementById('cf-msg').value;
-      
+
       if (name && email && msg) {
         if (window.db) {
           try {
@@ -730,7 +825,7 @@ document.addEventListener('DOMContentLoaded', () => {
               timestamp: firebase.firestore.FieldValue.serverTimestamp(),
               status: 'unread'
             });
-          } catch(err) { console.warn("Could not save message to Firebase:", err); }
+          } catch (err) { console.warn("Could not save message to Firebase:", err); }
         }
       }
     });
@@ -740,7 +835,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let cart = [];
   try {
     cart = JSON.parse(localStorage.getItem('ree_cart')) || [];
-  } catch(e) {
+  } catch (e) {
     console.warn("Local storage unavailable for cart", e);
   }
 
@@ -751,9 +846,9 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       cart.push({ id, name, price, image, qty: 1 });
     }
-    try { localStorage.setItem('ree_cart', JSON.stringify(cart)); } catch(e) {}
+    try { localStorage.setItem('ree_cart', JSON.stringify(cart)); } catch (e) { }
     updateCartCount();
-    
+
     // Custom Toast for Cart
     const t = document.createElement('div');
     t.className = 'toast';
@@ -779,7 +874,7 @@ document.addEventListener('DOMContentLoaded', () => {
       el.style.display = count > 0 ? 'flex' : 'none';
     });
   };
-  
+
   // Render Cart Page if we are on it
   const renderCartPage = async () => {
     const container = document.getElementById('cart-items-container');
@@ -837,7 +932,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const discountPercent = parseFloat(d.percent) || 0;
         if (discountPercent > 0) finalTotal -= finalTotal * (discountPercent / 100);
       }
-    } catch(e) { console.warn('Could not load settings', e); }
+    } catch (e) { console.warn('Could not load settings', e); }
 
     document.getElementById('cart-total-price').textContent = 'AED ' + finalTotal.toFixed(2);
   };
@@ -846,7 +941,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const qty = parseInt(newQty);
     if (qty > 0) {
       cart[index].qty = qty;
-      try { localStorage.setItem('ree_cart', JSON.stringify(cart)); } catch(e) {}
+      try { localStorage.setItem('ree_cart', JSON.stringify(cart)); } catch (e) { }
       renderCartPage();
       updateCartCount();
     }
@@ -854,7 +949,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.removeFromCart = (index) => {
     cart.splice(index, 1);
-    try { localStorage.setItem('ree_cart', JSON.stringify(cart)); } catch(e) {}
+    try { localStorage.setItem('ree_cart', JSON.stringify(cart)); } catch (e) { }
     renderCartPage();
     updateCartCount();
   };
@@ -870,10 +965,10 @@ document.addEventListener('DOMContentLoaded', () => {
         text += `- ${item.qty}x ${item.name} (AED ${item.price.toFixed(2)} each)%0A`;
         subtotal += (item.price * item.qty);
       });
-      
+
       let finalTotal = subtotal;
       try {
-        if(window.db) {
+        if (window.db) {
           const taxDoc = await window.db.collection('settings').doc('tax').get();
           if (taxDoc.exists) {
             const d = taxDoc.data();
@@ -886,10 +981,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (discountPercent > 0) finalTotal -= finalTotal * (discountPercent / 100);
           }
         }
-      } catch(e) {}
-      
+      } catch (e) { }
+
       text += `%0A*Total: AED ${finalTotal.toFixed(2)}*`;
-      
+
       // Save order to Firebase
       if (window.db) {
         try {
@@ -903,10 +998,10 @@ document.addEventListener('DOMContentLoaded', () => {
           });
           // Clear cart after order is initiated
           cart = [];
-          try { localStorage.removeItem('ree_cart'); } catch(e) {}
+          try { localStorage.removeItem('ree_cart'); } catch (e) { }
           renderCartPage();
           updateCartCount();
-        } catch(err) { console.warn("Could not save order to Firebase:", err); }
+        } catch (err) { console.warn("Could not save order to Firebase:", err); }
       }
 
       // REEL WhatsApp Business Numbers

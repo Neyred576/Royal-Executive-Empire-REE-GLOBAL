@@ -156,7 +156,7 @@
 <script src="js/main.js"></script>
 <script>document.getElementById('footer-year').textContent = new Date().getFullYear();</script>
 <script src="/js/pwa.js"></script>
-<script src="/js/notifications.js"></script>
+<script src="/js/notifications.js"></script>
 
 <!-- Firebase Integration -->
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
@@ -164,25 +164,30 @@
 <script src="js/firebase-init.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    // Wait for DB
     const loadProperties = () => {
-      if(!window.db) { setTimeout(loadProperties, 200); return; }
+      if (!window.db) { setTimeout(loadProperties, 200); return; }
+
       window.db.collection('properties').orderBy('timestamp', 'desc').get().then(snap => {
         const grid = document.getElementById('properties-grid');
         const empty = document.getElementById('properties-empty');
-        
-        let props = snap.docs.map(d => ({id: d.id, ...d.data()}));
-        // Filter out scheduled ones
-        props = props.filter(p => p.status !== 'scheduled' || !p.scheduleTime || new Date() >= new Date(p.scheduleTime));
 
-        if(props.length === 0) {
+        let props = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+
+        // Show published items; show scheduled items whose time has already passed
+        props = props.filter(p => {
+          if (!p.status || p.status === 'published') return true;
+          if (p.status === 'scheduled' && p.scheduleTime) return new Date() >= new Date(p.scheduleTime);
+          return false;
+        });
+
+        if (props.length === 0) {
           empty.style.display = 'block';
           grid.style.display = 'none';
         } else {
           empty.style.display = 'none';
           grid.style.display = 'grid';
           grid.innerHTML = props.map((p, i) => `
-            <article class="listing-card reveal-up" style="animation-delay: ${i*0.1}s">
+            <article class="listing-card reveal-up" style="animation-delay: ${i * 0.1}s">
               <div class="listing-img" style="background: url('${p.image}') center center / cover no-repeat;">
                 ${p.price ? `<div class="listing-badge">${p.price}</div>` : ''}
               </div>
@@ -194,12 +199,12 @@
               </div>
             </article>
           `).join('');
-          
-          // Re-trigger reveal animation for newly loaded items
+
+          // Re-trigger reveal animations
           const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-              if(entry.isIntersecting) {
-                entry.target.classList.add('active');
+              if (entry.isIntersecting) {
+                entry.target.classList.add('in-view');
                 observer.unobserve(entry.target);
               }
             });
@@ -207,7 +212,7 @@
           document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
         }
       }).catch(err => {
-        console.error("Error loading properties:", err);
+        console.error('Error loading properties:', err);
       });
     };
     loadProperties();
