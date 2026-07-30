@@ -128,17 +128,14 @@ function ensureAnimStyles() {
 // ── Main Install Promotion Function (called after cookie accept) ──
 function showInstallPromotion() {
   if (document.getElementById('pwa-install-toast')) return;
-  // Don't show if already installed
-  if (isInStandaloneMode) return;
 
   ensureAnimStyles();
 
   if (isIOS) {
     showIOSInstallModal();
-  } else if (deferredPrompt) {
+  } else {
     showAndroidInstallModal();
   }
-  // If neither (e.g. desktop Chrome already installed), do nothing
 }
 
 // ── Android Install Modal ──

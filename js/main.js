@@ -750,7 +750,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         if (brands.length > 0) {
-          allianceContainer.innerHTML = '';
+          let htmlStr = '';
           brands.forEach(b => {
             let linkHref = 'javascript:void(0)';
             let target = '';
@@ -762,20 +762,14 @@ document.addEventListener('DOMContentLoaded', () => {
               target = 'target="_blank"';
             }
 
-            allianceContainer.innerHTML += `
-              <a href="${linkHref}" class="alliance-card" ${target}>
-                <div class="alliance-logo-wrap">
-                  <img src="${b.image}" alt="${b.name}" onerror="this.style.display='none'" />
-                </div>
-                <div class="alliance-card-body">
-                  <span class="alliance-name">${b.name}</span>
-                  <span class="alliance-sector">${b.sector}</span>
-                </div>
-                <div class="alliance-arrow">→</div>
+            htmlStr += `
+              <a href="${linkHref}" ${target} style="display:flex;align-items:center;">
+                <img src="${b.image}" alt="${b.name}" class="partner-logo" onerror="this.style.display='none'" />
               </a>
             `;
           });
-          // Note: .alliance-card-grid has reveal-up, but cards themselves don't strictly need it if grid has it.
+          // Duplicate for seamless marquee scroll
+          allianceContainer.innerHTML = htmlStr + htmlStr;
         }
       } catch (e) { console.error("Error fetching brands:", e); }
     }
