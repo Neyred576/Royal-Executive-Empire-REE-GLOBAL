@@ -934,7 +934,21 @@
             </div>
           </div>
 
-          
+          <!-- Footer Calendar Widget -->
+          <div class="footer-col footer-calendar-col">
+            <h3 class="footer-heading">Calendar</h3>
+            <div class="footer-calendar" id="footer-calendar" aria-label="Mini calendar">
+              <div class="fc-header">
+                <button class="fc-nav" id="fc-prev" aria-label="Previous month">&#8249;</button>
+                <span class="fc-month-label" id="fc-month-label"></span>
+                <button class="fc-nav" id="fc-next" aria-label="Next month">&#8250;</button>
+              </div>
+              <div class="fc-weekdays" aria-hidden="true">
+                <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+              </div>
+              <div class="fc-days" id="fc-days" role="grid" aria-label="Calendar days"></div>
+            </div>
+          </div>
 
           <!-- Services Links -->
           <div class="footer-col">
@@ -1024,6 +1038,56 @@
   <script src="js/main.js"></script>
 
   <script src="/js/pwa.js"></script>
+  <!-- Footer Calendar JS -->
+  <script>
+  (function() {
+    var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    var today = new Date();
+    var cur = { y: today.getFullYear(), m: today.getMonth() };
+
+    function render() {
+      var label = document.getElementById('fc-month-label');
+      var grid  = document.getElementById('fc-days');
+      if (!label || !grid) return;
+
+      label.textContent = months[cur.m] + ' ' + cur.y;
+      grid.innerHTML = '';
+
+      var firstDay = new Date(cur.y, cur.m, 1).getDay(); // 0=Sun
+      var daysInMonth = new Date(cur.y, cur.m + 1, 0).getDate();
+
+      // blank cells before 1st
+      for (var i = 0; i < firstDay; i++) {
+        var blank = document.createElement('div');
+        blank.className = 'fc-day fc-empty';
+        blank.textContent = ' ';
+        grid.appendChild(blank);
+      }
+
+      for (var d = 1; d <= daysInMonth; d++) {
+        var cell = document.createElement('div');
+        cell.className = 'fc-day';
+        cell.setAttribute('role', 'gridcell');
+        cell.textContent = d;
+        var isToday = (d === today.getDate() && cur.m === today.getMonth() && cur.y === today.getFullYear());
+        if (isToday) { cell.classList.add('fc-today'); cell.setAttribute('aria-current','date'); }
+        grid.appendChild(cell);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      render();
+      var prev = document.getElementById('fc-prev');
+      var next = document.getElementById('fc-next');
+      if (prev) prev.addEventListener('click', function() {
+        cur.m--; if (cur.m < 0) { cur.m = 11; cur.y--; } render();
+      });
+      if (next) next.addEventListener('click', function() {
+        cur.m++; if (cur.m > 11) { cur.m = 0; cur.y++; } render();
+      });
+    });
+  })();
+  </script>
 <script src="/js/notifications.js"></script>
 </body>
 

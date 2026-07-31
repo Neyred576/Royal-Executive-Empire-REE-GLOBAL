@@ -2058,10 +2058,95 @@ input, textarea, select { font-family: inherit; }
 }
 .footer-grid {
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  gap: 64px;
+  grid-template-columns: 1.2fr 1fr 1fr 1.4fr;
+  gap: 48px;
   position: relative;
   z-index: 1;
+  align-items: start;
+}
+
+/* ─── Footer Calendar Widget ─── */
+.footer-calendar-col { min-width: 0; }
+.footer-calendar {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(212,175,55,0.18);
+  border-radius: 14px;
+  padding: 16px;
+  backdrop-filter: blur(8px);
+  user-select: none;
+}
+.fc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.fc-month-label {
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--gold-300);
+  text-transform: uppercase;
+}
+.fc-nav {
+  background: none;
+  border: 1px solid rgba(212,175,55,0.25);
+  border-radius: 50%;
+  width: 26px; height: 26px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold-300);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  padding: 0;
+}
+.fc-nav:hover {
+  background: rgba(212,175,55,0.12);
+  border-color: var(--gold-300);
+}
+.fc-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: 6px;
+}
+.fc-weekdays span {
+  text-align: center;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: rgba(212,175,55,0.55);
+  text-transform: uppercase;
+  padding: 4px 0;
+}
+.fc-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+.fc-day {
+  text-align: center;
+  font-size: 0.72rem;
+  color: var(--w60);
+  padding: 5px 2px;
+  border-radius: 6px;
+  cursor: default;
+  transition: background 0.15s, color 0.15s;
+  line-height: 1.2;
+}
+.fc-day.fc-empty { color: transparent; pointer-events: none; }
+.fc-day.fc-other-month { color: rgba(255,255,255,0.18); }
+.fc-day.fc-today {
+  background: var(--gold-300);
+  color: #0B0B0B;
+  font-weight: 700;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(212,175,55,0.45);
+}
+.fc-day:not(.fc-empty):hover {
+  background: rgba(212,175,55,0.15);
+  color: var(--gold-300);
 }
 .footer-news-col {
   margin-left: auto;
@@ -2208,7 +2293,9 @@ input, textarea, select { font-family: inherit; }
   .services-grid { grid-template-columns: repeat(3, 1fr); }
   .csr-grid { grid-template-columns: repeat(2, 1fr); }
   .counters-grid { grid-template-columns: repeat(3, 1fr); }
-  .footer-grid { grid-template-columns: 1fr 1fr; gap: 48px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .footer-calendar-col { grid-column: 1 / -1; }
+  .footer-calendar { max-width: 280px; }
   .footer-news-col { margin-left: 0; max-width: 100%; grid-column: 1 / -1; }
 }
 
