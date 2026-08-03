@@ -496,7 +496,7 @@ input, textarea, select { font-family: inherit; }
   position: fixed;
   bottom: 24px;
   left: 50%;
-  transform: translateX(-50%) translateY(160px);
+  transform: translateX(-50%) translateY(150%);
   z-index: 8888;
   max-width: 700px;
   width: calc(100% - 48px);
