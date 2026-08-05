@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -296,15 +296,27 @@
               <li><a href="reel-branding.html">REEL Branding</a></li>
               <li><a href="real-estate.html">REEL Properties</a></li>
               <li><a href="reel-business.html">REEL Business</a></li>
+              <li><a href="portfolio.html">Portfolio</a></li>
             </ul>
           </nav>
         </div>
         <div class="footer-col footer-news-col">
           <h3 class="footer-heading">Stay Connected</h3>
-          <form class="footer-newsletter" id="footer-newsletter-form">
+          <form class="footer-newsletter" id="footer-newsletter-form" onsubmit="handleNewsletterSubmit(event)">
             <input type="email" id="footer-email" placeholder="Enter your email" required />
             <button type="submit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
           </form>
+          <script>
+          function handleNewsletterSubmit(e) {
+            e.preventDefault();
+            var email = document.getElementById('footer-email').value;
+            if (!email) return;
+            var subject = encodeURIComponent('Newsletter Subscription Request');
+            var body = encodeURIComponent('Hello REEL Team,\n\nI would like to subscribe to your newsletter.\n\nEmail: ' + email + '\n\nThank you.');
+            window.location.href = 'mailto:admin@royaltyexecutiveempire.com?subject=' + subject + '&body=' + body;
+            document.getElementById('footer-email').value = '';
+          }
+          </script>
           <div class="footer-contact-details">
             <p><a href="mailto:admin@royaltyexecutiveempire.com">admin@royaltyexecutiveempire.com</a></p>
             <p><a href="tel:+2348067029444">+234 806 702 9444</a></p>

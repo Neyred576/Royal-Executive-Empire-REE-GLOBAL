@@ -973,6 +973,16 @@
         </a>
       </li>
       <li>
+        <a href="#" class="admin-nav-link" data-target="sec-power">
+          <div class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+            </svg>
+          </div>
+          <span class="nav-label">REEL Power</span>
+        </a>
+      </li>
+      <li>
         <a href="#" class="admin-nav-link" data-target="sec-shop">
           <div class="nav-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -1318,8 +1328,16 @@
               <input type="text" id="prop-price" placeholder="e.g. Contact for Pricing or $5M" />
             </div>
             <div class="form-group">
-              <label>Property Image</label>
-              <input type="file" id="prop-img" accept="image/*" required class="file-drop" />
+              <label>Property Images (Max 5)</label>
+              <input type="file" id="prop-img" accept="image/*" multiple required class="file-drop" />
+            </div>
+            <div class="form-group">
+              <label>Property Details</label>
+              <textarea id="prop-details" placeholder="Enter property details..." required style="width: 100%; min-height: 100px; padding: 12px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--w08); color: #fff; font-family: var(--font-body); resize: vertical;"></textarea>
+            </div>
+            <div class="form-group">
+              <label>YouTube Video Link</label>
+              <input type="url" id="prop-video" placeholder="https://www.youtube.com/watch?v=..." />
             </div>
             
             <div class="form-group" style="padding:15px; background:rgba(212,175,55,0.03); border-radius:8px; border:1px solid rgba(212,175,55,0.15);">
@@ -1349,6 +1367,82 @@
             Live Properties
           </div>
           <div id="prop-list" class="admin-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── POWER PRODUCTS ── -->
+    <section id="sec-power" class="admin-section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+          </svg>
+        </div>
+        <div>
+          <h1>REEL Power Manager</h1>
+          <p>Add power stations, lockers, kiosks, and branded power solutions.</p>
+        </div>
+      </div>
+      <div class="admin-grid">
+        <div class="admin-card">
+          <div class="card-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+            Add New Product
+          </div>
+          <form id="form-power">
+            <div class="form-group">
+              <label>Product Name</label>
+              <input type="text" id="power-name" placeholder="e.g. 8-Slot Power Bank Station" required />
+            </div>
+            <div class="form-group">
+              <label>Short Caption</label>
+              <input type="text" id="power-caption" placeholder="e.g. Ideal for Cafes & Small Offices" required />
+            </div>
+            <div class="form-group">
+              <label>Price (Optional)</label>
+              <input type="text" id="power-price" placeholder="e.g. Contact for Pricing" />
+            </div>
+            <div class="form-group">
+              <label>Product Images (Max 5)</label>
+              <input type="file" id="power-img" accept="image/*" multiple required class="file-drop" />
+            </div>
+            <div class="form-group">
+              <label>Product Specs & Details</label>
+              <textarea id="power-details" placeholder="Enter full product details..." required style="width: 100%; min-height: 100px; padding: 12px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--w08); color: #fff; font-family: var(--font-body); resize: vertical;"></textarea>
+            </div>
+            <div class="form-group">
+              <label>YouTube Video Link</label>
+              <input type="url" id="power-video" placeholder="https://www.youtube.com/watch?v=..." />
+            </div>
+            
+            <div class="form-group" style="padding:15px; background:rgba(212,175,55,0.03); border-radius:8px; border:1px solid rgba(212,175,55,0.15);">
+              <label style="color:var(--gold); display:flex; align-items:center; gap:8px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                Publishing Schedule
+              </label>
+              <select id="power-status" style="margin-bottom:12px;">
+                <option value="published">Publish Immediately</option>
+                <option value="scheduled">Schedule for Later</option>
+              </select>
+              <div id="power-schedule-wrap" style="display:none;">
+                <label style="font-size:0.65rem;">Schedule Date & Time</label>
+                <input type="datetime-local" id="power-schedule-time" style="margin-bottom:5px;" />
+                <span style="font-size:0.7rem; color:var(--w40);">Product will be hidden until this date/time passes.</span>
+              </div>
+            </div>
+            <button type="submit" class="btn-submit">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              Add Product
+            </button>
+          </form>
+        </div>
+        <div class="admin-card">
+          <div class="card-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            Live Products
+          </div>
+          <div id="power-list" class="admin-list"></div>
         </div>
       </div>
     </section>
@@ -1740,6 +1834,7 @@
     // ── Data ──
     let blogs = [];
     let properties = [];
+    let powerProducts = [];
     let products = [];
     let brands = [];
 
@@ -1759,9 +1854,10 @@
       if (!window.db) { waitForDbThenLoad(10); return; }
       
       try {
-        const [blogSnap, propSnap, shopSnap, msgSnap, orderSnap, brandSnap] = await Promise.all([
+        const [blogSnap, propSnap, powerSnap, shopSnap, msgSnap, orderSnap, brandSnap] = await Promise.all([
           window.db.collection('blogs').orderBy('timestamp', 'desc').get(),
           window.db.collection('properties').orderBy('timestamp', 'desc').get(),
+          window.db.collection('power_products').orderBy('timestamp', 'desc').get(),
           window.db.collection('products').get(),
           window.db.collection('messages').orderBy('timestamp', 'desc').get(),
           window.db.collection('orders').orderBy('timestamp', 'desc').get(),
@@ -1770,6 +1866,7 @@
         
         blogs.length = 0; blogs.push(...blogSnap.docs.map(d => ({ id: d.id, ...d.data() })));
         properties.length = 0; properties.push(...propSnap.docs.map(d => ({ id: d.id, ...d.data() })));
+        powerProducts.length = 0; powerProducts.push(...powerSnap.docs.map(d => ({ id: d.id, ...d.data() })));
         products.length = 0; products.push(...shopSnap.docs.map(d => ({ id: d.id, ...d.data() })));
         brands.length = 0; brands.push(...brandSnap.docs.map(d => ({ id: d.id, ...d.data() })));
         const messages = msgSnap.docs.map(d => ({ id: d.id, ...d.data() }));
@@ -1777,6 +1874,7 @@
         
         renderList(blogs, 'blog-list', 'blog', 'blogs');
         renderList(properties, 'prop-list', 'property', 'properties');
+        renderList(powerProducts, 'power-list', 'power_product', 'power_products');
         renderList(products,  'product-list',   'product', 'products');
         renderList(brands, 'brands-list', 'brand', 'brands');
         
@@ -2109,7 +2207,7 @@
       showToast('Time Set!', 'Time saved. Make sure to click Publish/Save to submit the post.');
     };
 
-    ['blog-status','portfolio-status','shop-status','brand-status'].forEach(id => {
+    ['blog-status','portfolio-status','shop-status','brand-status','power-status'].forEach(id => {
       const sel = document.getElementById(id);
       if (!sel) return;
       sel.addEventListener('change', () => {
@@ -2326,8 +2424,9 @@
         e.preventDefault();
 
         const fileInput = document.getElementById('prop-img');
-        const file = fileInput.files[0];
-        if (!file) { showToast('No Image', 'Please select a property image.', 'delete'); return; }
+        const files = Array.from(fileInput.files);
+        if (files.length === 0) { showToast('No Image', 'Please select a property image.', 'delete'); return; }
+        if (files.length > 5) { showToast('Error', 'Maximum 5 images allowed.', 'delete'); return; }
 
         const statusVal = document.getElementById('prop-status').value;
         if (statusVal === 'scheduled' && !pendingScheduleTime) {
@@ -2337,28 +2436,31 @@
 
         const btn = propForm.querySelector('button[type="submit"]');
         const oldText = btn.innerHTML;
-        btn.innerHTML = 'Uploading Image...';
+        btn.innerHTML = 'Uploading Images...';
         btn.disabled = true;
 
         try {
-          // 1. Convert to base64
-          const base64Image = await new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = () => resolve(reader.result.split(',')[1]);
-            reader.onerror = err => reject(err);
-          });
+          const imageUrls = [];
+          for (let file of files) {
+            // 1. Convert to base64
+            const base64Image = await new Promise((resolve, reject) => {
+              const reader = new FileReader();
+              reader.readAsDataURL(file);
+              reader.onload = () => resolve(reader.result.split(',')[1]);
+              reader.onerror = err => reject(err);
+            });
 
-          // 2. Upload to ImgBB
-          const formData = new FormData();
-          formData.append('image', base64Image);
-          const res = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
-            method: 'POST',
-            body: formData
-          });
-          const imgData = await res.json();
-          if (!imgData.success) throw new Error('ImgBB Error: ' + (imgData.error?.message || 'Upload Failed'));
-          const imageUrl = imgData.data.url;
+            // 2. Upload to ImgBB
+            const formData = new FormData();
+            formData.append('image', base64Image);
+            const res = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
+              method: 'POST',
+              body: formData
+            });
+            const imgData = await res.json();
+            if (!imgData.success) throw new Error('ImgBB Error: ' + (imgData.error?.message || 'Upload Failed'));
+            imageUrls.push(imgData.data.url);
+          }
 
           btn.innerHTML = 'Saving...';
 
@@ -2367,7 +2469,10 @@
             title: document.getElementById('prop-title').value.trim(),
             caption: document.getElementById('prop-caption').value.trim(),
             price: document.getElementById('prop-price').value.trim(),
-            image: imageUrl,
+            details: document.getElementById('prop-details') ? document.getElementById('prop-details').value.trim() : '',
+            videoLink: document.getElementById('prop-video') ? document.getElementById('prop-video').value.trim() : '',
+            image: imageUrls[0],
+            images: imageUrls,
             status: statusVal,
             scheduleTime: statusVal === 'scheduled' ? pendingScheduleTime : null,
             timestamp: firebase.firestore.FieldValue.serverTimestamp()
@@ -2389,6 +2494,87 @@
         } catch (err) {
           console.error(err);
           showToast('Error', err.message || 'Failed to save property. Check connection.', 'delete');
+        } finally {
+          btn.innerHTML = oldText;
+          btn.disabled = false;
+        }
+      });
+    })();
+
+    // ── Power Products Form Handler ──
+    (() => {
+      const pForm = document.getElementById('form-power');
+      if (!pForm) return;
+
+      pForm.addEventListener('submit', async e => {
+        e.preventDefault();
+
+        const fileInput = document.getElementById('power-img');
+        const files = Array.from(fileInput.files);
+        if (files.length === 0) { showToast('No Image', 'Please select an image.', 'delete'); return; }
+        if (files.length > 5) { showToast('Error', 'Maximum 5 images allowed.', 'delete'); return; }
+
+        const statusVal = document.getElementById('power-status').value;
+        if (statusVal === 'scheduled' && !pendingScheduleTime) {
+          showToast('Error', 'Please set a schedule date & time before saving.', 'delete');
+          return;
+        }
+
+        const btn = pForm.querySelector('button[type="submit"]');
+        const oldText = btn.innerHTML;
+        btn.innerHTML = 'Uploading Images...';
+        btn.disabled = true;
+
+        try {
+          const imageUrls = [];
+          for (let file of files) {
+            const base64Image = await new Promise((resolve, reject) => {
+              const reader = new FileReader();
+              reader.readAsDataURL(file);
+              reader.onload = () => resolve(reader.result.split(',')[1]);
+              reader.onerror = err => reject(err);
+            });
+
+            const formData = new FormData();
+            formData.append('image', base64Image);
+            const res = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
+              method: 'POST',
+              body: formData
+            });
+            const imgData = await res.json();
+            if (!imgData.success) throw new Error('ImgBB Error: ' + (imgData.error?.message || 'Upload Failed'));
+            imageUrls.push(imgData.data.url);
+          }
+
+          btn.innerHTML = 'Saving...';
+
+          const payload = {
+            title: document.getElementById('power-name').value.trim(),
+            caption: document.getElementById('power-caption').value.trim(),
+            price: document.getElementById('power-price').value.trim(),
+            details: document.getElementById('power-details') ? document.getElementById('power-details').value.trim() : '',
+            videoLink: document.getElementById('power-video') ? document.getElementById('power-video').value.trim() : '',
+            image: imageUrls[0],
+            images: imageUrls,
+            status: statusVal,
+            scheduleTime: statusVal === 'scheduled' ? pendingScheduleTime : null,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+          };
+
+          await window.db.collection('power_products').add(payload);
+
+          showToast('Success!', 'Product saved! Redirecting to REEL Power...');
+          setTimeout(() => {
+            window.open('../reel-power.html', '_blank');
+          }, 1500);
+
+          pForm.reset();
+          pendingScheduleTime = null;
+          loadData();
+
+        } catch (err) {
+          console.error(err);
+          showToast('Error', err.message || 'Failed to save product.', 'delete');
         } finally {
           btn.innerHTML = oldText;
           btn.disabled = false;

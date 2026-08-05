@@ -773,6 +773,142 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       } catch (e) { console.error("Error fetching brands:", e); }
     }
+
+    // --- REEL POWER PRODUCT LINEUP ---
+    const powerGrid = document.getElementById('power-lineup-grid');
+    if (powerGrid) {
+      try {
+        const pSnap = await window.db.collection('power_products').orderBy('timestamp', 'desc').get();
+        const powerProds = [];
+        pSnap.forEach(doc => {
+          const d = { id: doc.id, ...doc.data() };
+          if (isLive(d)) powerProds.push(d);
+        });
+
+        if (powerProds.length === 0) {
+          powerGrid.innerHTML = `<div class="power-lineup-empty"><p>No products available yet. Check back soon.</p></div>`;
+        } else {
+          powerGrid.innerHTML = '';
+          powerProds.forEach(prod => {
+            const card = document.createElement('div');
+            card.className = 'power-prod-card reveal-up';
+            card.innerHTML = `
+              <div class="power-prod-card-img-wrap">
+                <img src="${prod.image || ''}" alt="${prod.title || ''}" loading="lazy" onerror="this.parentElement.style.background='rgba(212,175,55,0.05)';this.style.display='none'" />
+                <div class="power-prod-card-badge">REEL Power</div>
+                <div class="power-prod-card-click-hint">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                  View Details
+                </div>
+              </div>
+              <div class="power-prod-card-body">
+                <div class="power-prod-card-title">${prod.title || 'Product'}</div>
+                <div class="power-prod-card-caption">${prod.caption || ''}</div>
+                ${prod.price ? `<div class="power-prod-card-price">${prod.price}</div>` : ''}
+              </div>
+              <div class="power-prod-card-footer">
+                <button class="power-prod-card-btn" data-action="view">View Details</button>
+                <button class="power-prod-card-btn whatsapp-btn" data-action="wa">Enquire</button>
+              </div>
+            `;
+
+            // Open modal
+            const openModal = () => {
+              const overlay = document.getElementById('power-modal-overlay');
+              const imgs = prod.images && prod.images.length > 0 ? prod.images : (prod.image ? [prod.image] : []);
+              let currentIdx = 0;
+
+              const mainImg = document.getElementById('power-modal-main-img');
+              const counter = document.getElementById('power-gallery-counter');
+              const dotsWrap = document.getElementById('power-gallery-dots');
+              const prevBtn = document.getElementById('power-gallery-prev');
+              const nextBtn = document.getElementById('power-gallery-next');
+
+              // Render dots
+              dotsWrap.innerHTML = imgs.map((_, i) => `<div class="power-gallery-dot${i === 0 ? ' active' : ''}"></div>`).join('');
+              const dots = dotsWrap.querySelectorAll('.power-gallery-dot');
+
+              const showImg = (idx) => {
+                currentIdx = (idx + imgs.length) % imgs.length;
+                mainImg.src = imgs[currentIdx];
+                counter.textContent = `${currentIdx + 1} / ${imgs.length}`;
+                dots.forEach((d, i) => d.classList.toggle('active', i === currentIdx));
+              };
+              showImg(0);
+
+              // Show/hide nav buttons
+              prevBtn.style.display = imgs.length > 1 ? 'flex' : 'none';
+              nextBtn.style.display = imgs.length > 1 ? 'flex' : 'none';
+              prevBtn.onclick = () => showImg(currentIdx - 1);
+              nextBtn.onclick = () => showImg(currentIdx + 1);
+              dots.forEach((d, i) => { d.onclick = () => showImg(i); });
+
+              // Text content
+              document.getElementById('power-modal-title').textContent = prod.title || '';
+              document.getElementById('power-modal-details').textContent = prod.details || 'No additional details provided.';
+              const priceEl = document.getElementById('power-modal-price');
+              priceEl.textContent = prod.price || '';
+              priceEl.style.display = prod.price ? 'flex' : 'none';
+
+              // Video
+              const vidContainer = document.getElementById('power-modal-video-container');
+              if (prod.videoLink) {
+                let embedUrl = prod.videoLink;
+                const ytMatch = prod.videoLink.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([^&?/]+)/);
+                if (ytMatch) embedUrl = `https://www.youtube.com/embed/${ytMatch[1]}?rel=0&modestbranding=1`;
+                vidContainer.innerHTML = `<div class="power-modal-video-wrap"><iframe src="${embedUrl}" allowfullscreen allow="autoplay; encrypted-media"></iframe></div>`;
+              } else {
+                vidContainer.innerHTML = '';
+              }
+
+              // WhatsApp
+              const waBtn = document.getElementById('power-modal-wa-btn');
+              const waMsg = `Hello REEL Power! 👋%0A%0AI'm interested in the *${prod.title}*. Could you please share more details on pricing and availability?`;
+              waBtn.href = `https://wa.me/2348067029444?text=${waMsg}`;
+
+              overlay.classList.add('open');
+              document.body.style.overflow = 'hidden';
+            };
+
+            card.querySelector('[data-action="view"]').addEventListener('click', openModal);
+            card.querySelector('[data-action="wa"]').addEventListener('click', (e) => {
+              e.stopPropagation();
+              const msg = `Hello REEL Power! 👋%0A%0AI'm interested in the *${prod.title}*. Could you please share more details?`;
+              window.open(`https://wa.me/2348067029444?text=${msg}`, '_blank');
+            });
+            card.addEventListener('click', (e) => {
+              if (!e.target.closest('button')) openModal();
+            });
+
+            powerGrid.appendChild(card);
+          });
+
+          // Observe new cards for reveal animations
+          if (typeof window.revealObserver !== 'undefined') {
+            powerGrid.querySelectorAll('.reveal-up').forEach(el => window.revealObserver.observe(el));
+          }
+        }
+      } catch (e) { console.error("Error fetching power products:", e); }
+    }
+
+    // Power Modal close logic
+    const powerOverlay = document.getElementById('power-modal-overlay');
+    if (powerOverlay) {
+      const closeModal = () => {
+        powerOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+        // Stop any playing video
+        const vid = document.getElementById('power-modal-video-container');
+        if (vid) vid.innerHTML = '';
+      };
+      document.getElementById('power-modal-close-btn')?.addEventListener('click', closeModal);
+      powerOverlay.addEventListener('click', (e) => {
+        if (e.target === powerOverlay) closeModal();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && powerOverlay.classList.contains('open')) closeModal();
+      });
+    }
   };
 
   // Give Firebase a tiny moment to init if scripts loaded out of order

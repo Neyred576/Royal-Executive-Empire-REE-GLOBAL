@@ -227,25 +227,28 @@
           return false;
         });
 
-        if (props.length === 0) {
-          empty.style.display = 'block';
-          grid.style.display = 'none';
-        } else {
-          empty.style.display = 'none';
-          grid.style.display = 'grid';
-          grid.innerHTML = props.map((p, i) => `
-            <article class="listing-card reveal-up" style="animation-delay: ${i * 0.1}s">
-              <div class="listing-img" style="background: url('${p.image}') center center / cover no-repeat;">
-                ${p.price ? `<div class="listing-badge">${p.price}</div>` : ''}
-              </div>
-              <div class="listing-info">
-                <div class="listing-type">Featured Property</div>
-                <h3 class="listing-name">${p.title}</h3>
-                <div class="listing-loc">${p.caption}</div>
-                <a href="contact.html?property=${encodeURIComponent(p.title)}" class="btn-ghost" style="width:100%; justify-content:center;"><span>Enquire</span></a>
-              </div>
-            </article>
-          `).join('');
+          // Store globally for modal access
+          window.allProperties = props;
+
+          if (props.length === 0) {
+            empty.style.display = 'block';
+            grid.style.display = 'none';
+          } else {
+            empty.style.display = 'none';
+            grid.style.display = 'grid';
+            grid.innerHTML = props.map((p, i) => `
+              <article class="listing-card reveal-up" style="animation-delay: ${i * 0.1}s; cursor: pointer;" onclick="openPropertyModal('${p.id}')">
+                <div class="listing-img" style="background: url('${p.image}') center center / cover no-repeat;">
+                  ${p.price ? `<div class="listing-badge">${p.price}</div>` : ''}
+                </div>
+                <div class="listing-info">
+                  <div class="listing-type">Featured Property</div>
+                  <h3 class="listing-name">${p.title}</h3>
+                  <div class="listing-loc">${p.caption}</div>
+                  <button type="button" class="btn-ghost" style="width:100%; justify-content:center;" onclick="event.stopPropagation(); openPropertyModal('${p.id}')"><span>View Details</span></button>
+                </div>
+              </article>
+            `).join('');
 
           // Re-trigger reveal animations
           const observer = new IntersectionObserver((entries) => {
@@ -263,6 +266,129 @@
       });
     };
     loadProperties();
+  });
+</script>
+<!-- Property Details Modal -->
+<div id="property-modal" class="modal-overlay" style="display:none;">
+  <div class="modal-content property-modal-content">
+    <button class="modal-close" onclick="closePropertyModal()">&times;</button>
+    <div id="modal-images" class="modal-images-container">
+      <!-- Images will be injected here -->
+    </div>
+    <div class="modal-body">
+      <h2 id="modal-title" class="modal-title"></h2>
+      <div id="modal-caption" class="modal-caption"></div>
+      <div id="modal-price" class="modal-price"></div>
+      <div id="modal-details" class="modal-details"></div>
+      <a id="modal-enquire-btn" href="#" target="_blank" rel="noopener noreferrer" class="btn-gold" style="display:inline-flex; width:100%; justify-content:center; margin-bottom: 24px;"><span>Enquire on WhatsApp</span></a>
+      
+      <div id="modal-video-container" class="modal-video-container" style="display:none;">
+        <h3 style="font-family: var(--font-display); margin-bottom: 12px; color: #fff;">Property Tour</h3>
+        <div class="video-wrapper">
+          <iframe id="modal-video" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .modal-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 1000;
+    display: flex; align-items: center; justify-content: center; backdrop-filter: blur(10px);
+    padding: 20px;
+  }
+  .property-modal-content {
+    background: var(--black-900); border: 1px solid var(--gold-border); border-radius: var(--radius-xl);
+    width: 100%; max-width: 800px; max-height: 90vh; overflow-y: auto; position: relative;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+  }
+  .modal-close {
+    position: absolute; top: 16px; right: 16px; background: rgba(0,0,0,0.5); border: 1px solid var(--gold-border);
+    color: #fff; font-size: 1.5rem; width: 40px; height: 40px; border-radius: 50%;
+    cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10;
+    transition: all 0.3s;
+  }
+  .modal-close:hover { background: var(--gold); color: #000; }
+  .modal-images-container {
+    display: flex; overflow-x: auto; scroll-snap-type: x mandatory; width: 100%;
+    background: #000; scrollbar-width: none;
+  }
+  .modal-images-container::-webkit-scrollbar { display: none; }
+  .modal-image {
+    flex: 0 0 100%; height: 400px; object-fit: cover; scroll-snap-align: center;
+  }
+  .modal-body { padding: 32px; }
+  .modal-title { font-family: var(--font-display); font-size: 2.2rem; color: #fff; margin-bottom: 8px; }
+  .modal-caption { font-size: 1rem; color: var(--gold-300); margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px; }
+  .modal-price { font-size: 1.5rem; font-weight: 700; color: #fff; margin-bottom: 24px; }
+  .modal-details { font-size: 1.05rem; color: var(--w70); line-height: 1.6; margin-bottom: 32px; white-space: pre-wrap; font-family: var(--font-body); }
+  .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: var(--radius-md); }
+  .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+</style>
+
+<script>
+  function openPropertyModal(id) {
+    const prop = window.allProperties.find(p => p.id === id);
+    if (!prop) return;
+    
+    // Populate Images
+    const imgContainer = document.getElementById('modal-images');
+    const images = prop.images && prop.images.length > 0 ? prop.images : [prop.image];
+    imgContainer.innerHTML = images.map(src => `<img src="${src}" class="modal-image" alt="${prop.title}">`).join('');
+    
+    // Populate Details
+    document.getElementById('modal-title').textContent = prop.title;
+    document.getElementById('modal-caption').textContent = prop.caption;
+    document.getElementById('modal-price').textContent = prop.price || 'Contact for Pricing';
+    document.getElementById('modal-details').textContent = prop.details || 'No additional details provided.';
+    
+    // WhatsApp Button
+    const waText = `Hello, I am interested in the property: ${prop.title} (${prop.caption})`;
+    const waUrl = `https://wa.me/2348067029444?text=${encodeURIComponent(waText)}`;
+    document.getElementById('modal-enquire-btn').href = waUrl;
+    
+    // YouTube Video
+    const videoContainer = document.getElementById('modal-video-container');
+    const videoIframe = document.getElementById('modal-video');
+    if (prop.videoLink) {
+      let videoId = '';
+      if (prop.videoLink.includes('youtu.be/')) {
+        videoId = prop.videoLink.split('youtu.be/')[1].split('?')[0];
+      } else if (prop.videoLink.includes('youtube.com/watch')) {
+        const urlParams = new URLSearchParams(prop.videoLink.split('?')[1]);
+        videoId = urlParams.get('v');
+      } else if (prop.videoLink.includes('youtube.com/embed/')) {
+        videoId = prop.videoLink.split('youtube.com/embed/')[1].split('?')[0];
+      }
+      
+      if (videoId) {
+        videoIframe.src = `https://www.youtube.com/embed/${videoId}`;
+        videoContainer.style.display = 'block';
+      } else {
+        videoContainer.style.display = 'none';
+      }
+    } else {
+      videoContainer.style.display = 'none';
+    }
+    
+    document.getElementById('property-modal').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+  
+  function closePropertyModal() {
+    document.getElementById('property-modal').style.display = 'none';
+    document.getElementById('modal-video').src = '';
+    document.body.style.overflow = '';
+  }
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('property-modal');
+    if(modal) {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closePropertyModal();
+      });
+    }
   });
 </script>
 </body>
