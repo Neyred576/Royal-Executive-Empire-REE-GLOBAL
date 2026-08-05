@@ -138,13 +138,16 @@
 <section class="div-page-hero">
   <!-- Landscape video background -->
   <video class="hero-video-bg" autoplay muted loop playsinline webkit-playsinline preload="auto" onended="this.play()" onpause="this.play()">
-    <source src="Videos/reel-properties-hero.mp4" type="video/mp4">
+    <source src="Videos/0805.mp4" type="video/mp4">
   </video>
   <script>
     // Ensure the video plays smoothly and resumes if paused
     document.addEventListener('DOMContentLoaded', function() {
       const video = document.querySelector('.hero-video-bg');
       if (video) {
+        // Make the video play faster as requested
+        video.playbackRate = 1.25;
+        
         // Try to force play on load
         video.play().catch(() => {});
         // Resume play if visibility changes
