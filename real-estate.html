@@ -72,7 +72,7 @@
       border-bottom: 1px solid var(--gold-border);
       background-color: var(--black-900);
     }
-    .div-page-hero .hero-video-bg {
+    .div-page-hero .hero-img-bg {
       position: absolute; inset: 0;
       width: 100%; height: 100%;
       object-fit: cover; object-position: center;
@@ -136,29 +136,8 @@
 </nav>
 
 <section class="div-page-hero">
-  <!-- Landscape video background -->
-  <video class="hero-video-bg" autoplay muted loop playsinline webkit-playsinline preload="auto" onended="this.play()" onpause="this.play()">
-    <source src="Videos/0805.mp4" type="video/mp4">
-  </video>
-  <script>
-    // Ensure the video plays smoothly and resumes if paused
-    document.addEventListener('DOMContentLoaded', function() {
-      const video = document.querySelector('.hero-video-bg');
-      if (video) {
-        // Make the video play faster as requested
-        video.playbackRate = 1.25;
-        
-        // Try to force play on load
-        video.play().catch(() => {});
-        // Resume play if visibility changes
-        document.addEventListener('visibilitychange', function() {
-          if (document.visibilityState === 'visible' && video.paused) {
-            video.play().catch(() => {});
-          }
-        });
-      }
-    });
-  </script>
+  <!-- Landscape image background -->
+  <img class="hero-img-bg" src="Images/real_estate_hero.png" alt="REEL Properties Hero" fetchpriority="high">
   <div class="hero-video-overlay"></div>
   <div class="container" style="position:relative; z-index:2;">
     <div class="hero-eyebrow"><span class="eyebrow-line"></span><span>REEL Division</span></div>
