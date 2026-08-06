@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -214,9 +214,9 @@
           </div>
         </div>
         <div style="margin-top: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
-          <a href="shop.html" class="btn-ghost"><span>&larr;� Continue Shopping</span></a>
+          <a href="shop.html" class="btn-ghost"><span>&larr; Continue Shopping</span></a>
           <button id="clear-cart-btn" class="btn-ghost" style="color:#E63946; border-color:rgba(230,57,70,0.3); display:none;">
-            <span>?? Clear Cart</span>
+            <span>🗑️ Clear Cart</span>
           </button>
         </div>
       </div>
@@ -245,7 +245,7 @@
 
         <div style="text-align:center; margin-top:16px;">
           <div style="font-size:0.75rem; color:var(--w50); display:flex; justify-content:center; align-items:center; gap:6px;">
-            ?? &nbsp;Secure Order Processing
+            🔒 &nbsp;Secure Order Processing
           </div>
         </div>
       </div>
@@ -327,7 +327,7 @@
     if (cart.length === 0) {
       container.innerHTML = `
         <div class="cart-empty">
-          <div class="cart-empty-icon">???�</div>
+          <div class="cart-empty-icon">🛍️</div>
           <h3>Your Cart is Empty</h3>
           <p>You haven't added anything yet. Discover our exclusive collection.</p>
           <a href="shop.html" class="btn-gold" style="display:inline-flex;">Browse the Shop</a>
@@ -342,7 +342,7 @@
           <div class="cart-thumb">
             ${item.image
               ? `<img src="${item.image}" alt="${item.name}" />`
-              : '???�'
+              : '🛍️'
             }
           </div>
           <div>

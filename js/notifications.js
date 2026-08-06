@@ -3,19 +3,32 @@ document.addEventListener('DOMContentLoaded', () => {
   const navActions = document.querySelector('.nav-actions');
   if (navActions) {
     const bellHtml = `
-      <div class="nav-action-btn" id="notif-btn" style="position:relative; cursor:pointer; margin-right:15px;">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:24px;height:24px;">
+      <div class="nav-icon" id="notif-btn" style="cursor:pointer;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px;">
           <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
         </svg>
-        <span id="notif-badge" style="display:none; position:absolute; top:-5px; right:-5px; background:#D4AF37; color:#000; font-size:10px; font-weight:bold; padding:2px 6px; border-radius:10px;">0</span>
+        <span id="notif-badge" style="display:none; position:absolute; top:-6px; right:-6px; background:#D4AF37; color:#000; font-size:10px; font-weight:bold; padding:2px 6px; border-radius:10px;">0</span>
         
         <!-- Dropdown Panel -->
-        <div id="notif-panel" style="display:none; position:absolute; top:40px; right:0; width:300px; background:rgba(10,10,10,0.95); backdrop-filter:blur(10px); border:1px solid rgba(212,175,55,0.3); border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.5); z-index:100; overflow:hidden;">
+        <div id="notif-panel" style="display:none; position:absolute; top:45px; right:-10px; width:300px; max-width:none; min-width:300px; white-space:normal; text-align:left; background:rgba(10,10,10,0.95); backdrop-filter:blur(10px); border:1px solid rgba(212,175,55,0.3); border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.5); z-index:100; overflow:hidden;">
           <div style="padding:15px; border-bottom:1px solid rgba(255,255,255,0.1); display:flex; justify-content:space-between; align-items:center;">
             <h4 style="margin:0; font-family:'Cormorant Garamond', serif; color:#D4AF37;">Notifications</h4>
             <button id="notif-enable-btn" style="background:transparent; border:1px solid #D4AF37; color:#D4AF37; padding:4px 8px; border-radius:4px; font-size:10px; cursor:pointer;">Enable Alerts</button>
           </div>
-          <div id="notif-list" style="max-height:300px; overflow-y:auto; padding:10px;">
+          
+          <!-- Pinned Install App -->
+          <div id="notif-install-app" style="padding:12px 15px; border-bottom:1px solid rgba(255,255,255,0.05); background:rgba(212,175,55,0.05); display:flex; justify-content:space-between; align-items:center; cursor:pointer; transition:background 0.2s;">
+            <div>
+              <strong style="display:flex; align-items:center; gap:6px; color:#D4AF37; font-size:13px; margin-bottom:2px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                Install REEL App
+              </strong>
+              <div style="color:rgba(255,255,255,0.7); font-size:11px;">Add to home screen for fast access</div>
+            </div>
+            <div style="background:#D4AF37; color:#000; padding:4px 8px; border-radius:4px; font-size:10px; font-weight:bold;">INSTALL</div>
+          </div>
+
+          <div id="notif-list" style="max-height:250px; overflow-y:auto; padding:10px;">
             <div style="text-align:center; padding:20px; color:rgba(255,255,255,0.5); font-size:12px;">Loading...</div>
           </div>
         </div>
@@ -29,6 +42,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const notifList = document.getElementById('notif-list');
   const notifBadge = document.getElementById('notif-badge');
   const enableBtn = document.getElementById('notif-enable-btn');
+  const installAppBtn = document.getElementById('notif-install-app');
+  
+  if (installAppBtn) {
+    installAppBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (notifPanel) notifPanel.style.display = 'none'; // Close panel
+      if (typeof showInstallPromotion === 'function') {
+        showInstallPromotion();
+      }
+    });
+  }
   
   let lastSeenTimestamp = localStorage.getItem('ree_notif_last_seen') || 0;
   let unreadCount = 0;

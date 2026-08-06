@@ -984,84 +984,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
-  // Render Cart Page if we are on it
-  const renderCartPage = async () => {
-    const container = document.getElementById('cart-items-container');
-    if (!container) return; // not on cart page
 
-    if (cart.length === 0) {
-      container.innerHTML = `
-        <div class="cart-empty" style="text-align: center; padding: 80px 40px;">
-          <div class="cart-empty-icon" style="font-size: 4rem; margin-bottom: 16px;">🛍️</div>
-          <h3 style="font-family: var(--font-display); font-size: 1.8rem; color: #fff; margin-bottom: 8px;">Your cart is empty</h3>
-          <p style="color: var(--w50); margin-bottom: 28px;">Looks like you haven't added anything to your cart yet.</p>
-        </div>
-      `;
-      document.getElementById('cart-total-price').textContent = 'AED 0.00';
-      return;
-    }
-
-    container.innerHTML = '';
-    let subtotal = 0;
-    cart.forEach((item, index) => {
-      const itemTotal = item.price * item.qty;
-      subtotal += itemTotal;
-      container.innerHTML += `
-        <div class="cart-row">
-          <div class="cart-item-info">
-            <div class="cart-thumb"><img src="${item.image}" alt="" style="width:100%; height:100%; object-fit:cover; border-radius:4px;"></div>
-            <div>
-              <div class="cart-item-name">${item.name}</div>
-            </div>
-          </div>
-          <div class="cart-price">AED ${item.price.toFixed(2)}</div>
-          <input type="number" class="qty-input" value="${item.qty}" min="1" max="99" onchange="updateCartQty(${index}, this.value)" />
-          <div class="cart-price subtotal-col">AED ${itemTotal.toFixed(2)}</div>
-          <button class="cart-remove" title="Remove item" onclick="removeFromCart(${index})">✕</button>
-        </div>
-      `;
-    });
-
-    // Wait for DB if not ready
-    if (!window.db) {
-      setTimeout(renderCartPage, 100);
-      return;
-    }
-
-    let finalTotal = subtotal;
-    try {
-      const taxDoc = await window.db.collection('settings').doc('tax').get();
-      if (taxDoc.exists) {
-        const d = taxDoc.data();
-        if (d.enabled === 'yes') finalTotal += finalTotal * (parseFloat(d.rate) / 100);
-      }
-      const discountDoc = await window.db.collection('settings').doc('discount').get();
-      if (discountDoc.exists) {
-        const d = discountDoc.data();
-        const discountPercent = parseFloat(d.percent) || 0;
-        if (discountPercent > 0) finalTotal -= finalTotal * (discountPercent / 100);
-      }
-    } catch (e) { console.warn('Could not load settings', e); }
-
-    document.getElementById('cart-total-price').textContent = 'AED ' + finalTotal.toFixed(2);
-  };
-
-  window.updateCartQty = (index, newQty) => {
-    const qty = parseInt(newQty);
-    if (qty > 0) {
-      cart[index].qty = qty;
-      try { localStorage.setItem('ree_cart', JSON.stringify(cart)); } catch (e) { }
-      renderCartPage();
-      updateCartCount();
-    }
-  };
-
-  window.removeFromCart = (index) => {
-    cart.splice(index, 1);
-    try { localStorage.setItem('ree_cart', JSON.stringify(cart)); } catch (e) { }
-    renderCartPage();
-    updateCartCount();
-  };
 
   // WhatsApp Checkout
   const waBtn = document.getElementById('whatsapp-checkout-btn');
@@ -1121,6 +1044,5 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   updateCartCount();
-  renderCartPage();
 
 });
