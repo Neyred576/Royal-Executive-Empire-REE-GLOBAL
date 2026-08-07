@@ -1,87 +1,6 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Privacy Policy | REEL</title>
-  <link rel="icon" type="image/png" href="/Images/BG/logo%20bg.png" />
-  <meta name="description" content="Privacy Policy for Royalty Executive Empire Limited (REEL)." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/responsive.css" />
 
-  <link rel="manifest" href="/manifest.json" />
-  <meta name="theme-color" content="#D4AF37" />
-  <link rel="apple-touch-icon" href="/Images/icons/icon-192x192.png" />
-</head>
-<body>
-  <div class="bg-animated-glow"></div>
-
-  <!-- NAVIGATION -->
-  <nav id="main-nav" class="main-nav" role="navigation" aria-label="Main navigation">
-    <div class="nav-inner">
-      <a href="index.html" class="nav-logo" aria-label="REEL Home">
-        <div class="nav-logo-img-wrap">
-          <img src="Images/BG/logo%20bg.png" alt="REEL Logo" class="nav-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
-          <div class="nav-logo-crown" style="display:none">&#9884;</div>
-        </div>
-        <div class="nav-logo-text">
-          <span class="nav-brand-name">REEL</span>
-          <span class="nav-brand-sub">Royalty Executive Empire Limited</span>
-        </div>
-      </a>
-      <ul class="nav-links" id="nav-links" role="list">
-        
-        <li><a href="reel-power.html" class="nav-link">REEL Power</a></li>
-        <li><a href="reel-branding.html" class="nav-link">REEL Branding</a></li>
-        <li><a href="real-estate.html" class="nav-link">REEL Properties</a></li>
-        <li><a href="reel-business.html" class="nav-link">REEL Business</a></li>
-        <li><a href="blog.html" class="nav-link">Blog</a></li>
-        <li><a href="shop.html" class="nav-link">Shop</a></li>
-        <li><a href="contact.html" class="nav-link">Contact Us</a></li>
-      </ul>
-    <div class="nav-actions">
-        <a href="cart.html" class="nav-icon cart-icon" aria-label="Shopping Cart">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" /><line x1="3" y1="6" x2="21" y2="6" /><path d="M16 10a4 4 0 0 1-8 0" />
-          </svg>
-          <span class="cart-count">0</span>
-        </a>
-      </div>
-      <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
-        <span class="ham-line"></span><span class="ham-line"></span><span class="ham-line"></span>
-      </button>
-    </div>
-    <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
-  </nav>
-
-  <!-- CONTENT -->
-  <section class="section section--dark" style="padding-top: 140px; min-height: 80vh;">
-    <div class="container reveal-up">
-      <h1 class="heading-2" style="margin-bottom: 24px;">Privacy <span class="gold-text">Policy</span></h1>
-      <div style="color: var(--w70); max-width: 800px; line-height: 1.8;">
-        <p style="margin-bottom: 24px;">Last updated: <script>document.write(new Date().toLocaleDateString())</script></p>
-        <p style="margin-bottom: 24px;">At Royalty Executive Empire Limited (REEL), we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy outlines how we collect, use, and safeguard the data you provide to us when interacting with our website and services.</p>
-        
-        <h3 style="color: #fff; font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 16px; margin-top: 32px;">1. Information We Collect</h3>
-        <p style="margin-bottom: 24px;">We may collect personal information such as your name, email address, phone number, and shipping address when you make a purchase, subscribe to our newsletter, or contact us. We also collect non-personal data through cookies to enhance your browsing experience.</p>
-
-        <h3 style="color: #fff; font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 16px; margin-top: 32px;">2. How We Use Your Information</h3>
-        <p style="margin-bottom: 24px;">Your information is used to process transactions, deliver services, improve our website, and communicate with you regarding updates, promotions, and customer support. We do not sell or rent your personal data to third parties.</p>
-
-        <h3 style="color: #fff; font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 16px; margin-top: 32px;">3. Data Security</h3>
-        <p style="margin-bottom: 24px;">We implement strict security measures to protect your personal information from unauthorized access, alteration, disclosure, or destruction. All transactions are processed through secure gateways.</p>
-
-        <h3 style="color: #fff; font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 16px; margin-top: 32px;">4. Your Rights</h3>
-        <p style="margin-bottom: 24px;">You have the right to request access to, correction of, or deletion of your personal data held by us. If you wish to exercise these rights or have any concerns about our privacy practices, please contact us.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <!-- ============================================================ -->
+$canonicalFooter = @'
+<!-- ============================================================ -->
 <!-- FOOTER                                                         -->
 <!-- ============================================================ -->
 <footer class="site-footer" role="contentinfo">
@@ -273,11 +192,28 @@
   });
 })();
 </script>
+'@
 
-  <script src="js/main.js"></script>
+$files = @(
+  "about.html","account.html","article.html","blog.html","cart.html",
+  "checkout.html","cookies.html","music-store.html","portfolio.html",
+  "privacy.html","real-estate.html","reel-branding.html","reel-business.html",
+  "reel-power.html","reel-smart.html","shop.html","terms.html"
+)
 
-  <script src="/js/pwa.js"></script>
-<script src="/js/notifications.js"></script>
-</body>
-</html>
+foreach ($file in $files) {
+  $content = Get-Content $file -Raw -Encoding UTF8
 
+  # Match everything from <footer ... to </footer> (including any whitespace before it)
+  # Then append the canonical footer
+  if ($content -match '(?s)(<footer[\s\S]*?</footer>)') {
+    $oldFooter = $matches[1]
+    $newContent = $content.Replace($oldFooter, $canonicalFooter.TrimStart("`r`n"))
+    Set-Content $file -Value $newContent -Encoding UTF8 -NoNewline
+    Write-Host "UPDATED: $file"
+  } else {
+    Write-Host "SKIPPED (no footer found): $file"
+  }
+}
+
+Write-Host "`nDone! All footers updated."
