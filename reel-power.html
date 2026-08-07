@@ -576,43 +576,38 @@
     /* Product Grid */
     .rp-prod-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
     }
 
-    /* Product Card */
+    /* Product Card — strong visible styling */
     .rp-prod-card {
       position: relative;
-      background: linear-gradient(160deg, rgba(18,18,18,1) 0%, rgba(10,10,10,1) 100%);
-      border: 1px solid rgba(212,175,55,0.12);
+      background: #1a1a1a !important;
+      border: 1px solid rgba(212,175,55,0.45) !important;
       border-radius: 20px;
       overflow: hidden;
       cursor: pointer;
       transition: all 0.4s cubic-bezier(.22,1,.36,1);
       display: flex;
       flex-direction: column;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.6), inset 0 1px 0 rgba(212,175,55,0.15);
     }
 
     .rp-prod-card::before {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(212,175,55,0.5), transparent);
-      opacity: 0;
-      transition: opacity 0.3s;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+      opacity: 1;
     }
 
     .rp-prod-card:hover {
-      border-color: rgba(212,175,55,0.4);
+      border-color: #D4AF37 !important;
       transform: translateY(-8px);
-      box-shadow:
-        0 30px 60px rgba(0,0,0,0.6),
-        0 0 40px rgba(212,175,55,0.1),
-        inset 0 1px 0 rgba(212,175,55,0.1);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.6), 0 0 40px rgba(212,175,55,0.2);
     }
-
-    .rp-prod-card:hover::before { opacity: 1; }
 
     .rp-prod-card-img {
       position: relative;
@@ -621,16 +616,19 @@
       align-items: center;
       justify-content: center;
       padding: 24px 20px 16px;
-      background: radial-gradient(circle at 50% 80%, rgba(212,175,55,0.06) 0%, transparent 60%);
+      background: #111 !important;
+      border-bottom: 1px solid rgba(212,175,55,0.2);
       overflow: hidden;
     }
 
-    .rp-prod-card-img::after {
-      content: '';
+    /* Placeholder shown when image fails */
+    .rp-prod-card-img::before {
+      content: '⚡';
+      font-size: 3rem;
       position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 40px;
-      background: linear-gradient(to top, rgba(10,10,10,1), transparent);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0.15;
     }
 
     .rp-prod-card-img img {
@@ -652,25 +650,25 @@
       position: absolute;
       top: 12px;
       left: 12px;
-      background: rgba(212,175,55,0.15);
-      border: 1px solid rgba(212,175,55,0.35);
-      color: var(--gold-300);
+      background: rgba(212,175,55,0.2);
+      border: 1px solid rgba(212,175,55,0.5);
+      color: #D4AF37 !important;
       font-size: 0.62rem;
       font-weight: 700;
       letter-spacing: 1.5px;
       text-transform: uppercase;
       padding: 4px 10px;
       border-radius: 99px;
-      backdrop-filter: blur(8px);
       z-index: 2;
     }
 
     .rp-prod-card-body {
-      padding: 20px 20px 24px;
+      padding: 20px 20px 16px;
       flex: 1;
       display: flex;
       flex-direction: column;
       gap: 8px;
+      background: #1a1a1a;
     }
 
     .rp-prod-card-cat {
@@ -678,19 +676,19 @@
       font-weight: 700;
       letter-spacing: 2px;
       text-transform: uppercase;
-      color: rgba(212,175,55,0.6);
+      color: #D4AF37 !important;
     }
 
     .rp-prod-card-name {
-      font-family: var(--font-display);
-      font-size: 1.1rem;
-      color: #fff;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      color: #ffffff !important;
       line-height: 1.3;
       flex: 1;
     }
 
     .rp-prod-card-desc {
-      color: rgba(255,255,255,0.45);
+      color: rgba(255,255,255,0.6) !important;
       font-size: 0.82rem;
       line-height: 1.6;
     }
@@ -698,16 +696,17 @@
     .rp-prod-card-footer {
       display: flex;
       gap: 8px;
-      padding: 0 20px 20px;
+      padding: 12px 20px 20px;
+      background: #1a1a1a;
     }
 
     .rp-prod-card-btn {
       flex: 1;
       padding: 10px 12px;
       border-radius: 10px;
-      border: 1px solid rgba(212,175,55,0.2);
-      background: transparent;
-      color: var(--gold-300);
+      border: 1px solid rgba(212,175,55,0.4) !important;
+      background: rgba(212,175,55,0.08) !important;
+      color: #D4AF37 !important;
       font-size: 0.78rem;
       font-weight: 600;
       cursor: pointer;
@@ -721,20 +720,20 @@
     }
 
     .rp-prod-card-btn:hover {
-      background: rgba(212,175,55,0.12);
-      border-color: var(--gold-300);
+      background: rgba(212,175,55,0.2) !important;
+      border-color: #D4AF37 !important;
       transform: translateY(-1px);
     }
 
     .rp-prod-card-btn.wa {
-      background: rgba(37,211,102,0.08);
-      border-color: rgba(37,211,102,0.25);
-      color: #25D366;
+      background: rgba(37,211,102,0.1) !important;
+      border-color: rgba(37,211,102,0.35) !important;
+      color: #25D366 !important;
     }
 
     .rp-prod-card-btn.wa:hover {
-      background: rgba(37,211,102,0.18);
-      border-color: rgba(37,211,102,0.5);
+      background: rgba(37,211,102,0.2) !important;
+      border-color: rgba(37,211,102,0.6) !important;
     }
 
     /* Featured Large Product */
@@ -744,9 +743,11 @@
     }
 
     .rp-prod-card.featured .rp-prod-card-img {
-      width: 280px;
-      min-width: 280px;
+      width: 260px;
+      min-width: 260px;
       height: auto;
+      border-bottom: none;
+      border-right: 1px solid rgba(212,175,55,0.2);
     }
 
     .rp-prod-card.featured .rp-prod-card-right {
