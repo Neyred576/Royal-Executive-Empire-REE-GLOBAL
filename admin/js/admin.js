@@ -144,6 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupScheduleToggle('blog-status', 'blog');
     setupScheduleToggle('prop-status', 'properties');
     setupScheduleToggle('shop-status', 'shop');
+    setupScheduleToggle('power-status', 'power');
 
     // --- RENDER HELPERS ---
     const renderAdminList = (docs, containerId, type) => {
@@ -161,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const id = docSnap.id;
         const div = document.createElement('div');
         div.className = 'admin-list-item';
-        let editBtn = type === 'blog' ? `<button class="btn-edit" data-id="${id}" data-type="${type}" style="margin-right:8px; background:var(--gold); color:#000;">Edit</button>` : '';
+        let editBtn = (type === 'blog' || type === 'power') ? `<button class="btn-edit" data-id="${id}" data-type="${type}" style="margin-right:8px; background:var(--gold); color:#000;">Edit</button>` : '';
         div.innerHTML = `
           <div class="item-info">
             <strong>${item.title || item.name} ${item.status === 'scheduled' ? '<span style="color:#D4AF37; font-size:0.7rem;">(Scheduled)</span>' : ''}</strong>
@@ -176,23 +177,50 @@ document.addEventListener('DOMContentLoaded', () => {
       container.querySelectorAll('.btn-edit').forEach(btn => {
         btn.addEventListener('click', (e) => {
           const id = e.target.getAttribute('data-id');
-          window.db.collection('blogs').doc(id).get().then(doc => {
-            if (doc.exists) {
-              const data = doc.data();
-              document.getElementById('blog-title').value = data.title || '';
-              document.getElementById('blog-cat').value = data.category || 'Business Strategy';
-              document.getElementById('blog-status').value = data.status || 'published';
-              if (blogQuill) {
-                blogQuill.root.innerHTML = data.content || '';
-              } else {
-                document.getElementById('blog-content').value = data.content || '';
+          const t = e.target.getAttribute('data-type');
+
+          if (t === 'power') {
+            window.db.collection('powerProducts').doc(id).get().then(doc => {
+              if (doc.exists) {
+                const data = doc.data();
+                document.getElementById('power-name').value = data.name || '';
+                document.getElementById('power-caption').value = data.caption || '';
+                document.getElementById('power-price').value = data.price || '';
+                document.getElementById('power-details').value = data.details || '';
+                document.getElementById('power-video').value = data.video || '';
+                document.getElementById('power-status').value = data.status || 'published';
+                const featuredCheckbox = document.getElementById('power-featured');
+                if (featuredCheckbox) featuredCheckbox.checked = !!data.featured;
+                window.editPowerId = id;
+                const submitBtn = document.querySelector('#form-power button[type="submit"]');
+                if (submitBtn) submitBtn.innerHTML = 'Update Product';
+                // Navigate to power section
+                document.querySelectorAll('.admin-nav-link').forEach(l => l.classList.remove('active'));
+                document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
+                document.querySelector('[data-target="sec-power"]').classList.add('active');
+                document.getElementById('sec-power').classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
               }
-              window.editBlogId = id;
-              const submitBtn = document.querySelector('#form-blog button[type="submit"]');
-              if (submitBtn) submitBtn.innerHTML = 'Update Blog Post';
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-          });
+            });
+          } else {
+            window.db.collection('blogs').doc(id).get().then(doc => {
+              if (doc.exists) {
+                const data = doc.data();
+                document.getElementById('blog-title').value = data.title || '';
+                document.getElementById('blog-cat').value = data.category || 'Business Strategy';
+                document.getElementById('blog-status').value = data.status || 'published';
+                if (blogQuill) {
+                  blogQuill.root.innerHTML = data.content || '';
+                } else {
+                  document.getElementById('blog-content').value = data.content || '';
+                }
+                window.editBlogId = id;
+                const submitBtn = document.querySelector('#form-blog button[type="submit"]');
+                if (submitBtn) submitBtn.innerHTML = 'Update Blog Post';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }
+            });
+          }
         });
       });
 
@@ -201,8 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const id = e.target.getAttribute('data-id');
           const t = e.target.getAttribute('data-type');
           if (confirm(`Are you sure you want to delete this item?`)) {
-            let collection = t === 'product' ? 'products' : t;
-            if (t === 'blog') collection = 'blogs';
+            let collection = t === 'product' ? 'products' : t === 'power' ? 'powerProducts' : t === 'blog' ? 'blogs' : t;
             window.db.collection(collection).doc(id).delete().then(() => showToast("Deleted", "Item removed successfully.", "delete"));
           }
         });
@@ -241,8 +268,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const id = e.target.getAttribute('data-id');
           const t = e.target.getAttribute('data-type');
           if (confirm(`Are you sure you want to delete this scheduled item?`)) {
-            let col = t === 'product' ? 'products' : t;
-            if (t === 'blog') col = 'blogs';
+            let col = t === 'product' ? 'products' : t === 'power' ? 'powerProducts' : t === 'blog' ? 'blogs' : t;
             window.db.collection(col).doc(id).delete().then(() => showToast("Deleted", "Scheduled item removed."));
           }
         });
@@ -295,6 +321,16 @@ document.addEventListener('DOMContentLoaded', () => {
       const statShop = document.getElementById('stat-shop');
       if (sbCountShop) sbCountShop.textContent = snap.size;
       if (statShop) statShop.textContent = snap.size;
+    });
+
+    // --- POWER PRODUCTS REALTIME LISTENER ---
+    window.db.collection('powerProducts').orderBy('timestamp', 'desc').onSnapshot(snap => {
+      renderAdminList(snap.docs, 'power-list', 'power');
+      globalScheduled = globalScheduled.filter(i => i.type !== 'power');
+      snap.forEach(d => {
+        if (d.data().status === 'scheduled') globalScheduled.push({ id: d.id, type: 'power', ...d.data() });
+      });
+      renderSchedulerList(globalScheduled);
     });
 
     // --- AUTO-PUBLISH ENGINE ---
@@ -471,6 +507,65 @@ document.addEventListener('DOMContentLoaded', () => {
         alert("Please select an image.");
       }
     });
+
+    // Power Products
+    const formPower = document.getElementById('form-power');
+    if (formPower) {
+      formPower.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('power-name').value;
+        const caption = document.getElementById('power-caption').value;
+        const price = document.getElementById('power-price').value;
+        const details = document.getElementById('power-details').value;
+        const video = document.getElementById('power-video').value;
+        const status = document.getElementById('power-status').value;
+        const fileInput = document.getElementById('power-img');
+        const featuredCheckbox = document.getElementById('power-featured');
+        const featured = featuredCheckbox ? featuredCheckbox.checked : false;
+
+        if (status === 'scheduled' && !pendingScheduleTime) {
+          alert('Please set a schedule date & time before saving.');
+          return;
+        }
+
+        let sTime = status === 'scheduled' ? pendingScheduleTime : null;
+        const submitBtn = document.querySelector('#form-power button[type="submit"]');
+        const isEdit = !!window.editPowerId;
+
+        const savePower = (imageData) => {
+          const payload = { name, caption, price, details, video, status, scheduleTime: sTime, featured };
+          if (imageData) payload.image = imageData;
+
+          let promise;
+          if (isEdit) {
+            promise = window.db.collection('powerProducts').doc(window.editPowerId).update(payload);
+          } else {
+            payload.timestamp = Date.now();
+            promise = window.db.collection('powerProducts').add(payload);
+          }
+
+          promise.then(() => {
+            e.target.reset();
+            pendingScheduleTime = null;
+            window.editPowerId = null;
+            if (submitBtn) submitBtn.innerHTML = 'Add Product';
+            showToast(isEdit ? 'Updated' : 'Added', isEdit ? 'Product updated successfully.' : 'Power product saved.');
+          });
+        };
+
+        if (fileInput.files && fileInput.files[0]) {
+          const reader = new FileReader();
+          reader.onload = (evt) => savePower(evt.target.result);
+          reader.readAsDataURL(fileInput.files[0]);
+        } else {
+          if (isEdit) {
+            savePower(null);
+          } else {
+            alert('Please select a product image.');
+          }
+        }
+      });
+    }
 
     // --- BROADCAST CENTER LOGIC ---
     const bcInput = document.getElementById('bc-input');

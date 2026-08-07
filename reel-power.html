@@ -59,524 +59,963 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/responsive.css" />
+
   <style>
-    /* ── Division Hero ── */
-    .div-page-hero {
+    /* ═══════════════════════════════════════════════════════
+       REEL POWER — LUXURY REDESIGN STYLES
+    ═══════════════════════════════════════════════════════ */
+
+    /* ── HERO ── */
+    .rp-hero {
       position: relative;
-      min-height: 80vh;
-      display: flex; align-items: center;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
       overflow: hidden;
-      padding-top: 80px; padding-bottom: 80px;
-      background-color: var(--black-900);
+      background: #050505;
     }
-    .div-page-hero::before {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(rgba(8,8,8,0.45), rgba(8,8,8,0.65)), url('Images/reel_power_hero.png') center center / cover no-repeat;
-      animation: heroBgZoom 25s ease-in-out infinite alternate;
-      z-index: 0; will-change: transform;
-    }
-    .div-hero-bg, .div-hero-bg-img { display: none; }
-    .div-hero-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(90deg, rgba(8,8,8,0.65) 0%, rgba(8,8,8,0.1) 100%);
-    }
-    .div-hero-inner {
-      position: relative; z-index: 2;
-      display: flex; flex-direction: column; align-items: flex-start; max-width: 700px; text-align: left;
-    }
-    .div-hero-tag {
-      display: inline-flex; align-items: center; gap: 10px;
-      font-size: 0.72rem; font-weight: 800; letter-spacing: 3px;
-      text-transform: uppercase; color: var(--gold-300);
-      margin-bottom: 24px;
-    }
-    .div-hero-tag::before {
-      content:''; width: 30px; height: 1px;
-      background: var(--gold-gradient);
-    }
-    .div-hero-title {
-      font-family: var(--font-display);
-      font-size: clamp(3rem, 6vw, 5.5rem);
-      line-height: 1.0;
-      color: #fff;
-      margin-bottom: 28px;
-    }
-    .div-hero-title span { color: var(--gold-300); }
-    .div-hero-desc {
-      color: var(--w60);
-      font-size: 1.1rem;
-      line-height: 1.85;
-      max-width: 520px;
-      margin-bottom: 44px;
-    }
-    .div-hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
-    .div-hero-visual {
-      display: flex; align-items: center; justify-content: center;
-      position: relative;
-    }
-    .div-hero-icon-ring {
-      width: 340px; height: 340px;
-      border-radius: 50%;
-      border: 1px solid var(--gold-border);
-      display: flex; align-items: center; justify-content: center;
-      position: relative;
-      animation: slowSpin 20s linear infinite;
-    }
-    @keyframes slowSpin { to { transform: rotate(360deg); } }
-    .div-hero-icon-inner {
-      width: 260px; height: 260px;
-      border-radius: 50%;
-      background: var(--gold-fill);
-      border: 1px solid var(--gold-border);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 6rem;
-      animation: slowSpin 20s linear infinite reverse;
-      box-shadow: 0 0 80px rgba(212,175,55,0.15), inset 0 0 40px rgba(212,175,55,0.05);
-    }
-    .orbit-dot {
+
+    .rp-hero-bg {
       position: absolute;
-      width: 12px; height: 12px;
-      border-radius: 50%;
-      background: var(--gold-300);
-      box-shadow: 0 0 15px rgba(212,175,55,0.8);
+      inset: 0;
+      background: url('Images/reel_power_hero.png') center center / cover no-repeat;
+      animation: heroBgZoom 30s ease-in-out infinite alternate;
+      z-index: 0;
+      will-change: transform;
     }
-    .orbit-dot:nth-child(1) { top: -6px; left: 50%; transform: translateX(-50%); }
-    .orbit-dot:nth-child(2) { bottom: -6px; left: 50%; transform: translateX(-50%); }
-    .orbit-dot:nth-child(3) { left: -6px; top: 50%; transform: translateY(-50%); }
 
-    /* ── Products Grid ── */
-    .prod-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-    .prod-card {
-      background: rgba(255,255,255,0.025);
-      border: 1px solid var(--gold-border);
-      border-radius: var(--radius-lg);
-      padding: 36px 28px;
-      transition: all 0.35s;
-      position: relative; overflow: hidden;
-    }
-    .prod-card::after {
+    .rp-hero-bg::after {
       content: '';
-      position: absolute; bottom: 0; left: 0; right: 0;
-      height: 2px;
-      background: var(--gold-gradient);
-      transform: scaleX(0);
-      transition: transform 0.35s;
-      transform-origin: left;
-    }
-    .prod-card:hover { border-color: var(--gold-300); transform: translateY(-6px); box-shadow: 0 24px 48px rgba(0,0,0,0.4); }
-    .prod-card:hover::after { transform: scaleX(1); }
-    .prod-icon-wrap {
-      width: 64px; height: 64px;
-      border-radius: 16px;
-      background: var(--gold-fill);
-      border: 1px solid var(--gold-border);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.8rem;
-      margin-bottom: 22px;
-      transition: all 0.3s;
-    }
-    .prod-card:hover .prod-icon-wrap { background: rgba(212,175,55,0.18); box-shadow: 0 0 20px rgba(212,175,55,0.2); }
-    .prod-card h3 { font-family: var(--font-display); font-size: 1.3rem; color: #fff; margin-bottom: 12px; }
-    .prod-card p { color: var(--w50); font-size: 0.9rem; line-height: 1.7; }
-
-    /* ── Clients Grid ── */
-    .clients-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-    .client-chip {
-      display: flex; align-items: center; gap: 14px;
-      padding: 20px 22px;
-      background: rgba(255,255,255,0.025);
-      border: 1px solid var(--gold-border);
-      border-radius: var(--radius-md);
-      transition: all 0.3s;
-    }
-    .client-chip:hover { border-color: var(--gold-300); background: var(--gold-fill); }
-    .client-chip-icon { font-size: 1.6rem; }
-    .client-chip h4 { color: #fff; font-size: 0.95rem; font-weight: 600; margin-bottom: 2px; }
-    .client-chip p { color: var(--w50); font-size: 0.8rem; }
-
-    /* ── CTA Banner ── */
-    .div-cta-banner {
-      padding: 100px 0;
-      background: radial-gradient(ellipse at 50% 100%, rgba(212,175,55,0.12) 0%, transparent 60%), var(--black-900);
-      border-top: 1px solid var(--gold-border);
-      text-align: center;
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(5,5,5,0.96) 0%, rgba(5,5,5,0.75) 55%, rgba(5,5,5,0.25) 100%),
+        linear-gradient(to top, rgba(5,5,5,0.9) 0%, transparent 40%);
     }
 
-    /* ── Split Intro Layout ── */
-    .section-split-intro {
+    @keyframes heroBgZoom {
+      from { transform: scale(1); }
+      to   { transform: scale(1.08); }
+    }
+
+    /* Floating products in hero background */
+    .rp-hero-floats {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .rp-float {
+      position: absolute;
+      opacity: 0;
+      filter: blur(1px) brightness(0.6);
+      animation: floatUp 6s ease-in-out infinite alternate;
+      will-change: transform, opacity;
+    }
+
+    .rp-float.f1  { width: 180px; bottom: 0;   right: 8%;  animation-duration: 7s;  animation-delay: 0s;   opacity: 0.18; filter: blur(0px) brightness(0.75); }
+    .rp-float.f2  { width: 110px; bottom: 10%; right: 22%; animation-duration: 9s;  animation-delay: 1.2s; opacity: 0.10; filter: blur(2px); }
+    .rp-float.f3  { width: 140px; bottom: 5%;  right: 38%; animation-duration: 8s;  animation-delay: 0.5s; opacity: 0.08; filter: blur(3px); }
+    .rp-float.f4  { width: 90px;  top: 15%;   right: 5%;  animation-duration: 11s; animation-delay: 2s;   opacity: 0.07; filter: blur(2px); }
+    .rp-float.f5  { width: 200px; bottom: -20px; right: 2%; animation-duration: 6s; animation-delay: 0s;  opacity: 0.22; filter: blur(0px) brightness(0.8); }
+
+    @keyframes floatUp {
+      from { transform: translateY(0px) rotate(-2deg); }
+      to   { transform: translateY(-18px) rotate(2deg); }
+    }
+
+    .rp-hero-inner {
+      position: relative;
+      z-index: 3;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 60px;
       align-items: center;
-      margin-bottom: 70px;
+      padding-top: 100px;
+      padding-bottom: 80px;
+      width: 100%;
     }
-    .split-text { display: flex; flex-direction: column; gap: 16px; }
-    .split-text .section-eyebrow { justify-content: flex-start; margin-bottom: 0; }
-    .split-text h2 { margin: 0; text-align: left; }
-    .split-text p { color: var(--w60); line-height: 1.8; font-size: 1rem; margin: 0; max-width: 480px; }
-    .split-stats { display: flex; gap: 24px; margin-top: 8px; flex-wrap: wrap; }
-    .split-stat { display: flex; flex-direction: column; }
-    .split-stat strong { font-size: 1.8rem; font-weight: 800; color: var(--gold-300); line-height: 1; }
-    .split-stat span { font-size: 0.75rem; color: var(--w50); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
-    .split-image-wrap {
-      position: relative;
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      border: 1px solid var(--gold-border);
-      box-shadow: 0 0 60px rgba(212,175,55,0.1);
+
+    .rp-hero-left { display: flex; flex-direction: column; }
+
+    .rp-hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
     }
-    .split-image-wrap::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0;
-      height: 3px;
+
+    .rp-hero-badge-line {
+      width: 40px;
+      height: 1px;
       background: var(--gold-gradient);
-      z-index: 2;
     }
-    .split-image-wrap img {
-      width: 100%; height: 320px;
-      object-fit: cover;
+
+    .rp-hero-badge-text {
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold-300);
+    }
+
+    .rp-hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 5.5vw, 5.5rem);
+      line-height: 1.1;
+      color: #fff;
+      margin-bottom: 10px;
+      letter-spacing: -1px;
+    }
+
+    .rp-hero-title-accent {
       display: block;
-      transition: transform 0.5s ease;
-    }
-    .split-image-wrap:hover img { transform: scale(1.04); }
-
-    @media(max-width:1024px) {
-      .div-hero-inner { grid-template-columns: 1fr; }
-      .div-hero-visual { display: none; }
-      .section-split-intro { grid-template-columns: 1fr; gap: 40px; }
-    }
-    @media(max-width:768px) {
-      .prod-grid, .clients-grid { grid-template-columns: 1fr; }
-      .split-stats { gap: 16px; }
+      background: linear-gradient(135deg, #D4AF37 0%, #F5E08A 50%, #B8960C 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      padding-bottom: 0.15em;
     }
 
-    /* ── Power Product Lineup Section ── */
-    .power-lineup-grid {
+    .rp-hero-sub {
+      font-size: 1rem;
+      font-weight: 300;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 32px;
+    }
+
+    .rp-hero-desc {
+      color: rgba(255,255,255,0.65);
+      font-size: 1.05rem;
+      line-height: 1.85;
+      max-width: 500px;
+      margin-bottom: 48px;
+    }
+
+    .rp-hero-ctas {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 56px;
+    }
+
+    .rp-hero-stats {
+      display: flex;
+      gap: 40px;
+      padding-top: 36px;
+      border-top: 1px solid rgba(212,175,55,0.15);
+    }
+
+    .rp-hero-stat strong {
+      display: block;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--gold-300);
+      line-height: 1;
+    }
+
+    .rp-hero-stat span {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.4);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-top: 4px;
+      display: block;
+    }
+
+    /* Hero Right — Product Visual Stack */
+    .rp-hero-right {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 580px;
+    }
+
+    .rp-hero-prod-main {
+      position: relative;
+      z-index: 3;
+      width: 280px;
+      filter: drop-shadow(0 30px 60px rgba(212,175,55,0.25)) drop-shadow(0 0 80px rgba(212,175,55,0.1));
+      animation: heroFloat 5s ease-in-out infinite alternate;
+    }
+
+    @keyframes heroFloat {
+      from { transform: translateY(0); }
+      to   { transform: translateY(-20px); }
+    }
+
+    .rp-hero-prod-side {
+      position: absolute;
+      z-index: 2;
+      filter: drop-shadow(0 20px 40px rgba(0,0,0,0.6));
+      opacity: 0.75;
+    }
+
+    .rp-hero-prod-side.left {
+      width: 160px;
+      left: 0;
+      bottom: 60px;
+      transform: rotate(-8deg);
+      animation: heroFloat 7s ease-in-out 1s infinite alternate;
+    }
+
+    .rp-hero-prod-side.right {
+      width: 140px;
+      right: 10px;
+      bottom: 40px;
+      transform: rotate(8deg);
+      animation: heroFloat 6s ease-in-out 0.5s infinite alternate;
+    }
+
+    .rp-hero-prod-top {
+      position: absolute;
+      top: 40px;
+      right: 30px;
+      z-index: 2;
+      width: 120px;
+      opacity: 0.65;
+      filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5));
+      animation: heroFloat 8s ease-in-out 2s infinite alternate;
+    }
+
+    .rp-hero-glow-ring {
+      position: absolute;
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      border: 1px solid rgba(212,175,55,0.12);
+      z-index: 1;
+      animation: slowSpin 25s linear infinite;
+    }
+
+    .rp-hero-glow-ring::before {
+      content: '';
+      position: absolute;
+      inset: 20px;
+      border-radius: 50%;
+      border: 1px solid rgba(212,175,55,0.07);
+    }
+
+    @keyframes slowSpin { to { transform: rotate(360deg); } }
+
+    .rp-hero-glow-orb {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212,175,55,0.12) 0%, transparent 70%);
+      z-index: 0;
+    }
+
+    /* ── SCROLL INDICATOR ── */
+    .rp-scroll-hint {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,0.3);
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      animation: fadeInUp 1s 1.5s both;
+    }
+
+    .rp-scroll-line {
+      width: 1px;
+      height: 50px;
+      background: linear-gradient(to bottom, var(--gold-300), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; transform: scaleY(1); }
+      50%       { opacity: 1;   transform: scaleY(1.1); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+      to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+    }
+
+    /* ── SECTION FLOATING PRODUCTS BACKGROUND ── */
+    .rp-bg-float-section {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .rp-bg-products {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .rp-bg-prod {
+      position: absolute;
+      opacity: 0.055;
+      filter: blur(1.5px) grayscale(20%);
+      animation: floatUp 8s ease-in-out infinite alternate;
+    }
+
+    .rp-bg-prod:nth-child(1)  { width: 200px; top: -30px; left: -40px;    animation-delay: 0s;   animation-duration: 9s;  transform: rotate(-15deg); }
+    .rp-bg-prod:nth-child(2)  { width: 150px; top: 10%;   right: -30px;   animation-delay: 2s;   animation-duration: 11s; transform: rotate(12deg); }
+    .rp-bg-prod:nth-child(3)  { width: 180px; bottom: -20px; left: 20%;   animation-delay: 1s;   animation-duration: 8s;  transform: rotate(-8deg); }
+    .rp-bg-prod:nth-child(4)  { width: 120px; bottom: 5%;  right: 15%;    animation-delay: 3s;   animation-duration: 10s; transform: rotate(20deg); }
+    .rp-bg-prod:nth-child(5)  { width: 220px; top: 30%;   left: -50px;    animation-delay: 0.5s; animation-duration: 7s;  transform: rotate(-5deg); }
+    .rp-bg-prod:nth-child(6)  { width: 100px; top: 50%;   right: 5%;      animation-delay: 4s;   animation-duration: 12s; transform: rotate(25deg); }
+
+    /* ── INTRO / ABOUT SECTION ── */
+    .rp-intro {
+      padding: 120px 0 80px;
+      background: #080808;
+    }
+
+    .rp-intro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .rp-intro-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold-300);
+      margin-bottom: 20px;
+    }
+
+    .rp-intro-label::before {
+      content: '';
+      width: 30px;
+      height: 1px;
+      background: var(--gold-gradient);
+    }
+
+    .rp-intro h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 28px;
+    }
+
+    .rp-intro h2 span { color: var(--gold-300); }
+
+    .rp-intro-desc {
+      color: rgba(255,255,255,0.6);
+      font-size: 1rem;
+      line-height: 1.9;
+      margin-bottom: 40px;
+    }
+
+    .rp-intro-stats {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
-      margin-top: 60px;
-    }
-    .power-prod-card {
-      position: relative;
-      border-radius: 18px;
+      gap: 1px;
+      background: rgba(212,175,55,0.1);
+      border-radius: 16px;
       overflow: hidden;
-      border: 1px solid var(--gold-border);
-      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(212,175,55,0.15);
+    }
+
+    .rp-intro-stat {
+      background: #0a0a0a;
+      padding: 28px 20px;
+      text-align: center;
+    }
+
+    .rp-intro-stat strong {
+      display: block;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--gold-300);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .rp-intro-stat span {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.4);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    /* Intro Right — Product mosaic */
+    .rp-intro-mosaic {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 16px;
+    }
+
+    .rp-mosaic-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(212,175,55,0.12);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 20px;
+      transition: all 0.4s cubic-bezier(.22,1,.36,1);
       cursor: pointer;
-      transition: transform 0.35s cubic-bezier(.22,1,.36,1), box-shadow 0.35s, border-color 0.3s;
+    }
+
+    .rp-mosaic-card:hover {
+      background: rgba(212,175,55,0.06);
+      border-color: rgba(212,175,55,0.35);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 30px rgba(212,175,55,0.08);
+    }
+
+    .rp-mosaic-card.span-2 {
+      grid-column: span 2;
+    }
+
+    .rp-mosaic-card img {
+      max-width: 100%;
+      max-height: 180px;
+      object-fit: contain;
+      filter: drop-shadow(0 10px 30px rgba(212,175,55,0.2));
+      transition: transform 0.5s ease;
+    }
+
+    .rp-mosaic-card.span-2 img { max-height: 200px; }
+
+    .rp-mosaic-card:hover img {
+      transform: scale(1.06);
+    }
+
+    /* ── PRODUCTS SHOWCASE ── */
+    .rp-products {
+      padding: 100px 0;
+      background: linear-gradient(180deg, #080808 0%, #060606 100%);
+    }
+
+    .rp-products-header {
+      text-align: center;
+      margin-bottom: 70px;
+    }
+
+    .rp-products-header .section-eyebrow {
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .rp-products-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .rp-products-header h2 span { color: var(--gold-300); }
+
+    .rp-products-header p {
+      color: rgba(255,255,255,0.5);
+      font-size: 1rem;
+      max-width: 540px;
+      margin: 0 auto;
+      line-height: 1.75;
+    }
+
+    /* Category Tabs */
+    .rp-prod-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 50px;
+      flex-wrap: wrap;
+    }
+
+    .rp-prod-tab {
+      padding: 10px 24px;
+      border-radius: 99px;
+      border: 1px solid rgba(212,175,55,0.2);
+      background: transparent;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .rp-prod-tab:hover,
+    .rp-prod-tab.active {
+      background: rgba(212,175,55,0.12);
+      border-color: var(--gold-300);
+      color: var(--gold-300);
+    }
+
+    /* Product Grid */
+    .rp-prod-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    /* Product Card */
+    .rp-prod-card {
+      position: relative;
+      background: linear-gradient(160deg, rgba(18,18,18,1) 0%, rgba(10,10,10,1) 100%);
+      border: 1px solid rgba(212,175,55,0.12);
+      border-radius: 20px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(.22,1,.36,1);
       display: flex;
       flex-direction: column;
     }
-    .power-prod-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 28px 60px rgba(0,0,0,0.5), 0 0 40px rgba(212,175,55,0.12);
-      border-color: var(--gold-300);
-    }
-    .power-prod-card-img-wrap {
-      position: relative;
-      height: 240px;
-      overflow: hidden;
-      background: rgba(255,255,255,0.05);
-    }
-    .power-prod-card-img-wrap img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.5s ease;
-    }
-    .power-prod-card:hover .power-prod-card-img-wrap img {
-      transform: scale(1.06);
-    }
-    .power-prod-card-img-wrap::after {
+
+    .rp-prod-card::before {
       content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(8,8,8,0.7) 0%, transparent 50%);
-    }
-    .power-prod-card-badge {
       position: absolute;
-      top: 14px; left: 14px;
-      background: rgba(212,175,55,0.18);
-      border: 1px solid rgba(212,175,55,0.4);
-      color: var(--gold-300);
-      font-size: 0.68rem; font-weight: 700;
-      letter-spacing: 1.5px; text-transform: uppercase;
-      padding: 4px 12px;
-      border-radius: 99px;
-      z-index: 2;
-      backdrop-filter: blur(8px);
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212,175,55,0.5), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
     }
-    .power-prod-card-click-hint {
+
+    .rp-prod-card:hover {
+      border-color: rgba(212,175,55,0.4);
+      transform: translateY(-8px);
+      box-shadow:
+        0 30px 60px rgba(0,0,0,0.6),
+        0 0 40px rgba(212,175,55,0.1),
+        inset 0 1px 0 rgba(212,175,55,0.1);
+    }
+
+    .rp-prod-card:hover::before { opacity: 1; }
+
+    .rp-prod-card-img {
+      position: relative;
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 20px 16px;
+      background: radial-gradient(circle at 50% 80%, rgba(212,175,55,0.06) 0%, transparent 60%);
+      overflow: hidden;
+    }
+
+    .rp-prod-card-img::after {
+      content: '';
       position: absolute;
-      bottom: 14px; right: 14px;
-      background: rgba(212,175,55,0.2);
-      border: 1px solid rgba(212,175,55,0.5);
+      bottom: 0; left: 0; right: 0;
+      height: 40px;
+      background: linear-gradient(to top, rgba(10,10,10,1), transparent);
+    }
+
+    .rp-prod-card-img img {
+      max-height: 190px;
+      max-width: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 10px 30px rgba(212,175,55,0.18));
+      transition: transform 0.5s cubic-bezier(.22,1,.36,1), filter 0.5s;
+      position: relative;
+      z-index: 1;
+    }
+
+    .rp-prod-card:hover .rp-prod-card-img img {
+      transform: scale(1.08) translateY(-4px);
+      filter: drop-shadow(0 20px 40px rgba(212,175,55,0.3));
+    }
+
+    .rp-prod-card-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(212,175,55,0.15);
+      border: 1px solid rgba(212,175,55,0.35);
       color: var(--gold-300);
-      font-size: 0.7rem; font-weight: 600;
-      padding: 5px 12px;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 10px;
       border-radius: 99px;
-      z-index: 2;
       backdrop-filter: blur(8px);
-      display: flex; align-items: center; gap: 6px;
-      transition: background 0.3s;
+      z-index: 2;
     }
-    .power-prod-card:hover .power-prod-card-click-hint {
-      background: rgba(212,175,55,0.35);
-    }
-    .power-prod-card-body {
-      padding: 24px;
+
+    .rp-prod-card-body {
+      padding: 20px 20px 24px;
       flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
     }
-    .power-prod-card-body::before {
+
+    .rp-prod-card-cat {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(212,175,55,0.6);
+    }
+
+    .rp-prod-card-name {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: #fff;
+      line-height: 1.3;
+      flex: 1;
+    }
+
+    .rp-prod-card-desc {
+      color: rgba(255,255,255,0.45);
+      font-size: 0.82rem;
+      line-height: 1.6;
+    }
+
+    .rp-prod-card-footer {
+      display: flex;
+      gap: 8px;
+      padding: 0 20px 20px;
+    }
+
+    .rp-prod-card-btn {
+      flex: 1;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(212,175,55,0.2);
+      background: transparent;
+      color: var(--gold-300);
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s;
+      text-align: center;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .rp-prod-card-btn:hover {
+      background: rgba(212,175,55,0.12);
+      border-color: var(--gold-300);
+      transform: translateY(-1px);
+    }
+
+    .rp-prod-card-btn.wa {
+      background: rgba(37,211,102,0.08);
+      border-color: rgba(37,211,102,0.25);
+      color: #25D366;
+    }
+
+    .rp-prod-card-btn.wa:hover {
+      background: rgba(37,211,102,0.18);
+      border-color: rgba(37,211,102,0.5);
+    }
+
+    /* Featured Large Product */
+    .rp-prod-card.featured {
+      grid-column: span 2;
+      flex-direction: row;
+    }
+
+    .rp-prod-card.featured .rp-prod-card-img {
+      width: 280px;
+      min-width: 280px;
+      height: auto;
+    }
+
+    .rp-prod-card.featured .rp-prod-card-right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .rp-prod-card.featured .rp-prod-card-body {
+      flex: 1;
+    }
+
+    .rp-prod-card.featured .rp-prod-card-name {
+      font-size: 1.4rem;
+    }
+
+    .rp-prod-card.featured .rp-prod-card-desc {
+      font-size: 0.88rem;
+    }
+
+    /* ── WHO WE SERVE ── */
+    .rp-serve {
+      padding: 100px 0;
+      background: #060606;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .rp-serve-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 60px;
+    }
+
+    .rp-serve-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(212,175,55,0.1);
+      border-radius: 18px;
+      padding: 32px 28px;
+      transition: all 0.35s cubic-bezier(.22,1,.36,1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .rp-serve-card::before {
       content: '';
-      display: block;
-      width: 40px; height: 2px;
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
       background: var(--gold-gradient);
-      margin-bottom: 4px;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s;
     }
-    .power-prod-card-title {
+
+    .rp-serve-card:hover {
+      border-color: rgba(212,175,55,0.3);
+      background: rgba(212,175,55,0.04);
+      transform: translateY(-6px);
+      box-shadow: 0 24px 50px rgba(0,0,0,0.4);
+    }
+
+    .rp-serve-card:hover::before { transform: scaleX(1); }
+
+    .rp-serve-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      background: rgba(212,175,55,0.08);
+      border: 1px solid rgba(212,175,55,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 22px;
+      transition: all 0.3s;
+    }
+
+    .rp-serve-card:hover .rp-serve-icon {
+      background: rgba(212,175,55,0.15);
+      box-shadow: 0 0 20px rgba(212,175,55,0.15);
+    }
+
+    .rp-serve-icon svg { width: 26px; height: 26px; stroke: var(--gold-300); }
+
+    .rp-serve-card h3 {
       font-family: var(--font-display);
       font-size: 1.2rem;
       color: #fff;
-      line-height: 1.3;
+      margin-bottom: 10px;
     }
-    .power-prod-card-caption {
-      color: var(--w50);
+
+    .rp-serve-card p {
+      color: rgba(255,255,255,0.45);
       font-size: 0.88rem;
-      line-height: 1.65;
-      flex: 1;
-    }
-    .power-prod-card-price {
-      display: inline-flex; align-items: center;
-      font-size: 0.78rem; font-weight: 700;
-      color: var(--gold-300);
-      text-transform: uppercase; letter-spacing: 1px;
-    }
-    .power-prod-card-footer {
-      padding: 0 24px 20px;
-      display: flex; gap: 10px;
-    }
-    .power-prod-card-btn {
-      flex: 1;
-      padding: 10px;
-      border-radius: 10px;
-      border: 1px solid var(--gold-border);
-      background: transparent;
-      color: var(--gold-300);
-      font-size: 0.82rem; font-weight: 600;
-      cursor: pointer;
-      transition: all 0.25s;
-      text-align: center;
-    }
-    .power-prod-card-btn:hover {
-      background: var(--gold-fill);
-      border-color: var(--gold-300);
-    }
-    .power-prod-card-btn.whatsapp-btn {
-      background: rgba(37,211,102,0.1);
-      border-color: rgba(37,211,102,0.3);
-      color: #25D366;
-    }
-    .power-prod-card-btn.whatsapp-btn:hover {
-      background: rgba(37,211,102,0.2);
-      border-color: rgba(37,211,102,0.6);
+      line-height: 1.7;
     }
 
-    /* Empty / Loading state */
-    .power-lineup-empty {
-      grid-column: 1 / -1;
-      text-align: center;
-      padding: 80px 20px;
-      color: var(--w40);
+    /* ── PRODUCT SPOTLIGHT STRIP ── */
+    .rp-strip {
+      padding: 80px 0;
+      background: #050505;
+      overflow: hidden;
     }
-    .power-lineup-loading {
-      display: flex; justify-content: center; align-items: center; gap: 12px;
-      padding: 60px 0; color: var(--w50);
-    }
-    .power-lineup-loading svg { animation: spin 1.2s linear infinite; }
-    @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* ── Power Product Modal ── */
-    #power-modal-overlay {
-      position: fixed; inset: 0;
-      background: rgba(0,0,0,0.85);
-      backdrop-filter: blur(10px);
-      z-index: 10000;
-      display: none;
+    .rp-strip-label {
+      text-align: center;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: rgba(212,175,55,0.4);
+      margin-bottom: 40px;
+    }
+
+    .rp-strip-track {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+      animation: stripScroll 35s linear infinite;
+      width: max-content;
+    }
+
+    .rp-strip-track:hover { animation-play-state: paused; }
+
+    @keyframes stripScroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    .rp-strip-item {
+      flex-shrink: 0;
+      width: 140px;
+      height: 160px;
+      display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px;
-      animation: fadeIn 0.25s ease;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(212,175,55,0.08);
+      border-radius: 16px;
+      padding: 16px;
+      transition: all 0.3s;
     }
-    #power-modal-overlay.open {
-      display: flex;
+
+    .rp-strip-item:hover {
+      background: rgba(212,175,55,0.05);
+      border-color: rgba(212,175,55,0.2);
+      transform: translateY(-4px);
     }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    #power-modal {
-      background: #101010;
-      border: 1px solid var(--gold-border);
-      border-radius: 20px;
-      max-width: 860px;
-      width: 100%;
-      max-height: 90vh;
-      overflow-y: auto;
+
+    .rp-strip-item img {
+      max-width: 100%;
+      max-height: 130px;
+      object-fit: contain;
+      filter: drop-shadow(0 5px 20px rgba(212,175,55,0.15));
+    }
+
+    /* ── CTA SECTION ── */
+    .rp-cta {
       position: relative;
-      animation: slideUp 0.3s cubic-bezier(.22,1,.36,1);
-      scrollbar-width: thin;
-      scrollbar-color: var(--gold-border) transparent;
-    }
-    @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-    .power-modal-close {
-      position: absolute; top: 18px; right: 18px;
-      width: 36px; height: 36px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; z-index: 5;
-      transition: background 0.2s;
-    }
-    .power-modal-close:hover { background: rgba(255,255,255,0.12); }
-    .power-modal-close svg { width: 16px; height: 16px; stroke: #fff; }
-    /* Gallery */
-    .power-modal-gallery {
-      position: relative;
-      height: 340px;
+      padding: 140px 0;
+      text-align: center;
       overflow: hidden;
-      border-radius: 20px 20px 0 0;
-      background: #0a0a0a;
+      background: #050505;
     }
-    .power-modal-gallery img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .power-gallery-nav {
+
+    .rp-cta-bg {
       position: absolute;
-      top: 50%; transform: translateY(-50%);
-      width: 38px; height: 38px;
-      background: rgba(0,0,0,0.6);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; z-index: 3;
-      transition: background 0.2s;
+      inset: 0;
+      background: url('Images/reel_power_cta_bg.png') center center / cover no-repeat;
+      animation: heroBgZoom 25s ease-in-out infinite alternate;
+      z-index: 0;
     }
-    .power-gallery-nav:hover { background: rgba(212,175,55,0.3); }
-    .power-gallery-nav.prev { left: 14px; }
-    .power-gallery-nav.next { right: 14px; }
-    .power-gallery-nav svg { width: 18px; height: 18px; stroke: #fff; }
-    .power-gallery-dots {
-      position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%);
-      display: flex; gap: 6px; z-index: 3;
+
+    .rp-cta-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 50% 50%, rgba(212,175,55,0.06) 0%, transparent 60%),
+        linear-gradient(rgba(5,5,5,0.85), rgba(5,5,5,0.85));
     }
-    .power-gallery-dot {
-      width: 7px; height: 7px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.3);
-      cursor: pointer; transition: background 0.2s;
+
+    .rp-cta-inner {
+      position: relative;
+      z-index: 2;
     }
-    .power-gallery-dot.active { background: var(--gold-300); }
-    .power-gallery-counter {
-      position: absolute; top: 14px; right: 14px;
-      font-size: 0.7rem; font-weight: 700; letter-spacing: 1px;
-      background: rgba(0,0,0,0.6); color: var(--gold-300);
-      padding: 3px 10px; border-radius: 99px; z-index: 3;
-    }
-    /* Modal body */
-    .power-modal-body {
-      padding: 36px;
-    }
-    .power-modal-tag {
-      font-size: 0.68rem; font-weight: 800; letter-spacing: 2.5px;
-      text-transform: uppercase; color: var(--gold-300);
-      margin-bottom: 10px;
-      display: flex; align-items: center; gap: 8px;
-    }
-    .power-modal-tag::before {
-      content: ''; width: 20px; height: 1px;
-      background: var(--gold-gradient);
-    }
-    .power-modal-title {
-      font-family: var(--font-display);
-      font-size: clamp(1.6rem, 4vw, 2.2rem);
-      color: #fff; line-height: 1.15;
-      margin-bottom: 16px;
-    }
-    .power-modal-price {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 0.85rem; font-weight: 700;
-      color: var(--gold-300); letter-spacing: 1px;
+
+    .rp-cta-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 4px;
       text-transform: uppercase;
+      color: var(--gold-300);
       margin-bottom: 24px;
     }
-    .power-modal-divider {
+
+    .rp-cta-label::before,
+    .rp-cta-label::after {
+      content: '';
+      width: 40px;
       height: 1px;
-      background: var(--gold-border);
-      margin: 24px 0;
+      background: var(--gold-gradient);
     }
-    .power-modal-details-label {
-      font-size: 0.72rem; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 2px;
-      color: var(--gold-300); margin-bottom: 12px;
+
+    .rp-cta h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      color: #fff;
+      line-height: 1.05;
+      margin-bottom: 20px;
     }
-    .power-modal-details-text {
-      color: var(--w60);
-      font-size: 0.92rem;
-      line-height: 1.85;
-      white-space: pre-line;
+
+    .rp-cta h2 span { color: var(--gold-300); }
+
+    .rp-cta p {
+      color: rgba(255,255,255,0.55);
+      font-size: 1.05rem;
+      max-width: 500px;
+      margin: 0 auto 48px;
+      line-height: 1.75;
     }
-    .power-modal-video-wrap {
-      margin-top: 28px;
-      border-radius: 12px;
-      overflow: hidden;
-      aspect-ratio: 16/9;
-      border: 1px solid var(--gold-border);
-    }
-    .power-modal-video-wrap iframe {
-      width: 100%; height: 100%; border: none;
-    }
-    .power-modal-actions {
-      display: flex; gap: 14px;
-      margin-top: 32px;
+
+    .rp-cta-btns {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
       flex-wrap: wrap;
     }
-    .power-modal-enquire {
-      flex: 1; display: flex; align-items: center; justify-content: center; gap: 10px;
-      padding: 14px 24px;
-      background: rgba(37,211,102,0.1);
-      border: 1px solid rgba(37,211,102,0.4);
-      border-radius: 12px;
-      color: #25D366;
-      font-weight: 700; font-size: 0.95rem;
-      text-decoration: none;
-      transition: all 0.25s;
-    }
-    .power-modal-enquire:hover {
-      background: rgba(37,211,102,0.2);
-      border-color: rgba(37,211,102,0.7);
-      transform: translateY(-2px);
-    }
-    .power-modal-enquire svg { width: 22px; height: 22px; fill: #25D366; }
 
-    @media(max-width:900px) {
-      .power-lineup-grid { grid-template-columns: repeat(2, 1fr); }
+    /* Floating CTA products */
+    .rp-cta-floats {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
     }
-    @media(max-width:600px) {
-      .power-lineup-grid { grid-template-columns: 1fr; }
-      .power-modal-gallery { height: 240px; }
-      .power-modal-body { padding: 24px; }
+
+    .rp-cta-float {
+      position: absolute;
+      opacity: 0.08;
+      filter: blur(2px);
+      animation: floatUp 8s ease-in-out infinite alternate;
+    }
+
+    .rp-cta-float:nth-child(1) { width: 160px; left: 5%;  bottom: 10%; animation-duration: 7s; }
+    .rp-cta-float:nth-child(2) { width: 120px; right: 8%; top: 15%;    animation-duration: 9s; animation-delay: 1s; }
+    .rp-cta-float:nth-child(3) { width: 100px; left: 20%; top: 10%;    animation-duration: 11s; animation-delay: 2s; }
+    .rp-cta-float:nth-child(4) { width: 140px; right: 20%; bottom: 5%; animation-duration: 8s; animation-delay: 0.5s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1200px) {
+      .rp-prod-grid { grid-template-columns: repeat(3, 1fr); }
+      .rp-prod-card.featured { grid-column: span 3; }
+    }
+
+    @media (max-width: 1024px) {
+      .rp-hero-inner { grid-template-columns: 1fr; }
+      .rp-hero-right { display: none; }
+      .rp-intro-grid { grid-template-columns: 1fr; gap: 50px; }
+    }
+
+    @media (max-width: 900px) {
+      .rp-prod-grid { grid-template-columns: repeat(2, 1fr); }
+      .rp-prod-card.featured { grid-column: span 2; flex-direction: column; }
+      .rp-prod-card.featured .rp-prod-card-img { width: 100%; min-width: unset; height: 220px; }
+      .rp-serve-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .rp-prod-grid { grid-template-columns: 1fr; }
+      .rp-prod-card.featured { grid-column: span 1; }
+      .rp-serve-grid { grid-template-columns: 1fr; }
+      .rp-intro-stats { grid-template-columns: 1fr; }
+      .rp-hero-stats { gap: 24px; flex-wrap: wrap; }
     }
   </style>
 
@@ -600,7 +1039,6 @@
       <div class="nav-logo-text"><span class="nav-brand-name">REEL</span><span class="nav-brand-sub">Royalty Executive Empire Limited</span></div>
     </a>
     <ul class="nav-links" id="nav-links" role="list">
-        
         <li><a href="reel-power.html" class="nav-link active">REEL Power</a></li>
         <li><a href="reel-branding.html" class="nav-link">REEL Branding</a></li>
         <li><a href="real-estate.html" class="nav-link">REEL Properties</a></li>
@@ -617,122 +1055,291 @@
   <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
 </nav>
 
-<!-- HERO -->
-<section class="div-page-hero">
-  <div class="div-hero-bg"></div>
-  <div class="div-hero-bg-img"></div>
-  <div class="div-hero-overlay"></div>
-  <div class="container div-hero-inner">
-    <div class="reveal-up">
-      <div class="div-hero-tag">Division 01</div>
-      <h1 class="div-hero-title">REEL <span>Power</span></h1>
-      <p class="div-hero-desc">Premium Mobile Charging Infrastructure. We provide power bank charging kiosks, corporate charging hubs, and branded power solutions designed for high-traffic venues and executive environments across Africa.</p>
-      <div class="div-hero-ctas">
-        <a href="contact.html" class="btn-gold" id="power-cta-main"><span>Get a Quote</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        <a href="shop.html" class="btn-ghost" id="power-shop-cta"><span>Browse Products</span></a>
+<!-- ═══════════════════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════════════════ -->
+<section class="rp-hero" id="rp-hero" aria-label="REEL Power Hero">
+
+  <!-- Background image -->
+  <div class="rp-hero-bg"></div>
+
+  <!-- Floating product silhouettes in bg -->
+  <div class="rp-hero-floats" aria-hidden="true">
+    <img class="rp-float f1" src="Images/PowerProducts/prod-04-kiosk-display.png" alt="" />
+    <img class="rp-float f2" src="Images/PowerProducts/prod-02-kiosk-tall.png"    alt="" />
+    <img class="rp-float f3" src="Images/PowerProducts/prod-07-station-white.png"  alt="" />
+    <img class="rp-float f4" src="Images/PowerProducts/prod-10-powerbank-12slot.png" alt="" />
+    <img class="rp-float f5" src="Images/PowerProducts/prod-11-kiosk-smart.png"   alt="" />
+  </div>
+
+  <!-- Content -->
+  <div class="container rp-hero-inner reveal-up">
+
+    <!-- Left: Text -->
+    <div class="rp-hero-left">
+      <div class="rp-hero-badge">
+        <div class="rp-hero-badge-line"></div>
+        <div class="rp-hero-badge-text">Division 01 &mdash; REEL Power</div>
       </div>
+      <h1 class="rp-hero-title">
+        Premium
+        <span class="rp-hero-title-accent">Charging</span>
+        <span style="white-space: nowrap;">Infrastructure</span>
+      </h1>
+      <p class="rp-hero-sub">Power on. Stay connected.</p>
+      <p class="rp-hero-desc">
+        REEL Power delivers next-generation mobile charging kiosks, smart power bank stations, and branded charging hubs engineered for Africa's most prestigious venues and executive environments.
+      </p>
+      <div class="rp-hero-ctas">
+        <a href="contact.html" class="btn-gold" id="power-cta-main">
+          <span>Get a Quote</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#rp-products" class="btn-ghost" id="power-shop-cta"><span>View Products</span></a>
+      </div>
+
+    </div>
+
+    <!-- Right: Product Visual -->
+    <div class="rp-hero-right" aria-hidden="true">
+      <div class="rp-hero-glow-orb"></div>
+      <div class="rp-hero-glow-ring"></div>
+      <img class="rp-hero-prod-main"
+           src="Images/PowerProducts/prod-11-kiosk-smart.png"
+           alt="REEL Smart Charging Kiosk" />
+      <img class="rp-hero-prod-side left"
+           src="Images/PowerProducts/prod-04-kiosk-display.png"
+           alt="REEL Display Kiosk" />
+      <img class="rp-hero-prod-side right"
+           src="Images/PowerProducts/prod-08-powerbank-8slot.png"
+           alt="REEL Power Bank Station" />
+      <img class="rp-hero-prod-top"
+           src="Images/PowerProducts/prod-09-powerbank-4slot.png"
+           alt="REEL Compact Station" />
+    </div>
+
+  </div>
+
+  <!-- Scroll hint -->
+  <div class="rp-scroll-hint" aria-hidden="true">
+    <div class="rp-scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     INTRO / ABOUT
+═══════════════════════════════════════════════════════ -->
+<section class="rp-intro rp-bg-float-section" id="rp-about">
+  <!-- Floating background products -->
+  <div class="rp-bg-products" aria-hidden="true">
+    <img class="rp-bg-prod" src="Images/PowerProducts/prod-01-kiosk-small.png" alt="" />
+    <img class="rp-bg-prod" src="Images/PowerProducts/prod-03-kiosk-wide.png"  alt="" />
+    <img class="rp-bg-prod" src="Images/PowerProducts/prod-05-kiosk-premium.png" alt="" />
+    <img class="rp-bg-prod" src="Images/PowerProducts/prod-06-kiosk-tall2.png" alt="" />
+    <img class="rp-bg-prod" src="Images/PowerProducts/prod-10-powerbank-12slot.png" alt="" />
+    <img class="rp-bg-prod" src="Images/PowerProducts/prod-02-kiosk-tall.png"  alt="" />
+  </div>
+
+  <div class="container" style="position:relative;z-index:2;">
+    <div class="rp-intro-grid">
+
+      <!-- Left: Text & Stats -->
+      <div class="reveal-up">
+        <div class="rp-intro-label">What We Deliver</div>
+        <h2>Charging <span>Solutions</span> Built for Prestige</h2>
+        <p class="rp-intro-desc">
+          From high-traffic public venues to exclusive executive environments, REEL Power delivers reliable, premium-quality charging infrastructure engineered to keep people powered and connected across Africa. Our products combine cutting-edge technology with luxury aesthetics.
+        </p>
+
+      </div>
+
+      <!-- Right: Product Mosaic -->
+      <div class="rp-intro-mosaic reveal-up">
+        <div class="rp-mosaic-card">
+          <img src="Images/PowerProducts/prod-08-powerbank-8slot.png" alt="REEL 8-Slot Power Bank Station" />
+        </div>
+        <div class="rp-mosaic-card">
+          <img src="Images/PowerProducts/prod-09-powerbank-4slot.png" alt="REEL 4-Slot Station" />
+        </div>
+        <div class="rp-mosaic-card span-2">
+          <img src="Images/PowerProducts/prod-04-kiosk-display.png" alt="REEL Display Kiosk" />
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- WHAT WE DELIVER -->
-<section class="section section--glow">
-  <div class="container">
-    <div class="section-split-intro reveal-up">
-      <div class="split-text">
-        <div class="section-eyebrow">What We Deliver</div>
-        <h2 class="section-heading">Charging <span class="gold-text">Solutions</span></h2>
-        <p>From high-traffic public venues to exclusive executive environments, REEL Power delivers reliable, premium-quality charging infrastructure that keeps people connected across Africa.</p>
-      </div>
-      <div class="split-image-wrap">
-        <img src="Images/Generated/reel_power_delivery.png" alt="REEL Power Charging Solutions" />
-      </div>
+<!-- ═══════════════════════════════════════════════════════
+     PRODUCT SHOWCASE
+═══════════════════════════════════════════════════════ -->
+<section class="rp-products rp-bg-float-section" id="rp-products">
+
+  <!-- Floating background products -->
+  <div class="rp-bg-products" aria-hidden="true">
+    <img class="rp-bg-prod" src="Images/PowerProducts/prod-07-station-white.png" alt="" />
+    <img class="rp-bg-prod" src="Images/PowerProducts/prod-11-kiosk-smart.png"   alt="" />
+    <img class="rp-bg-prod" src="Images/PowerProducts/prod-03-kiosk-wide.png"    alt="" />
+    <img class="rp-bg-prod" src="Images/PowerProducts/prod-02-kiosk-tall.png"    alt="" />
+    <img class="rp-bg-prod" src="Images/PowerProducts/prod-01-kiosk-small.png"   alt="" />
+    <img class="rp-bg-prod" src="Images/PowerProducts/prod-05-kiosk-premium.png" alt="" />
+  </div>
+
+  <div class="container" style="position:relative;z-index:2;">
+
+    <!-- Header -->
+    <div class="rp-products-header reveal-up">
+      <div class="section-eyebrow">Our Lineup</div>
+      <h2>The REEL Power <span>Collection</span></h2>
+      <p>Every product engineered for reliability, branded for prestige, and designed to elevate every space it occupies.</p>
     </div>
-    <div class="prod-grid">
-      <div class="prod-card reveal-up">
-        <div class="prod-icon-wrap">🔋</div>
-        <h3>Power Bank Rental Kiosks</h3>
-        <p>Self-service charging kiosks placed in high-traffic areas. Clients rent, charge, and return &mdash; a seamless, technology-driven experience for malls, airports, and events.</p>
-      </div>
-      <div class="prod-card reveal-up">
-        <div class="prod-icon-wrap">🗄️ </div>
-        <h3>Secure Charging Lockers</h3>
-        <p>Branded, lockable charging stations for hotels, offices, conferences, and co-working spaces. Devices stay safe while charging to full.</p>
-      </div>
-      <div class="prod-card reveal-up">
-        <div class="prod-icon-wrap">&#127970;</div>
-        <h3>Corporate Charging Hubs</h3>
-        <p>Bespoke multi-device charging stations custom-branded for corporate environments, executive lounges, and boardrooms.</p>
-      </div>
-      <div class="prod-card reveal-up">
-        <div class="prod-icon-wrap">🎪</div>
-        <h3>Event Charging Stations</h3>
-        <p>Portable, branded charging stations deployed at conferences, summits, product launches, and corporate galas &mdash; keeping guests powered throughout.</p>
-      </div>
-      <div class="prod-card reveal-up">
-        <div class="prod-icon-wrap">🎁</div>
-        <h3>Branded Power Banks</h3>
-        <p>Premium custom-branded power banks as executive gifts, corporate giveaways, and VIP welcome packages that leave a lasting impression.</p>
-      </div>
-      <div class="prod-card reveal-up">
-        <div class="prod-icon-wrap">🔌</div>
-        <h3>Smart Charging Cables</h3>
-        <p>Multi-compatible, high-speed charging cables with premium branding for executive kits, staff uniforms, and retail.</p>
-      </div>
+
+
+    </div><!-- /.rp-prod-grid -->
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     PRODUCT STRIP / MARQUEE
+═══════════════════════════════════════════════════════ -->
+<section class="rp-strip" aria-label="Product lineup carousel">
+  <div class="rp-strip-label">REEL Power &mdash; Full Product Lineup</div>
+  <div style="overflow:hidden;">
+    <div class="rp-strip-track" id="rp-strip-track">
+      <!-- Products injected dynamically from Firebase -->
     </div>
   </div>
 </section>
 
-<!-- WHO WE SERVE -->
-
-
-<!-- WHO WE SERVE -->
-<section class="section section--dark">
-  <div class="container">
-    <header class="section-header reveal-up">
-      <div class="section-eyebrow">Ideal Clients</div>
+<!-- ═══════════════════════════════════════════════════════
+     WHO WE SERVE
+═══════════════════════════════════════════════════════ -->
+<section class="rp-serve rp-bg-float-section" id="rp-serve">
+  <div class="rp-bg-products" aria-hidden="true">
+    <img class="rp-bg-prod" src="Images/PowerProducts/prod-04-kiosk-display.png" alt="" />
+    <img class="rp-bg-prod" src="Images/PowerProducts/prod-11-kiosk-smart.png"   alt="" />
+    <img class="rp-bg-prod" src="Images/PowerProducts/prod-08-powerbank-8slot.png" alt="" />
+    <img class="rp-bg-prod" src="Images/PowerProducts/prod-01-kiosk-small.png"   alt="" />
+    <img class="rp-bg-prod" src="Images/PowerProducts/prod-07-station-white.png" alt="" />
+    <img class="rp-bg-prod" src="Images/PowerProducts/prod-09-powerbank-4slot.png" alt="" />
+  </div>
+  <div class="container" style="position:relative;z-index:2;">
+    <div class="reveal-up" style="text-align:center;margin-bottom:0">
+      <div class="section-eyebrow" style="justify-content:center">Ideal Clients</div>
       <h2 class="section-heading">Who We <span class="gold-text">Power</span></h2>
       <div class="gold-rule center-rule"></div>
       <p class="section-desc">REEL Power serves venues and organisations that demand premium, reliable charging infrastructure for their clients and staff.</p>
-    </header>
-    <div class="clients-grid">
-      <div class="client-chip reveal-up"><div class="client-chip-icon"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="var(--gold-300)" stroke-width="1.5"><path d="M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.2-1.1.6L2.6 9l7.9 3.1-4.3 4.3-3.1-.8c-.4-.1-.8.1-1 .5l-1.1 1.1 4.5 1.7 1.7 4.5 1.1-1.1c.4-.2.6-.6.5-1l-.8-3.1 4.3-4.3 3.1 7.9l2.2-1.1c.4-.2.7-.6.6-1.1z"/></svg></div><div><h4>Airports &amp; Transit Hubs</h4><p>Keep international travellers charged from arrival to departure.</p></div></div>
-      <div class="client-chip reveal-up"><div class="client-chip-icon"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="var(--gold-300)" stroke-width="1.5"><path d="M3 21h18M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16M9 21v-4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v4M9 7h6M9 11h6"/></svg></div><div><h4>Hotels &amp; Hospitality</h4><p>Elevate the guest experience with in-room and lobby charging.</p></div></div>
-      <div class="client-chip reveal-up"><div class="client-chip-icon"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="var(--gold-300)" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div><div><h4>Malls &amp; Retail</h4><p>Increase dwell time and shopper satisfaction with accessible kiosks.</p></div></div>
-      <div class="client-chip reveal-up"><div class="client-chip-icon"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="var(--gold-300)" stroke-width="1.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div><div><h4>Universities &amp; Institutions</h4><p>Keep students and staff connected across campuses and libraries.</p></div></div>
-      <div class="client-chip reveal-up"><div class="client-chip-icon"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="var(--gold-300)" stroke-width="1.5"><path d="M12 2l3 6 6 1-4 4 1 6-6-3-6 3 1-6-4-4 6-1 3-6z"/></svg></div><div><h4>Events &amp; Conferences</h4><p>Ensure every delegate stays powered at summits, expos, and galas.</p></div></div>
-      <div class="client-chip reveal-up"><div class="client-chip-icon"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="var(--gold-300)" stroke-width="1.5"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12" y2="18.01"/><path d="M8 6h8M8 10h8M8 14h8"/></svg></div><div><h4>Corporate Offices</h4><p>Premium infrastructure for boardrooms, reception areas, and open offices.</p></div></div>
+    </div>
+    <div class="rp-serve-grid">
+      <div class="rp-serve-card reveal-up">
+        <div class="rp-serve-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.2-1.1.6L2.6 9l7.9 3.1-4.3 4.3-3.1-.8c-.4-.1-.8.1-1 .5l-1.1 1.1 4.5 1.7 1.7 4.5 1.1-1.1c.4-.2.6-.6.5-1l-.8-3.1 4.3-4.3 3.1 7.9 2.2-1.1c.4-.2.7-.6.6-1.1z"/></svg>
+        </div>
+        <h3>Airports &amp; Transit Hubs</h3>
+        <p>Keep international travellers charged from arrival to departure. Our kiosks handle massive daily throughput with zero downtime.</p>
+      </div>
+      <div class="rp-serve-card reveal-up">
+        <div class="rp-serve-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M3 21h18M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16M9 21v-4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v4M9 7h6M9 11h6"/></svg>
+        </div>
+        <h3>Hotels &amp; Hospitality</h3>
+        <p>Elevate the guest experience with in-room and lobby charging solutions that carry the REEL premium brand identity.</p>
+      </div>
+      <div class="rp-serve-card reveal-up">
+        <div class="rp-serve-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        </div>
+        <h3>Malls &amp; Retail</h3>
+        <p>Increase dwell time and shopper satisfaction with stylish, accessible kiosks placed at high-traffic points.</p>
+      </div>
+      <div class="rp-serve-card reveal-up">
+        <div class="rp-serve-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        </div>
+        <h3>Universities &amp; Institutions</h3>
+        <p>Keep students and staff connected across campuses, libraries, and study halls with reliable long-term infrastructure.</p>
+      </div>
+      <div class="rp-serve-card reveal-up">
+        <div class="rp-serve-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 2l3 6 6 1-4 4 1 6-6-3-6 3 1-6-4-4 6-1 3-6z"/></svg>
+        </div>
+        <h3>Events &amp; Conferences</h3>
+        <p>Ensure every delegate stays powered at summits, expos, galas, and product launches with portable branded stations.</p>
+      </div>
+      <div class="rp-serve-card reveal-up">
+        <div class="rp-serve-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12" y2="18.01"/><path d="M8 6h8M8 10h8M8 14h8"/></svg>
+        </div>
+        <h3>Corporate Offices</h3>
+        <p>Premium branded infrastructure for boardrooms, reception areas, and executive open offices.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<style>
-  .power-cta-section {
-    position: relative; overflow: hidden;
-    padding: 120px 0; text-align: center;
-    background-color: var(--black-900);
-    border-top: 1px solid var(--gold-border);
-  }
-  .power-cta-section::before {
-    content: ''; position: absolute; inset: 0;
-    background: linear-gradient(rgba(8,8,8,0.6), rgba(8,8,8,0.75)), url('Images/reel_power_cta_bg.png') center center / cover no-repeat;
-    animation: heroBgZoom 20s ease-in-out infinite alternate;
-    z-index: 0; will-change: transform;
-  }
-  .power-cta-section .container { position: relative; z-index: 2; }
-</style>
-<section class="power-cta-section">
-  <div class="container">
-    <div class="section-eyebrow reveal-up" style="justify-content:center">Power Up Today</div>
-    <h2 class="section-heading reveal-up">Ready to <span class="gold-text">Power Up?</span></h2>
-    <p style="color:var(--w60);max-width:500px;margin:0 auto 40px;" class="reveal-up">Contact our team to discuss a custom REEL Power solution for your venue or event.</p>
-    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap" class="reveal-up">
-      <a href="contact.html" class="btn-gold" id="power-contact-cta"><span>Get In Touch</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-      <a href="shop.html" class="btn-ghost" id="power-browse-cta"><span>Browse Products</span></a>
+<!-- ═══════════════════════════════════════════════════════
+     CTA SECTION
+═══════════════════════════════════════════════════════ -->
+<section class="rp-cta" id="rp-cta">
+  <div class="rp-cta-bg"></div>
+
+  <!-- Floating product decorations -->
+  <div class="rp-cta-floats" aria-hidden="true">
+    <img class="rp-cta-float" src="Images/PowerProducts/prod-04-kiosk-display.png" alt="" />
+    <img class="rp-cta-float" src="Images/PowerProducts/prod-11-kiosk-smart.png"   alt="" />
+    <img class="rp-cta-float" src="Images/PowerProducts/prod-08-powerbank-8slot.png" alt="" />
+    <img class="rp-cta-float" src="Images/PowerProducts/prod-10-powerbank-12slot.png" alt="" />
+  </div>
+
+  <div class="container rp-cta-inner reveal-up">
+    <div class="rp-cta-label">Power Up Today</div>
+    <h2>Ready to <span>Power Up?</span></h2>
+    <p>Contact our team to discuss a custom REEL Power solution tailored for your venue, event, or enterprise.</p>
+    <div class="rp-cta-btns">
+      <a href="contact.html" class="btn-gold" id="power-contact-cta">
+        <span>Get In Touch</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+
     </div>
   </div>
 </section>
+
+<!-- ═══════════════════════════════════════════════════════
+     PRODUCT MODAL
+═══════════════════════════════════════════════════════ -->
+<div id="rp-modal-overlay" role="dialog" aria-modal="true" aria-label="Product details" style="position:fixed;inset:0;background:rgba(0,0,0,0.88);backdrop-filter:blur(12px);z-index:10000;display:none;align-items:center;justify-content:center;padding:20px;">
+  <div id="rp-modal" style="background:#0d0d0d;border:1px solid rgba(212,175,55,0.2);border-radius:24px;max-width:780px;width:100%;max-height:92vh;overflow-y:auto;position:relative;scrollbar-width:thin;scrollbar-color:rgba(212,175,55,0.2) transparent;">
+    <!-- Close -->
+    <button id="rp-modal-close" aria-label="Close modal" style="position:absolute;top:18px;right:18px;width:38px;height:38px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:5;transition:background 0.2s;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <!-- Image -->
+    <div id="rp-modal-img-wrap" style="height:360px;background:radial-gradient(circle at 50% 70%,rgba(212,175,55,0.08),transparent 60%),#080808;border-radius:24px 24px 0 0;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:32px;">
+      <img id="rp-modal-img" src="" alt="" style="max-height:300px;max-width:100%;object-fit:contain;filter:drop-shadow(0 20px 50px rgba(212,175,55,0.2));" />
+    </div>
+    <!-- Body -->
+    <div style="padding:36px 40px 40px;">
+      <div id="rp-modal-badge" style="font-size:0.68rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--gold-300);display:flex;align-items:center;gap:8px;margin-bottom:10px;"><span style="width:20px;height:1px;background:linear-gradient(90deg,#D4AF37,#B8960C);display:block;"></span></div>
+      <h2 id="rp-modal-title" style="font-family:var(--font-display);font-size:clamp(1.6rem,4vw,2.4rem);color:#fff;line-height:1.1;margin-bottom:20px;"></h2>
+      <div style="height:1px;background:rgba(212,175,55,0.12);margin-bottom:24px;"></div>
+      <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--gold-300);margin-bottom:10px;">About This Product</div>
+      <p id="rp-modal-desc" style="color:rgba(255,255,255,0.6);font-size:0.95rem;line-height:1.9;white-space:pre-line;"></p>
+      <div style="display:flex;gap:14px;margin-top:32px;flex-wrap:wrap;">
+        <a id="rp-modal-wa" href="#" target="_blank" style="flex:1;display:flex;align-items:center;justify-content:center;gap:10px;padding:15px 24px;background:rgba(37,211,102,0.1);border:1px solid rgba(37,211,102,0.35);border-radius:14px;color:#25D366;font-weight:700;font-size:0.95rem;text-decoration:none;transition:all 0.25s;min-width:180px;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Enquire on WhatsApp
+        </a>
+        <a href="contact.html" style="flex:1;display:flex;align-items:center;justify-content:center;gap:10px;padding:15px 24px;background:rgba(212,175,55,0.08);border:1px solid rgba(212,175,55,0.25);border-radius:14px;color:var(--gold-300);font-weight:700;font-size:0.95rem;text-decoration:none;transition:all 0.25s;min-width:180px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          Get a Quote
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
 
 <footer class="site-footer">
   <div class="footer-bar">
@@ -750,11 +1357,153 @@
     </div>
   </div>
 </footer>
-<script src="js/main.js"></script>
-<script>document.getElementById('footer-year').textContent = new Date().getFullYear();</script>
 
+<script src="js/main.js"></script>
+<script>
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+  /* ── WhatsApp SVG helper ── */
+  const WA_SVG = `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>`;
+
+  /* ── Modal state ── */
+  let RP_MODAL_DATA = {};
+
+  function rpOpenModal(data) {
+    RP_MODAL_DATA = data;
+    document.getElementById('rp-modal-img').src = data.image || '';
+    document.getElementById('rp-modal-img').alt = data.name || '';
+    document.getElementById('rp-modal-badge').innerHTML =
+      `<span style="width:20px;height:1px;background:linear-gradient(90deg,#D4AF37,#B8960C);display:block;"></span>${data.caption || data.cat || ''}`;
+    document.getElementById('rp-modal-title').textContent = data.name || '';
+    document.getElementById('rp-modal-desc').textContent  = data.details || data.desc || '';
+    const waText = `Hi, I'm interested in the ${data.name}. Please send me more details.`;
+    document.getElementById('rp-modal-wa').href = `https://wa.me/2348067029444?text=${encodeURIComponent(waText)}`;
+    const overlay = document.getElementById('rp-modal-overlay');
+    overlay.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function rpCloseModal() {
+    document.getElementById('rp-modal-overlay').style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('rp-modal-close').addEventListener('click', rpCloseModal);
+  document.getElementById('rp-modal-overlay').addEventListener('click', function(e) {
+    if (e.target === this) rpCloseModal();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') rpCloseModal();
+  });
+
+  /* ── Firebase-powered product renderer ── */
+  function renderPowerProducts(products) {
+    const grid = document.getElementById('rp-prod-grid');
+    const strip = document.getElementById('rp-strip-track');
+    if (!grid) return;
+
+    if (products.length === 0) {
+      grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:rgba(255,255,255,0.3);">
+        <div style="font-size:3rem;margin-bottom:16px;">⚡</div>
+        <div style="font-size:1.1rem;">Products coming soon. Check back shortly.</div>
+      </div>`;
+      if (strip) strip.innerHTML = '';
+      return;
+    }
+
+    grid.innerHTML = '';
+    let stripHtml = '';
+
+    products.forEach(function(p) {
+      const isFeatured = p.featured === true;
+      const badgeLabel = isFeatured ? '⭐ Featured' : (p.badge || p.caption || '');
+      const waText = encodeURIComponent(`Hi, I'm interested in the ${p.name}. Please send me more details.`);
+
+      if (isFeatured) {
+        grid.innerHTML += `
+          <div class="rp-prod-card featured reveal-up" tabindex="0" role="button" aria-label="View ${p.name} details">
+            <div class="rp-prod-card-img">
+              <span class="rp-prod-card-badge">${badgeLabel}</span>
+              <img src="${p.image || ''}" alt="${p.name}" />
+            </div>
+            <div class="rp-prod-card-right">
+              <div class="rp-prod-card-body">
+                <div class="rp-prod-card-cat">${p.caption || ''}</div>
+                <div class="rp-prod-card-name">${p.name}</div>
+                <div class="rp-prod-card-desc">${(p.details || '').substring(0, 180)}</div>
+              </div>
+              <div class="rp-prod-card-footer">
+                <button class="rp-prod-card-btn" data-prod-id="${p.id}">View Details</button>
+                <a class="rp-prod-card-btn wa" href="https://wa.me/2348067029444?text=${waText}" target="_blank">${WA_SVG} WhatsApp</a>
+              </div>
+            </div>
+          </div>`;
+      } else {
+        grid.innerHTML += `
+          <div class="rp-prod-card reveal-up" tabindex="0" role="button" aria-label="View ${p.name} details">
+            <div class="rp-prod-card-img">
+              ${badgeLabel ? `<span class="rp-prod-card-badge">${badgeLabel}</span>` : ''}
+              <img src="${p.image || ''}" alt="${p.name}" />
+            </div>
+            <div class="rp-prod-card-body">
+              <div class="rp-prod-card-cat">${p.caption || ''}</div>
+              <div class="rp-prod-card-name">${p.name}</div>
+              <div class="rp-prod-card-desc">${(p.details || '').substring(0, 120)}</div>
+            </div>
+            <div class="rp-prod-card-footer">
+              <button class="rp-prod-card-btn" data-prod-id="${p.id}">View Details</button>
+              <a class="rp-prod-card-btn wa" href="https://wa.me/2348067029444?text=${waText}" target="_blank">${WA_SVG} WA</a>
+            </div>
+          </div>`;
+      }
+
+      stripHtml += `<div class="rp-strip-item"><img src="${p.image || ''}" alt="${p.name}" /></div>`;
+    });
+
+    // Duplicate strip for seamless loop
+    if (strip) strip.innerHTML = stripHtml + stripHtml;
+
+    // Attach click handlers
+    grid.querySelectorAll('[data-prod-id]').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const id = btn.getAttribute('data-prod-id');
+        const prod = products.find(function(p) { return p.id === id; });
+        if (prod) rpOpenModal(prod);
+      });
+    });
+    grid.querySelectorAll('.rp-prod-card').forEach(function(card) {
+      card.addEventListener('click', function() {
+        const btn = card.querySelector('[data-prod-id]');
+        if (btn) btn.click();
+      });
+      card.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); }
+      });
+    });
+  }
+
+  /* ── Wait for Firebase then subscribe ── */
+  (function waitAndLoad() {
+    if (window.db) {
+      window.db.collection('powerProducts')
+        .where('status', '==', 'published')
+        .orderBy('timestamp', 'desc')
+        .onSnapshot(function(snap) {
+          const products = snap.docs.map(function(doc) {
+            return Object.assign({ id: doc.id }, doc.data());
+          });
+          renderPowerProducts(products);
+        });
+    } else {
+      setTimeout(waitAndLoad, 150);
+    }
+  })();
+
+</script>
+
+</script>
   <script src="/js/pwa.js"></script>
 <script src="/js/notifications.js"></script>
 </body>
 </html>
-
