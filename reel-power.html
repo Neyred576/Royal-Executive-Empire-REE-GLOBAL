@@ -1377,13 +1377,14 @@
 
   function rpOpenModal(data) {
     RP_MODAL_DATA = data;
+    const prodName = data.title || data.name || 'Untitled';
     document.getElementById('rp-modal-img').src = data.image || '';
-    document.getElementById('rp-modal-img').alt = data.name || '';
+    document.getElementById('rp-modal-img').alt = prodName;
     document.getElementById('rp-modal-badge').innerHTML =
       `<span style="width:20px;height:1px;background:linear-gradient(90deg,#D4AF37,#B8960C);display:block;"></span>${data.caption || data.cat || ''}`;
-    document.getElementById('rp-modal-title').textContent = data.name || '';
+    document.getElementById('rp-modal-title').textContent = prodName;
     document.getElementById('rp-modal-desc').textContent  = data.details || data.desc || '';
-    const waText = `Hi, I'm interested in the ${data.name}. Please send me more details.`;
+    const waText = `Hi, I'm interested in the ${prodName}. Please send me more details.`;
     document.getElementById('rp-modal-wa').href = `https://wa.me/2348067029444?text=${encodeURIComponent(waText)}`;
     const overlay = document.getElementById('rp-modal-overlay');
     overlay.style.display = 'flex';
@@ -1424,20 +1425,21 @@
     products.forEach(function(p) {
       const isFeatured = p.featured === true;
       const badgeLabel = isFeatured ? '⭐ Featured' : (p.badge || p.caption || '');
-      const waText = encodeURIComponent(`Hi, I'm interested in the ${p.name}. Please send me more details.`);
+      const prodName = p.title || p.name || 'Untitled';
+      const waText = encodeURIComponent(`Hi, I'm interested in the ${prodName}. Please send me more details.`);
 
       if (isFeatured) {
         grid.innerHTML += `
-          <div class="rp-prod-card featured reveal-up" tabindex="0" role="button" aria-label="View ${p.name} details">
+          <div class="rp-prod-card featured reveal-up" tabindex="0" role="button" aria-label="View ${prodName} details">
             <div class="rp-prod-card-img">
               <span class="rp-prod-card-badge">${badgeLabel}</span>
-              <img src="${p.image || ''}" alt="${p.name}" />
+              <img src="${p.image || ''}" alt="${prodName}" />
             </div>
             <div class="rp-prod-card-right">
               <div class="rp-prod-card-body">
                 <div class="rp-prod-card-cat">${p.caption || ''}</div>
-                <div class="rp-prod-card-name">${p.name}</div>
-                <div class="rp-prod-card-desc">${(p.details || '').substring(0, 180)}</div>
+                <div class="rp-prod-card-name">${prodName}</div>
+                <div class="rp-prod-card-desc">${(p.details || p.desc || '').substring(0, 180)}</div>
               </div>
               <div class="rp-prod-card-footer">
                 <button class="rp-prod-card-btn" data-prod-id="${p.id}">View Details</button>
@@ -1447,15 +1449,15 @@
           </div>`;
       } else {
         grid.innerHTML += `
-          <div class="rp-prod-card reveal-up" tabindex="0" role="button" aria-label="View ${p.name} details">
+          <div class="rp-prod-card reveal-up" tabindex="0" role="button" aria-label="View ${prodName} details">
             <div class="rp-prod-card-img">
               ${badgeLabel ? `<span class="rp-prod-card-badge">${badgeLabel}</span>` : ''}
-              <img src="${p.image || ''}" alt="${p.name}" />
+              <img src="${p.image || ''}" alt="${prodName}" />
             </div>
             <div class="rp-prod-card-body">
               <div class="rp-prod-card-cat">${p.caption || ''}</div>
-              <div class="rp-prod-card-name">${p.name}</div>
-              <div class="rp-prod-card-desc">${(p.details || '').substring(0, 120)}</div>
+              <div class="rp-prod-card-name">${prodName}</div>
+              <div class="rp-prod-card-desc">${(p.details || p.desc || '').substring(0, 120)}</div>
             </div>
             <div class="rp-prod-card-footer">
               <button class="rp-prod-card-btn" data-prod-id="${p.id}">View Details</button>
@@ -1464,7 +1466,7 @@
           </div>`;
       }
 
-      stripHtml += `<div class="rp-strip-item"><img src="${p.image || ''}" alt="${p.name}" /></div>`;
+      stripHtml += `<div class="rp-strip-item"><img src="${p.image || ''}" alt="${prodName}" /></div>`;
     });
 
     // Duplicate strip for seamless loop
@@ -1493,7 +1495,7 @@
   /* ── Wait for Firebase then subscribe ── */
   (function waitAndLoad() {
     if (window.db) {
-      window.db.collection('powerProducts')
+      window.db.collection('power_products')
         .onSnapshot(function(snap) {
           const products = [];
           snap.docs.forEach(function(doc) {
