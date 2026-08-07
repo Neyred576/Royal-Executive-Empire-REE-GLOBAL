@@ -1432,6 +1432,8 @@
     // Make the grid itself styled inline too
     grid.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px;width:100%;';
 
+    let stripHtml = '';
+
     products.forEach(function(p) {
       const prodName = p.title || p.name || 'Untitled';
       const prodDesc = (p.details || p.desc || '');
@@ -1536,7 +1538,6 @@
 
 </script>
 
-</script>
   <script src="/js/pwa.js"></script>
 <script src="/js/notifications.js"></script>
 </body>
