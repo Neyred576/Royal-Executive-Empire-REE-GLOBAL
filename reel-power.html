@@ -1429,77 +1429,84 @@
       return;
     }
 
-    grid.innerHTML = '';
-    let stripHtml = '';
+    // Make the grid itself styled inline too
+    grid.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px;width:100%;';
 
     products.forEach(function(p) {
-      const isFeatured = p.featured === true;
-      const badgeLabel = isFeatured ? '⭐ Featured' : (p.badge || p.caption || '');
       const prodName = p.title || p.name || 'Untitled';
+      const prodDesc = (p.details || p.desc || '');
+      const prodPrice = p.price ? `<div style="font-size:1.1rem;font-weight:700;color:#D4AF37;margin-top:4px;">${p.price}</div>` : '';
       const waText = encodeURIComponent(`Hi, I'm interested in the ${prodName}. Please send me more details.`);
+      const imgSrc = p.image || '';
 
-      if (isFeatured) {
-        grid.innerHTML += `
-          <div class="rp-prod-card featured reveal-up" tabindex="0" role="button" aria-label="View ${prodName} details">
-            <div class="rp-prod-card-img">
-              <span class="rp-prod-card-badge">${badgeLabel}</span>
-              <img src="${p.image || ''}" alt="${prodName}" />
-            </div>
-            <div class="rp-prod-card-right">
-              <div class="rp-prod-card-body">
-                <div class="rp-prod-card-cat">${p.caption || ''}</div>
-                <div class="rp-prod-card-name">${prodName}</div>
-                <div class="rp-prod-card-desc">${(p.details || p.desc || '').substring(0, 180)}</div>
-              </div>
-              <div class="rp-prod-card-footer">
-                <button class="rp-prod-card-btn" data-prod-id="${p.id}">View Details</button>
-                <a class="rp-prod-card-btn wa" href="https://wa.me/2348067029444?text=${waText}" target="_blank">${WA_SVG} WhatsApp</a>
-              </div>
-            </div>
-          </div>`;
-      } else {
-        grid.innerHTML += `
-          <div class="rp-prod-card reveal-up" tabindex="0" role="button" aria-label="View ${prodName} details">
-            <div class="rp-prod-card-img">
-              ${badgeLabel ? `<span class="rp-prod-card-badge">${badgeLabel}</span>` : ''}
-              <img src="${p.image || ''}" alt="${prodName}" />
-            </div>
-            <div class="rp-prod-card-body">
-              <div class="rp-prod-card-cat">${p.caption || ''}</div>
-              <div class="rp-prod-card-name">${prodName}</div>
-              <div class="rp-prod-card-desc">${(p.details || p.desc || '').substring(0, 120)}</div>
-            </div>
-            <div class="rp-prod-card-footer">
-              <button class="rp-prod-card-btn" data-prod-id="${p.id}">View Details</button>
-              <a class="rp-prod-card-btn wa" href="https://wa.me/2348067029444?text=${waText}" target="_blank">${WA_SVG} WA</a>
-            </div>
-          </div>`;
-      }
+      const card = document.createElement('div');
+      card.setAttribute('data-prod-id', p.id);
+      card.style.cssText = [
+        'background:#1c1c1c',
+        'border:2px solid #D4AF37',
+        'border-radius:16px',
+        'overflow:hidden',
+        'cursor:pointer',
+        'display:flex',
+        'flex-direction:column',
+        'transition:transform 0.3s,box-shadow 0.3s',
+        'box-shadow:0 4px 20px rgba(212,175,55,0.2)',
+        'font-family:Outfit,sans-serif'
+      ].join(';');
 
-      stripHtml += `<div class="rp-strip-item"><img src="${p.image || ''}" alt="${prodName}" /></div>`;
+      card.addEventListener('mouseenter', function() {
+        card.style.transform = 'translateY(-6px)';
+        card.style.boxShadow = '0 16px 40px rgba(212,175,55,0.35)';
+      });
+      card.addEventListener('mouseleave', function() {
+        card.style.transform = '';
+        card.style.boxShadow = '0 4px 20px rgba(212,175,55,0.2)';
+      });
+
+      card.innerHTML = `
+        <div style="height:200px;background:#111;display:flex;align-items:center;justify-content:center;border-bottom:1px solid rgba(212,175,55,0.3);overflow:hidden;position:relative;">
+          ${imgSrc
+            ? `<img src="${imgSrc}" alt="${prodName}" style="max-height:180px;max-width:90%;object-fit:contain;display:block;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+               <div style="display:none;flex-direction:column;align-items:center;gap:8px;color:rgba(212,175,55,0.5);">
+                 <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
+                 <span style="font-size:0.75rem;">Image unavailable</span>
+               </div>`
+            : `<div style="display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(212,175,55,0.4);">
+                 <span style="font-size:2.5rem;">⚡</span>
+                 <span style="font-size:0.75rem;">No image</span>
+               </div>`
+          }
+        </div>
+        <div style="padding:20px;flex:1;display:flex;flex-direction:column;gap:8px;">
+          ${p.caption ? `<div style="font-size:0.65rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#D4AF37;">${p.caption}</div>` : ''}
+          <div style="font-size:1.1rem;font-weight:600;color:#ffffff;line-height:1.3;">${prodName}</div>
+          ${prodPrice}
+          ${prodDesc ? `<div style="font-size:0.82rem;color:rgba(255,255,255,0.6);line-height:1.6;margin-top:4px;">${prodDesc.substring(0, 120)}</div>` : ''}
+        </div>
+        <div style="display:flex;gap:8px;padding:0 20px 20px;">
+          <button data-prod-id="${p.id}" style="flex:1;padding:10px;border-radius:10px;border:1px solid rgba(212,175,55,0.5);background:rgba(212,175,55,0.1);color:#D4AF37;font-size:0.8rem;font-weight:600;cursor:pointer;font-family:inherit;">
+            View Details
+          </button>
+          <a href="https://wa.me/2348067029444?text=${waText}" target="_blank" rel="noopener" style="flex:1;padding:10px;border-radius:10px;border:1px solid rgba(37,211,102,0.4);background:rgba(37,211,102,0.08);color:#25D366;font-size:0.8rem;font-weight:600;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:6px;font-family:inherit;">
+            WhatsApp
+          </a>
+        </div>`;
+
+      card.addEventListener('click', function(e) {
+        if (!e.target.closest('a')) rpOpenModal(p);
+      });
+      card.querySelector('[data-prod-id]').addEventListener('click', function(e) {
+        e.stopPropagation();
+        rpOpenModal(p);
+      });
+
+      grid.appendChild(card);
+      stripHtml += `<div class="rp-strip-item"><img src="${imgSrc}" alt="${prodName}" style="height:80px;width:auto;object-fit:contain;" /></div>`;
     });
 
     // Duplicate strip for seamless loop
     if (strip) strip.innerHTML = stripHtml + stripHtml;
 
-    // Attach click handlers
-    grid.querySelectorAll('[data-prod-id]').forEach(function(btn) {
-      btn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        const id = btn.getAttribute('data-prod-id');
-        const prod = products.find(function(p) { return p.id === id; });
-        if (prod) rpOpenModal(prod);
-      });
-    });
-    grid.querySelectorAll('.rp-prod-card').forEach(function(card) {
-      card.addEventListener('click', function() {
-        const btn = card.querySelector('[data-prod-id]');
-        if (btn) btn.click();
-      });
-      card.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); }
-      });
-    });
   }
 
   /* ── Wait for Firebase then subscribe ── */
