@@ -1494,13 +1494,21 @@
   (function waitAndLoad() {
     if (window.db) {
       window.db.collection('powerProducts')
-        .where('status', '==', 'published')
-        .orderBy('timestamp', 'desc')
         .onSnapshot(function(snap) {
-          const products = snap.docs.map(function(doc) {
-            return Object.assign({ id: doc.id }, doc.data());
+          const products = [];
+          snap.docs.forEach(function(doc) {
+            const data = doc.data();
+            if (data.status === 'published' || !data.status) {
+              products.push(Object.assign({ id: doc.id }, data));
+            }
+          });
+          // Sort by timestamp descending
+          products.sort(function(a, b) {
+            return (b.timestamp || 0) - (a.timestamp || 0);
           });
           renderPowerProducts(products);
+        }, function(error) {
+          console.error("Firebase error: ", error);
         });
     } else {
       setTimeout(waitAndLoad, 150);
