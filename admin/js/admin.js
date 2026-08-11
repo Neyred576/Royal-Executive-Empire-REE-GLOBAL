@@ -398,7 +398,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const saveBlog = (imageData) => {
         const payload = {
           title, category, content, status, scheduleTime: sTime,
-          date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+          date: (status === 'scheduled' && sTime) ? new Date(sTime).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
         };
         if (imageData) {
           payload.image = imageData;

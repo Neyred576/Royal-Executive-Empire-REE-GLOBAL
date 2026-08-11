@@ -247,7 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
           window.db.collection('blogs').add({
             title, category, content, status, scheduleTime: sTime,
             image: evt.target.result, 
-            date: new Date().toLocaleDateString('en-US', {month: 'short', day: 'numeric', year: 'numeric'}),
+            date: (status === 'scheduled' && sTime) ? new Date(sTime).toLocaleDateString('en-US', {month: 'short', day: 'numeric', year: 'numeric'}) : new Date().toLocaleDateString('en-US', {month: 'short', day: 'numeric', year: 'numeric'}),
             timestamp: Date.now()
           }).then(() => {
             e.target.reset(); pendingScheduleTime = null;
