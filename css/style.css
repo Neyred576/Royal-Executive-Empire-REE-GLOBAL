@@ -410,8 +410,8 @@ input, textarea, select { font-family: inherit; }
 
 .preloader-logo-wrap {
   position: relative;
-  width: 130px;
-  height: 130px;
+  width: 180px;
+  height: 180px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -437,8 +437,8 @@ input, textarea, select { font-family: inherit; }
 @keyframes pl-spin { to { transform: rotate(360deg); } }
 
 .preloader-logo-img {
-  width: 90px;
-  height: 90px;
+  width: 150px;
+  height: 150px;
   object-fit: contain;
   filter: drop-shadow(0 0 20px rgba(212,175,55,0.6));
   animation: pl-pulse 1.5s ease-in-out infinite;
@@ -701,8 +701,8 @@ input, textarea, select { font-family: inherit; }
 }
 .nav-logo:hover { opacity: 0.9; }
 .nav-logo-img-wrap {
-  width: 46px;
-  height: 46px;
+  width: 130px;
+  height: 130px;
   flex-shrink: 0;
 }
 .nav-logo-img {
@@ -1046,10 +1046,10 @@ input, textarea, select { font-family: inherit; }
 }
 @keyframes ring-rotate { to { transform: rotate(360deg); } }
 .hero-logo {
-  width: 400px;
-  height: 400px;
+  width: min(1100px, 90vw);
+  height: auto;
   object-fit: contain;
-  filter: drop-shadow(0 0 30px rgba(212,175,55,0.7));
+  filter: drop-shadow(0 0 40px rgba(212,175,55,0.8));
   animation: logo-glow 3s ease-in-out infinite;
 }
 .hero-logo-fallback {
@@ -2493,7 +2493,7 @@ input, textarea, select { font-family: inherit; }
   .nav-hamburger { display: flex; }
 
   /* Hero */
-  .hero-logo { width: 280px; height: 280px; }
+  .hero-logo { width: min(550px, 90vw); height: auto; }
   .hero-ctas { flex-direction: column; }
   .hqs-sep { display: none; }
   .hero-quick-stats { gap: 24px; }

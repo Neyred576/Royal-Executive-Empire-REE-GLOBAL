@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>REEL Portfolio | Our Work &amp; Projects &mdash; Royalty Executive Empire Limited</title>
-  <link rel="icon" type="image/png" href="/Images/BG/logo%20bg.png" />
+  <link rel="icon" type="image/png" href="/Images/BG/reel_logo.png" />
   <meta name="description" content="Explore REEL's portfolio of premium executive projects — from mobile charging infrastructure and corporate branding to commercial real estate and strategic business advisory across Africa." />
   <meta name="keywords" content="REEL portfolio, REEL projects, executive infrastructure projects Africa, corporate branding portfolio, mobile charging projects, real estate Africa" />
   <meta name="author" content="Onosedeba Israel Ose" />
@@ -394,7 +394,7 @@
     <div class="preloader-inner">
       <div class="preloader-logo-wrap">
         <div class="preloader-ring"></div>
-        <img src="Images/BG/logo%20bg.png" alt="REEL" class="preloader-logo-img"
+        <img src="Images/BG/reel_logo.png" alt="REEL" class="preloader-logo-img"
           onerror="this.style.display='none';document.querySelector('.preloader-crown').style.display='flex'" />
         <div class="preloader-crown" style="display:none"><span>&#9884;</span></div>
       </div>
@@ -435,7 +435,7 @@
     <div class="nav-inner">
       <a href="index.html" class="nav-logo" aria-label="REEL Home">
         <div class="nav-logo-img-wrap">
-          <img src="Images/BG/logo%20bg.png" alt="REEL Logo" class="nav-logo-img"
+          <img src="Images/BG/reel_logo.png" alt="REEL Logo" class="nav-logo-img"
             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
           <div class="nav-logo-crown" style="display:none">&#9884;</div>
         </div>
@@ -451,6 +451,7 @@
         <li><a href="reel-business.html" class="nav-link">REEL Business</a></li>
         <li><a href="blog.html" class="nav-link">Blog</a></li>
         <li><a href="shop.html" class="nav-link">Shop</a></li>
+        <li><a href="leadership.html" class="nav-link">Leadership</a></li>
         <li><a href="contact.html" class="nav-link">Contact Us</a></li>
       </ul>
       <div class="nav-actions">
@@ -578,7 +579,7 @@
         <!-- Brand Column -->
         <div class="footer-col footer-brand-col">
           <a href="index.html" class="footer-logo-link" aria-label="REEL Home">
-            <img src="Images/BG/logo%20bg.png" alt="REEL" class="footer-logo"
+            <img src="Images/BG/reel_logo.png" alt="REEL" class="footer-logo"
               onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
             <div class="footer-logo-fallback" style="display:none">&#9884; REEL</div>
           </a>
@@ -792,7 +793,7 @@
         return [
           '<article class="pf-card reveal-up" style="transition-delay:' + delay + 's" data-id="' + (p.id || i) + '" tabindex="0" role="button" aria-label="View project: ' + (p.title || 'Project') + '">',
           '  <div class="pf-card-img-wrap">',
-          '    <img src="' + (p.imageUrl || p.image || 'Images/BG/logo%20bg.png') + '" alt="' + (p.title || 'REEL Project') + '" class="pf-card-img" loading="lazy" onerror="this.src=\'Images/BG/logo%20bg.png\'" />',
+          '    <img src="' + (p.imageUrl || p.image || 'Images/BG/reel_logo.png') + '" alt="' + (p.title || 'REEL Project') + '" class="pf-card-img" loading="lazy" onerror="this.src=\'Images/BG/reel_logo.png\'" />',
           '    <div class="pf-card-img-overlay"></div>',
           '    <span class="pf-card-cat">' + (p.category || p.division || 'REEL') + '</span>',
           '  </div>',
@@ -835,7 +836,7 @@
 
     function openLightbox(p) {
       var lb = document.getElementById('pf-lightbox');
-      document.getElementById('pf-lb-img').src = p.imageUrl || p.image || 'Images/BG/logo%20bg.png';
+      document.getElementById('pf-lb-img').src = p.imageUrl || p.image || 'Images/BG/reel_logo.png';
       document.getElementById('pf-lb-img').alt = p.title || '';
       document.getElementById('pf-lb-cat').textContent = p.category || p.division || 'REEL';
       document.getElementById('pf-lb-title').textContent = p.title || '';
@@ -906,7 +907,7 @@
                   id: doc.id,
                   title: d.title || d.name || 'Untitled',
                   description: d.description || d.excerpt || d.details || d.caption || d.sector || d.category || '',
-                  imageUrl: d.imageUrl || d.image || 'Images/BG/logo%20bg.png',
+                  imageUrl: d.imageUrl || d.image || 'Images/BG/reel_logo.png',
                   category: col.division || d.category || d.division || 'REEL',
                   date: d.date || d.year || '',
                   timestamp: ts,
