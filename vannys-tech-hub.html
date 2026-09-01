@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vanny's Tech Hub | Digital Transformation Across Africa &mdash; A Royalty Executive Empire Company</title>
+  <link rel="icon" type="image/png" href="/Images/BG/reel_logo.png" />
+  <meta name="description" content="Vanny's Tech Hub drives digital transformation, technical training, and smart technology solutions across Africa. A Royalty Executive Empire Company, built to REEL's executive standard." />
+  <meta name="keywords" content="digital transformation company Africa, tech training Lagos, digital skills Africa, smart office technology, technology consulting Nigeria, Vanny's Tech Hub, Royalty Executive Empire" />
+  <meta name="author" content="Onosedeba Israel Ose" />
+  <meta name="theme-color" content="#D4AF37" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "name": "Royalty Executive Empire Limited",
+        "alternateName": "REEL",
+        "url": "https://royaltyexecutiveempire.com",
+        "logo": "https://royaltyexecutiveempire.com/Images/BG/reel_logo.png"
+      },
+      {
+        "@type": "Organization",
+        "name": "Vanny's Tech Hub",
+        "parentOrganization": {
+          "@type": "Organization",
+          "name": "Royalty Executive Empire Limited"
+        },
+        "url": "https://royaltyexecutiveempire.com/vannys-tech-hub.html",
+        "description": "A technology-focused company driving digital transformation across Africa. A Royalty Executive Empire Company.",
+        "areaServed": "Africa",
+        "makesOffer": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Digital Skills Training" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Enterprise Digital Transformation" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Smart Technology & Office Solutions" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Technical Support & Systems Integration" } }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is Vanny's Tech Hub part of REEL Branding?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Vanny's Tech Hub is an independently owned company within the REEL family portfolio. It works closely with REEL Branding's Business Advisory capability — REEL Branding sets digital transformation strategy, Vanny's Tech Hub executes it — but operates as its own company."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does Vanny's Tech Hub offer training for individuals, or only corporate clients?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Both. Programmes are structured for individual technical skill-building as well as enterprise-wide digital transformation projects."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What replaced REEL Smart?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Vanny's Tech Hub has absorbed REEL Smart's former offerings — smart office gadgets, wireless chargers, and connected technology solutions."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <style>
+    .div-page-hero {
+      position: relative; min-height: 80vh;
+      display: flex; align-items: center; overflow: hidden;
+      padding-top: 140px; padding-bottom: 80px;
+      background-color: var(--black-900);
+    }
+    .div-page-hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(rgba(8,8,8,0.7), rgba(8,8,8,0.85)), url('Images/vannys_tech_hub_hero.jpg') center center / cover no-repeat;
+      animation: heroBgZoom 25s ease-in-out infinite alternate;
+      z-index: 0; will-change: transform;
+    }
+    .div-hero-overlay {
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 20% 50%, rgba(212,175,55,0.15), transparent 70%);
+      z-index: 1;
+    }
+    .div-hero-inner {
+      position: relative; z-index: 2;
+      display: flex; flex-direction: column; align-items: flex-start; max-width: 750px; text-align: left;
+    }
+    .div-hero-tag {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 0.72rem; font-weight: 800; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--gold-300); margin-bottom: 20px;
+    }
+    .div-hero-tag::before { content:''; width: 30px; height: 1px; background: var(--gold-gradient); }
+    .div-hero-title { font-family: var(--font-display); font-size: clamp(2.8rem, 6vw, 5rem); line-height: 1.05; color: #fff; margin-bottom: 24px; }
+    .div-hero-title span { color: var(--gold-300); }
+    .div-hero-desc { color: var(--w70); font-size: 1.1rem; line-height: 1.8; max-width: 620px; margin-bottom: 36px; }
+    .div-hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    .service-cards-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; margin-top: 40px; }
+    .service-card-item {
+      background: rgba(255,255,255,0.025);
+      border: 1px solid var(--gold-border);
+      border-radius: var(--radius-lg);
+      padding: 36px 30px;
+      transition: all 0.35s;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .service-card-item::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--gold-gradient); transform: scaleX(0); transition: transform 0.35s; transform-origin: left; }
+    .service-card-item:hover { border-color: var(--gold-300); transform: translateY(-6px); box-shadow: 0 24px 48px rgba(0,0,0,0.5); }
+    .service-card-item:hover::after { transform: scaleX(1); }
+    .service-card-icon { width: 60px; height: 60px; border-radius: 16px; background: rgba(212,175,55,0.08); backdrop-filter: blur(8px); border: 1px solid rgba(212,175,55,0.25); display: flex; align-items: center; justify-content: center; margin-bottom: 22px; color: var(--gold-400); transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+    .service-card-icon svg { width: 28px; height: 28px; stroke: var(--gold-400); stroke-width: 1.5; fill: none; transition: transform 0.3s ease, stroke 0.3s ease; }
+    .service-card-item:hover .service-card-icon { background: rgba(212,175,55,0.2); border-color: var(--gold-300); box-shadow: 0 0 24px rgba(212,175,55,0.25); }
+    .service-card-item:hover .service-card-icon svg { transform: scale(1.1); stroke: var(--gold-300); }
+    .service-card-item h3 { font-family: var(--font-display); font-size: 1.35rem; color: #fff; margin-bottom: 12px; }
+    .service-card-item p { color: var(--w60); font-size: 0.92rem; line-height: 1.75; margin: 0; }
+
+    .why-cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 40px; }
+    .why-card-box {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--gold-border);
+      border-radius: var(--radius-lg);
+      padding: 36px 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .why-num-tag { font-size: 2.2rem; font-weight: 800; font-family: var(--font-display); color: rgba(212,175,55,0.25); margin-bottom: 16px; line-height: 1; }
+    .why-card-box h3 { font-family: var(--font-display); font-size: 1.3rem; color: #fff; margin-bottom: 14px; }
+    .why-card-box p { color: var(--w60); font-size: 0.9rem; line-height: 1.7; margin: 0; }
+
+    .faq-grid { display: grid; grid-template-columns: 1fr; gap: 20px; max-width: 860px; margin: 40px auto 0; }
+    .faq-item { background: rgba(255,255,255,0.02); border: 1px solid var(--gold-border); border-radius: 16px; padding: 28px; transition: border-color 0.3s; }
+    .faq-item:hover { border-color: var(--gold-300); }
+    .faq-item h3 { font-family: var(--font-display); font-size: 1.2rem; color: #fff; margin-bottom: 10px; line-height: 1.4; }
+    .faq-item h3 span { color: var(--gold-300); }
+    .faq-item p { color: var(--w60); font-size: 0.92rem; line-height: 1.75; margin: 0; }
+
+    .company-cta-section {
+      position: relative; overflow: hidden;
+      padding: 120px 0; text-align: center;
+      background-color: var(--black-900);
+      border-top: 1px solid var(--gold-border);
+    }
+    .company-cta-section::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(rgba(8,8,8,0.75), rgba(8,8,8,0.9)), url('Images/vannys_tech_hub_hero.jpg') center center / cover no-repeat;
+      z-index: 0;
+    }
+    .company-cta-section .container { position: relative; z-index: 2; }
+
+    @media(max-width:992px) {
+      .service-cards-grid, .why-cards-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#D4AF37" />
+  <link rel="apple-touch-icon" href="/Images/icons/icon-192x192.png" />
+</head>
+<body>
+<div class="bg-animated-glow"></div>
+
+<nav id="main-nav" class="main-nav scrolled" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="REEL Home">
+      <div class="nav-logo-img-wrap">
+        <img src="Images/BG/reel_logo.png" alt="REEL Logo" class="nav-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+        <div class="nav-logo-crown" style="display:none">&#9884;</div>
+      </div>
+      <div class="nav-logo-text"><span class="nav-brand-name">REEL</span><span class="nav-brand-sub">Royalty Executive Empire Limited</span></div>
+    </a>
+    <ul class="nav-links" id="nav-links" role="list">
+      <li><a href="reel-power.html" class="nav-link">REEL Power</a></li>
+      <li><a href="reel-branding.html" class="nav-link">REEL Branding</a></li>
+      <li><a href="real-estate.html" class="nav-link">REEL Properties</a></li>
+      <li class="nav-item-dropdown" id="our-companies-dropdown">
+        <a href="index.html#our-companies" class="nav-link active" aria-haspopup="true" aria-expanded="false" id="our-companies-toggle">
+          Our Companies <span class="drop-arrow">&#9662;</span>
+        </a>
+        <ul class="nav-dropdown" role="list" aria-label="Our Companies submenu">
+          <li><a href="vannys-tech-hub.html" class="active">Vanny's Tech Hub</a></li>
+          <li><a href="efuas-auto-center.html">Efua's Auto Center</a></li>
+          <li><a href="glorious-global-palace.html">Glorious Global Palace</a></li>
+        </ul>
+      </li>
+      <li><a href="blog.html" class="nav-link">Blog</a></li>
+      <li><a href="shop.html" class="nav-link">Shop</a></li>
+      <li><a href="leadership.html" class="nav-link">Leadership</a></li>
+      <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+    </ul>
+    <div class="nav-actions">
+        <a href="cart.html" class="nav-icon cart-icon" aria-label="Shopping Cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="cart-count">0</span></a>
+    </div>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span class="ham-line"></span><span class="ham-line"></span><span class="ham-line"></span></button>
+  </div>
+  <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
+</nav>
+
+<!-- HERO -->
+<section class="div-page-hero">
+  <div class="div-hero-overlay"></div>
+  <div class="container div-hero-inner">
+    <div class="reveal-up">
+      <div class="div-hero-tag">A Royalty Executive Empire Company</div>
+      <h1 class="div-hero-title">Vanny's <span>Tech Hub</span></h1>
+      <p class="div-hero-desc">A technology-focused company driving digital transformation across Africa &mdash; equipping organisations and individuals with the technical capability to compete on a global standard.</p>
+      <div class="div-hero-ctas">
+        <a href="#services" class="btn-gold" id="vth-explore-cta"><span>Explore Our Programmes</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="contact.html" class="btn-ghost" id="vth-partner-cta"><span>Partner With Us</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE DO -->
+<section class="section section--glow" id="services">
+  <div class="container">
+    <header class="section-header reveal-up text-center">
+      <div class="section-eyebrow">Technical Capability</div>
+      <h2 class="section-heading">What We <span class="gold-text">Do</span></h2>
+      <div class="gold-rule center-rule"></div>
+      <p class="section-desc">Vanny's Tech Hub exists to close Africa's digital execution gap &mdash; not just advising on transformation, but building the technical capacity to deliver it.</p>
+    </header>
+
+    <div class="service-cards-grid">
+      <div class="service-card-item reveal-up">
+        <div class="service-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+        </div>
+        <h3>Digital Skills Training</h3>
+        <p>Structured, hands-on technical training programmes preparing individuals and teams for real digital-economy roles &mdash; from software engineering to cloud architecture.</p>
+      </div>
+
+      <div class="service-card-item reveal-up">
+        <div class="service-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 3h18v18H3zM9 3v18M15 3v18M3 9h18M3 15h18"></path></svg>
+        </div>
+        <h3>Enterprise Digital Transformation</h3>
+        <p>Implementation partner for organisations modernising legacy systems, workflows, and infrastructure &mdash; the execution layer behind REEL Branding's transformation advisory.</p>
+      </div>
+
+      <div class="service-card-item reveal-up">
+        <div class="service-card-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
+        </div>
+        <h3>Smart Technology &amp; Office Solutions</h3>
+        <p>Smart office gadgets, wireless charging systems, and connected-device deployment for executive environments.</p>
+      </div>
+
+      <div class="service-card-item reveal-up">
+        <div class="service-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+        </div>
+        <h3>Technical Support &amp; Systems Integration</h3>
+        <p>Ongoing technical support, systems integration, and infrastructure maintenance for corporate clients who require continuous reliability.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY VANNY'S TECH HUB -->
+<section class="section section--dark" id="why">
+  <div class="container">
+    <header class="section-header reveal-up text-center">
+      <div class="section-eyebrow">Our Competitive Advantage</div>
+      <h2 class="section-heading">Why Vanny's <span class="gold-text">Tech Hub</span></h2>
+      <div class="gold-rule center-rule"></div>
+      <p class="section-desc">Built to bridge the gap between strategic intent and technical execution.</p>
+    </header>
+
+    <div class="why-cards-grid">
+      <div class="why-card-box reveal-up">
+        <div class="why-num-tag">01</div>
+        <h3>Execution, Not Just Strategy</h3>
+        <p>Where REEL Branding's business advisory sets the strategy, Vanny's Tech Hub builds and implements it &mdash; a rare combination of consulting credibility and technical delivery.</p>
+      </div>
+
+      <div class="why-card-box reveal-up">
+        <div class="why-num-tag">02</div>
+        <h3>Trained for Global Standards, Built for Africa</h3>
+        <p>Every programme and deployment is benchmarked against global technical standards, delivered with African market context.</p>
+      </div>
+
+      <div class="why-card-box reveal-up">
+        <div class="why-num-tag">03</div>
+        <h3>Backed by the REEL Standard</h3>
+        <p>As a Royalty Executive Empire Company, every engagement carries REEL's commitment to premium execution and integrity.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ SECTION -->
+<section class="section section--glow" id="faq">
+  <div class="container">
+    <header class="section-header reveal-up text-center">
+      <div class="section-eyebrow">Frequently Asked Questions</div>
+      <h2 class="section-heading">Frequently Asked <span class="gold-text">Questions</span></h2>
+      <div class="gold-rule center-rule"></div>
+    </header>
+
+    <div class="faq-grid reveal-up">
+      <div class="faq-item">
+        <h3><span>Q.</span> Is Vanny's Tech Hub part of REEL Branding?</h3>
+        <p>Vanny's Tech Hub is an independently owned company within the REEL family portfolio. It works closely with REEL Branding's Business Advisory capability &mdash; REEL Branding sets digital transformation strategy, Vanny's Tech Hub executes it &mdash; but operates as its own company.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3><span>Q.</span> Does Vanny's Tech Hub offer training for individuals, or only corporate clients?</h3>
+        <p>Both. Programmes are structured for individual technical skill-building as well as enterprise-wide digital transformation projects.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3><span>Q.</span> What replaced REEL Smart?</h3>
+        <p>Vanny's Tech Hub has absorbed REEL Smart's former offerings &mdash; smart office gadgets, wireless chargers, and connected technology solutions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="company-cta-section">
+  <div class="container">
+    <div class="section-eyebrow reveal-up" style="justify-content:center">Start Your Transformation</div>
+    <h2 class="section-heading reveal-up">Ready to <span class="gold-text">Transform?</span></h2>
+    <p style="color:var(--w60);max-width:560px;margin:0 auto 40px;" class="reveal-up">Whether you're building technical capability in your team or modernising your operations, Vanny's Tech Hub delivers the execution REEL's strategy makes possible.</p>
+    <a href="contact.html" class="btn-gold reveal-up" id="vth-contact-btn"><span>Contact Vanny's Tech Hub</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-body">
+    <div class="footer-glow-l" aria-hidden="true"></div>
+    <div class="footer-glow-r" aria-hidden="true"></div>
+    <div class="container">
+      <div class="footer-grid">
+
+        <!-- Brand Column -->
+        <div class="footer-col footer-brand-col">
+          <a href="index.html" class="footer-logo-link" aria-label="REEL Home">
+            <img src="Images/BG/reel_logo.png" alt="REEL" class="footer-logo"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+            <div class="footer-logo-fallback" style="display:none">&#9884; REEL</div>
+          </a>
+          <p class="footer-brand-desc">Royalty Executive Empire Limited &mdash; Building Wealth, Creating Opportunities, and
+            Creating Global Impact across Africa and the world since our founding.</p>
+          <div class="footer-social-row" aria-label="Social media links">
+            <a href="https://www.facebook.com/Royaltyexecutiveempire" target="_blank" rel="noopener" class="fsoc"
+              id="fsoc-fb" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+              </svg></a>
+            <a href="https://x.com/royaltyexecutiveempire" target="_blank" rel="noopener" class="fsoc" id="fsoc-x"
+              aria-label="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.74l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg></a>
+            <a href="https://www.instagram.com/royaltyexecutiveempire/" target="_blank" rel="noopener" class="fsoc"
+              id="fsoc-ig" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+              </svg></a>
+            <a href="https://www.youtube.com/@Royaltyexecutiveempire" target="_blank" rel="noopener" class="fsoc"
+              id="fsoc-yt" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.41 19.1C5.12 19.56 12 19.56 12 19.56s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.48z" />
+                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" style="fill:#0B0B0B" />
+              </svg></a>
+            <a href="https://www.tiktok.com/@royaltyexecutiveempire" target="_blank" rel="noopener" class="fsoc"
+              id="fsoc-tt" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.28 6.28 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.2 8.2 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z" />
+              </svg></a>
+            <a href="https://www.linkedin.com/company/royaltyexecutiveempire" target="_blank" rel="noopener" class="fsoc" id="fsoc-li" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" /></svg></a>
+            <a href="https://whatsapp.com/channel/0029Vb8f98uFsn0ZxQtIix05" target="_blank" rel="noopener" class="fsoc" id="fsoc-wa" aria-label="WhatsApp Channel"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" /></svg></a>
+          </div>
+        </div>
+
+        <!-- Footer Calendar Widget -->
+        <div class="footer-col footer-calendar-col">
+          <h3 class="footer-heading">Calendar</h3>
+          <div class="footer-calendar" id="footer-calendar" aria-label="Mini calendar">
+            <div class="fc-header">
+              <button class="fc-nav" id="fc-prev" aria-label="Previous month">&#8249;</button>
+              <span class="fc-month-label" id="fc-month-label"></span>
+              <button class="fc-nav" id="fc-next" aria-label="Next month">&#8250;</button>
+            </div>
+            <div class="fc-weekdays" aria-hidden="true">
+              <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+            </div>
+            <div class="fc-days" id="fc-days" role="grid" aria-label="Calendar days"></div>
+          </div>
+        </div>
+
+        <!-- Services Links -->
+        <div class="footer-col">
+          <h3 class="footer-heading">Our Divisions</h3>
+          <nav aria-label="Footer divisions links">
+            <ul class="footer-links-list">
+              <li><a href="reel-power.html">REEL Power</a></li>
+              <li><a href="reel-branding.html">REEL Branding</a></li>
+              <li><a href="real-estate.html">REEL Properties</a></li>
+              <li><a href="portfolio.html">Portfolio</a></li>
+            </ul>
+          </nav>
+        </div>
+
+        <!-- Our Companies -->
+        <div class="footer-col">
+          <h3 class="footer-heading">Our Companies</h3>
+          <nav aria-label="Footer companies links">
+            <ul class="footer-links-list">
+              <li><a href="vannys-tech-hub.html">Vanny's Tech Hub</a></li>
+              <li><a href="efuas-auto-center.html">Efua's Auto Center</a></li>
+              <li><a href="glorious-global-palace.html">Glorious Global Palace</a></li>
+            </ul>
+          </nav>
+        </div>
+
+        <!-- Newsletter & Contact -->
+        <div class="footer-col footer-news-col">
+          <h3 class="footer-heading">Stay Connected</h3>
+          <p class="footer-news-desc">Subscribe to receive updates, news, and exclusive opportunities from REEL.</p>
+          <form class="footer-newsletter" id="footer-newsletter-form" novalidate aria-label="Newsletter signup" onsubmit="handleNewsletterSubmit(event)">
+            <input type="email" id="footer-email" name="email" placeholder="Enter your email address" required
+              aria-label="Email address for newsletter" />
+            <button type="submit" id="footer-newsletter-btn" aria-label="Subscribe to newsletter">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <line x1="22" y1="2" x2="11" y2="13" />
+                <polygon points="22 2 15 22 11 13 2 9 22 2" />
+              </svg>
+            </button>
+          </form>
+          <script>
+          function handleNewsletterSubmit(e) {
+            e.preventDefault();
+            var email = document.getElementById('footer-email').value;
+            if (!email) return;
+            var subject = encodeURIComponent('Newsletter Subscription Request');
+            var body = encodeURIComponent('Hello REEL Team,\n\nI would like to subscribe to your newsletter.\n\nEmail: ' + email + '\n\nThank you.');
+            window.location.href = 'mailto:admin@royaltyexecutiveempire.com?subject=' + subject + '&body=' + body;
+            document.getElementById('footer-email').value = '';
+          }
+          </script>
+          <div class="footer-contact-details">
+            <p>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
+              </svg>
+              <a href="mailto:admin@royaltyexecutiveempire.com">admin@royaltyexecutiveempire.com</a>
+            </p>
+            <p>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.23h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.77a16 16 0 0 0 6 6l.97-.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2z" />
+              </svg>
+              <a href="tel:+2348067029444">+234 806 702 9444</a>, <a href="https://wa.me/2349118024521">+234 911 802 4521</a>
+            </p>
+            <p>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              <span>Lagos, Nigeria</span>
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Bottom Bar -->
+  <div class="footer-bar">
+    <div class="container">
+      <div class="footer-bar-inner">
+        <p class="footer-copy">&copy; <span id="footer-year"></span> Royalty Executive Empire Limited (REEL). All Rights Reserved.</p>
+        <nav aria-label="Legal links">
+          <ul class="footer-legal">
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Service</a></li>
+            <li><a href="cookies.html">Cookie Policy</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Footer Calendar JS -->
+<script>
+(function() {
+  var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var today = new Date();
+  var cur = { y: today.getFullYear(), m: today.getMonth() };
+  function render() {
+    var label = document.getElementById('fc-month-label');
+    var grid  = document.getElementById('fc-days');
+    if (!label || !grid) return;
+    label.textContent = months[cur.m] + ' ' + cur.y;
+    grid.innerHTML = '';
+    var firstDay = new Date(cur.y, cur.m, 1).getDay();
+    var daysInMonth = new Date(cur.y, cur.m + 1, 0).getDate();
+    for (var i = 0; i < firstDay; i++) {
+      var blank = document.createElement('div');
+      blank.className = 'fc-day fc-empty';
+      blank.textContent = ' ';
+      grid.appendChild(blank);
+    }
+    for (var d = 1; d <= daysInMonth; d++) {
+      var cell = document.createElement('div');
+      cell.className = 'fc-day';
+      cell.setAttribute('role', 'gridcell');
+      cell.textContent = d;
+      var isToday = (d === today.getDate() && cur.m === today.getMonth() && cur.y === today.getFullYear());
+      if (isToday) { cell.classList.add('fc-today'); cell.setAttribute('aria-current','date'); }
+      grid.appendChild(cell);
+    }
+  }
+  document.addEventListener('DOMContentLoaded', function() {
+    render();
+    var prev = document.getElementById('fc-prev');
+    var next = document.getElementById('fc-next');
+    if (prev) prev.addEventListener('click', function() { cur.m--; if (cur.m < 0) { cur.m = 11; cur.y--; } render(); });
+    if (next) next.addEventListener('click', function() { cur.m++; if (cur.m > 11) { cur.m = 0; cur.y++; } render(); });
+    var yr = document.getElementById('footer-year');
+    if (yr) yr.textContent = today.getFullYear();
+  });
+})();
+</script>
+<script src="js/main.js"></script>
+<script>document.getElementById('footer-year').textContent = new Date().getFullYear();</script>
+<script src="/js/pwa.js"></script>
+<script src="/js/notifications.js"></script>
+</body>
+</html>

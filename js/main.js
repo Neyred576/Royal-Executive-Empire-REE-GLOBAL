@@ -111,12 +111,14 @@ document.addEventListener('DOMContentLoaded', () => {
       navOverlay.classList.remove('show');
       hamburger.setAttribute('aria-expanded', 'false');
       body.classList.remove('no-scroll');
+      document.documentElement.classList.remove('no-scroll');
     } else {
       hamburger.classList.add('open');
       navLinks.classList.add('open');
       navOverlay.classList.add('show');
       hamburger.setAttribute('aria-expanded', 'true');
       body.classList.add('no-scroll');
+      document.documentElement.classList.add('no-scroll');
     }
   };
 

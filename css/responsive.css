@@ -1,4 +1,4 @@
-﻿/* =================================================================
+/* =================================================================
    REEL - ROYALTY EXECUTIVE EMPIRE LIMITED
    Responsive Mobile-First Stylesheet
    Covers: 320px to 4K (ultra-wide)
@@ -412,6 +412,11 @@ table {
     border-bottom: 1px solid rgba(255, 255, 255, 0.04);
   }
 
+  .nav-item-dropdown {
+    width: 100%;
+    flex-direction: column;
+  }
+
   .nav-links li:last-child { border-bottom: none; margin-top: 12px; }
 
   .nav-link {
@@ -425,6 +430,28 @@ table {
     color: var(--w90);
     letter-spacing: 0.5px;
     min-height: 54px;
+  }
+
+  .nav-dropdown {
+    position: static;
+    width: 100%;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    border-radius: var(--radius-sm);
+    padding: 8px 0;
+    box-shadow: none;
+    margin: 8px 0 12px;
+  }
+
+  .nav-dropdown::before { display: none; }
+
+  .nav-dropdown a {
+    font-size: 0.95rem;
+    padding: 10px 16px;
+    text-align: center;
   }
 
   .nav-link::after { display: none; }
@@ -494,4 +521,13 @@ img { max-width: 100%; height: auto; display: block; }
 h1, h2, h3, h4, h5, h6, p, span, li, a {
   overflow-wrap: break-word;
   word-break: break-word;
+}
+
+/* ===========================================
+   CUSTOM UTILITIES
+   =========================================== */
+@media (min-width: 1024px) {
+  .divisions-grid.three-cols {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
 }

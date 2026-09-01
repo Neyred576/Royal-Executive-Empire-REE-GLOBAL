@@ -19,6 +19,9 @@
 
 /services               /index.html             301
 /home                   /index.html             301
+/reel-business          /reel-branding.html     301
+/reel-business/         /reel-branding.html     301
+/reel-business.html     /reel-branding.html     301
 /wp-admin               /index.html             301
 /wp-login.php           /index.html             301
 /wp-content/*           /index.html             301

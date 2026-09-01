@@ -623,7 +623,16 @@
 
     /* Placeholder shown when image fails */
     .rp-prod-card-img::before {
-      content: '⚡';
+      content: '';
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 14px;
+      height: 14px;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23d4af37" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>');
+      background-repeat: no-repeat;
+      background-position: center;
       font-size: 3rem;
       position: absolute;
       top: 50%; left: 50%;
@@ -1052,14 +1061,13 @@
         <li><a href="reel-power.html" class="nav-link active">REEL Power</a></li>
         <li><a href="reel-branding.html" class="nav-link">REEL Branding</a></li>
         <li><a href="real-estate.html" class="nav-link">REEL Properties</a></li>
-        <li><a href="reel-business.html" class="nav-link">REEL Business</a></li>
         <li><a href="blog.html" class="nav-link">Blog</a></li>
         <li><a href="shop.html" class="nav-link">Shop</a></li>
         <li><a href="leadership.html" class="nav-link">Leadership</a></li>
         <li><a href="contact.html" class="nav-link">Contact Us</a></li>
       </ul>
     <div class="nav-actions">
-      <a href="cart.html" class="nav-icon cart-icon" aria-label="Shopping Cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="cart-count">0</span></a>
+        <a href="cart.html" class="nav-icon cart-icon" aria-label="Shopping Cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="cart-count">0</span></a>
     </div>
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span class="ham-line"></span><span class="ham-line"></span><span class="ham-line"></span></button>
   </div>
@@ -1426,7 +1434,6 @@
               <li><a href="reel-power.html">REEL Power</a></li>
               <li><a href="reel-branding.html">REEL Branding</a></li>
               <li><a href="real-estate.html">REEL Properties</a></li>
-              <li><a href="reel-business.html">REEL Business</a></li>
               <li><a href="portfolio.html">Portfolio</a></li>
             </ul>
           </nav>
@@ -1599,7 +1606,9 @@
 
     if (products.length === 0) {
       grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:rgba(255,255,255,0.3);">
-        <div style="font-size:3rem;margin-bottom:16px;">⚡</div>
+        <div style="width:60px;height:60px;margin:0 auto 16px;color:var(--gold-400);display:flex;align-items:center;justify-content:center;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+        </div>
         <div style="font-size:1.1rem;">Products coming soon. Check back shortly.</div>
       </div>`;
       if (strip) strip.innerHTML = '';
@@ -1651,7 +1660,9 @@
                  <span style="font-size:0.75rem;">Image unavailable</span>
                </div>`
             : `<div style="display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(212,175,55,0.4);">
-                 <span style="font-size:2.5rem;">⚡</span>
+                 <span style="display:flex;align-items:center;color:var(--gold-400);">
+                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                 </span>
                  <span style="font-size:0.75rem;">No image</span>
                </div>`
           }
