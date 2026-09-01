@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -174,14 +174,13 @@
         <li><a href="reel-power.html" class="nav-link">REEL Power</a></li>
         <li><a href="reel-branding.html" class="nav-link">REEL Branding</a></li>
         <li><a href="real-estate.html" class="nav-link">REEL Properties</a></li>
-        <li><a href="reel-business.html" class="nav-link">REEL Business</a></li>
         <li><a href="blog.html" class="nav-link">Blog</a></li>
         <li><a href="shop.html" class="nav-link">Shop</a></li>
         <li><a href="leadership.html" class="nav-link">Leadership</a></li>
         <li><a href="contact.html" class="nav-link">Contact Us</a></li>
       </ul>
     <div class="nav-actions">
-      <a href="cart.html" class="nav-icon cart-icon" aria-label="Shopping Cart">
+        <a href="cart.html" class="nav-icon cart-icon" aria-label="Shopping Cart">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
         <span class="cart-count">0</span>
       </a>
@@ -217,7 +216,10 @@
         <div style="margin-top: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
           <a href="shop.html" class="btn-ghost"><span>&larr; Continue Shopping</span></a>
           <button id="clear-cart-btn" class="btn-ghost" style="color:#E63946; border-color:rgba(230,57,70,0.3); display:none;">
-            <span>🗑️ Clear Cart</span>
+            <span style="display:flex;align-items:center;gap:6px;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+              Clear Cart
+            </span>
           </button>
         </div>
       </div>
@@ -246,7 +248,10 @@
 
         <div style="text-align:center; margin-top:16px;">
           <div style="font-size:0.75rem; color:var(--w50); display:flex; justify-content:center; align-items:center; gap:6px;">
-            🔒 &nbsp;Secure Order Processing
+            <span style="display:flex;align-items:center;gap:6px;justify-content:center;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              Secure Order Processing
+            </span>
           </div>
         </div>
       </div>
@@ -328,7 +333,6 @@
               <li><a href="reel-power.html">REEL Power</a></li>
               <li><a href="reel-branding.html">REEL Branding</a></li>
               <li><a href="real-estate.html">REEL Properties</a></li>
-              <li><a href="reel-business.html">REEL Business</a></li>
               <li><a href="portfolio.html">Portfolio</a></li>
             </ul>
           </nav>
@@ -504,7 +508,9 @@
     if (cart.length === 0) {
       container.innerHTML = `
         <div class="cart-empty">
-          <div class="cart-empty-icon">🛍️</div>
+          <div class="cart-empty-icon" style="opacity:0.3;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+          </div>
           <h3>Your Cart is Empty</h3>
           <p>You haven't added anything yet. Discover our exclusive collection.</p>
           <a href="shop.html" class="btn-gold" style="display:inline-flex;">Browse the Shop</a>
@@ -519,7 +525,7 @@
           <div class="cart-thumb">
             ${item.image
               ? `<img src="${item.image}" alt="${item.name}" />`
-              : '🛍️'
+              : '<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(212,175,55,0.05);color:var(--gold-400);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg></div>'
             }
           </div>
           <div>

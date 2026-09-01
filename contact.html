@@ -89,19 +89,27 @@
       </div>
       <div class="nav-logo-text"><span class="nav-brand-name">REEL</span><span class="nav-brand-sub">Royalty Executive Empire Limited</span></div>
     </a>
-    <ul class="nav-links" id="nav-links" role="list">
-        
+      <ul class="nav-links" id="nav-links" role="list">
         <li><a href="reel-power.html" class="nav-link">REEL Power</a></li>
         <li><a href="reel-branding.html" class="nav-link">REEL Branding</a></li>
         <li><a href="real-estate.html" class="nav-link">REEL Properties</a></li>
-        <li><a href="reel-business.html" class="nav-link">REEL Business</a></li>
+        <li class="nav-item-dropdown" id="our-companies-dropdown">
+          <a href="index.html#our-companies" class="nav-link" aria-haspopup="true" aria-expanded="false" id="our-companies-toggle">
+            Our Companies <span class="drop-arrow">&#9662;</span>
+          </a>
+          <ul class="nav-dropdown" role="list" aria-label="Our Companies submenu">
+            <li><a href="vannys-tech-hub.html">Vanny's Tech Hub</a></li>
+            <li><a href="efuas-auto-center.html">Efua's Auto Center</a></li>
+            <li><a href="glorious-global-palace.html">Glorious Global Palace</a></li>
+          </ul>
+        </li>
         <li><a href="blog.html" class="nav-link">Blog</a></li>
         <li><a href="shop.html" class="nav-link">Shop</a></li>
         <li><a href="leadership.html" class="nav-link">Leadership</a></li>
-        <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+        <li><a href="contact.html" class="nav-link active">Contact Us</a></li>
       </ul>
     <div class="nav-actions">
-      <a href="cart.html" class="nav-icon cart-icon" aria-label="Shopping Cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="cart-count">0</span></a>
+        <a href="cart.html" class="nav-icon cart-icon" aria-label="Shopping Cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="cart-count">0</span></a>
     </div>
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span class="ham-line"></span><span class="ham-line"></span><span class="ham-line"></span></button>
   </div>
@@ -260,12 +268,17 @@
                   Subject
                 </label>
                 <select id="cf-subject" name="subject" required>
-                  <option value="">&mdash; Select a Division &mdash;</option>
+                  <option value="">&mdash; Select a Division or Company &mdash;</option>
                   <option>General Inquiry</option>
                   <option>REEL Power &mdash; Charging Solutions</option>
-                  <option>REEL Branding &mdash; Corporate Branding</option>
+                  <option>REEL Branding &mdash; Corporate Branding & Identity</option>
+                  <option>REEL Branding &mdash; Media & Content Production</option>
+                  <option>REEL Branding &mdash; Events Management</option>
+                  <option>REEL Branding &mdash; Business Advisory</option>
                   <option>REEL Properties &mdash; Real Estate</option>
-                  <option>REEL Business &mdash; Strategic Advisory</option>
+                  <option>Vanny's Tech Hub &mdash; Digital Transformation</option>
+                  <option>Efua's Auto Center &mdash; Luxury Auto Care</option>
+                  <option>Glorious Global Palace &mdash; Lifestyle & Grooming</option>
                   <option>Partnership Opportunity</option>
                   <option>Shop / Products</option>
                   <option>Other</option>
@@ -420,8 +433,19 @@
               <li><a href="reel-power.html">REEL Power</a></li>
               <li><a href="reel-branding.html">REEL Branding</a></li>
               <li><a href="real-estate.html">REEL Properties</a></li>
-              <li><a href="reel-business.html">REEL Business</a></li>
               <li><a href="portfolio.html">Portfolio</a></li>
+            </ul>
+          </nav>
+        </div>
+
+        <!-- Our Companies -->
+        <div class="footer-col">
+          <h3 class="footer-heading">Our Companies</h3>
+          <nav aria-label="Footer companies links">
+            <ul class="footer-links-list">
+              <li><a href="vannys-tech-hub.html">Vanny's Tech Hub</a></li>
+              <li><a href="efuas-auto-center.html">Efua's Auto Center</a></li>
+              <li><a href="glorious-global-palace.html">Glorious Global Palace</a></li>
             </ul>
           </nav>
         </div>

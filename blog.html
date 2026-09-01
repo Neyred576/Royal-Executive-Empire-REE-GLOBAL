@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -397,14 +397,13 @@
         <li><a href="reel-power.html" class="nav-link">REEL Power</a></li>
         <li><a href="reel-branding.html" class="nav-link">REEL Branding</a></li>
         <li><a href="real-estate.html" class="nav-link">REEL Properties</a></li>
-        <li><a href="reel-business.html" class="nav-link">REEL Business</a></li>
         <li><a href="blog.html" class="nav-link active">Blog</a></li>
         <li><a href="shop.html" class="nav-link">Shop</a></li>
         <li><a href="leadership.html" class="nav-link">Leadership</a></li>
         <li><a href="contact.html" class="nav-link">Contact Us</a></li>
       </ul>
     <div class="nav-actions">
-      <a href="cart.html" class="nav-icon cart-icon" aria-label="Shopping Cart">
+        <a href="cart.html" class="nav-icon cart-icon" aria-label="Shopping Cart">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
         <span class="cart-count">0</span>
       </a>
@@ -556,7 +555,6 @@
               <li><a href="reel-power.html">REEL Power</a></li>
               <li><a href="reel-branding.html">REEL Branding</a></li>
               <li><a href="real-estate.html">REEL Properties</a></li>
-              <li><a href="reel-business.html">REEL Business</a></li>
               <li><a href="portfolio.html">Portfolio</a></li>
             </ul>
           </nav>
@@ -701,7 +699,7 @@
     wrap.innerHTML = `
       <div class="blog-featured-label">Featured Article</div>
       <a href="article.html?id=${blog.id}" class="blog-featured" style="display:block;text-decoration:none;">
-        ${blog.image ? `<img src="${blog.image}" alt="${blog.title}" class="blog-featured-img" style="object-position:${blog.imagePos || 'center center'}">` : `<div class="blog-featured-img" style="background:linear-gradient(135deg,#1a1000,#0d0800);display:flex;align-items:center;justify-content:center;font-size:5rem;">📰</div>`}
+        ${blog.image ? `<img src="${blog.image}" alt="${blog.title}" class="blog-featured-img" style="object-position:${blog.imagePos || 'center center'}">` : `<div class="blog-featured-img" style="background:linear-gradient(135deg,#1a1000,#0d0800);display:flex;align-items:center;justify-content:center;color:rgba(212,175,55,0.4);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="80" height="80"><path d="M4 22h14a2 2 0 0 0 2-2V7.5L14.5 2H6a2 2 0 0 0-2 2v4"></path><polyline points="14 2 14 8 20 8"></polyline><path d="M2 15h10"></path><path d="M2 19h10"></path></svg></div>`}
         <div class="blog-featured-overlay"></div>
         <div class="blog-featured-body">
           <div class="blog-featured-tag">${blog.category || 'Uncategorized'}</div>
@@ -721,7 +719,7 @@
     list.innerHTML = blogs.map(b => `
       <a href="article.html?id=${b.id}" class="blog-card" style="text-decoration:none;">
         <div class="blog-card-thumb">
-          ${b.image ? `<img src="${b.image}" alt="${b.title}" style="object-position:${b.imagePos||'center center'}">` : '📰'}
+          ${b.image ? `<img src="${b.image}" alt="${b.title}" style="object-position:${b.imagePos||'center center'}">` : '<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.02);color:rgba(212,175,55,0.4);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48"><path d="M4 22h14a2 2 0 0 0 2-2V7.5L14.5 2H6a2 2 0 0 0-2 2v4"></path><polyline points="14 2 14 8 20 8"></polyline><path d="M2 15h10"></path><path d="M2 19h10"></path></svg></div>'}
         </div>
         <div class="blog-card-body">
           <div class="blog-card-tag">${b.category || ''}</div>
@@ -739,7 +737,7 @@
     if (!recent.length) { el.innerHTML = '<p style="color:var(--w40);font-size:0.85rem;">No posts yet.</p>'; return; }
     el.innerHTML = recent.map(b => `
       <div class="recent-post">
-        <div class="rp-thumb">${b.image ? `<img src="${b.image}" alt="${b.title}" style="object-position:${b.imagePos||'center'}">` : '📰'}</div>
+        <div class="rp-thumb">${b.image ? `<img src="${b.image}" alt="${b.title}" style="object-position:${b.imagePos||'center'}">` : '<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.02);color:rgba(212,175,55,0.4);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24"><path d="M4 22h14a2 2 0 0 0 2-2V7.5L14.5 2H6a2 2 0 0 0-2 2v4"></path><polyline points="14 2 14 8 20 8"></polyline><path d="M2 15h10"></path><path d="M2 19h10"></path></svg></div>'}</div>
         <div class="rp-text"><a href="article.html?id=${b.id}">${b.title}</a><div class="rp-date">${b.date || ''}</div></div>
       </div>
     `).join('');
