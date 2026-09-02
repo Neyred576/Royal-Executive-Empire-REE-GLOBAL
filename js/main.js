@@ -189,16 +189,19 @@ document.addEventListener('DOMContentLoaded', () => {
   dropdownToggles.forEach(toggle => {
     toggle.addEventListener('click', (e) => {
       if (window.innerWidth <= 768) {
-        e.preventDefault();
-        const dropdown = toggle.nextElementSibling;
-        if (dropdown.style.visibility === 'visible') {
-          dropdown.style.visibility = 'hidden';
-          dropdown.style.opacity = '0';
-          dropdown.style.transform = 'translateY(10px)';
-        } else {
-          dropdown.style.visibility = 'visible';
-          dropdown.style.opacity = '1';
-          dropdown.style.transform = 'translateY(0)';
+        // Only toggle dropdown if clicking the arrow, otherwise navigate
+        if (e.target.closest('.drop-arrow')) {
+          e.preventDefault();
+          const dropdown = toggle.nextElementSibling;
+          if (dropdown.style.visibility === 'visible') {
+            dropdown.style.visibility = 'hidden';
+            dropdown.style.opacity = '0';
+            dropdown.style.transform = 'translateY(10px)';
+          } else {
+            dropdown.style.visibility = 'visible';
+            dropdown.style.opacity = '1';
+            dropdown.style.transform = 'translateY(0)';
+          }
         }
       }
     });

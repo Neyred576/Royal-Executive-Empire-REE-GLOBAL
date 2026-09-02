@@ -133,7 +133,7 @@ input, textarea, select { font-family: inherit; }
   position: relative;
 }
 .gold-rule::before {
-  content: 'âœ¦';
+  content: '✦';
   position: absolute;
   left: 50%;
   top: 50%;
