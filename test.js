@@ -1045,8 +1045,11 @@
             <div class="form-group">
               <label>Category</label>
               <select id="blog-cat" required>
+                <option value="Real Estate">Real Estate</option>
                 <option value="Business">Business</option>
                 <option value="Technology">Technology</option>
+                <option value="Branding & Marketing">Branding & Marketing</option>
+                <option value="Executive Lifestyle">Executive Lifestyle</option>
               </select>
             </div>
             <div class="form-group">
