@@ -922,6 +922,96 @@
       color: rgba(255,255,255,0.35);
     }
     .ql-word-count-bar span { display: flex; align-items: center; gap: 8px; }
+
+    /* ═ SEO PANEL ═ */
+    .seo-panel {
+      margin-top: 20px;
+      border: 1px solid rgba(212,175,55,0.25);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+    .seo-panel-toggle {
+      width: 100%;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 18px;
+      background: rgba(212,175,55,0.06);
+      border: none;
+      cursor: pointer;
+      color: var(--gold);
+      font-family: var(--font-body);
+      font-size: 0.82rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1.5px;
+      transition: background 0.3s;
+    }
+    .seo-panel-toggle:hover { background: rgba(212,175,55,0.1); }
+    .seo-panel-toggle .seo-toggle-left { display: flex; align-items: center; gap: 10px; }
+    .seo-panel-toggle svg { width: 16px; height: 16px; flex-shrink: 0; }
+    .seo-chevron { transition: transform 0.35s var(--ease); }
+    .seo-panel.open .seo-chevron { transform: rotate(180deg); }
+    .seo-panel-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.45s var(--ease), padding 0.3s ease;
+      padding: 0 18px;
+      background: rgba(10,10,10,0.6);
+    }
+    .seo-panel.open .seo-panel-body {
+      max-height: 600px;
+      padding: 20px 18px 22px;
+    }
+
+    /* Character counter bar */
+    .seo-counter {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 6px;
+      font-size: 0.7rem;
+    }
+    .seo-counter-bar-wrap {
+      flex: 1; height: 3px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 3px;
+      margin: 0 10px;
+      overflow: hidden;
+    }
+    .seo-counter-bar {
+      height: 100%; width: 0%;
+      border-radius: 3px;
+      background: #25D366;
+      transition: width 0.3s ease, background 0.3s ease;
+    }
+    .seo-counter-bar.warn { background: #D4AF37; }
+    .seo-counter-bar.over { background: #ff5757; }
+    .seo-counter-num { color: var(--w40); min-width: 50px; text-align: right; }
+
+    /* SERP preview */
+    .serp-preview {
+      margin-top: 16px;
+      background: #fff;
+      border-radius: 8px;
+      padding: 14px 18px;
+      font-family: Arial, sans-serif;
+    }
+    .serp-url {
+      font-size: 0.72rem;
+      color: #006621;
+      margin-bottom: 3px;
+      overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+    }
+    .serp-title {
+      font-size: 1rem; font-weight: 600;
+      color: #1a0dab;
+      margin-bottom: 4px;
+      overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+    }
+    .serp-desc {
+      font-size: 0.82rem; color: #545454; line-height: 1.5;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .serp-label {
+      font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1.5px; color: rgba(255,255,255,0.25);
+      margin-bottom: 8px; margin-top: 16px;
+    }
   </style>
 </head>
 <body id="admin-dashboard">
@@ -1238,7 +1328,61 @@
               <!-- Hidden input to hold HTML for form submission -->
               <input type="hidden" id="blog-content" />
             </div>
-            
+
+            <!-- ═ SEO & METADATA PANEL ═ -->
+            <div class="seo-panel" id="seo-panel">
+              <button type="button" class="seo-panel-toggle" id="seo-panel-toggle" aria-expanded="false">
+                <span class="seo-toggle-left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                  SEO &amp; Metadata
+                  <span style="font-size:0.65rem;font-weight:500;color:rgba(212,175,55,0.55);letter-spacing:0;text-transform:none;">— hidden from readers</span>
+                </span>
+                <svg class="seo-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <div class="seo-panel-body" id="seo-panel-body">
+
+                <!-- Focus Keyword -->
+                <div class="form-group">
+                  <label>Focus Keyword</label>
+                  <input type="text" id="blog-seo-keyword" placeholder="e.g. executive infrastructure Africa" maxlength="80" />
+                  <div class="seo-counter">
+                    <span style="color:rgba(255,255,255,0.3);">Main keyword Google should rank this post for</span>
+                  </div>
+                </div>
+
+                <!-- SEO Title -->
+                <div class="form-group">
+                  <label>SEO / Meta Title</label>
+                  <input type="text" id="blog-seo-title" placeholder="e.g. Executive Infrastructure in Africa | REEL Insights" maxlength="80" />
+                  <div class="seo-counter">
+                    <span style="color:rgba(255,255,255,0.3);">Ideal: 50–60 chars</span>
+                    <div class="seo-counter-bar-wrap"><div class="seo-counter-bar" id="seo-title-bar"></div></div>
+                    <span class="seo-counter-num" id="seo-title-count">0 / 60</span>
+                  </div>
+                </div>
+
+                <!-- Meta Description -->
+                <div class="form-group">
+                  <label>Meta Description</label>
+                  <textarea id="blog-seo-desc" placeholder="Why Africa's leading enterprises need infrastructure engineered to a global standard — not retrofitted from elsewhere. A REEL perspective." maxlength="200" style="min-height:80px; resize:vertical;"></textarea>
+                  <div class="seo-counter">
+                    <span style="color:rgba(255,255,255,0.3);">Ideal: 120–160 chars</span>
+                    <div class="seo-counter-bar-wrap"><div class="seo-counter-bar" id="seo-desc-bar"></div></div>
+                    <span class="seo-counter-num" id="seo-desc-count">0 / 160</span>
+                  </div>
+                </div>
+
+                <!-- Live SERP Preview -->
+                <div class="serp-label">Google Preview</div>
+                <div class="serp-preview" id="serp-preview-card">
+                  <div class="serp-url" id="serp-url">reelholding.com &#x203A; blog &#x203A; your-post-title</div>
+                  <div class="serp-title" id="serp-title-preview">Your SEO Title will appear here</div>
+                  <div class="serp-desc" id="serp-desc-preview">Your meta description will appear here. Keep it compelling and under 160 characters so Google shows it in full.</div>
+                </div>
+
+              </div>
+            </div>
+
             <div class="form-group" style="padding:15px; background:rgba(212,175,55,0.03); border-radius:8px; border:1px solid rgba(212,175,55,0.15);">
               <label style="color:var(--gold); display:flex; align-items:center; gap:8px;">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>

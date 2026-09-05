@@ -89,6 +89,67 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
+    // --- SEO PANEL: ACCORDION + LIVE COUNTERS + SERP PREVIEW ---
+    (function () {
+      const panel    = document.getElementById('seo-panel');
+      const toggle   = document.getElementById('seo-panel-toggle');
+      if (!panel || !toggle) return;
+
+      // Accordion open/close
+      toggle.addEventListener('click', () => {
+        const isOpen = panel.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', isOpen);
+      });
+
+      // Helper: update a counter bar
+      const updateBar = (val, ideal, max, barEl, countEl, labelMax) => {
+        const len  = val.length;
+        const pct  = Math.min((len / max) * 100, 100);
+        barEl.style.width = pct + '%';
+        barEl.classList.remove('warn', 'over');
+        if (len > max)        barEl.classList.add('over');
+        else if (len > ideal) barEl.classList.add('warn');
+        countEl.textContent = `${len} / ${labelMax}`;
+        countEl.style.color = len > max ? '#ff5757' : len > ideal ? '#D4AF37' : 'rgba(255,255,255,0.4)';
+      };
+
+      // SEO Title counter (ideal ≤60, max 80)
+      const seoTitleInput = document.getElementById('blog-seo-title');
+      const seoTitleBar   = document.getElementById('seo-title-bar');
+      const seoTitleCount = document.getElementById('seo-title-count');
+      const serpTitleEl   = document.getElementById('serp-title-preview');
+
+      if (seoTitleInput) {
+        seoTitleInput.addEventListener('input', () => {
+          updateBar(seoTitleInput.value, 60, 80, seoTitleBar, seoTitleCount, '60');
+          serpTitleEl.textContent = seoTitleInput.value.trim() || 'Your SEO Title will appear here';
+        });
+      }
+
+      // Meta Description counter (ideal ≤160, max 200)
+      const seoDescInput = document.getElementById('blog-seo-desc');
+      const seoDescBar   = document.getElementById('seo-desc-bar');
+      const seoDescCount = document.getElementById('seo-desc-count');
+      const serpDescEl   = document.getElementById('serp-desc-preview');
+
+      if (seoDescInput) {
+        seoDescInput.addEventListener('input', () => {
+          updateBar(seoDescInput.value, 160, 200, seoDescBar, seoDescCount, '160');
+          serpDescEl.textContent = seoDescInput.value.trim() || 'Your meta description will appear here...';
+        });
+      }
+
+      // Update SERP URL slug from the post title
+      const blogTitleInput = document.getElementById('blog-title');
+      const serpUrlEl      = document.getElementById('serp-url');
+      if (blogTitleInput && serpUrlEl) {
+        blogTitleInput.addEventListener('input', () => {
+          const slug = blogTitleInput.value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || 'your-post-title';
+          serpUrlEl.textContent = `reelholding.com › blog › ${slug}`;
+        });
+      }
+    })();
+
     // --- FIREBASE INITIALIZATION WAIT ---
     const waitForDb = (callback) => {
       if (window.db) {
@@ -214,6 +275,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else {
                   document.getElementById('blog-content').value = data.content || '';
                 }
+                // Restore SEO fields
+                const kw  = document.getElementById('blog-seo-keyword');
+                const st  = document.getElementById('blog-seo-title');
+                const sd  = document.getElementById('blog-seo-desc');
+                if (kw) kw.value = data.seoKeyword || '';
+                if (st) { st.value = data.seoTitle || ''; st.dispatchEvent(new Event('input')); }
+                if (sd) { sd.value = data.seoDesc  || ''; sd.dispatchEvent(new Event('input')); }
                 window.editBlogId = id;
                 const submitBtn = document.querySelector('#form-blog button[type="submit"]');
                 if (submitBtn) submitBtn.innerHTML = 'Update Blog Post';
@@ -395,9 +463,14 @@ document.addEventListener('DOMContentLoaded', () => {
       let sTime = status === 'scheduled' ? pendingScheduleTime : null;
       const submitBtn = document.querySelector('#form-blog button[type="submit"]');
 
+      const seoKeyword = (document.getElementById('blog-seo-keyword') || {}).value || '';
+      const seoTitle   = (document.getElementById('blog-seo-title')   || {}).value || '';
+      const seoDesc    = (document.getElementById('blog-seo-desc')    || {}).value || '';
+
       const saveBlog = (imageData) => {
         const payload = {
           title, category, content, status, scheduleTime: sTime,
+          seoKeyword, seoTitle, seoDesc,
           date: (status === 'scheduled' && sTime) ? new Date(sTime).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
         };
         if (imageData) {

@@ -554,8 +554,31 @@
       const pageUrl = encodeURIComponent(window.location.href);
       const pageTitle = encodeURIComponent(b.title || '');
 
-      // Update page title and meta
-      document.title = `${b.title} | REEL`;
+      // Update page title and meta with SEO fields from Firestore
+      document.title = (b.seoTitle && b.seoTitle.trim()) ? b.seoTitle : `${b.title} | REEL`;
+
+      // Meta description
+      let metaDesc = document.querySelector('meta[name="description"]');
+      if (!metaDesc) { metaDesc = document.createElement('meta'); metaDesc.name = 'description'; document.head.appendChild(metaDesc); }
+      metaDesc.content = (b.seoDesc && b.seoDesc.trim()) ? b.seoDesc : `Read "${b.title}" — an exclusive insight from Royalty Executive Empire Limited.`;
+
+      // Focus keyword as meta keywords
+      if (b.seoKeyword && b.seoKeyword.trim()) {
+        let metaKw = document.querySelector('meta[name="keywords"]');
+        if (!metaKw) { metaKw = document.createElement('meta'); metaKw.name = 'keywords'; document.head.appendChild(metaKw); }
+        metaKw.content = b.seoKeyword;
+      }
+
+      // Open Graph tags
+      const setOG = (prop, val) => {
+        let el = document.querySelector(`meta[property="${prop}"]`);
+        if (!el) { el = document.createElement('meta'); el.setAttribute('property', prop); document.head.appendChild(el); }
+        el.setAttribute('content', val);
+      };
+      setOG('og:title',       document.title);
+      setOG('og:description', metaDesc.content);
+      if (b.image) setOG('og:image', b.image);
+      setOG('og:url', window.location.href);
 
       main.innerHTML = `
         <!-- Hero -->
