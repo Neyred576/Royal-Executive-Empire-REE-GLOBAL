@@ -1391,6 +1391,7 @@
               <select id="blog-status" style="margin-bottom:12px;">
                 <option value="published">Publish Immediately</option>
                 <option value="scheduled">Schedule for Later</option>
+                <option value="archived">Archived (Hide from Public)</option>
               </select>
               <div id="blog-schedule-wrap" style="display:none;">
                 <label style="font-size:0.65rem;">Schedule Date & Time</label>
@@ -1493,6 +1494,7 @@
               <select id="prop-status" style="margin-bottom:12px;">
                 <option value="published">Publish Immediately</option>
                 <option value="scheduled">Schedule for Later</option>
+                <option value="archived">Archived (Hide from Public)</option>
               </select>
               <div id="prop-schedule-wrap" style="display:none;">
                 <label style="font-size:0.65rem;">Schedule Date & Time</label>
@@ -1577,6 +1579,7 @@
               <select id="power-status" style="margin-bottom:12px;">
                 <option value="published">Publish Immediately</option>
                 <option value="scheduled">Schedule for Later</option>
+                <option value="archived">Archived (Hide from Public)</option>
               </select>
               <div id="power-schedule-wrap" style="display:none;">
                 <label style="font-size:0.65rem;">Schedule Date & Time</label>
@@ -1629,6 +1632,10 @@
               <input type="number" step="0.01" id="shop-price" placeholder="e.g. 299.99" required />
             </div>
             <div class="form-group">
+              <label>Product Description</label>
+              <textarea id="shop-description" placeholder="Enter product details and description..." required style="width: 100%; min-height: 100px; padding: 12px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--w08); color: #fff; font-family: var(--font-body); resize: vertical;"></textarea>
+            </div>
+            <div class="form-group">
               <label>Category</label>
               <select id="shop-cat" required>
                 <option value="Electronics">Electronics</option>
@@ -1660,6 +1667,7 @@
               <select id="shop-status" style="margin-bottom:12px;">
                 <option value="published">Publish Immediately</option>
                 <option value="scheduled">Schedule for Later</option>
+                <option value="archived">Archived (Hide from Public)</option>
               </select>
               <div id="shop-schedule-wrap" style="display:none;">
                 <label style="font-size:0.65rem;">Schedule Date & Time</label>
@@ -1738,6 +1746,7 @@
               <select id="brand-status" style="margin-bottom:12px;">
                 <option value="published">Publish Immediately</option>
                 <option value="scheduled">Schedule for Later</option>
+                <option value="archived">Archived (Hide from Public)</option>
               </select>
             </div>
             <button type="submit" class="btn-submit">
@@ -2121,9 +2130,10 @@
         const imgSrc = item.image || '';
         const title = item.title || item.name;
         const sub = item.date || item.category || `$${item.price}`;
-        // Show Edit button only for blogs
-        const editBtnHtml = type === 'blog' ? `
-          <button class="btn-edit-blog" data-id="${item.id}" data-idx="${idx}" style="
+        // Show Edit button for supported types
+        const allowedTypes = ['blog', 'property', 'power_product', 'product', 'brand'];
+        const editBtnHtml = allowedTypes.includes(type) ? `
+          <button class="btn-edit-item" data-id="${item.id}" data-idx="${idx}" data-type="${type}" style="
             background: linear-gradient(135deg,#D4AF37,#8B6914);
             color:#000; border:none; border-radius:8px;
             padding:8px 14px; font-size:0.78rem; font-weight:700;
@@ -2148,35 +2158,111 @@
         c.appendChild(div);
       });
 
-      // Wire Edit buttons for blogs
-      c.querySelectorAll('.btn-edit-blog').forEach(btn => {
+      // Wire Edit buttons for items
+      c.querySelectorAll('.btn-edit-item').forEach(btn => {
         btn.addEventListener('click', () => {
           const id = btn.dataset.id;
-          const blogItem = arr.find(b => b.id === id);
-          if (!blogItem) return;
-          // Switch to blog section
-          document.querySelectorAll('.admin-nav-link').forEach(l => l.classList.remove('active'));
-          document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
-          const blogLink = document.querySelector('[data-target="sec-blog"]');
-          if (blogLink) blogLink.classList.add('active');
-          const blogSec = document.getElementById('sec-blog');
-          if (blogSec) blogSec.classList.add('active');
-          // Pre-fill the form
-          document.getElementById('blog-title').value = blogItem.title || '';
-          const catEl = document.getElementById('blog-cat');
-          if (catEl && blogItem.category) catEl.value = blogItem.category;
-          if (blogQuill) {
-            blogQuill.root.innerHTML = blogItem.content || '';
-          } else if (document.getElementById('blog-content')) {
-            document.getElementById('blog-content').value = blogItem.content || '';
+          const itemType = btn.dataset.type;
+          const itemData = arr.find(b => b.id === id);
+          if (!itemData) return;
+
+          const switchSection = (targetSecId) => {
+            document.querySelectorAll('.admin-nav-link').forEach(l => l.classList.remove('active'));
+            document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
+            const link = document.querySelector(`[data-target="${targetSecId}"]`);
+            if (link) link.classList.add('active');
+            const sec = document.getElementById(targetSecId);
+            if (sec) sec.classList.add('active');
+          };
+
+          if (itemType === 'blog') {
+            switchSection('sec-blog');
+            document.getElementById('blog-title').value = itemData.title || '';
+            const catEl = document.getElementById('blog-cat');
+            if (catEl && itemData.category) catEl.value = itemData.category;
+            if (blogQuill) {
+              blogQuill.root.innerHTML = itemData.content || '';
+            } else if (document.getElementById('blog-content')) {
+              document.getElementById('blog-content').value = itemData.content || '';
+            }
+            const form = document.getElementById('form-blog');
+            form.dataset.editId = id;
+            form.dataset.editImage = itemData.image || '';
+            const submitBtn = form.querySelector('button[type="submit"]');
+            if (submitBtn) submitBtn.innerHTML = 'Update Blog Post';
+          } 
+          else if (itemType === 'property') {
+            switchSection('sec-properties');
+            document.getElementById('prop-title').value = itemData.title || '';
+            document.getElementById('prop-caption').value = itemData.caption || '';
+            document.getElementById('prop-price').value = itemData.price || '';
+            const detailsEl = document.getElementById('prop-details');
+            if (detailsEl) detailsEl.value = itemData.details || '';
+            const videoEl = document.getElementById('prop-video');
+            if (videoEl) videoEl.value = itemData.videoLink || itemData.video || '';
+            const statusEl = document.getElementById('prop-status');
+            if (statusEl) statusEl.value = itemData.status || 'published';
+            
+            const form = document.getElementById('form-properties');
+            form.dataset.editId = id;
+            form.dataset.editImage = itemData.image || '';
+            const submitBtn = form.querySelector('button[type="submit"]');
+            if (submitBtn) submitBtn.innerHTML = 'Update Property';
           }
-          // Store editId on the form for submission
-          const form = document.getElementById('form-blog');
-          form.dataset.editId = id;
-          form.dataset.editImage = blogItem.image || '';
-          // Update submit button
-          const submitBtn = form.querySelector('button[type="submit"]');
-          if (submitBtn) submitBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v14a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Update Blog Post';
+          else if (itemType === 'power_product') {
+            switchSection('sec-power');
+            document.getElementById('power-name').value = itemData.name || '';
+            document.getElementById('power-caption').value = itemData.caption || '';
+            document.getElementById('power-price').value = itemData.price || '';
+            const detailsEl = document.getElementById('power-details');
+            if (detailsEl) detailsEl.value = itemData.details || '';
+            const videoEl = document.getElementById('power-video');
+            if (videoEl) videoEl.value = itemData.videoLink || itemData.video || '';
+            const statusEl = document.getElementById('power-status');
+            if (statusEl) statusEl.value = itemData.status || 'published';
+            const featuredCheckbox = document.getElementById('power-featured');
+            if (featuredCheckbox) featuredCheckbox.checked = !!itemData.featured;
+
+            const form = document.getElementById('form-power');
+            form.dataset.editId = id;
+            form.dataset.editImage = itemData.image || '';
+            const submitBtn = form.querySelector('button[type="submit"]');
+            if (submitBtn) submitBtn.innerHTML = 'Update Product';
+          }
+          else if (itemType === 'product') {
+            switchSection('sec-shop');
+            document.getElementById('shop-name').value = itemData.name || '';
+            document.getElementById('shop-price').value = itemData.price || '';
+            const catEl = document.getElementById('shop-cat');
+            if (catEl) catEl.value = itemData.category || 'Electronics';
+            const descEl = document.getElementById('shop-description');
+            if (descEl) descEl.value = itemData.description || '';
+            const statusEl = document.getElementById('shop-status');
+            if (statusEl) statusEl.value = itemData.status || 'published';
+
+            const form = document.getElementById('form-shop');
+            form.dataset.editId = id;
+            form.dataset.editImage = itemData.image || '';
+            const submitBtn = form.querySelector('button[type="submit"]');
+            if (submitBtn) submitBtn.innerHTML = 'Update Product';
+          }
+          else if (itemType === 'brand') {
+            switchSection('sec-brands');
+            document.getElementById('brand-name').value = itemData.name || '';
+            document.getElementById('brand-sector').value = itemData.sector || '';
+            document.getElementById('brand-link').value = itemData.link || '';
+            const blogLink = document.getElementById('brand-blog-link');
+            if (blogLink) blogLink.value = itemData.linkedBlogId || '';
+            const statusEl = document.getElementById('brand-status');
+            if (statusEl) statusEl.value = itemData.status || 'published';
+
+            const form = document.getElementById('form-brands');
+            form.dataset.editId = id;
+            form.dataset.editImage = itemData.image || '';
+            const submitBtn = form.querySelector('button[type="submit"]');
+            if (submitBtn) submitBtn.innerHTML = 'Update Brand';
+          }
+
           window.scrollTo({ top: 0, behavior: 'smooth' });
         });
       });
@@ -2578,7 +2664,10 @@
 
         const fileInput = document.getElementById('prop-img');
         const files = Array.from(fileInput.files);
-        if (files.length === 0) { showToast('No Image', 'Please select a property image.', 'delete'); return; }
+        
+        const editId = propForm.dataset.editId;
+        if (files.length === 0 && !editId) { showToast('No Image', 'Please select a property image.', 'delete'); return; }
+
         if (files.length > 5) { showToast('Error', 'Maximum 5 images allowed.', 'delete'); return; }
 
         const statusVal = document.getElementById('prop-status').value;
@@ -2593,26 +2682,24 @@
         btn.disabled = true;
 
         try {
-          const imageUrls = [];
-          for (let file of files) {
-            // 1. Convert to base64
-            const base64Image = await new Promise((resolve, reject) => {
-              const reader = new FileReader();
-              reader.readAsDataURL(file);
-              reader.onload = () => resolve(reader.result.split(',')[1]);
-              reader.onerror = err => reject(err);
-            });
-
-            // 2. Upload to ImgBB
-            const formData = new FormData();
-            formData.append('image', base64Image);
-            const res = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
-              method: 'POST',
-              body: formData
-            });
-            const imgData = await res.json();
-            if (!imgData.success) throw new Error('ImgBB Error: ' + (imgData.error?.message || 'Upload Failed'));
-            imageUrls.push(imgData.data.url);
+          let imageUrls = [];
+          if (files.length > 0) {
+              for (let file of files) {
+                const base64Image = await new Promise((resolve, reject) => {
+                  const reader = new FileReader();
+                  reader.readAsDataURL(file);
+                  reader.onload = () => resolve(reader.result.split(',')[1]);
+                  reader.onerror = err => reject(err);
+                });
+                const formData = new FormData();
+                formData.append('image', base64Image);
+                const res = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, { method: 'POST', body: formData });
+                const imgData = await res.json();
+                if (!imgData.success) throw new Error('ImgBB Error: ' + (imgData.error?.message || 'Upload Failed'));
+                imageUrls.push(imgData.data.url);
+              }
+          } else if (editId && propForm.dataset.editImage) {
+              imageUrls.push(propForm.dataset.editImage);
           }
 
           btn.innerHTML = 'Saving...';
@@ -2631,7 +2718,19 @@
             timestamp: firebase.firestore.FieldValue.serverTimestamp()
           };
 
-          await window.db.collection('properties').add(payload);
+          
+          const editId = propForm.dataset.editId;
+          if (editId) {
+            await window.db.collection('properties').doc(editId).update(payload);
+            const idx = properties.findIndex(p => p.id === editId);
+            if(idx !== -1) properties[idx] = {id: editId, ...payload};
+            delete propForm.dataset.editId;
+            delete propForm.dataset.editImage;
+          } else {
+            const docRef = await window.db.collection('properties').add(payload);
+            properties.unshift({ id: docRef.id, ...payload });
+          }
+
 
           showToast('Success!', 'Property saved! Redirecting to REEL Properties...');
 
@@ -2796,19 +2895,22 @@
         btn.disabled = true;
 
         try {
-          const getBase64 = (f) => new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(f);
-            reader.onload = () => resolve(reader.result.split(',')[1]);
-            reader.onerror = err => reject(err);
-          });
-          const base64Image = await getBase64(file);
-          const fd = new FormData();
-          fd.append('image', base64Image);
-          const res = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, { method: 'POST', body: fd });
-          const data = await res.json();
-          if (!data.success) throw new Error('ImgBB Error: ' + (data.error?.message || 'Upload Failed'));
-          const imageUrl = data.data.url;
+          let imageUrl = editId ? powerForm.dataset.editImage : '';
+          if (file) {
+              const getBase64 = (f) => new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(f);
+                reader.onload = () => resolve(reader.result.split(',')[1]);
+                reader.onerror = err => reject(err);
+              });
+              const base64Image = await getBase64(file);
+              const fd = new FormData();
+              fd.append('image', base64Image);
+              const res = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, { method: 'POST', body: fd });
+              const data = await res.json();
+              if (!data.success) throw new Error('ImgBB Error: ' + (data.error?.message || 'Upload Failed'));
+              imageUrl = data.data.url;
+          }
 
           btn.innerHTML = 'Saving...';
 
@@ -2825,8 +2927,22 @@
             timestamp: firebase.firestore.FieldValue.serverTimestamp()
           };
 
-          const docRef = await window.db.collection('brands').add(payload);
-          brands.unshift({ id: docRef.id, ...payload });
+          
+          const editId = brandForm.dataset.editId;
+          let docRefId = '';
+          if (editId) {
+            await window.db.collection('brands').doc(editId).update(payload);
+            const idx = brands.findIndex(p => p.id === editId);
+            if(idx !== -1) brands[idx] = {id: editId, ...payload};
+            delete brandForm.dataset.editId;
+            delete brandForm.dataset.editImage;
+          } else {
+            const docRef = await window.db.collection('brands').add(payload);
+            docRefId = docRef.id;
+            brands.unshift({ id: docRefId, ...payload });
+          }
+
+          
           renderList(brands, 'brands-list', 'brand', 'brands');
           showToast('Brand Added!', `${payload.name} now appears in Our Alliances.`);
           brandForm.reset();

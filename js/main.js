@@ -618,13 +618,13 @@ document.addEventListener('DOMContentLoaded', () => {
           const gridInner = document.getElementById('products-grid-inner');
           products.forEach(p => {
             gridInner.innerHTML += `
-              <div class="product-card">
+              <div class="product-card" style="cursor:pointer;" onclick="openShopModal('${p.id}')">
                 <div class="product-img" style="background: url('${p.image}') ${p.imagePos || 'center center'}/cover; min-height:240px;"></div>
                 <div class="product-info">
                   <div class="product-cat">${p.category}</div>
                   <h3 class="product-title">${p.name}</h3>
                   <div class="product-price">AED ${Number(p.price).toFixed(2)}</div>
-                  <button class="btn-gold" style="width:100%; justify-content:center;" onclick="addToCart('${p.id}', '${p.name.replace(/'/g, "\\'")}', ${Number(p.price)}, '${p.image}')">Add to Cart</button>
+                  <button class="btn-gold" style="width:100%; justify-content:center;" onclick="event.stopPropagation(); addToCart('${p.id}', '${p.name.replace(/'/g, "\\'")}', ${Number(p.price)}, '${p.image}')">Add to Cart</button>
                 </div>
               </div>
             `;
@@ -954,11 +954,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   window.addToCart = (id, name, price, image) => {
+    const safeName = (name && name !== 'undefined') ? name : 'Unknown Product';
     const existing = cart.find(item => item.id === id);
     if (existing) {
       existing.qty += 1;
     } else {
-      cart.push({ id, name, price, image, qty: 1 });
+      cart.push({ id, name: safeName, price: parseFloat(price) || 0, image, qty: 1 });
     }
     try { localStorage.setItem('ree_cart', JSON.stringify(cart)); } catch (e) { }
     updateCartCount();
@@ -989,6 +990,60 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
+
+  // Shop Details Modal
+  window.openShopModal = async (id) => {
+    if (!window.db) return;
+    try {
+      const doc = await window.db.collection('products').doc(id).get();
+      if (!doc.exists) return;
+      const p = { id: doc.id, ...doc.data() };
+      
+      let modal = document.getElementById('shop-modal-overlay');
+      if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'shop-modal-overlay';
+        modal.className = 'power-modal-overlay';
+        document.body.appendChild(modal);
+      }
+      
+      modal.innerHTML = `
+        <div class="power-modal-content">
+          <button class="power-modal-close" id="shop-modal-close-btn">&times;</button>
+          <div class="power-modal-grid">
+            <div class="power-modal-media" style="background: url('${p.image}') center center/cover; min-height: 300px; border-radius: 8px;"></div>
+            <div class="power-modal-info">
+              <div class="power-modal-cat" style="color:var(--gold); font-size:0.8rem; text-transform:uppercase; margin-bottom:8px;">${p.category || 'Premium'}</div>
+              <h2 style="font-family:var(--font-display); font-size:2rem; margin-bottom:12px;">${p.name || 'Premium Product'}</h2>
+              <div style="font-size:1.5rem; color:#fff; margin-bottom:24px;">AED ${Number(p.price || 0).toFixed(2)}</div>
+              <p style="color:var(--w60); line-height:1.6; margin-bottom:32px; white-space:pre-wrap;">${p.description || 'A premium executive product crafted to perfection.'}</p>
+              <div class="power-modal-actions">
+                <button class="btn-gold" style="width:100%; justify-content:center;" onclick="addToCart('${p.id}', '${(p.name||'').replace(/'/g, "\\'")}', ${Number(p.price)||0}, '${p.image}')">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+      
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      
+      document.getElementById('shop-modal-close-btn').addEventListener('click', () => {
+        modal.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.classList.remove('open');
+          document.body.style.overflow = '';
+        }
+      });
+    } catch (e) {
+      console.error("Error opening shop modal:", e);
+    }
+  };
 
 
   // WhatsApp Checkout

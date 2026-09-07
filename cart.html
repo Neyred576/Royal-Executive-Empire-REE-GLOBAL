@@ -528,7 +528,7 @@
             }
           </div>
           <div>
-            <div class="cart-item-name">${item.name}</div>
+            <div class="cart-item-name">${(item.name && item.name !== 'undefined') ? item.name : 'Unknown Product'}</div>
             <div class="cart-item-cat">${item.category || 'Premium'}</div>
           </div>
         </div>

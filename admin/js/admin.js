@@ -223,7 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const id = docSnap.id;
         const div = document.createElement('div');
         div.className = 'admin-list-item';
-        let editBtn = (type === 'blog' || type === 'power') ? `<button class="btn-edit" data-id="${id}" data-type="${type}" style="margin-right:8px; background:var(--gold); color:#000;">Edit</button>` : '';
+        let editBtn = (type === 'blog' || type === 'power' || type === 'properties' || type === 'product' || type === 'brands') ? `<button class="btn-edit" data-id="${id}" data-type="${type}" style="margin-right:8px; background:var(--gold); color:#000;">Edit</button>` : '';
         div.innerHTML = `
           <div class="item-info">
             <strong>${item.title || item.name} ${item.status === 'scheduled' ? '<span style="color:#D4AF37; font-size:0.7rem;">(Scheduled)</span>' : ''}</strong>
@@ -255,11 +255,67 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.editPowerId = id;
                 const submitBtn = document.querySelector('#form-power button[type="submit"]');
                 if (submitBtn) submitBtn.innerHTML = 'Update Product';
-                // Navigate to power section
                 document.querySelectorAll('.admin-nav-link').forEach(l => l.classList.remove('active'));
                 document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
                 document.querySelector('[data-target="sec-power"]').classList.add('active');
                 document.getElementById('sec-power').classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }
+            });
+          } else if (t === 'properties') {
+            window.db.collection('properties').doc(id).get().then(doc => {
+              if (doc.exists) {
+                const data = doc.data();
+                document.getElementById('prop-title').value = data.title || '';
+                document.getElementById('prop-caption').value = data.caption || '';
+                document.getElementById('prop-price').value = data.price || '';
+                document.getElementById('prop-details').value = data.details || '';
+                document.getElementById('prop-video').value = data.video || '';
+                document.getElementById('prop-status').value = data.status || 'published';
+                window.editPropId = id;
+                const submitBtn = document.querySelector('#form-properties button[type="submit"]');
+                if (submitBtn) submitBtn.innerHTML = 'Update Property';
+                document.querySelectorAll('.admin-nav-link').forEach(l => l.classList.remove('active'));
+                document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
+                document.querySelector('[data-target="sec-properties"]').classList.add('active');
+                document.getElementById('sec-properties').classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }
+            });
+          } else if (t === 'product') {
+            window.db.collection('products').doc(id).get().then(doc => {
+              if (doc.exists) {
+                const data = doc.data();
+                document.getElementById('shop-name').value = data.name || '';
+                document.getElementById('shop-price').value = data.price || '';
+                document.getElementById('shop-cat').value = data.category || 'Electronics';
+                document.getElementById('shop-description').value = data.description || '';
+                document.getElementById('shop-status').value = data.status || 'published';
+                window.editShopId = id;
+                const submitBtn = document.querySelector('#form-shop button[type="submit"]');
+                if (submitBtn) submitBtn.innerHTML = 'Update Product';
+                document.querySelectorAll('.admin-nav-link').forEach(l => l.classList.remove('active'));
+                document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
+                document.querySelector('[data-target="sec-shop"]').classList.add('active');
+                document.getElementById('sec-shop').classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }
+            });
+          } else if (t === 'brands') {
+            window.db.collection('brands').doc(id).get().then(doc => {
+              if (doc.exists) {
+                const data = doc.data();
+                document.getElementById('brand-name').value = data.name || '';
+                document.getElementById('brand-sector').value = data.sector || '';
+                document.getElementById('brand-link').value = data.link || '';
+                document.getElementById('brand-status').value = data.status || 'published';
+                window.editBrandId = id;
+                const submitBtn = document.querySelector('#form-brands button[type="submit"]');
+                if (submitBtn) submitBtn.innerHTML = 'Update Brand';
+                document.querySelectorAll('.admin-nav-link').forEach(l => l.classList.remove('active'));
+                document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
+                document.querySelector('[data-target="sec-brands"]').classList.add('active');
+                document.getElementById('sec-brands').classList.add('active');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }
             });
@@ -275,7 +331,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else {
                   document.getElementById('blog-content').value = data.content || '';
                 }
-                // Restore SEO fields
                 const kw  = document.getElementById('blog-seo-keyword');
                 const st  = document.getElementById('blog-seo-title');
                 const sd  = document.getElementById('blog-seo-desc');
@@ -517,6 +572,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const title = document.getElementById('prop-title').value;
       const caption = document.getElementById('prop-caption').value;
       const price = document.getElementById('prop-price').value;
+      const details = (document.getElementById('prop-details') || {}).value || '';
+      const video = (document.getElementById('prop-video') || {}).value || '';
       const status = document.getElementById('prop-status').value;
       const fileInput = document.getElementById('prop-img');
 
@@ -527,22 +584,40 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       let sTime = status === 'scheduled' ? pendingScheduleTime : null;
+      const submitBtn = document.querySelector('#form-properties button[type="submit"]');
+      const isEdit = !!window.editPropId;
+
+      const saveProp = (imageData) => {
+        const payload = { title, caption, price, details, video, status, scheduleTime: sTime };
+        if (imageData) payload.image = imageData;
+
+        let promise;
+        if (isEdit) {
+          promise = window.db.collection('properties').doc(window.editPropId).update(payload);
+        } else {
+          payload.timestamp = Date.now();
+          promise = window.db.collection('properties').add(payload);
+        }
+
+        promise.then(() => {
+          e.target.reset();
+          pendingScheduleTime = null;
+          window.editPropId = null;
+          if (submitBtn) submitBtn.innerHTML = 'Add Property';
+          showToast(isEdit ? 'Updated' : 'Added', isEdit ? 'Property updated successfully.' : 'Property saved.');
+        });
+      };
 
       if (fileInput.files && fileInput.files[0]) {
         const reader = new FileReader();
-        reader.onload = function (evt) {
-          window.db.collection('properties').add({
-            title, caption, price, status, scheduleTime: sTime,
-            image: evt.target.result,
-            timestamp: Date.now()
-          }).then(() => {
-            e.target.reset(); pendingScheduleTime = null;
-            showToast('Added', 'Property saved.');
-          });
-        };
+        reader.onload = (evt) => saveProp(evt.target.result);
         reader.readAsDataURL(fileInput.files[0]);
       } else {
-        alert("Please select an image.");
+        if (isEdit) {
+          saveProp(null);
+        } else {
+          alert("Please select an image.");
+        }
       }
     });
 
@@ -552,32 +627,50 @@ document.addEventListener('DOMContentLoaded', () => {
       const name = document.getElementById('shop-name').value;
       const price = document.getElementById('shop-price').value;
       const category = document.getElementById('shop-cat').value;
+      const description = (document.getElementById('shop-description') || {}).value || '';
       const status = document.getElementById('shop-status').value;
       const fileInput = document.getElementById('shop-img');
 
-      // Guard: user selected 'scheduled' but never confirmed a time
       if (status === 'scheduled' && !pendingScheduleTime) {
         alert("Please set a schedule date & time before saving.");
         return;
       }
 
       let sTime = status === 'scheduled' ? pendingScheduleTime : null;
+      const submitBtn = document.querySelector('#form-shop button[type="submit"]');
+      const isEdit = !!window.editShopId;
+
+      const saveShop = (imageData) => {
+        const payload = { name, price, category, description, status, scheduleTime: sTime };
+        if (imageData) payload.image = imageData;
+
+        let promise;
+        if (isEdit) {
+          promise = window.db.collection('products').doc(window.editShopId).update(payload);
+        } else {
+          payload.timestamp = Date.now();
+          promise = window.db.collection('products').add(payload);
+        }
+
+        promise.then(() => {
+          e.target.reset();
+          pendingScheduleTime = null;
+          window.editShopId = null;
+          if (submitBtn) submitBtn.innerHTML = 'Add to Shop';
+          showToast(isEdit ? 'Updated' : 'Added', isEdit ? 'Product updated successfully.' : 'Product saved to shop.');
+        });
+      };
 
       if (fileInput.files && fileInput.files[0]) {
         const reader = new FileReader();
-        reader.onload = function (evt) {
-          window.db.collection('products').add({
-            name, price, category, status, scheduleTime: sTime,
-            image: evt.target.result,
-            timestamp: Date.now()
-          }).then(() => {
-            e.target.reset(); pendingScheduleTime = null;
-            showToast('Added', 'Product saved to shop.');
-          });
-        };
+        reader.onload = (evt) => saveShop(evt.target.result);
         reader.readAsDataURL(fileInput.files[0]);
       } else {
-        alert("Please select an image.");
+        if (isEdit) {
+          saveShop(null);
+        } else {
+          alert("Please select an image.");
+        }
       }
     });
 
