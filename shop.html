@@ -260,6 +260,118 @@
     @media(max-width:640px){ .shop-controls { flex-direction: column; align-items: flex-start; } }
   </style>
 
+  <!-- ── Product Modal ── -->
+  <style>
+    .shop-modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(5,5,5,0.85);
+      backdrop-filter: blur(12px);
+      z-index: 10000;
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+    .shop-modal-overlay.open { opacity: 1; pointer-events: all; }
+    .shop-modal {
+      background: linear-gradient(145deg, #0e0e0e, #161616);
+      border: 1px solid var(--gold-border);
+      border-radius: 24px;
+      max-width: 860px; width: 100%;
+      max-height: 90vh; overflow-y: auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      box-shadow: 0 40px 120px rgba(0,0,0,0.8), 0 0 0 1px rgba(212,175,55,0.08);
+      transform: scale(0.94) translateY(20px);
+      transition: transform 0.35s cubic-bezier(0.2,0.8,0.2,1);
+    }
+    .shop-modal-overlay.open .shop-modal { transform: scale(1) translateY(0); }
+    .shop-modal-img-col {
+      position: relative; overflow: hidden;
+      border-radius: 24px 0 0 24px;
+      background: var(--black-700);
+      min-height: 360px;
+    }
+    .shop-modal-img-col img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .shop-modal-img-placeholder {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 5rem;
+      background: linear-gradient(135deg, #111, rgba(212,175,55,0.06));
+    }
+    .shop-modal-badge {
+      position: absolute; top: 16px; left: 16px;
+      background: var(--gold-gradient);
+      color: var(--black-900);
+      font-size: 0.62rem; font-weight: 800;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 999px;
+    }
+    .shop-modal-body {
+      padding: 40px 36px;
+      display: flex; flex-direction: column;
+    }
+    .shop-modal-close {
+      position: absolute; top: 18px; right: 18px;
+      width: 38px; height: 38px; border-radius: 50%;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--w70); cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.3s; font-size: 1.1rem;
+      z-index: 10;
+    }
+    .shop-modal-close:hover { background: rgba(230,57,70,0.2); color: #E63946; border-color: #E63946; }
+    .shop-modal-cat {
+      font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--gold-300); margin-bottom: 10px;
+    }
+    .shop-modal-name {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      color: #fff; line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .shop-modal-price {
+      font-family: var(--font-display);
+      font-size: 1.8rem; font-weight: 700;
+      color: var(--gold-300); margin-bottom: 24px;
+    }
+    .shop-modal-divider {
+      height: 1px; background: rgba(255,255,255,0.07);
+      margin-bottom: 20px;
+    }
+    .shop-modal-desc {
+      color: var(--w60); font-size: 0.92rem;
+      line-height: 1.8; flex: 1;
+      margin-bottom: 28px;
+    }
+    .shop-modal-actions {
+      display: flex; gap: 12px; flex-wrap: wrap;
+    }
+    .shop-modal-actions .btn-add-cart {
+      flex: 1; justify-content: center;
+      padding: 14px 20px; font-size: 0.9rem;
+      border-radius: 10px;
+    }
+    .shop-modal-actions .btn-wish {
+      width: 48px; height: 48px; border-radius: 10px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--gold-border);
+      color: var(--w60); cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.3s; flex-shrink: 0;
+    }
+    .shop-modal-actions .btn-wish:hover { color: #e74c3c; border-color: rgba(231,76,60,0.5); }
+    @media(max-width:640px) {
+      .shop-modal { grid-template-columns: 1fr; }
+      .shop-modal-img-col { border-radius: 24px 24px 0 0; min-height: 220px; }
+    }
+  </style>
+
   <link rel="manifest" href="/manifest.json" />
   <meta name="theme-color" content="#D4AF37" />
   <link rel="apple-touch-icon" href="/Images/icons/icon-192x192.png" />
@@ -575,6 +687,32 @@
   <script src="js/firebase-init.js"></script>
 <script src="js/main.js"></script>
 
+<!-- Product Detail Modal -->
+<div class="shop-modal-overlay" id="shop-modal-overlay" role="dialog" aria-modal="true" aria-label="Product Details">
+  <div class="shop-modal" id="shop-modal">
+    <div class="shop-modal-img-col" id="modal-img-col">
+      <!-- image injected by JS -->
+    </div>
+    <div class="shop-modal-body" style="position:relative;">
+      <button class="shop-modal-close" id="modal-close-btn" aria-label="Close modal">&times;</button>
+      <div class="shop-modal-cat" id="modal-cat"></div>
+      <div class="shop-modal-name" id="modal-name"></div>
+      <div class="shop-modal-price" id="modal-price"></div>
+      <div class="shop-modal-divider"></div>
+      <div class="shop-modal-desc" id="modal-desc">Premium quality product from the REEL exclusive collection, curated for the modern executive.</div>
+      <div class="shop-modal-actions">
+        <button class="btn-add-cart" id="modal-add-cart-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          Add to Cart
+        </button>
+        <button class="btn-wish" aria-label="Add to wishlist">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
   document.getElementById('footer-year').textContent = new Date().getFullYear();
 
@@ -582,9 +720,12 @@
   let currentCat = 'all';
   let currentSort = 'newest';
 
+  // Safe product lookup map (keyed by id) — avoids inline string interpolation bugs
+  const productMap = {};
+
   function formatPrice(price) {
     const num = parseFloat(price);
-    if (isNaN(num)) return price || '&mdash;';
+    if (isNaN(num)) return '&mdash;';
     return 'AED ' + num.toLocaleString('en-AE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   }
 
@@ -595,7 +736,7 @@
 
   function saveCart(cart) {
     localStorage.setItem('ree_cart', JSON.stringify(cart));
-    updateCartCount(cart.length);
+    updateCartCount(cart.reduce((s, i) => s + (i.qty || 1), 0));
   }
 
   function updateCartCount(n) {
@@ -604,28 +745,84 @@
 
   function showCartToast(name) {
     const toast = document.getElementById('cart-toast');
-    document.getElementById('cart-toast-product').textContent = name;
+    const label = document.getElementById('cart-toast-product');
+    if (label) label.textContent = name || 'Item';
     toast.classList.add('show');
     setTimeout(() => toast.classList.remove('show'), 3000);
   }
 
-  function addToCart(product) {
+  // ── Safe addToCart: accepts product object directly, no string interpolation ──
+  function addToCartById(id) {
+    const product = productMap[id];
+    if (!product) return;
     const cart = getCart();
     const safeName = (product.name && product.name !== 'undefined') ? product.name : 'Unknown Product';
+    const safePrice = parseFloat(product.price) || 0;
     const existing = cart.find(i => i.id === product.id);
-    if (existing) { existing.qty = (existing.qty || 1) + 1; }
-    else { cart.push({ ...product, name: safeName, price: parseFloat(product.price) || 0, qty: 1 }); }
+    if (existing) {
+      existing.qty = (existing.qty || 1) + 1;
+    } else {
+      cart.push({
+        id: product.id,
+        name: safeName,
+        price: safePrice,
+        image: product.image || '',
+        category: product.category || 'Premium',
+        qty: 1
+      });
+    }
     saveCart(cart);
-    // Brief visual feedback then redirect to cart
-    showCartToast(product.name);
-    setTimeout(() => { window.location.href = 'cart.html'; }, 400);
+    showCartToast(safeName);
+    closeShopModal();
+    setTimeout(() => { window.location.href = 'cart.html'; }, 500);
   }
+
+  // ── Modal logic ──
+  function openShopModal(id) {
+    const product = productMap[id];
+    if (!product) return;
+
+    // Populate image
+    const imgCol = document.getElementById('modal-img-col');
+    if (product.image) {
+      imgCol.innerHTML = `<img src="${product.image}" alt="${product.name || 'Product'}" style="width:100%;height:100%;object-fit:cover;object-position:${product.imagePos || 'center center'};"><div class="shop-modal-badge">New</div>`;
+    } else {
+      imgCol.innerHTML = `<div class="shop-modal-img-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(212,175,55,0.3)" stroke-width="1.5" width="80" height="80"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div><div class="shop-modal-badge">New</div>`;
+    }
+
+    // Populate text
+    document.getElementById('modal-cat').textContent = product.category || 'Premium';
+    document.getElementById('modal-name').textContent = product.name || 'Premium Product';
+    document.getElementById('modal-price').textContent = formatPrice(product.price).replace('&mdash;', '—');
+    const descEl = document.getElementById('modal-desc');
+    descEl.textContent = product.description || product.desc || 'Premium quality product from the REEL exclusive collection, curated for the modern executive.';
+
+    // Wire Add to Cart button
+    const addBtn = document.getElementById('modal-add-cart-btn');
+    addBtn.onclick = () => addToCartById(id);
+
+    // Open
+    document.getElementById('shop-modal-overlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeShopModal() {
+    document.getElementById('shop-modal-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // Close on overlay click or close button
+  document.getElementById('shop-modal-overlay').addEventListener('click', function(e) {
+    if (e.target === this) closeShopModal();
+  });
+  document.getElementById('modal-close-btn').addEventListener('click', closeShopModal);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeShopModal(); });
 
   function getSorted(arr, sort) {
     const copy = [...arr];
     if (sort === 'low') return copy.sort((a,b) => (parseFloat(a.price)||0) - (parseFloat(b.price)||0));
     if (sort === 'high') return copy.sort((a,b) => (parseFloat(b.price)||0) - (parseFloat(a.price)||0));
-    return copy; // newest first (already from Firebase)
+    return copy;
   }
 
   function renderGrid(products) {
@@ -638,12 +835,16 @@
       </div>`;
       return;
     }
-    grid.innerHTML = products.map(p => `
-      <div class="product-card" style="cursor:pointer;" onclick="openShopModal('${p.id}')">
+
+    // Build cards — use data-pid attributes instead of inline JS string params
+    grid.innerHTML = products.map(p => {
+      const pid = p.id;
+      return `
+      <div class="product-card" data-pid="${pid}" style="cursor:pointer;">
         <div class="product-img-wrap">
           ${p.image
-            ? `<img src="${p.image}" alt="${p.name}" class="product-img" style="object-position:${p.imagePos||'center center'}">`
-            : `<div class="product-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" style="opacity:0.3;"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg></div>`
+            ? `<img src="${p.image}" alt="${p.name || 'Product'}" class="product-img" style="object-position:${p.imagePos||'center center'}">`
+            : `<div class="product-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" style="opacity:0.3;"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>`
           }
           <div class="product-badge">New</div>
           <button class="product-wishlist" aria-label="Wishlist">
@@ -652,20 +853,38 @@
         </div>
         <div class="product-body">
           <div class="product-cat">${p.category || 'Premium'}</div>
-          <div class="product-name">${p.name}</div>
+          <div class="product-name">${p.name || 'Product'}</div>
           <div class="product-footer">
             <div class="product-price">${formatPrice(p.price)}</div>
-            <button class="btn-add-cart" onclick="event.stopPropagation(); addToCart({ id: '${p.id}', name: '${p.name.replace(/'/g, "\\'")}', price: '${p.price}', image: '${p.image || ''}', category: '${p.category || 'Premium'}' })">
+            <button class="btn-add-cart" data-pid="${pid}" data-action="addcart">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
               Add to Cart
             </button>
           </div>
         </div>
-      </div>
-    `).join('');
+      </div>`;
+    }).join('');
 
-    // Wire wishlist buttons (if any needed separately)
-    // cart is now handled directly by onclick on the button inline to support string escaping
+    // Delegate events on the grid (no inline onclick)
+    grid.onclick = function(e) {
+      // Add to cart button
+      const addBtn = e.target.closest('[data-action="addcart"]');
+      if (addBtn) {
+        e.stopPropagation();
+        addToCartById(addBtn.dataset.pid);
+        return;
+      }
+      // Wishlist button
+      if (e.target.closest('.product-wishlist')) {
+        e.stopPropagation();
+        return;
+      }
+      // Card click → open modal
+      const card = e.target.closest('.product-card');
+      if (card && card.dataset.pid) {
+        openShopModal(card.dataset.pid);
+      }
+    };
   }
 
   function applyFiltersAndSort() {
@@ -693,14 +912,16 @@
       let _fetched = snap.docs.map(d => ({ id: d.id, ...d.data() }));
       const _now = new Date();
       allProducts = _fetched.filter(item => {
-        if(item.status === 'scheduled' && item.scheduleTime) {
+        if (item.status === 'scheduled' && item.scheduleTime) {
           return new Date(item.scheduleTime) <= _now;
         }
-        if(item.status === 'draft') return false;
+        if (item.status === 'draft') return false;
         return true;
       });
+      // Populate safe product map
+      allProducts.forEach(p => { productMap[p.id] = p; });
       applyFiltersAndSort();
-      updateCartCount(getCart().length);
+      updateCartCount(getCart().reduce((s,i) => s + (i.qty||1), 0));
     }).catch(err => {
       console.error('Shop load error:', err);
       document.getElementById('shop-grid').innerHTML = `<div class="empty-state"><h3>Could not load products</h3><p>Please check your connection and refresh.</p></div>`;
