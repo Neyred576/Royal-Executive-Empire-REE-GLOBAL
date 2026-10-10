@@ -854,12 +854,27 @@ input, textarea, select { font-family: inherit; }
   font-weight: 500;
   transition: all var(--t-fast);
   white-space: nowrap;
+  position: relative;
+}
+.nav-dropdown a::before {
+  content: '\2192'; /* Right arrow */
+  position: absolute;
+  left: 8px;
+  opacity: 0;
+  transform: translateX(-5px);
+  transition: all var(--t-fast);
+  color: var(--gold-300);
 }
 .nav-dropdown a:hover,
 .nav-dropdown a.active {
   background: var(--gold-fill);
   color: var(--gold-300);
-  padding-left: 24px;
+  padding-left: 28px;
+}
+.nav-dropdown a:hover::before,
+.nav-dropdown a.active::before {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 /* Nav Actions (Cart / Account) */
