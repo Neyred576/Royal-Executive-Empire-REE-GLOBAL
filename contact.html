@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -103,12 +103,11 @@
         </li>
         <li><a href="blog.html" class="nav-link">Blog</a></li>
         <li><a href="shop.html" class="nav-link">Shop</a></li>
-        <li><a href="leadership.html" class="nav-link">Leadership</a></li>
-        <li><a href="contact.html" class="nav-link active">Contact Us</a></li>
-      </ul>
+        </ul>
     <div class="nav-actions">
         <a href="cart.html" class="nav-icon cart-icon" aria-label="Shopping Cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="cart-count">0</span></a>
-    </div>
+        <a href="contact.html" class="nav-btn-contact active">Contact Us</a>
+      </div>
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span class="ham-line"></span><span class="ham-line"></span><span class="ham-line"></span></button>
   </div>
   <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
@@ -116,30 +115,86 @@
 
 <style>
   .contact-hero {
-    position: relative; overflow: hidden;
-    min-height: 60vh; display: flex; align-items: center; justify-content: center;
-    padding: 160px 0 80px;
+    position: relative;
+    overflow: hidden;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 140px 24px 70px;
     border-bottom: 1px solid var(--gold-border);
-    background-color: var(--black-900);
+    background-color: #070707;
   }
-  .contact-hero::before {
-    content: ''; position: absolute; inset: 0;
-    background: linear-gradient(rgba(8,8,8,0.5), rgba(8,8,8,0.7)), url('Images/contact_hero.png') center center / cover no-repeat;
-    animation: heroBgZoom 25s ease-in-out infinite alternate;
-    z-index: 0; will-change: transform;
+  .contact-hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
   }
-  .contact-hero::after {
-    content: ''; position: absolute; inset: 0;
-    background: radial-gradient(ellipse at 50% 80%, rgba(212,175,55,0.1) 0%, transparent 60%);
-    z-index: 1; pointer-events: none;
+  .contact-hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
   }
-  .contact-hero-inner { position: relative; z-index: 2; text-align: center; }
+  .contact-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+                  rgba(7, 7, 7, 0.55) 0%,
+                  rgba(7, 7, 7, 0.25) 40%,
+                  rgba(7, 7, 7, 0.45) 70%,
+                  #070707 100%);
+    z-index: 1;
+    pointer-events: none;
+  }
+  .contact-hero-inner {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .contact-hero-inner .hero-eyebrow {
+    justify-content: center;
+    margin-bottom: 12px;
+  }
+  .contact-hero-inner .section-heading {
+    font-size: clamp(2.5rem, 5.5vw, 4.4rem);
+    margin-bottom: 14px;
+    text-shadow: 0 4px 30px rgba(0, 0, 0, 0.95), 0 2px 10px rgba(0, 0, 0, 0.9);
+  }
+  .contact-hero-inner p {
+    color: rgba(255, 255, 255, 0.88);
+    max-width: 580px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    text-shadow: 0 3px 20px rgba(0, 0, 0, 0.95), 0 1px 6px rgba(0, 0, 0, 0.9);
+  }
+
+  @media (max-width: 768px) {
+    .contact-hero {
+      min-height: 65vh;
+      padding: 120px 16px 50px;
+    }
+    .contact-hero-img {
+      object-position: center center;
+    }
+  }
 </style>
 <section class="contact-hero">
+  <!-- Full-space background fitting entire image unblurred -->
+  <div class="contact-hero-bg">
+    <img src="Images/divisions/contact_us.png" alt="Contact REEL" class="contact-hero-img" />
+  </div>
+  <div class="contact-hero-overlay"></div>
+
   <div class="container contact-hero-inner">
-    <div class="hero-eyebrow" style="justify-content:center;"><span class="eyebrow-line"></span><span>Get In Touch</span><span class="eyebrow-line"></span></div>
-    <h1 class="section-heading" style="font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 12px;">Contact <span class="gold-text">REEL</span></h1>
-    <p style="color: var(--w60); max-width: 500px; margin: 0 auto; font-size: 1.05rem; line-height: 1.8;">Reach out to our executive team. We're ready to partner with you on your next big opportunity.</p>
+    <div class="hero-eyebrow"><span class="eyebrow-line"></span><span>Get In Touch</span><span class="eyebrow-line"></span></div>
+    <h1 class="section-heading">Contact <span class="gold-text">REEL</span></h1>
+    <p>Reach out to our executive team. We're ready to partner with you on your next big opportunity.</p>
   </div>
 </section>
 
@@ -266,20 +321,12 @@
                   Subject
                 </label>
                 <select id="cf-subject" name="subject" required>
-                  <option value="">&mdash; Select a Division or Company &mdash;</option>
+                  <option value="">&mdash; Select a Division or Topic &mdash;</option>
                   <option>General Inquiry</option>
-                  <option>REEL Power &mdash; Charging Solutions</option>
-                  <option>REEL Branding &mdash; Corporate Branding & Identity</option>
-                  <option>REEL Branding &mdash; Media & Content Production</option>
-                  <option>REEL Branding &mdash; Events Management</option>
-                  <option>REEL Branding &mdash; Business Advisory</option>
-                  <option>REEL Properties &mdash; Real Estate</option>
-                  <option>Vanny's Tech Hub &mdash; Digital Transformation</option>
-                  <option>Efua's Auto Center &mdash; Luxury Auto Care</option>
-                  <option>Glorious Global Palace &mdash; Lifestyle & Grooming</option>
-                  <option>Partnership Opportunity</option>
-                  <option>Shop / Products</option>
-                  <option>Other</option>
+                  <option>REEL Tech Hub</option>
+                  <option>REEL Auto Centre</option>
+                  <option>REEL Properties</option>
+                  <option>REEL Global Palace</option>
                 </select>
               </div>
             </div>
@@ -432,6 +479,7 @@
                 <li><a href="reel-auto-center.html">REEL Auto Centre</a></li>
                 <li><a href="real-estate.html">REEL Properties</a></li>
                 <li><a href="reel-global-palace.html">REEL Global Palace</a></li>
+                <li><a href="leadership.html">Leadership</a></li>
               </ul>
             </nav>
         </div>

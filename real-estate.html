@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -132,12 +132,11 @@
         </li>
         <li><a href="blog.html" class="nav-link">Blog</a></li>
         <li><a href="shop.html" class="nav-link">Shop</a></li>
-        <li><a href="leadership.html" class="nav-link">Leadership</a></li>
-        <li><a href="contact.html" class="nav-link">Contact Us</a></li>
-      </ul>
+        </ul>
     <div class="nav-actions">
         <a href="cart.html" class="nav-icon cart-icon" aria-label="Shopping Cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="cart-count">0</span></a>
-    </div>
+        <a href="contact.html" class="nav-btn-contact">Contact Us</a>
+      </div>
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span class="ham-line"></span><span class="ham-line"></span><span class="ham-line"></span></button>
   </div>
   <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
@@ -145,7 +144,7 @@
 
 <section class="div-page-hero">
   <!-- Landscape image background -->
-  <img class="hero-img-bg" src="Images/real_estate_hero.png" alt="REEL Properties Hero" fetchpriority="high">
+  <img class="hero-img-bg" src="Images/divisions/reel_properties.png" alt="REEL Properties Hero" fetchpriority="high">
   <div class="hero-video-overlay"></div>
   <div class="container" style="position:relative; z-index:2;">
     <div class="hero-eyebrow"><span class="eyebrow-line"></span><span>REEL Division</span></div>
@@ -395,6 +394,7 @@
                 <li><a href="reel-auto-center.html">REEL Auto Centre</a></li>
                 <li><a href="real-estate.html">REEL Properties</a></li>
                 <li><a href="reel-global-palace.html">REEL Global Palace</a></li>
+                <li><a href="leadership.html">Leadership</a></li>
               </ul>
             </nav>
         </div>
@@ -547,9 +547,12 @@
           } else {
             empty.style.display = 'none';
             grid.style.display = 'grid';
-            grid.innerHTML = props.map((p, i) => `
+            grid.innerHTML = props.map((p, i) => {
+              const fit = p.imageFit || 'contain';
+              const fitClass = 'fit-' + fit;
+              return `
               <article class="listing-card reveal-up" style="animation-delay: ${i * 0.1}s; cursor: pointer;" onclick="openPropertyModal('${p.id}')">
-                <div class="listing-img" style="background: url('${p.image}') center center / cover no-repeat;">
+                <div class="listing-img ${fitClass}" style="background-image: url('${p.image}');">
                   ${p.price ? `<div class="listing-badge">${p.price}</div>` : ''}
                 </div>
                 <div class="listing-info">
@@ -559,7 +562,8 @@
                   <button type="button" class="btn-ghost" style="width:100%; justify-content:center;" onclick="event.stopPropagation(); openPropertyModal('${p.id}')"><span>View Details</span></button>
                 </div>
               </article>
-            `).join('');
+            `;
+            }).join('');
 
           // Re-trigger reveal animations
           const observer = new IntersectionObserver((entries) => {
@@ -678,16 +682,49 @@
   .modal-images-container {
     display: flex; overflow-x: auto;
     scroll-snap-type: x mandatory; width: 100%;
-    background: rgba(0,0,0,0.4);
+    background: #060606;
     scrollbar-width: none;
     border-radius: 24px 24px 0 0;
     position: relative;
+    min-height: 240px;
+    align-items: center;
   }
   .modal-images-container::-webkit-scrollbar { display: none; }
   .modal-image {
-    flex: 0 0 100%; height: 380px;
-    object-fit: cover; scroll-snap-align: center;
+    flex: 0 0 100%;
+    scroll-snap-align: center;
+    display: block;
+    width: 100%;
+    background: #060606;
   }
+  /* fit modes for modal images */
+  .modal-image.fit-contain    { max-height: 600px; min-height: 260px; height: auto; object-fit: contain; }
+  .modal-image.fit-cover      { height: 420px; object-fit: cover; object-position: center; }
+  .modal-image.fit-16-9       { aspect-ratio: 16/9; max-height: 520px; height: auto; object-fit: contain; }
+  .modal-image.fit-16-9-crop  { aspect-ratio: 16/9; max-height: 520px; height: auto; object-fit: cover; }
+  .modal-image.fit-4-3        { aspect-ratio: 4/3;  max-height: 540px; height: auto; object-fit: contain; }
+  .modal-image.fit-4-3-crop   { aspect-ratio: 4/3;  max-height: 540px; height: auto; object-fit: cover; }
+  .modal-image.fit-1-1        { aspect-ratio: 1/1;  max-height: 560px; height: auto; object-fit: contain; }
+  .modal-image.fit-1-1-crop   { aspect-ratio: 1/1;  max-height: 560px; height: auto; object-fit: cover; }
+  .modal-image.fit-poster     { aspect-ratio: 3/4;  max-height: 640px; height: auto; object-fit: contain; }
+
+  /* fit modes for listing card thumbnails */
+  .listing-img {
+    position: relative;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-color: #080808 !important;
+    transition: transform 0.4s ease;
+  }
+  .listing-img.fit-contain    { height: 280px !important; background-size: contain !important; }
+  .listing-img.fit-cover      { height: 240px !important; background-size: cover !important; }
+  .listing-img.fit-16-9       { aspect-ratio: 16/9 !important; height: auto !important; min-height: 180px; background-size: contain !important; }
+  .listing-img.fit-16-9-crop  { aspect-ratio: 16/9 !important; height: auto !important; min-height: 180px; background-size: cover !important; }
+  .listing-img.fit-4-3        { aspect-ratio: 4/3 !important; height: auto !important; min-height: 200px; background-size: contain !important; }
+  .listing-img.fit-4-3-crop   { aspect-ratio: 4/3 !important; height: auto !important; min-height: 200px; background-size: cover !important; }
+  .listing-img.fit-1-1        { aspect-ratio: 1/1 !important; height: auto !important; min-height: 240px; background-size: contain !important; }
+  .listing-img.fit-1-1-crop   { aspect-ratio: 1/1 !important; height: auto !important; min-height: 240px; background-size: cover !important; }
+  .listing-img.fit-poster     { aspect-ratio: 3/4 !important; height: auto !important; max-height: 380px; background-size: contain !important; }
 
   /* Gold shimmer divider between image & body */
   .modal-images-container::after {
@@ -752,7 +789,8 @@
     // Populate Images
     const imgContainer = document.getElementById('modal-images');
     const images = prop.images && prop.images.length > 0 ? prop.images : [prop.image];
-    imgContainer.innerHTML = images.map(src => `<img src="${src}" class="modal-image" alt="${prop.title}">`).join('');
+    const fitClass = 'fit-' + (prop.imageFit || 'contain');
+    imgContainer.innerHTML = images.map(src => `<img src="${src}" class="modal-image ${fitClass}" alt="${prop.title}">`).join('');
     
     // Populate Details
     document.getElementById('modal-title').textContent = prop.title;

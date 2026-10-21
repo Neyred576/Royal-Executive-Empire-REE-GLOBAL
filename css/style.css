@@ -925,6 +925,34 @@ input, textarea, select { font-family: inherit; }
   box-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
 
+/* Contact Button (Right Corner CTA) */
+.nav-btn-contact {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 18px;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--gold-border);
+  background: var(--gold-fill);
+  color: var(--gold-300);
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+  transition: all var(--t-fast);
+}
+.nav-btn-contact:hover,
+.nav-btn-contact.active {
+  background: var(--gold-gradient);
+  color: var(--black-900);
+  border-color: var(--gold-400);
+  box-shadow: 0 4px 18px rgba(212, 175, 55, 0.4);
+  transform: translateY(-2px);
+}
+
 .nav-hamburger {
   display: none;
   flex-direction: column;
@@ -1429,17 +1457,22 @@ input, textarea, select { font-family: inherit; }
 
 .div-img-wrap {
   position: relative;
-  height: 380px;
+  aspect-ratio: 16 / 11;
+  width: 100%;
+  height: 240px;
   overflow: hidden;
-  background: linear-gradient(135deg, var(--black-700), var(--black-600));
+  background: #080808;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .div-img {
   width: 100%; height: 100%;
   object-fit: cover;
   object-position: center;
-  transition: transform 0.7s var(--ease);
+  transition: transform 0.6s var(--ease);
 }
-.division-card:hover .div-img { transform: scale(1.08); }
+.division-card:hover .div-img { transform: scale(1.04); }
 .div-img-overlay {
   position: absolute;
   inset: 0;
@@ -2348,7 +2381,7 @@ input, textarea, select { font-family: inherit; }
   .founder-info-badge { right: 0; bottom: -16px; }
   .mvv-grid { grid-template-columns: 1fr; }
   .divisions-grid { grid-template-columns: repeat(2, 1fr); }
-  .div-img-wrap { height: 300px; }
+  .div-img-wrap { height: auto; aspect-ratio: 16 / 11; }
   .pf-grid { grid-template-columns: repeat(2, 1fr); }
   .why-grid { grid-template-columns: repeat(2, 1fr); }
   .services-grid { grid-template-columns: repeat(2, 1fr); }

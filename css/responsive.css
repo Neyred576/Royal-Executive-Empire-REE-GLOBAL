@@ -127,7 +127,8 @@ section, article, header, footer, nav, aside, div {
 .division-card { width: 100%; }
 
 .div-img-wrap {
-  height: clamp(220px, 40vw, 380px);
+  aspect-ratio: 16 / 11;
+  height: auto;
 }
 
 .why-card {
@@ -183,7 +184,7 @@ table {
   .section-eyebrow { font-size: 9px; letter-spacing: 3px; padding: 6px 14px; }
 
   .divisions-grid { grid-template-columns: 1fr; gap: 16px; }
-  .div-img-wrap { height: 220px; }
+  .div-img-wrap { height: auto; aspect-ratio: 16 / 11; }
   .services-grid { grid-template-columns: 1fr; gap: 14px; }
   .why-grid { grid-template-columns: 1fr; gap: 16px; }
   .counters-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
@@ -304,7 +305,7 @@ table {
   .hero-logo { width: 320px; height: 320px; }
 
   .divisions-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
-  .div-img-wrap { height: 280px; }
+  .div-img-wrap { height: auto; aspect-ratio: 16 / 11; }
   .services-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
   .why-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
   .counters-grid { grid-template-columns: repeat(3, 1fr); gap: 18px; }
