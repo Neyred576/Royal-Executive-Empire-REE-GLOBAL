@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/responsive.css" />
   <style>
-    /* ── Article Hero ── */
+    /* -- Article Hero -- */
     .article-hero {
       position: relative;
       height: 70vh;
@@ -85,7 +85,7 @@
     }
     .article-meta-item svg { width: 14px; height: 14px; opacity: 0.7; }
 
-    /* ── Article Body ── */
+    /* -- Article Body -- */
     .article-section { padding: 80px 0 100px; }
     .article-layout {
       display: grid;
@@ -94,7 +94,7 @@
       align-items: start;
     }
 
-    /* ── Article Content ── */
+    /* -- Article Content -- */
     .article-content {
       color: var(--w70);
       font-size: 1.12rem;
@@ -169,7 +169,7 @@
     .share-btn:hover { border-color: var(--gold-300); color: var(--gold-300); background: var(--gold-fill); }
     .share-btn svg { width: 16px; height: 16px; }
 
-    /* ── Sidebar ── */
+    /* -- Sidebar -- */
     .article-sidebar { position: sticky; top: 100px; }
     .sidebar-card {
       background: rgba(255,255,255,0.025);
@@ -212,7 +212,7 @@
     .rel-post:hover .rel-title { color: var(--gold-300); }
     .rel-date { font-size: 0.72rem; color: var(--w40); margin-top: 4px; }
 
-    /* ── Progress bar ── */
+    /* -- Progress bar -- */
     .reading-progress {
       position: fixed; top: 0; left: 0;
       height: 3px; width: 0%;
@@ -221,7 +221,7 @@
       transition: width 0.1s linear;
     }
 
-    /* ── Skeleton ── */
+    /* -- Skeleton -- */
     .skeleton {
       background: linear-gradient(90deg, var(--black-700) 25%, rgba(255,255,255,0.04) 50%, var(--black-700) 75%);
       background-size: 200% 100%;
@@ -371,7 +371,7 @@
                 <li><a href="reel-auto-center.html">REEL Auto Centre</a></li>
                 <li><a href="real-estate.html">REEL Properties</a></li>
                 <li><a href="reel-global-palace.html">REEL Global Palace</a></li>
-                <li><a href="leadership.html">Leadership</a></li>
+                <li><a href="leadership.html">Meet the Team</a></li>
               </ul>
             </nav>
         </div>
@@ -544,7 +544,7 @@
     const main = document.getElementById('article-main');
 
     if (!articleId) {
-      main.innerHTML = `<div style="text-align:center;padding:200px 20px"><h1 style="color:#fff;font-family:var(--font-display);font-size:3rem">Article Not Found</h1><a href="blog.html" style="color:var(--gold-300);margin-top:20px;display:inline-block">&larr; Return to Blog</a></div>`;
+      main.innerHTML = `<div style="text-align:center;padding:200px 20px"><h1 style="color:#fff;font-family:var(--font-display);font-size:3rem">Article Not Found</h1><a href="blog.html" style="color:var(--gold-300);margin-top:20px;display:inline-block">&larr;� Return to Blog</a></div>`;
       return;
     }
 
@@ -554,7 +554,7 @@
       window.db.collection('blogs').orderBy('timestamp', 'desc').limit(8).get()
     ]).then(([doc, allSnap]) => {
       if (!doc.exists) {
-        main.innerHTML = `<div style="text-align:center;padding:200px 20px"><h1 style="color:#fff;font-family:var(--font-display);font-size:3rem">Article Not Found</h1><a href="blog.html" style="color:var(--gold-300);margin-top:20px;display:inline-block">&larr; Return to Blog</a></div>`;
+        main.innerHTML = `<div style="text-align:center;padding:200px 20px"><h1 style="color:#fff;font-family:var(--font-display);font-size:3rem">Article Not Found</h1><a href="blog.html" style="color:var(--gold-300);margin-top:20px;display:inline-block">&larr;� Return to Blog</a></div>`;
         return;
       }
 
@@ -569,7 +569,7 @@
       // Meta description
       let metaDesc = document.querySelector('meta[name="description"]');
       if (!metaDesc) { metaDesc = document.createElement('meta'); metaDesc.name = 'description'; document.head.appendChild(metaDesc); }
-      metaDesc.content = (b.seoDesc && b.seoDesc.trim()) ? b.seoDesc : `Read "${b.title}" — an exclusive insight from Royalty Executive Empire Limited.`;
+      metaDesc.content = (b.seoDesc && b.seoDesc.trim()) ? b.seoDesc : `Read "${b.title}" � an exclusive insight from Royalty Executive Empire Limited.`;
 
       // Focus keyword as meta keywords
       if (b.seoKeyword && b.seoKeyword.trim()) {
@@ -669,7 +669,7 @@
 
     }).catch(err => {
       console.error('Article load error:', err);
-      document.getElementById('article-main').innerHTML = `<div style="text-align:center;padding:200px 20px"><h1 style="color:#fff;font-family:var(--font-display)">Error Loading Article</h1><p style="color:var(--w50);margin-top:12px">Please check your connection and try again.</p><a href="blog.html" style="color:var(--gold-300);margin-top:20px;display:inline-block">&larr; Return to Blog</a></div>`;
+      document.getElementById('article-main').innerHTML = `<div style="text-align:center;padding:200px 20px"><h1 style="color:#fff;font-family:var(--font-display)">Error Loading Article</h1><p style="color:var(--w50);margin-top:12px">Please check your connection and try again.</p><a href="blog.html" style="color:var(--gold-300);margin-top:20px;display:inline-block">&larr;� Return to Blog</a></div>`;
     });
   }
 

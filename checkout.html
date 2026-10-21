@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -96,7 +96,7 @@
       <form id="checkout-form">
         <!-- Billing Details -->
         <div class="checkout-form-wrap" style="margin-bottom: 24px;">
-          <div class="checkout-step-title">ðŸ  &nbsp;Billing Details</div>
+          <div class="checkout-step-title">🏠 &nbsp;Billing Details</div>
           <div class="form-row">
             <div class="form-group">
               <label for="co-fname">First Name *</label>
@@ -267,7 +267,7 @@
                 <li><a href="reel-auto-center.html">REEL Auto Centre</a></li>
                 <li><a href="real-estate.html">REEL Properties</a></li>
                 <li><a href="reel-global-palace.html">REEL Global Palace</a></li>
-                <li><a href="leadership.html">Leadership</a></li>
+                <li><a href="leadership.html">Meet the Team</a></li>
               </ul>
             </nav>
         </div>
@@ -434,7 +434,7 @@
   renderOrderItems();
   buildCheckoutTotals();
 
-  // ── Handle Order Submission &larr;’ WhatsApp ──
+  // -- Handle Order Submission &larr;� WhatsApp --
   document.getElementById('checkout-form').addEventListener('submit', function(e) {
     e.preventDefault();
 
@@ -458,22 +458,22 @@
 
     const subtotal = cart.reduce((sum, i) => sum + (parseFloat(i.price)||0)*(i.qty||1), 0);
     const itemLines = cart.map(i =>
-      `   • ${i.name} × ${i.qty||1}  &larr;’  ${formatPrice((parseFloat(i.price)||0)*(i.qty||1))}`
+      `   � ${i.name} � ${i.qty||1}  &larr;�  ${formatPrice((parseFloat(i.price)||0)*(i.qty||1))}`
     ).join('\n');
 
     const msg =
-      `🛒 *NEW ORDER &mdash; REEL Global Store*\n` +
-      `—\n\n` +
-      `👤 *Customer Details*\n` +
+      `?? *NEW ORDER &mdash; REEL Global Store*\n` +
+      `�\n\n` +
+      `?? *Customer Details*\n` +
       `   Name: ${fname} ${lname}\n` +
       (company ? `   Company: ${company}\n` : '') +
       `   Email: ${email}\n` +
       `   Phone: ${phone}\n\n` +
-      `📦*Delivery Address*\n` +
+      `??*Delivery Address*\n` +
       `   ${address}, ${city}${postal ? ', ' + postal : ''}, ${country}\n\n` +
-      `🛍️ *Order Items*\n` +
+      `???� *Order Items*\n` +
       `${itemLines}\n\n` +
-      `💰 *Order Total: ${formatPrice(subtotal)}*\n\n` +
+      `?? *Order Total: ${formatPrice(subtotal)}*\n\n` +
       `---\n_Sent from royaltyexecutiveempire.com_`;
 
     const waURL = `https://wa.me/2348067029444?text=${encodeURIComponent(msg)}`;
