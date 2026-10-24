@@ -1303,6 +1303,30 @@
                 <option value="center right">Right side</option>
               </select>
             </div>
+            <!-- ── Blog Thumbnail Fit / Aspect Ratio ── -->
+            <div class="form-group">
+              <label style="display:flex;align-items:center;justify-content:space-between;">
+                <span>Thumbnail Display Mode</span>
+                <span id="blog-fit-mode-tag" style="background:rgba(212,175,55,0.18);color:var(--gold);padding:2px 8px;border-radius:4px;font-size:0.7rem;font-weight:600;">Fit (No Crop)</span>
+              </label>
+              <select id="blog-image-fit" style="margin-bottom:10px;">
+                <option value="contain">&#10003; Fit in Frame (No Crop) — 100% visible, never cuts off (Recommended for Posters)</option>
+                <option value="16-9">&#9635; 16:9 Widescreen (Fit) — landscape ratio, no crop</option>
+                <option value="16-9-crop">&#9635; 16:9 Widescreen (Fill / Crop) — widescreen banner</option>
+                <option value="4-3">&#9635; 4:3 Standard (Fit) — classic photo, no crop</option>
+                <option value="4-3-crop">&#9635; 4:3 Standard (Fill / Crop) — classic photo cropped</option>
+                <option value="1-1">&#9635; 1:1 Square (Fit) — square flyer, no crop</option>
+                <option value="1-1-crop">&#9635; 1:1 Square (Fill / Crop) — square frame cropped</option>
+                <option value="cover">&#9724; Fill Frame (Cover) — classic card fill (may crop edges)</option>
+              </select>
+              <!-- Live Preview -->
+              <div id="blog-fit-preview-wrap" style="display:none;margin-top:8px;border:1px solid rgba(212,175,55,0.2);border-radius:8px;overflow:hidden;background:#0a0a0a;">
+                <div id="blog-fit-preview-frame" style="width:100%;position:relative;">
+                  <img id="blog-fit-preview-img" src="" alt="Preview" style="width:100%;display:block;transition:all 0.3s;" />
+                </div>
+                <div style="padding:6px 10px;font-size:0.68rem;color:rgba(212,175,55,0.55);text-align:center;letter-spacing:0.5px;">THUMBNAIL PREVIEW</div>
+              </div>
+            </div>
             <div class="form-group">
               <label style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
                 <span style="display:flex;align-items:center;gap:8px;">
@@ -2216,6 +2240,22 @@
             } else if (document.getElementById('blog-content')) {
               document.getElementById('blog-content').value = itemData.content || '';
             }
+            const posEl = document.getElementById('blog-img-pos');
+            if (posEl && itemData.imagePos) posEl.value = itemData.imagePos;
+            const fitEl = document.getElementById('blog-image-fit');
+            if (fitEl && itemData.imageFit) {
+              fitEl.value = itemData.imageFit;
+              fitEl.dispatchEvent(new Event('change'));
+            }
+            // Show existing image in preview if available
+            if (itemData.image) {
+              const prevImg = document.getElementById('blog-fit-preview-img');
+              const prevWrap = document.getElementById('blog-fit-preview-wrap');
+              if (prevImg && prevWrap) {
+                prevImg.src = itemData.image;
+                prevWrap.style.display = 'block';
+              }
+            }
             const form = document.getElementById('form-blog');
             form.dataset.editId = id;
             form.dataset.editImage = itemData.image || '';
@@ -2653,6 +2693,7 @@
           content: contentStr,
           image: img,
           imagePos: document.getElementById('blog-img-pos').value,
+          imageFit: document.getElementById('blog-image-fit') ? document.getElementById('blog-image-fit').value : 'cover',
           date: (statusVal === 'scheduled' && pendingScheduleTime) ? new Date(pendingScheduleTime).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
           status: statusVal,
           scheduleTime: statusVal === 'scheduled' ? pendingScheduleTime : null,
@@ -2903,6 +2944,88 @@
       const fitSelectEl = document.getElementById('prop-image-fit');
       if (fitSelectEl) {
         fitSelectEl.addEventListener('change', window.updatePropFitPreview);
+      }
+    })();
+
+    // ── Blog Thumbnail Fit Preview ──
+    (() => {
+      window.updateBlogFitPreview = () => {
+        const fitSelect = document.getElementById('blog-image-fit');
+        const previewImg = document.getElementById('blog-fit-preview-img');
+        const previewFrame = document.getElementById('blog-fit-preview-frame');
+        const modeTag = document.getElementById('blog-fit-mode-tag');
+        if (!fitSelect || !previewImg || !previewFrame) return;
+
+        const val = fitSelect.value || 'cover';
+        const label = fitSelect.options[fitSelect.selectedIndex]?.text || '';
+        if (modeTag) {
+          const cleanLabel = label.split('—')[0].replace(/[✅✓■▣▥▩▤▪▫]/g, '').trim();
+          modeTag.textContent = cleanLabel || val;
+        }
+
+        previewFrame.style.aspectRatio = '';
+        previewFrame.style.height = '';
+        previewImg.style.objectFit = 'contain';
+        previewImg.style.height = 'auto';
+        previewImg.style.maxHeight = '';
+
+        if (val === 'contain') {
+          previewFrame.style.height = '260px';
+          previewImg.style.objectFit = 'contain';
+          previewImg.style.maxHeight = '260px';
+        } else if (val === 'cover') {
+          previewFrame.style.height = '220px';
+          previewImg.style.objectFit = 'cover';
+          previewImg.style.height = '100%';
+        } else if (val === '16-9') {
+          previewFrame.style.aspectRatio = '16/9';
+          previewImg.style.objectFit = 'contain';
+        } else if (val === '16-9-crop') {
+          previewFrame.style.aspectRatio = '16/9';
+          previewImg.style.objectFit = 'cover';
+          previewImg.style.height = '100%';
+        } else if (val === '4-3') {
+          previewFrame.style.aspectRatio = '4/3';
+          previewImg.style.objectFit = 'contain';
+        } else if (val === '4-3-crop') {
+          previewFrame.style.aspectRatio = '4/3';
+          previewImg.style.objectFit = 'cover';
+          previewImg.style.height = '100%';
+        } else if (val === '1-1') {
+          previewFrame.style.aspectRatio = '1/1';
+          previewImg.style.objectFit = 'contain';
+        } else if (val === '1-1-crop') {
+          previewFrame.style.aspectRatio = '1/1';
+          previewImg.style.objectFit = 'cover';
+          previewImg.style.height = '100%';
+        }
+      };
+
+      // Wire the select change event
+      const blogFitSelect = document.getElementById('blog-image-fit');
+      if (blogFitSelect) {
+        blogFitSelect.addEventListener('change', window.updateBlogFitPreview);
+      }
+
+      // Wire the file input to show preview when image is selected
+      const blogImgInput = document.getElementById('blog-img');
+      if (blogImgInput) {
+        blogImgInput.addEventListener('change', (e) => {
+          const file = e.target.files && e.target.files[0];
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = (evt) => {
+              const prevImg = document.getElementById('blog-fit-preview-img');
+              const prevWrap = document.getElementById('blog-fit-preview-wrap');
+              if (prevImg && prevWrap) {
+                prevImg.src = evt.target.result;
+                prevWrap.style.display = 'block';
+                window.updateBlogFitPreview();
+              }
+            };
+            reader.readAsDataURL(file);
+          }
+        });
       }
     })();
 

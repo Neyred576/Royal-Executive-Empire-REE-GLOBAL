@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <span id="notif-badge" style="display:none; position:absolute; top:-6px; right:-6px; background:#D4AF37; color:#000; font-size:10px; font-weight:bold; padding:2px 6px; border-radius:10px;">0</span>
         
         <!-- Dropdown Panel -->
-        <div id="notif-panel" style="display:none; position:absolute; top:45px; right:-10px; width:300px; max-width:none; min-width:300px; white-space:normal; text-align:left; background:rgba(10,10,10,0.95); backdrop-filter:blur(10px); border:1px solid rgba(212,175,55,0.3); border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.5); z-index:100; overflow:hidden;">
+        <div id="notif-panel" class="notif-dropdown-panel" style="display:none; white-space:normal; text-align:left; background:rgba(10,10,10,0.96); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border:1px solid rgba(212,175,55,0.3); border-radius:14px; box-shadow:0 16px 40px rgba(0,0,0,0.7); overflow:hidden;">
           <div style="padding:15px; border-bottom:1px solid rgba(255,255,255,0.1); display:flex; justify-content:space-between; align-items:center;">
             <h4 style="margin:0; font-family:'Cormorant Garamond', serif; color:#D4AF37;">Notifications</h4>
             <button id="notif-enable-btn" style="background:transparent; border:1px solid #D4AF37; color:#D4AF37; padding:4px 8px; border-radius:4px; font-size:10px; cursor:pointer;">Enable Alerts</button>

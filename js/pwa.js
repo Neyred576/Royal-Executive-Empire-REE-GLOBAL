@@ -245,8 +245,9 @@ function showNotificationPromotion() {
   const toast = document.createElement('div');
   toast.id = 'pwa-notification-toast';
   toast.className = 'pwa-toast-base';
-  toast.style.top = '15px';
-  toast.style.animation = 'pwaSlideDown 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards';
+  toast.style.bottom = '24px';
+  toast.style.top = 'auto';
+  toast.style.animation = 'pwaSlideUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards';
 
   toast.innerHTML = `
     <div class="pwa-toast-icon">

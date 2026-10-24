@@ -4,8 +4,76 @@
  * Main Application Logic
  * ====================================================================
  */
+// Immediate clean-up of any URL hash (e.g. #home, #divisions) so the address bar shows only the clean domain
+(() => {
+  const cleanUrl = () => {
+    if (window.location.hash) {
+      try {
+        history.replaceState(null, '', window.location.pathname + window.location.search);
+      } catch (e) {}
+    }
+  };
+  cleanUrl();
+  window.addEventListener('hashchange', cleanUrl);
+})();
 
 document.addEventListener('DOMContentLoaded', () => {
+
+  // Clean URL bar guarantee
+  if (window.location.hash) {
+    try {
+      history.replaceState(null, '', window.location.pathname + window.location.search);
+    } catch (e) {}
+  }
+
+  // Smooth scroll interceptor to prevent hashes like #home or #divisions from being added to URL
+  document.addEventListener('click', (e) => {
+    const anchor = e.target.closest('a[href^="#"], a[href*="#"]');
+    if (!anchor) return;
+
+    const href = anchor.getAttribute('href');
+    if (!href) return;
+
+    if (href.startsWith('#')) {
+      const targetId = href.slice(1);
+      if (!targetId || targetId === '!') {
+        e.preventDefault();
+        return;
+      }
+
+      e.preventDefault();
+
+      if (targetId.toLowerCase() === 'home') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        const targetEl = document.getElementById(targetId) || document.querySelector(`[name="${targetId}"]`);
+        if (targetEl) {
+          const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 70;
+          const targetY = targetEl.getBoundingClientRect().top + window.pageYOffset - navH;
+          window.scrollTo({ top: targetY, behavior: 'smooth' });
+        }
+      }
+
+      // Keep address bar clean without hash
+      try {
+        history.replaceState(null, '', window.location.pathname + window.location.search);
+      } catch (err) {}
+    }
+  });
+
+  // Logo smooth scroll to top without adding hash
+  document.querySelectorAll('.nav-logo').forEach(logo => {
+    logo.addEventListener('click', (e) => {
+      const isHome = window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname === '';
+      if (isHome) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        try {
+          history.replaceState(null, '', window.location.pathname + window.location.search);
+        } catch (err) {}
+      }
+    });
+  });
 
   // 1. PRELOADER
   const preloader = document.getElementById('preloader');
@@ -127,8 +195,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Close menu on link click
   if (navLinks && hamburger) {
-    navLinks.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', () => {
+    navLinks.querySelectorAll('.nav-link, .nav-dropdown a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        // Do NOT close menu if clicking the divisions dropdown toggle
+        if (link.id === 'our-divisions-toggle' || link.closest('#our-divisions-toggle') || link.parentElement.classList.contains('nav-item-dropdown')) {
+          return;
+        }
         if (hamburger.classList.contains('open')) {
           toggleMenu();
         }
@@ -173,7 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // 5. ACTIVE LINK HIGHLIGHTING
-  const navItems = document.querySelectorAll('.nav-link');
+  const navItems = document.querySelectorAll('.nav-link, .nav-dropdown a');
   let currentUrl = window.location.pathname.split('/').pop() || 'index.html';
 
   navItems.forEach(link => {
@@ -184,28 +256,37 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Mobile Dropdown Toggle
-  const dropdownToggles = document.querySelectorAll('.nav-item-dropdown > .nav-link');
+  // Mobile Dropdown Toggle (Accordion)
+  const dropdownToggles = document.querySelectorAll('.nav-item-dropdown > .nav-link, #our-divisions-toggle');
   dropdownToggles.forEach(toggle => {
     toggle.addEventListener('click', (e) => {
-      if (window.innerWidth <= 768) {
-        // Only toggle dropdown if clicking the arrow, otherwise navigate
-        if (e.target.closest('.drop-arrow')) {
-          e.preventDefault();
-          const dropdown = toggle.nextElementSibling;
-          if (dropdown.style.visibility === 'visible') {
-            dropdown.style.visibility = 'hidden';
-            dropdown.style.opacity = '0';
-            dropdown.style.transform = 'translateY(10px)';
-          } else {
-            dropdown.style.visibility = 'visible';
-            dropdown.style.opacity = '1';
-            dropdown.style.transform = 'translateY(0)';
+      if (window.innerWidth <= 991) {
+        e.preventDefault();
+        e.stopPropagation();
+        const parent = toggle.closest('.nav-item-dropdown');
+        if (parent) {
+          const isCurrentlyOpen = parent.classList.contains('open');
+          parent.classList.toggle('open');
+          const arrow = toggle.querySelector('.drop-arrow');
+          if (arrow) {
+            arrow.style.transition = 'transform 0.3s ease';
+            arrow.style.transform = !isCurrentlyOpen ? 'rotate(180deg)' : 'rotate(0deg)';
           }
         }
       }
     });
   });
+
+  // If on a division page, automatically expand the dropdown in mobile drawer so active page is visible
+  const divisionPages = ['reel-tech-hub.html', 'reel-auto-center.html', 'real-estate.html', 'reel-global-palace.html'];
+  if (divisionPages.includes(currentUrl)) {
+    const parent = document.getElementById('our-divisions-dropdown');
+    if (parent) {
+      parent.classList.add('open');
+      const arrow = parent.querySelector('.drop-arrow');
+      if (arrow) arrow.style.transform = 'rotate(180deg)';
+    }
+  }
 
   // 5.5 CUSTOM CURSOR LOGIC
   const cursorDot = document.getElementById('cursor-dot');
