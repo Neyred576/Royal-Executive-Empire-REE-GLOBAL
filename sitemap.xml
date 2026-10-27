@@ -1,47 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.royaltyexecutiveempire.com/</loc>
+    <loc>https://reelholding.com.ng/</loc>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.royaltyexecutiveempire.com/about.html</loc>
+    <loc>https://reelholding.com.ng/about.html</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.royaltyexecutiveempire.com/reel-power.html</loc>
+    <loc>https://reelholding.com.ng/reel-power.html</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.royaltyexecutiveempire.com/reel-branding.html</loc>
+    <loc>https://reelholding.com.ng/reel-branding.html</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.royaltyexecutiveempire.com/real-estate.html</loc>
+    <loc>https://reelholding.com.ng/real-estate.html</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.royaltyexecutiveempire.com/vannys-tech-hub.html</loc>
+    <loc>https://reelholding.com.ng/reel-tech-hub.html</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.royaltyexecutiveempire.com/efuas-auto-center.html</loc>
+    <loc>https://reelholding.com.ng/reel-auto-center.html</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.royaltyexecutiveempire.com/glorious-global-palace.html</loc>
+    <loc>https://reelholding.com.ng/reel-global-palace.html</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.royaltyexecutiveempire.com/contact.html</loc>
+    <loc>https://reelholding.com.ng/reel-smart.html</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.royaltyexecutiveempire.com/blog.html</loc>
+    <loc>https://reelholding.com.ng/music-store.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://reelholding.com.ng/portfolio.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://reelholding.com.ng/shop.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://reelholding.com.ng/blog.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://reelholding.com.ng/contact.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://reelholding.com.ng/leadership.html</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.royaltyexecutiveempire.com/shop.html</loc>
+    <loc>https://reelholding.com.ng/ceo-profile.html</loc>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://reelholding.com.ng/gm-profile.html</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://reelholding.com.ng/terms.html</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://reelholding.com.ng/privacy.html</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://reelholding.com.ng/cookies.html</loc>
+    <priority>0.5</priority>
   </url>
 </urlset>

@@ -1,7 +1,19 @@
+# Domain Migration Redirects (Old Domain -> New Domain)
+https://royaltyexecutiveempire.com/*       https://reelholding.com.ng/:splat    301!
+https://www.royaltyexecutiveempire.com/*   https://reelholding.com.ng/:splat    301!
+http://royaltyexecutiveempire.com/*        https://reelholding.com.ng/:splat    301!
+http://www.royaltyexecutiveempire.com/*    https://reelholding.com.ng/:splat    301!
+
+# Renamed Division URLs (Old division names to new REEL names)
+/vannys-tech-hub            /reel-tech-hub.html         301
+/vannys-tech-hub.html       /reel-tech-hub.html         301
+/efuas-auto-center          /reel-auto-center.html      301
+/efuas-auto-center.html     /reel-auto-center.html      301
+/glorious-global-palace     /reel-global-palace.html    301
+/glorious-global-palace.html /reel-global-palace.html   301
+
 # Netlify Redirects — Old WordPress URLs to New Pages
 # Format: /old-path  /new-path  status-code
-
-# Old WordPress pages
 /shop                   /shop.html              301
 /shop/                  /shop.html              301
 /Biography              /about.html             301

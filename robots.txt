@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.royaltyexecutiveempire.com/sitemap.xml
+Sitemap: https://reelholding.com.ng/sitemap.xml

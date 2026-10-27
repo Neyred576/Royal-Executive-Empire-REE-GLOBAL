@@ -620,7 +620,7 @@
           <div class="dash-avatar" id="dash-avatar-letter">R</div>
           <div>
             <div class="dash-user-name" id="dash-display-name">Executive Member</div>
-            <div class="dash-user-email" id="dash-display-email">member@royaltyexecutiveempire.com</div>
+            <div class="dash-user-email" id="dash-display-email">member@reelholding.com.ng</div>
             <span class="dash-vip-badge">
               <svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
               REEL VIP Member
@@ -833,7 +833,7 @@
             if (!email) return;
             var subject = encodeURIComponent('Newsletter Subscription Request');
             var body = encodeURIComponent('Hello REEL Team,\n\nI would like to subscribe to your newsletter.\n\nEmail: ' + email + '\n\nThank you.');
-            window.location.href = 'mailto:admin@royaltyexecutiveempire.com?subject=' + subject + '&body=' + body;
+            window.location.href = 'mailto:admin@reelholding.com.ng?subject=' + subject + '&body=' + body;
             document.getElementById('footer-email').value = '';
           }
           </script>
@@ -843,7 +843,7 @@
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                 <polyline points="22,6 12,13 2,6" />
               </svg>
-              <a href="mailto:admin@royaltyexecutiveempire.com">admin@royaltyexecutiveempire.com</a>
+              <a href="mailto:admin@reelholding.com.ng">admin@reelholding.com.ng</a>
             </p>
             <p>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
@@ -965,7 +965,7 @@
     function renderDashboardUser(user) {
       if (!user) return;
       const displayName = user.displayName || user.name || (user.email ? user.email.split('@')[0] : 'Executive Member');
-      const email = user.email || 'member@royaltyexecutiveempire.com';
+      const email = user.email || 'member@reelholding.com.ng';
       if (nameEl) nameEl.textContent = displayName;
       if (emailEl) emailEl.textContent = email;
       if (avatarEl) avatarEl.textContent = displayName.charAt(0).toUpperCase();

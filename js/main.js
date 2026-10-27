@@ -585,7 +585,7 @@ document.addEventListener('DOMContentLoaded', () => {
         `*Phone:* ${phone}\n` +
         `*Subject:* ${subject}\n\n` +
         `*Message:*\n${message}\n\n` +
-        `---\n_Sent from royaltyexecutiveempire.com_`;
+        `---\n_Sent from reelholding.com.ng_`;
 
       const whatsappURL = `https://wa.me/2348067029444?text=${encodeURIComponent(text)}`;
 
@@ -1419,7 +1419,7 @@ document.addEventListener('DOMContentLoaded', () => {
         `*Property Interest:* ${propType}\n` +
         `*Preferred Date:* ${date}\n` +
         `*Notes:* ${notes || 'None'}\n\n` +
-        `_Sent from royaltyexecutiveempire.com_`;
+        `_Sent from reelholding.com.ng_`;
 
       window.open(`https://wa.me/2348067029444?text=${encodeURIComponent(msg)}`, '_blank');
       closeModal();
