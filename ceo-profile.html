@@ -30,7 +30,7 @@
   <div class="preloader-inner">
     <div class="preloader-logo-wrap">
       <div class="preloader-ring"></div>
-      <img src="Images/BG/reel_logo.png" alt="REEL" class="preloader-logo-img" onerror="this.style.display='none';document.querySelector('.preloader-crown').style.display='flex'" />
+      <img src="Images/BG/reel_logo.png" alt="REEL" class="preloader-logo-img" onerror="this.style.display='none';document.querySelector('.preloader-crown').style.display='flex'" fetchpriority="high">
       <div class="preloader-crown" style="display:none"><span>&#9884;</span></div>
     </div>
     <div class="preloader-bar-wrap">
@@ -43,7 +43,7 @@
   <div class="nav-inner">
     <a href="index.html" class="nav-logo" aria-label="REEL Home">
       <div class="nav-logo-img-wrap">
-        <img src="Images/BG/reel_logo.png" alt="REEL Logo" class="nav-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+        <img src="Images/BG/reel_logo.png" alt="REEL Logo" class="nav-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" fetchpriority="high">
         <div class="nav-logo-crown" style="display:none">&#9884;</div>
       </div>
       <div class="nav-logo-text">
@@ -83,7 +83,7 @@
 
 <section class="section-hero page-hero" style="padding: 160px 0 50px; min-height: auto; position:relative; overflow: hidden;">
   <div class="hero-bg" style="position:absolute; inset:0; z-index:-1;">
-    <img src="Images/golden_team_bg.png" alt="Leadership Background" style="width:100%; height:100%; object-fit:cover; filter: grayscale(100%) blur(8px); transform: scale(1.08); opacity: 0.3;" />
+    <img src="Images/golden_team_bg.png" alt="Leadership Background" style="width:100%; height:100%; object-fit:cover; filter: grayscale(100%) blur(8px); transform: scale(1.08); opacity: 0.3;" decoding="async" loading="lazy">
     <div class="hero-bg-gradient" style="position:absolute; inset:0; background: linear-gradient(to bottom, rgba(11,11,11,0.75), rgba(11,11,11,1));"></div>
   </div>
   <div class="container" style="position:relative; z-index:2; width:100%;">
@@ -110,7 +110,7 @@
       <!-- Visual Side -->
       <div class="founder-visual reveal-left" style="position: sticky; top: 120px;">
         <div class="founder-img-card" style="height:580px; background:var(--w08); border-radius:var(--radius-xl); overflow:hidden; position:relative; box-shadow: 0 25px 50px rgba(0,0,0,0.6); border: 1px solid rgba(212,175,55,0.25);">
-          <img src="Images/Prince Ose/Prince Ose (15).jpg.jpeg" alt="Onosedeba Israel Ose — Founder &amp; CEO, REEL" style="width:100%; height:100%; object-fit:cover; object-position: center top;" onerror="this.src='Images/Prince Ose/About/ceo_team_card.jpg'" />
+          <img src="Images/Prince Ose/Prince Ose (15).jpg.jpeg" alt="Onosedeba Israel Ose — Founder &amp; CEO, REEL" style="width:100%; height:100%; object-fit:cover; object-position: center top;" onerror="this.src='Images/Prince Ose/About/ceo_team_card.jpg'" decoding="async" loading="lazy">
           <div style="position:absolute; inset:0; background: linear-gradient(to top, rgba(11,11,11,0.8) 0%, transparent 50%);"></div>
           
           <div style="position:absolute; bottom:24px; left:24px; right:24px; z-index:2;">
@@ -260,7 +260,7 @@
 
         <div class="footer-col footer-brand-col">
           <a href="index.html" class="footer-logo-link" aria-label="REEL Home">
-            <img src="Images/BG/reel_logo.png" alt="REEL" class="footer-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+            <img src="Images/BG/reel_logo.png" alt="REEL" class="footer-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" fetchpriority="high">
             <div class="footer-logo-fallback" style="display:none">&#9884; REEL</div>
           </a>
           <p class="footer-brand-desc">Royalty Executive Empire Limited &mdash; Building Empires, Shaping Futures, Leading Innovation across Africa and beyond.</p>

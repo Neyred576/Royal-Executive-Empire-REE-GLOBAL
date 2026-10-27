@@ -54,7 +54,7 @@
   <div class="nav-inner">
     <a href="index.html" class="nav-logo" aria-label="REEL Home">
       <div class="nav-logo-img-wrap">
-        <img src="Images/BG/reel_logo.png" alt="REEL Logo" class="nav-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+        <img src="Images/BG/reel_logo.png" alt="REEL Logo" class="nav-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" fetchpriority="high">
         <div class="nav-logo-crown" style="display:none">&#9884;</div>
       </div>
       <div class="nav-logo-text"><span class="nav-brand-name">REEL</span><span class="nav-brand-sub">Royalty Executive Empire Limited</span></div>
@@ -207,7 +207,7 @@
         <div class="footer-col footer-brand-col">
           <a href="index.html" class="footer-logo-link" aria-label="REEL Home">
             <img src="Images/BG/reel_logo.png" alt="REEL" class="footer-logo"
-              onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+              onerror="this.style.display='none';this.nextElementSibling.style.display='block'" fetchpriority="high">
             <div class="footer-logo-fallback" style="display:none">&#9884; REEL</div>
           </a>
           <p class="footer-brand-desc">Royalty Executive Empire Limited &mdash; Building Empires, Shaping Futures, Leading Innovation across Africa and beyond.</p>
@@ -413,7 +413,7 @@
     el.innerHTML = cart.map(item => `
       <div class="order-item">
         <div class="order-thumb">
-          ${item.image ? `<img src="${item.image}" alt="${item.name}" />` : '<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(212,175,55,0.05);color:var(--gold-400);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg></div>'}
+          ${item.image ? `<img src="${item.image}" alt="${item.name}" decoding="async" loading="lazy">` : '<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(212,175,55,0.05);color:var(--gold-400);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg></div>'}
         </div>
         <div style="flex:1;min-width:0;">
           <div class="order-item-name">${item.name}</div>

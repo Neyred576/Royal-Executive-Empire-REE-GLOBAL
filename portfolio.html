@@ -395,7 +395,7 @@
       <div class="preloader-logo-wrap">
         <div class="preloader-ring"></div>
         <img src="Images/BG/reel_logo.png" alt="REEL" class="preloader-logo-img"
-          onerror="this.style.display='none';document.querySelector('.preloader-crown').style.display='flex'" />
+          onerror="this.style.display='none';document.querySelector('.preloader-crown').style.display='flex'" fetchpriority="high">
         <div class="preloader-crown" style="display:none"><span>&#9884;</span></div>
       </div>
       <div class="preloader-bar-wrap">
@@ -436,7 +436,7 @@
       <a href="index.html" class="nav-logo" aria-label="REEL Home">
         <div class="nav-logo-img-wrap">
           <img src="Images/BG/reel_logo.png" alt="REEL Logo" class="nav-logo-img"
-            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" fetchpriority="high">
           <div class="nav-logo-crown" style="display:none">&#9884;</div>
         </div>
         <div class="nav-logo-text">
@@ -479,7 +479,7 @@
   <section class="pf-hero" id="home" aria-label="Portfolio Hero">
     <div class="pf-hero-bg">
       <img src="Images/portfolio_hero.png" alt="REEL Portfolio  Our Work" class="pf-hero-bg-img"
-        onerror="this.style.display='none'" />
+        onerror="this.style.display='none'" decoding="async" loading="lazy">
       <div class="pf-hero-overlay"></div>
       <div class="pf-hero-particles" aria-hidden="true"></div>
     </div>
@@ -558,7 +558,7 @@
   <div class="pf-lightbox" id="pf-lightbox" role="dialog" aria-modal="true" aria-label="Project details">
     <div class="pf-lightbox-inner">
       <button class="pf-lb-close" id="pf-lb-close" aria-label="Close project details">&times;</button>
-      <img src="" alt="" class="pf-lb-img" id="pf-lb-img" onerror="this.style.display='none'" />
+      <img src="" alt="" class="pf-lb-img" id="pf-lb-img" onerror="this.style.display='none'" decoding="async" loading="lazy">
       <div class="pf-lb-body">
         <span class="pf-lb-cat" id="pf-lb-cat"></span>
         <h2 class="pf-lb-title" id="pf-lb-title"></h2>
@@ -586,7 +586,7 @@
         <div class="footer-col footer-brand-col">
           <a href="index.html" class="footer-logo-link" aria-label="REEL Home">
             <img src="Images/BG/reel_logo.png" alt="REEL" class="footer-logo"
-              onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+              onerror="this.style.display='none';this.nextElementSibling.style.display='block'" fetchpriority="high">
             <div class="footer-logo-fallback" style="display:none">&#9884; REEL</div>
           </a>
           <p class="footer-brand-desc">Royalty Executive Empire Limited &mdash; Building Empires, Shaping Futures, Leading Innovation across Africa and beyond.</p>

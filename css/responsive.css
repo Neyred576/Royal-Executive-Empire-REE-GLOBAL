@@ -22,6 +22,48 @@ body {
   width: 100%;
 }
 
+/* ================================================================
+   MOBILE PERFORMANCE BLOCK
+   Reduce GPU-heavy effects on low-powered devices
+   ================================================================ */
+
+/* Reduce expensive blur effects on small-screen devices */
+@media (max-width: 768px) {
+  /* Lighter blur on mobile nav — backdrop-filter is very GPU-heavy on mobile */
+  .nav-links {
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+  }
+  .mega-menu-panel,
+  .nav-dropdown-menu {
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+  }
+  .glass-card {
+    backdrop-filter: blur(6px) !important;
+    -webkit-backdrop-filter: blur(6px) !important;
+  }
+  /* Disable smooth scroll on mobile — causes jank on overscroll */
+  html {
+    scroll-behavior: auto;
+  }
+  /* Shorter, snappier transitions on mobile */
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.15s !important;
+    animation-duration: 0.25s !important;
+  }
+}
+
+/* Defer rendering of below-fold sections until near viewport */
+@supports (content-visibility: auto) {
+  .section:not(.hero):not(.hero-section):not(:first-child):not(#statistics) {
+    content-visibility: auto;
+    contain-intrinsic-size: 0 600px;
+  }
+}
+
 img, video, svg, canvas {
   display: block;
   max-width: 100%;

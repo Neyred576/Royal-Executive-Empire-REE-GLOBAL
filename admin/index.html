@@ -1029,7 +1029,7 @@
         <div class="sb-ring-outer"></div>
         <div class="sb-ring-inner"></div>
         <div class="sb-ring-core">
-          <img src="../Images/BG/reel_logo.png" alt="REEL" onerror="this.outerHTML='<span style=\'font-size:1.4rem\'>⚜</span>'" />
+          <img src="../Images/BG/reel_logo.png" alt="REEL" onerror="this.outerHTML='<span style=\'font-size:1.4rem\' fetchpriority="high">⚜</span>'" />
         </div>
       </div>
       <div class="sb-brand">REEL</div>
@@ -1322,7 +1322,7 @@
               <!-- Live Preview -->
               <div id="blog-fit-preview-wrap" style="display:none;margin-top:8px;border:1px solid rgba(212,175,55,0.2);border-radius:8px;overflow:hidden;background:#0a0a0a;">
                 <div id="blog-fit-preview-frame" style="width:100%;position:relative;">
-                  <img id="blog-fit-preview-img" src="" alt="Preview" style="width:100%;display:block;transition:all 0.3s;" />
+                  <img id="blog-fit-preview-img" src="" alt="Preview" style="width:100%;display:block;transition:all 0.3s;" decoding="async" loading="lazy">
                 </div>
                 <div style="padding:6px 10px;font-size:0.68rem;color:rgba(212,175,55,0.55);text-align:center;letter-spacing:0.5px;">THUMBNAIL PREVIEW</div>
               </div>
@@ -1528,7 +1528,7 @@
                   <span id="prop-preview-mode-tag" style="background:rgba(212,175,55,0.18); color:var(--gold); padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:600;">Fit (No Crop)</span>
                 </div>
                 <div id="prop-preview-frame" style="width:100%; max-width:340px; margin:0 auto; background:#000; border-radius:6px; overflow:hidden; border:1px solid rgba(212,175,55,0.2); display:flex; align-items:center; justify-content:center;">
-                  <img id="prop-preview-img" src="" alt="Preview" style="display:block; width:100%; max-height:280px; object-fit:contain;" />
+                  <img id="prop-preview-img" src="" alt="Preview" style="display:block; width:100%; max-height:280px; object-fit:contain;" decoding="async" loading="lazy">
                 </div>
               </div>
             </div>
@@ -2199,7 +2199,7 @@
             Edit
           </button>` : '';
         div.innerHTML = `
-          <div class="item-thumb">${imgSrc ? `<img src="${imgSrc}" alt="">` : '📋'}</div>
+          <div class="item-thumb">${imgSrc ? `<img src="${imgSrc}" alt="" decoding="async" loading="lazy">` : '📋'}</div>
           <div class="item-info">
             <strong>${title}</strong>
             <span>${sub}</span>
@@ -2572,7 +2572,7 @@
       container.innerHTML = items.map(item => `
         <div class="admin-list-item" style="flex-direction:column; align-items:flex-start; gap:12px;" id="sched-${item.id}">
           <div style="display:flex; align-items:center; gap:12px; width:100%;">
-            ${item.image ? `<div class="item-thumb"><img src="${item.image}" alt="" style="width:50px;height:50px;object-fit:cover;border-radius:8px;"></div>` : ''}
+            ${item.image ? `<div class="item-thumb"><img src="${item.image}" alt="" style="width:50px;height:50px;object-fit:cover;border-radius:8px;" decoding="async" loading="lazy"></div>` : ''}
             <div style="flex:1;">
               <span style="font-size:0.65rem; color:#D4AF37; text-transform:uppercase; letter-spacing:1px;">${item._type}</span>
               <strong style="display:block;">${item.title || item.name}</strong>

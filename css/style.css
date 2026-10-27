@@ -17,11 +17,50 @@ body {
   line-height: 1.65;
 }
 html.no-scroll, body.no-scroll { overflow: hidden; height: 100vh; touch-action: none; }
-img { display: block; max-width: 100%; }
+img { display: block; max-width: 100%; height: auto; }
 a { text-decoration: none; color: inherit; }
 ul { list-style: none; }
 button { cursor: pointer; border: none; background: none; font-family: inherit; }
 input, textarea, select { font-family: inherit; }
+
+/* ================================================================
+   PERFORMANCE OPTIMISATIONS
+   GPU compositing hints, layout containment & paint reduction
+   ================================================================ */
+
+/* Promote animated layers to their own compositor layer */
+.main-nav,
+#hero-canvas,
+.nav-links {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Limit repaint scope for card-heavy sections */
+.glass-card,
+.division-card,
+.listing-card,
+.product-card,
+.service-card,
+.pf-item,
+.blog-card,
+.team-card {
+  contain: layout style;
+}
+
+/* Prevent cumulative layout shift on section backgrounds */
+section,
+.hero,
+.hero-section {
+  contain: layout;
+}
+
+/* Mega-menu gets its own layer to avoid triggering full-page repaints */
+.mega-menu-panel,
+.nav-dropdown-menu {
+  will-change: opacity, transform;
+  transform: translateZ(0);
+}
 *:focus-visible {
   outline: 2px solid #D4AF37;
   outline-offset: 3px;

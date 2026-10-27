@@ -139,25 +139,25 @@ document.addEventListener('DOMContentLoaded', () => {
   const mainNav = document.getElementById('main-nav');
   const scrollTopBtn = document.getElementById('scroll-top-btn');
 
-  window.addEventListener('scroll', () => {
-    const y = window.scrollY;
-    // Header Blur
-    if (mainNav) {
-      if (y > 50) {
-        mainNav.classList.add('scrolled');
-      } else {
-        mainNav.classList.remove('scrolled');
+  // RAF-throttled scroll handler to prevent layout thrashing
+  let _scrollTicking = false;
+  const _onScroll = () => {
+    if (_scrollTicking) return;
+    _scrollTicking = true;
+    requestAnimationFrame(() => {
+      const y = window.scrollY;
+      // Header Blur
+      if (mainNav) {
+        mainNav.classList.toggle('scrolled', y > 50);
       }
-    }
-    // Scroll To Top Button
-    if (scrollTopBtn) {
-      if (y > 600) {
-        scrollTopBtn.classList.add('show');
-      } else {
-        scrollTopBtn.classList.remove('show');
+      // Scroll To Top Button
+      if (scrollTopBtn) {
+        scrollTopBtn.classList.toggle('show', y > 600);
       }
-    }
-  }, { passive: true });
+      _scrollTicking = false;
+    });
+  };
+  window.addEventListener('scroll', _onScroll, { passive: true });
 
   if (scrollTopBtn) {
     scrollTopBtn.addEventListener('click', () => {
@@ -443,75 +443,95 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  // 10. HERO PARTICLES ANIMATION (Gold Dust)
+  // 10. HERO PARTICLES ANIMATION (Gold Dust) — performance-optimised
   const canvas = document.getElementById('hero-canvas');
   if (canvas) {
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d', { alpha: true });
     let width, height;
     let particles = [];
+    let _particleAnimId = null;
+    let _particlePaused = false;
 
+    // Throttle resize to avoid constant re-initialisation
+    let _resizeTId;
     const resizeCanvas = () => {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
+      clearTimeout(_resizeTId);
+      _resizeTId = setTimeout(() => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+        initParticles();
+      }, 150);
     };
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas, { passive: true });
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
 
     class Particle {
-      constructor() {
+      constructor() { this.reset(); }
+      reset() {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
-        this.size = Math.random() * 2.5 + 0.5;
-        this.speedX = Math.random() * 0.5 - 0.25;
-        this.speedY = Math.random() * -1 - 0.5; // Always float up slowly
-        this.opacity = Math.random() * 0.5 + 0.1;
+        this.size = Math.random() * 2 + 0.4;
+        this.speedX = Math.random() * 0.4 - 0.2;
+        this.speedY = Math.random() * -0.7 - 0.2;
+        this.opacity = Math.random() * 0.45 + 0.05;
       }
       update() {
         this.x += this.speedX;
         this.y += this.speedY;
-
-        // Wrap around
-        if (this.y < -10) {
-          this.y = height + 10;
-          this.x = Math.random() * width;
-        }
+        if (this.y < -10) { this.y = height + 10; this.x = Math.random() * width; }
         if (this.x < -10) this.x = width + 10;
         if (this.x > width + 10) this.x = -10;
       }
       draw() {
+        ctx.globalAlpha = this.opacity;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(212, 175, 55, ${this.opacity})`;
+        ctx.fillStyle = 'rgb(212,175,55)';
         ctx.fill();
-        // Add subtle glow to larger particles
-        if (this.size > 2) {
-          ctx.shadowBlur = 10;
-          ctx.shadowColor = 'rgba(212, 175, 55, 0.8)';
-        } else {
-          ctx.shadowBlur = 0;
-        }
       }
     }
 
     const initParticles = () => {
       particles = [];
-      const particleCount = Math.min(window.innerWidth / 15, 100); // Responsive count
+      // Fewer particles on mobile for better performance
+      const isMobile = window.innerWidth < 768;
+      const particleCount = isMobile
+        ? Math.min(Math.floor(window.innerWidth / 30), 30)
+        : Math.min(Math.floor(window.innerWidth / 18), 65);
       for (let i = 0; i < particleCount; i++) {
         particles.push(new Particle());
       }
     };
 
     const animateParticles = () => {
+      if (_particlePaused) { _particleAnimId = null; return; }
       ctx.clearRect(0, 0, width, height);
-      particles.forEach(p => {
-        p.update();
-        p.draw();
-      });
-      requestAnimationFrame(animateParticles);
+      ctx.globalAlpha = 1;
+      // Batch all fills with same colour for efficiency
+      ctx.fillStyle = 'rgb(212,175,55)';
+      particles.forEach(p => { p.update(); p.draw(); });
+      ctx.globalAlpha = 1;
+      _particleAnimId = requestAnimationFrame(animateParticles);
     };
 
+    // Pause particles when hero is not in viewport to save CPU/GPU
+    const heroSection = canvas.closest('section, .hero, #hero') || canvas.parentElement;
+    if (heroSection && 'IntersectionObserver' in window) {
+      const particleObserver = new IntersectionObserver((entries) => {
+        const visible = entries[0].isIntersecting;
+        if (visible && _particlePaused) {
+          _particlePaused = false;
+          if (!_particleAnimId) _particleAnimId = requestAnimationFrame(animateParticles);
+        } else if (!visible && !_particlePaused) {
+          _particlePaused = true;
+        }
+      }, { threshold: 0.05 });
+      particleObserver.observe(heroSection);
+    }
+
     initParticles();
-    animateParticles();
+    _particleAnimId = requestAnimationFrame(animateParticles);
   }
 
   // Set hero text animations after preloader

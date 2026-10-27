@@ -402,7 +402,7 @@
   <div class="nav-inner">
     <a href="index.html" class="nav-logo" aria-label="REEL Home">
       <div class="nav-logo-img-wrap">
-        <img src="Images/BG/reel_logo.png" alt="REEL Logo" class="nav-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+        <img src="Images/BG/reel_logo.png" alt="REEL Logo" class="nav-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" fetchpriority="high">
         <div class="nav-logo-crown" style="display:none">&#9884;</div>
       </div>
       <div class="nav-logo-text">
@@ -427,7 +427,7 @@
               <!-- REEL Tech Hub -->
               <a href="reel-tech-hub.html" class="mega-div-card" aria-label="REEL Tech Hub">
                 <div class="mega-div-img-wrap">
-                  <img src="Images/divisions/reel_tech_hub.png" alt="REEL Tech Hub" class="mega-div-img" onerror="this.style.display='none'" />
+                  <img src="Images/divisions/reel_tech_hub.png" alt="REEL Tech Hub" class="mega-div-img" onerror="this.style.display='none'" decoding="async" loading="lazy">
                   <div class="mega-div-img-overlay"></div>
                   <span class="mega-div-num">01</span>
                   
@@ -442,7 +442,7 @@
               <!-- REEL Auto Centre -->
               <a href="reel-auto-center.html" class="mega-div-card" aria-label="REEL Auto Centre">
                 <div class="mega-div-img-wrap">
-                  <img src="Images/divisions/reel_auto.png" alt="REEL Auto Centre" class="mega-div-img" onerror="this.style.display='none'" />
+                  <img src="Images/divisions/reel_auto.png" alt="REEL Auto Centre" class="mega-div-img" onerror="this.style.display='none'" decoding="async" loading="lazy">
                   <div class="mega-div-img-overlay"></div>
                   <span class="mega-div-num">02</span>
                   
@@ -457,7 +457,7 @@
               <!-- REEL Properties -->
               <a href="real-estate.html" class="mega-div-card" aria-label="REEL Properties">
                 <div class="mega-div-img-wrap">
-                  <img src="Images/divisions/reel_properties.png" alt="REEL Properties" class="mega-div-img" onerror="this.style.display='none'" />
+                  <img src="Images/divisions/reel_properties.png" alt="REEL Properties" class="mega-div-img" onerror="this.style.display='none'" decoding="async" loading="lazy">
                   <div class="mega-div-img-overlay"></div>
                   <span class="mega-div-num">03</span>
                 </div>
@@ -471,7 +471,7 @@
               <!-- REEL Global Palace -->
               <a href="reel-global-palace.html" class="mega-div-card" aria-label="REEL Global Palace">
                 <div class="mega-div-img-wrap">
-                  <img src="Images/divisions/reel_global_palace.png" alt="REEL Global Palace" class="mega-div-img" onerror="this.style.display='none'" />
+                  <img src="Images/divisions/reel_global_palace.png" alt="REEL Global Palace" class="mega-div-img" onerror="this.style.display='none'" decoding="async" loading="lazy">
                   <div class="mega-div-img-overlay"></div>
                   <span class="mega-div-num">04</span>
                   
@@ -593,7 +593,7 @@
         <div class="footer-col footer-brand-col">
           <a href="index.html" class="footer-logo-link" aria-label="REEL Home">
             <img src="Images/BG/reel_logo.png" alt="REEL" class="footer-logo"
-              onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+              onerror="this.style.display='none';this.nextElementSibling.style.display='block'" fetchpriority="high">
             <div class="footer-logo-fallback" style="display:none">&#9884; REEL</div>
           </a>
           <p class="footer-brand-desc">Royalty Executive Empire Limited &mdash; Building Empires, Shaping Futures, Leading Innovation across Africa and beyond.</p>
@@ -884,7 +884,7 @@
     // Populate image
     const imgCol = document.getElementById('modal-img-col');
     if (product.image) {
-      imgCol.innerHTML = `<img src="${product.image}" alt="${product.name || 'Product'}" style="width:100%;height:100%;object-fit:cover;object-position:${product.imagePos || 'center center'};"><div class="shop-modal-badge">New</div>`;
+      imgCol.innerHTML = `<img src="${product.image}" alt="${product.name || 'Product'}" style="width:100%;height:100%;object-fit:cover;object-position:${product.imagePos || 'center center'};" decoding="async" loading="lazy"><div class="shop-modal-badge">New</div>`;
     } else {
       imgCol.innerHTML = `<div class="shop-modal-img-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(212,175,55,0.3)" stroke-width="1.5" width="80" height="80"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div><div class="shop-modal-badge">New</div>`;
     }
@@ -942,7 +942,7 @@
       <div class="product-card" data-pid="${pid}" style="cursor:pointer;">
         <div class="product-img-wrap">
           ${p.image
-            ? `<img src="${p.image}" alt="${p.name || 'Product'}" class="product-img" style="object-position:${p.imagePos||'center center'}">`
+            ? `<img src="${p.image}" alt="${p.name || 'Product'}" class="product-img" style="object-position:${p.imagePos||'center center'}" decoding="async" loading="lazy">`
             : `<div class="product-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" style="opacity:0.3;"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>`
           }
           <div class="product-badge">New</div>
