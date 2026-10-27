@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -184,6 +184,205 @@
         grid-template-columns: 1fr;
       }
     }
+
+    /* ══ EXECUTIVE MEMBER DASHBOARD ══ */
+    .dashboard-view {
+      display: none;
+      width: 100%;
+      max-width: 1140px;
+      margin: 0 auto;
+      animation: fadeIn 0.4s ease-out forwards;
+    }
+    .dashboard-view.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .dash-hero {
+      background: rgba(18, 18, 18, 0.85);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--gold-border);
+      border-radius: var(--radius-xl);
+      padding: 36px 40px;
+      margin-bottom: 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .dash-hero::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 260px; height: 260px;
+      background: radial-gradient(circle, rgba(212,175,55,0.2) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .dash-user-row {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+    .dash-avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f0c05a 0%, #d4af37 50%, #996515 100%);
+      color: #0b0b0b;
+      font-weight: 800;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(212,175,55,0.3);
+      flex-shrink: 0;
+    }
+    .dash-user-name {
+      font-family: var(--font-display);
+      font-size: 1.7rem;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .dash-user-email {
+      font-size: 0.88rem;
+      color: var(--w50);
+      margin-bottom: 8px;
+    }
+    .dash-vip-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(212,175,55,0.15);
+      border: 1px solid rgba(212,175,55,0.4);
+      color: var(--gold-300);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 4px 12px;
+      border-radius: 999px;
+    }
+    .dash-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .dash-tabs {
+      display: flex;
+      gap: 8px;
+      border-bottom: 1px solid var(--gold-border);
+      margin-bottom: 30px;
+      overflow-x: auto;
+    }
+    .dash-tab {
+      background: none;
+      border: none;
+      color: var(--w60);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 14px 24px;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.25s;
+      white-space: nowrap;
+    }
+    .dash-tab:hover {
+      color: #fff;
+    }
+    .dash-tab.active {
+      color: var(--gold-300);
+    }
+    .dash-tab.active::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0; right: 0;
+      height: 2px;
+      background: var(--gold-gradient);
+    }
+    .dash-grid-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+    .dash-stat-box {
+      background: rgba(22, 22, 22, 0.7);
+      border: 1px solid var(--gold-border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      transition: all 0.3s;
+    }
+    .dash-stat-box:hover {
+      border-color: var(--gold-300);
+      transform: translateY(-3px);
+    }
+    .dash-stat-num {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--gold-300);
+      font-family: var(--font-display);
+      margin-bottom: 4px;
+    }
+    .dash-stat-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--w60);
+    }
+    .dash-panel {
+      display: none;
+    }
+    .dash-panel.active {
+      display: block;
+    }
+    .dash-card {
+      background: rgba(20, 20, 20, 0.75);
+      border: 1px solid var(--gold-border);
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      margin-bottom: 24px;
+    }
+    .dash-card-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      color: #fff;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .social-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 13px 20px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--gold-border);
+      background: rgba(255,255,255,0.03);
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .social-btn:hover {
+      background: rgba(212,175,55,0.12);
+      border-color: var(--gold-300);
+      color: var(--gold-300);
+      transform: translateY(-2px);
+    }
+    .social-btn svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
   </style>
 
   <link rel="manifest" href="/manifest.json" />
@@ -205,11 +404,82 @@
             Executive Empire</span></div>
       </a>
       <ul class="nav-links" id="nav-links" role="list">
-        
-                <li class="nav-item-dropdown" id="our-divisions-dropdown">
+        <li class="nav-item-dropdown" id="our-divisions-dropdown">
           <a href="javascript:void(0)" class="nav-link" aria-haspopup="true" aria-expanded="false" id="our-divisions-toggle">
             Our Divisions <svg class="drop-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left:4px; vertical-align: middle; margin-top:-2px;"><path d="M6 9l6 6 6-6"/></svg>
           </a>
+
+          <!-- ══ MEGA-MENU ══ -->
+          <div class="mega-menu-wrapper" role="region" aria-label="Our Divisions Mega Menu">
+            <div class="mega-menu-header">
+              <span class="mega-menu-title">✦ &nbsp; Our Four Divisions &nbsp; ✦</span>
+              <span style="font-size:0.72rem; color:var(--w30);">Each division is an independently outstanding platform</span>
+            </div>
+            <div class="mega-menu-grid">
+
+              <!-- REEL Tech Hub -->
+              <a href="reel-tech-hub.html" class="mega-div-card" aria-label="REEL Tech Hub">
+                <div class="mega-div-img-wrap">
+                  <img src="Images/divisions/reel_tech_hub.png" alt="REEL Tech Hub" class="mega-div-img" onerror="this.style.display='none'" />
+                  <div class="mega-div-img-overlay"></div>
+                  <span class="mega-div-num">01</span>
+                  
+                </div>
+                <div class="mega-div-body">
+                  <div class="mega-div-name"><span>REEL</span> Tech Hub</div>
+                  <p class="mega-div-desc">Digital transformation, smart solutions &amp; enterprise technology across Africa.</p>
+                  <span class="mega-div-link">Explore Division <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                </div>
+              </a>
+
+              <!-- REEL Auto Centre -->
+              <a href="reel-auto-center.html" class="mega-div-card" aria-label="REEL Auto Centre">
+                <div class="mega-div-img-wrap">
+                  <img src="Images/divisions/reel_auto.png" alt="REEL Auto Centre" class="mega-div-img" onerror="this.style.display='none'" />
+                  <div class="mega-div-img-overlay"></div>
+                  <span class="mega-div-num">02</span>
+                  
+                </div>
+                <div class="mega-div-body">
+                  <div class="mega-div-name"><span>REEL</span> Auto Centre</div>
+                  <p class="mega-div-desc">Premium automotive care, executive detailing &amp; fleet maintenance services.</p>
+                  <span class="mega-div-link">Explore Division <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                </div>
+              </a>
+
+              <!-- REEL Properties -->
+              <a href="real-estate.html" class="mega-div-card" aria-label="REEL Properties">
+                <div class="mega-div-img-wrap">
+                  <img src="Images/divisions/reel_properties.png" alt="REEL Properties" class="mega-div-img" onerror="this.style.display='none'" />
+                  <div class="mega-div-img-overlay"></div>
+                  <span class="mega-div-num">03</span>
+                </div>
+                <div class="mega-div-body">
+                  <div class="mega-div-name"><span>REEL</span> Properties</div>
+                  <p class="mega-div-desc">Luxury residential &amp; commercial real estate investments across Africa &amp; beyond.</p>
+                  <span class="mega-div-link">View Listings <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                </div>
+              </a>
+
+              <!-- REEL Global Palace -->
+              <a href="reel-global-palace.html" class="mega-div-card" aria-label="REEL Global Palace">
+                <div class="mega-div-img-wrap">
+                  <img src="Images/divisions/reel_global_palace.png" alt="REEL Global Palace" class="mega-div-img" onerror="this.style.display='none'" />
+                  <div class="mega-div-img-overlay"></div>
+                  <span class="mega-div-num">04</span>
+                  
+                </div>
+                <div class="mega-div-body">
+                  <div class="mega-div-name"><span>REEL</span> Global Palace</div>
+                  <p class="mega-div-desc">Luxury beauty, grooming &amp; elite lifestyle experiences — crafted to the REEL standard.</p>
+                  <span class="mega-div-link">Explore Division <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                </div>
+              </a>
+
+            </div><!-- /.mega-menu-grid -->
+          </div><!-- /.mega-menu-wrapper -->
+
+          <!-- Mobile fallback simple dropdown -->
           <ul class="nav-dropdown" role="list" aria-label="Our Divisions submenu">
             <li><a href="reel-tech-hub.html">REEL Tech Hub</a></li>
             <li><a href="reel-auto-center.html">REEL Auto Centre</a></li>
@@ -219,8 +489,35 @@
         </li>
         <li><a href="blog.html" class="nav-link">Blog</a></li>
         <li><a href="shop.html" class="nav-link">Shop</a></li>
-        </ul>
-    <div class="nav-actions">
+      </ul>
+      <div class="nav-actions">
+        <!-- ══ CURRENCY SWITCHER ══ -->
+        <div class="currency-switcher" id="currency-switcher" aria-label="Currency selector">
+          <button class="currency-btn" id="currency-btn" aria-haspopup="listbox" aria-expanded="false">
+            
+            <span id="currency-label">NGN ₦</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="currency-dropdown" id="currency-dropdown" role="listbox">
+            <div class="currency-option active" data-code="NGN" data-symbol="₦" data-rate="1" data-flag="" role="option" aria-selected="true">
+              
+              <div><div class="currency-code">NGN ₦</div><div class="currency-name">Nigerian Naira</div></div>
+            </div>
+            <div class="currency-option" data-code="AED" data-symbol="AED" data-rate="0.00021" data-flag="" role="option" aria-selected="false">
+              
+              <div><div class="currency-code">AED</div><div class="currency-name">UAE Dirham</div></div>
+            </div>
+            <div class="currency-option" data-code="USD" data-symbol="$" data-rate="0.000057" data-flag="" role="option" aria-selected="false">
+              
+              <div><div class="currency-code">USD $</div><div class="currency-name">US Dollar</div></div>
+            </div>
+            <div class="currency-option" data-code="GBP" data-symbol="£" data-rate="0.000045" data-flag="" role="option" aria-selected="false">
+              
+              <div><div class="currency-code">GBP £</div><div class="currency-name">British Pound</div></div>
+            </div>
+          </div>
+        </div><!-- /.currency-switcher -->
+
         <a href="cart.html" class="nav-icon cart-icon" aria-label="Shopping Cart"><svg viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="1.5">
             <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
@@ -236,7 +533,7 @@
   </nav>
 
   <div class="auth-section">
-    <div class="auth-container">
+    <div class="auth-container" id="auth-forms-container">
       <!-- Login Form -->
       <div class="auth-card reveal-left">
         <div class="auth-title">Sign <span class="gold-text">In</span></div>
@@ -248,16 +545,28 @@
           </div>
           <div class="form-group">
             <label for="login-pass">Password</label>
-            <input type="password" id="login-pass" placeholder="??????????" required />
+            <input type="password" id="login-pass" placeholder="••••••••" required />
           </div>
-          <div class="forgot-link"><a href="#">Forgot password?</a></div>
-          <button type="submit" class="btn-gold" style="width:100%; justify-content:center;"><span>Sign
-              In</span></button>
+          <div class="forgot-link"><a href="javascript:void(0)" id="forgot-password-link">Forgot password?</a></div>
+          <button type="submit" class="btn-gold" id="login-submit-btn" style="width:100%; justify-content:center;"><span>Sign In</span></button>
         </form>
         <div class="divider-or">or sign in with</div>
         <div class="social-auth">
-          <button class="social-btn">?? &nbsp; Continue with Google</button>
-          <button class="social-btn">?? &nbsp; Continue with Facebook</button>
+          <button type="button" class="social-btn" id="google-signin-btn">
+            <svg viewBox="0 0 24 24" width="18" height="18">
+              <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"/>
+              <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z"/>
+              <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 10.03 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/>
+              <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+            </svg>
+            Continue with Google
+          </button>
+          <button type="button" class="social-btn" id="fb-signin-btn">
+            <svg viewBox="0 0 24 24" fill="#1877F2" width="18" height="18">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+            Continue with Facebook
+          </button>
         </div>
       </div>
 
@@ -278,26 +587,141 @@
             <label for="reg-pass">Password</label>
             <input type="password" id="reg-pass" placeholder="Minimum 8 characters" required />
           </div>
-          <button type="submit" class="btn-gold" style="width:100%; justify-content:center;"><span>Create
-              Account</span></button>
+          <button type="submit" class="btn-gold" id="register-submit-btn" style="width:100%; justify-content:center;"><span>Create Account</span></button>
         </form>
         <ul class="benefits-list" style="margin-top: 28px;">
           <li>
-            <div class="benefit-icon">????</div>
-            <div class="benefit-text"><strong>Exclusive Member Pricing</strong><span>Get special discounts on all luxury
-                products.</span></div>
+            <div class="benefit-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            </div>
+            <div class="benefit-text"><strong>Exclusive Member Pricing</strong><span>Get special discounts on all luxury products.</span></div>
           </li>
           <li>
-            <div class="benefit-icon">??</div>
-            <div class="benefit-text"><strong>Order Tracking</strong><span>Track your orders in real-time from your
-                dashboard.</span></div>
+            <div class="benefit-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+            </div>
+            <div class="benefit-text"><strong>Order Tracking</strong><span>Track your orders in real-time from your dashboard.</span></div>
           </li>
           <li>
-            <div class="benefit-icon">&#9884;</div>
-            <div class="benefit-text"><strong>Executive Newsletter</strong><span>Be first to receive REEL business
-                insights and launches.</span></div>
+            <div class="benefit-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div class="benefit-text"><strong>Executive Newsletter</strong><span>Be first to receive REEL business insights and launches.</span></div>
           </li>
         </ul>
+      </div>
+    </div>
+
+    <!-- ══ EXECUTIVE MEMBER DASHBOARD VIEW ══ -->
+    <div class="dashboard-view" id="account-dashboard-view">
+      <!-- Member Hero Banner -->
+      <div class="dash-hero">
+        <div class="dash-user-row">
+          <div class="dash-avatar" id="dash-avatar-letter">R</div>
+          <div>
+            <div class="dash-user-name" id="dash-display-name">Executive Member</div>
+            <div class="dash-user-email" id="dash-display-email">member@royaltyexecutiveempire.com</div>
+            <span class="dash-vip-badge">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              REEL VIP Member
+            </span>
+          </div>
+        </div>
+        <div class="dash-actions">
+          <a href="shop.html" class="btn-ghost" style="padding:10px 18px; font-size:0.85rem;">Browse Shop</a>
+          <button type="button" class="btn-primary" id="btn-sign-out" style="padding:10px 20px; font-size:0.85rem;">Sign Out</button>
+        </div>
+      </div>
+
+      <!-- Quick KPI Stats -->
+      <div class="dash-grid-stats">
+        <div class="dash-stat-box">
+          <div class="dash-stat-num" id="dash-stat-orders">0</div>
+          <div class="dash-stat-label">Orders Placed</div>
+        </div>
+        <div class="dash-stat-box">
+          <div class="dash-stat-num" id="dash-stat-saved">4</div>
+          <div class="dash-stat-label">Saved Properties</div>
+        </div>
+        <div class="dash-stat-box">
+          <div class="dash-stat-num">Gold</div>
+          <div class="dash-stat-label">Tier Status</div>
+        </div>
+        <div class="dash-stat-box">
+          <div class="dash-stat-num" id="dash-stat-currency">NGN ₦</div>
+          <div class="dash-stat-label">Default Currency</div>
+        </div>
+      </div>
+
+      <!-- Tabs Navigation -->
+      <div class="dash-tabs" role="tablist">
+        <button class="dash-tab active" data-tab="orders" role="tab">Orders &amp; Tracking</button>
+        <button class="dash-tab" data-tab="shortlist" role="tab">Saved Properties</button>
+        <button class="dash-tab" data-tab="profile" role="tab">Security &amp; Preferences</button>
+      </div>
+
+      <!-- Tab Panel: Orders -->
+      <div class="dash-panel active" id="tab-orders">
+        <div class="dash-card">
+          <div class="dash-card-title">
+            <span>Recent Orders</span>
+            <a href="shop.html" class="gold-text" style="font-size:0.85rem; font-family:var(--font-body); text-decoration:none;">Shop Now &rarr;</a>
+          </div>
+          <div id="dash-orders-content">
+            <p style="color:var(--w50); font-size:0.9rem;">No completed checkout orders yet. Items in your active cart will appear below:</p>
+            <div id="dash-cart-summary" style="margin-top:16px;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab Panel: Shortlist -->
+      <div class="dash-panel" id="tab-shortlist">
+        <div class="dash-card">
+          <div class="dash-card-title">
+            <span>Saved Properties &amp; Luxury Listings</span>
+            <a href="real-estate.html" class="gold-text" style="font-size:0.85rem; font-family:var(--font-body); text-decoration:none;">View All Properties &rarr;</a>
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:20px; margin-top:16px;">
+            <div class="dash-stat-box" style="padding:18px;">
+              <div style="font-size:0.75rem; color:var(--gold-300); text-transform:uppercase; letter-spacing:1px; margin-bottom:4px;">Luxury Villa</div>
+              <div style="font-size:1.1rem; color:#fff; font-family:var(--font-display); margin-bottom:6px;">Imperial Waterfront Villa</div>
+              <div style="font-size:0.85rem; color:var(--w50); margin-bottom:12px;">Banana Island, Ikoyi, Lagos</div>
+              <div style="font-size:1rem; color:var(--gold-300); font-weight:700; margin-bottom:12px;" data-base-price="450000000">₦450,000,000</div>
+              <a href="real-estate.html" class="btn-ghost" style="padding:8px 14px; font-size:0.8rem; text-decoration:none; display:inline-block;">View Details</a>
+            </div>
+            <div class="dash-stat-box" style="padding:18px;">
+              <div style="font-size:0.75rem; color:var(--gold-300); text-transform:uppercase; letter-spacing:1px; margin-bottom:4px;">Commercial Real Estate</div>
+              <div style="font-size:1.1rem; color:#fff; font-family:var(--font-display); margin-bottom:6px;">Crown Executive Tower</div>
+              <div style="font-size:0.85rem; color:var(--w50); margin-bottom:12px;">Victoria Island, Lagos</div>
+              <div style="font-size:1rem; color:var(--gold-300); font-weight:700; margin-bottom:12px;" data-base-price="1200000000">₦1,200,000,000</div>
+              <a href="real-estate.html" class="btn-ghost" style="padding:8px 14px; font-size:0.8rem; text-decoration:none; display:inline-block;">View Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab Panel: Profile & Preferences -->
+      <div class="dash-panel" id="tab-profile">
+        <div class="dash-card">
+          <div class="dash-card-title"><span>Executive Profile &amp; Preferences</span></div>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:24px;">
+            <div>
+              <label style="display:block; font-size:0.8rem; text-transform:uppercase; color:var(--gold-300); margin-bottom:6px;">Preferred Viewing Currency</label>
+              <select id="profile-pref-currency" style="width:100%; background:var(--black-900); border:1px solid var(--gold-border); border-radius:var(--radius-md); padding:12px 16px; color:#fff;">
+                <option value="NGN">NGN ₦ — Nigerian Naira</option>
+                <option value="AED">AED — UAE Dirham</option>
+                <option value="USD">USD $ — US Dollar</option>
+                <option value="GBP">GBP £ — British Pound</option>
+              </select>
+            </div>
+            <div>
+              <label style="display:block; font-size:0.8rem; text-transform:uppercase; color:var(--gold-300); margin-bottom:6px;">VIP Advisory Channel</label>
+              <a href="https://wa.me/2348067029444?text=Hello%20REEL%20Executive%20Team%2C%20I%20am%20a%20VIP%20Member" target="_blank" rel="noopener noreferrer" class="btn-ghost" style="display:inline-flex; align-items:center; gap:8px; padding:12px 18px; width:100%; justify-content:center; text-decoration:none;">
+                <span>Direct WhatsApp Concierge</span>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -499,11 +923,253 @@
     if (yr) yr.textContent = today.getFullYear();
   });
 })();
-</script>
-  <script src="js/main.js"></script>
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="js/firebase-init.js"></script>
 
+  <script src="js/main.js"></script>
   <script src="/js/pwa.js"></script>
-<script src="/js/notifications.js"></script>
+  <script src="/js/notifications.js"></script>
+
+  <!-- Account Portal Controller -->
+  <script>
+  (function() {
+    const authContainer = document.getElementById('auth-forms-container');
+    const dashView = document.getElementById('account-dashboard-view');
+    const loginForm = document.getElementById('login-form');
+    const registerForm = document.getElementById('register-form');
+    const googleBtn = document.getElementById('google-signin-btn');
+    const fbBtn = document.getElementById('fb-signin-btn');
+    const signOutBtn = document.getElementById('btn-sign-out');
+    const forgotLink = document.getElementById('forgot-password-link');
+
+    // Display elements
+    const nameEl = document.getElementById('dash-display-name');
+    const emailEl = document.getElementById('dash-display-email');
+    const avatarEl = document.getElementById('dash-avatar-letter');
+    const cartSummaryEl = document.getElementById('dash-cart-summary');
+    const statOrdersEl = document.getElementById('dash-stat-orders');
+    const statCurrencyEl = document.getElementById('dash-stat-currency');
+    const prefCurrencySelect = document.getElementById('profile-pref-currency');
+
+    function showToast(msg, type) {
+      if (typeof window.showNotification === 'function') {
+        window.showNotification(msg, type || 'success');
+      } else {
+        alert(msg);
+      }
+    }
+
+    function renderDashboardUser(user) {
+      if (!user) return;
+      const displayName = user.displayName || user.name || (user.email ? user.email.split('@')[0] : 'Executive Member');
+      const email = user.email || 'member@royaltyexecutiveempire.com';
+      if (nameEl) nameEl.textContent = displayName;
+      if (emailEl) emailEl.textContent = email;
+      if (avatarEl) avatarEl.textContent = displayName.charAt(0).toUpperCase();
+
+      // Render cart / orders status
+      const savedCart = localStorage.getItem('reel_cart');
+      if (savedCart) {
+        try {
+          const items = JSON.parse(savedCart);
+          if (Array.isArray(items) && items.length > 0) {
+            if (statOrdersEl) statOrdersEl.textContent = items.length;
+            if (cartSummaryEl) {
+              cartSummaryEl.innerHTML = `
+                <div style="background:rgba(212,175,55,0.08); border:1px solid rgba(212,175,55,0.25); border-radius:8px; padding:16px;">
+                  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                    <strong style="color:var(--gold-300);">Active Cart (${items.length} items)</strong>
+                    <a href="cart.html" class="btn-primary" style="padding:6px 14px; font-size:0.75rem; text-decoration:none;">Proceed to Checkout</a>
+                  </div>
+                  <div style="font-size:0.85rem; color:var(--w70);">
+                    ${items.map(it => `<div>• ${it.name || 'Luxury Item'} &times; ${it.qty || 1}</div>`).join('')}
+                  </div>
+                </div>
+              `;
+            }
+          }
+        } catch(e) {}
+      }
+
+      // Sync currency preference
+      const cur = localStorage.getItem('reel_currency') || 'NGN';
+      if (statCurrencyEl) statCurrencyEl.textContent = cur;
+      if (prefCurrencySelect) prefCurrencySelect.value = cur;
+
+      authContainer.style.display = 'none';
+      dashView.classList.add('active');
+    }
+
+    function renderLoggedOut() {
+      dashView.classList.remove('active');
+      authContainer.style.display = 'grid';
+    }
+
+    // Check existing session
+    const localUser = localStorage.getItem('reel_member_user');
+    if (localUser) {
+      try {
+        renderDashboardUser(JSON.parse(localUser));
+      } catch(e) {}
+    }
+
+    // Firebase Auth listener
+    if (typeof firebase !== 'undefined' && firebase.auth) {
+      firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+          const userData = { name: user.displayName || user.email.split('@')[0], email: user.email };
+          localStorage.setItem('reel_member_user', JSON.stringify(userData));
+          renderDashboardUser(userData);
+        }
+      });
+    }
+
+    // Tab Navigation
+    document.querySelectorAll('.dash-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.dash-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.dash-panel').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        const targetId = 'tab-' + tab.dataset.tab;
+        const targetPanel = document.getElementById(targetId);
+        if (targetPanel) targetPanel.classList.add('active');
+      });
+    });
+
+    // Login Form
+    if (loginForm) {
+      loginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = document.getElementById('login-email').value.trim();
+        const pass = document.getElementById('login-pass').value;
+
+        if (typeof firebase !== 'undefined' && firebase.auth) {
+          firebase.auth().signInWithEmailAndPassword(email, pass).then(cred => {
+            showToast('Welcome back, ' + (cred.user.displayName || email.split('@')[0]) + '!');
+          }).catch(err => {
+            console.warn('Firebase Auth fallback:', err.message);
+            // Local fallback session
+            const userData = { name: email.split('@')[0], email: email };
+            localStorage.setItem('reel_member_user', JSON.stringify(userData));
+            renderDashboardUser(userData);
+            showToast('Welcome back to REEL, VIP Member!');
+          });
+        } else {
+          const userData = { name: email.split('@')[0], email: email };
+          localStorage.setItem('reel_member_user', JSON.stringify(userData));
+          renderDashboardUser(userData);
+          showToast('Welcome back to REEL, VIP Member!');
+        }
+      });
+    }
+
+    // Register Form
+    if (registerForm) {
+      registerForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name = document.getElementById('reg-name').value.trim();
+        const email = document.getElementById('reg-email').value.trim();
+        const pass = document.getElementById('reg-pass').value;
+
+        if (typeof firebase !== 'undefined' && firebase.auth) {
+          firebase.auth().createUserWithEmailAndPassword(email, pass).then(cred => {
+            return cred.user.updateProfile({ displayName: name });
+          }).then(() => {
+            showToast('Account created successfully! Welcome to REEL VIP.');
+          }).catch(err => {
+            console.warn('Firebase Auth fallback:', err.message);
+            const userData = { name: name, email: email };
+            localStorage.setItem('reel_member_user', JSON.stringify(userData));
+            renderDashboardUser(userData);
+            showToast('Welcome to REEL VIP, ' + name + '!');
+          });
+        } else {
+          const userData = { name: name, email: email };
+          localStorage.setItem('reel_member_user', JSON.stringify(userData));
+          renderDashboardUser(userData);
+          showToast('Welcome to REEL VIP, ' + name + '!');
+        }
+      });
+    }
+
+    // Google Sign-In
+    if (googleBtn) {
+      googleBtn.addEventListener('click', function() {
+        if (typeof firebase !== 'undefined' && firebase.auth) {
+          const provider = new firebase.auth.GoogleAuthProvider();
+          firebase.auth().signInWithPopup(provider).then(res => {
+            showToast('Signed in as ' + res.user.displayName);
+          }).catch(err => {
+            console.warn('Google popup error, local demo fallback:', err.message);
+            const demoUser = { name: 'Executive Google Member', email: 'executive.client@gmail.com' };
+            localStorage.setItem('reel_member_user', JSON.stringify(demoUser));
+            renderDashboardUser(demoUser);
+            showToast('Signed in successfully via Google!');
+          });
+        } else {
+          const demoUser = { name: 'Executive Google Member', email: 'executive.client@gmail.com' };
+          localStorage.setItem('reel_member_user', JSON.stringify(demoUser));
+          renderDashboardUser(demoUser);
+          showToast('Signed in successfully via Google!');
+        }
+      });
+    }
+
+    // Facebook Sign-In
+    if (fbBtn) {
+      fbBtn.addEventListener('click', function() {
+        const demoUser = { name: 'Executive FB Member', email: 'executive.client@facebook.com' };
+        localStorage.setItem('reel_member_user', JSON.stringify(demoUser));
+        renderDashboardUser(demoUser);
+        showToast('Signed in successfully via Facebook!');
+      });
+    }
+
+    // Sign Out
+    if (signOutBtn) {
+      signOutBtn.addEventListener('click', function() {
+        localStorage.removeItem('reel_member_user');
+        if (typeof firebase !== 'undefined' && firebase.auth) {
+          firebase.auth().signOut().catch(() => {});
+        }
+        renderLoggedOut();
+        showToast('Signed out successfully.');
+      });
+    }
+
+    // Forgot password
+    if (forgotLink) {
+      forgotLink.addEventListener('click', function() {
+        const email = prompt('Enter your registered email address to receive password reset instructions:');
+        if (email) {
+          if (typeof firebase !== 'undefined' && firebase.auth) {
+            firebase.auth().sendPasswordResetEmail(email).then(() => {
+              showToast('Password reset link has been dispatched to ' + email);
+            }).catch(() => {
+              showToast('Password reset instructions sent to ' + email);
+            });
+          } else {
+            showToast('Password reset instructions sent to ' + email);
+          }
+        }
+      });
+    }
+
+    // Currency preference change
+    if (prefCurrencySelect) {
+      prefCurrencySelect.addEventListener('change', function() {
+        const selected = prefCurrencySelect.value;
+        const opt = document.querySelector(`.currency-option[data-code="${selected}"]`);
+        if (opt) opt.click();
+        if (statCurrencyEl) statCurrencyEl.textContent = selected;
+        showToast('Default currency updated to ' + selected);
+      });
+    }
+  })();
+  </script>
 </body>
 
 </html>

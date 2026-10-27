@@ -1187,3 +1187,270 @@ document.addEventListener('DOMContentLoaded', () => {
   updateCartCount();
 
 });
+
+/* =================================================================
+   CURRENCY SWITCHER — Global Module
+   ================================================================= */
+(function () {
+  const switcher = document.getElementById('currency-switcher');
+  const btn = document.getElementById('currency-btn');
+  const dropdown = document.getElementById('currency-dropdown');
+  const labelEl = document.getElementById('currency-label');
+
+  // State
+  window.REEL_CURRENCY = {
+    code: 'NGN',
+    symbol: '₦',
+    rate: 1,
+  };
+
+  window.applyGlobalCurrency = function () {
+    const cur = window.REEL_CURRENCY || { code: 'NGN', symbol: '₦', rate: 1 };
+    document.querySelectorAll('[data-base-price]').forEach(el => {
+      const base = parseFloat(el.dataset.basePrice);
+      if (!isNaN(base)) {
+        const converted = base * cur.rate;
+        el.textContent = cur.symbol + ' ' + converted.toLocaleString('en-US', {
+          maximumFractionDigits: cur.code === 'NGN' ? 0 : 2
+        });
+      }
+    });
+    if (typeof window.calcROI === 'function') window.calcROI();
+  };
+
+  if (!switcher || !btn || !dropdown) {
+    // Even if no switcher on page, restore and apply currency
+    const saved = localStorage.getItem('reel_currency');
+    if (saved && saved !== 'NGN') {
+      const rates = {
+        AED: { symbol: 'AED', rate: 0.00021 },
+        USD: { symbol: '$', rate: 0.000057 },
+        GBP: { symbol: '£', rate: 0.000045 }
+      };
+      if (rates[saved]) {
+        window.REEL_CURRENCY = { code: saved, symbol: rates[saved].symbol, rate: rates[saved].rate };
+        window.applyGlobalCurrency();
+      }
+    }
+    return;
+  }
+
+  // Toggle
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = switcher.classList.toggle('open');
+    btn.setAttribute('aria-expanded', isOpen);
+  });
+
+  // Close on outside click
+  document.addEventListener('click', (e) => {
+    if (!switcher.contains(e.target)) {
+      switcher.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Select option handler
+  function selectCurrencyOption(opt) {
+    dropdown.querySelectorAll('.currency-option').forEach(o => {
+      o.classList.remove('active');
+      o.setAttribute('aria-selected', 'false');
+    });
+    opt.classList.add('active');
+    opt.setAttribute('aria-selected', 'true');
+
+    const code   = opt.dataset.code;
+    const symbol = opt.dataset.symbol;
+    const rate   = parseFloat(opt.dataset.rate);
+
+    window.REEL_CURRENCY = { code, symbol, rate };
+    localStorage.setItem('reel_currency', code);
+
+    // Update button label with clean text only (no emoji flags)
+    if (labelEl) labelEl.textContent = opt.querySelector('.currency-code').textContent;
+
+    switcher.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+
+    window.applyGlobalCurrency();
+  }
+
+  dropdown.querySelectorAll('.currency-option').forEach(opt => {
+    opt.addEventListener('click', () => selectCurrencyOption(opt));
+  });
+
+  // Restore saved currency on load
+  const savedCode = localStorage.getItem('reel_currency');
+  if (savedCode) {
+    const savedOpt = dropdown.querySelector(`.currency-option[data-code="${savedCode}"]`);
+    if (savedOpt) {
+      selectCurrencyOption(savedOpt);
+    }
+  }
+})();
+
+
+/* =================================================================
+   ROI / INVESTMENT CALCULATOR — Real Estate Page
+   ================================================================= */
+(function () {
+  const valInput    = document.getElementById('roi-value');
+  const downInput   = document.getElementById('roi-down');
+  const tenureInput = document.getElementById('roi-tenure');
+  const yieldInput  = document.getElementById('roi-yield');
+
+  if (!valInput) return; // Only runs on real-estate.html
+
+  const valLabel    = document.getElementById('roi-value-label');
+  const downLabel   = document.getElementById('roi-down-label');
+  const tenureLabel = document.getElementById('roi-tenure-label');
+  const yieldLabel  = document.getElementById('roi-yield-label');
+
+  const equityEl    = document.getElementById('roi-res-equity');
+  const loanEl      = document.getElementById('roi-res-loan');
+  const monthlyEl   = document.getElementById('roi-res-monthly');
+  const rentalEl    = document.getElementById('roi-res-rental');
+
+  const fmt = (n) => {
+    const cur = window.REEL_CURRENCY || { symbol: '₦', rate: 1 };
+    const converted = n * cur.rate;
+    return cur.symbol + ' ' + converted.toLocaleString('en-US', { maximumFractionDigits: 0 });
+  };
+
+  window.calcROI = () => {
+    const propVal  = parseInt(valInput.value);
+    const downPct  = parseInt(downInput.value) / 100;
+    const tenureYr = parseInt(tenureInput.value);
+    const yld      = parseFloat(yieldInput.value) / 100;
+
+    const equity  = propVal * downPct;
+    const loan    = propVal - equity;
+    const annRate = 0.15; // 15% annual interest estimate (Nigeria)
+    const months  = tenureYr * 12;
+    const mRate   = annRate / 12;
+    const monthly = mRate === 0 ? loan / months
+      : loan * (mRate * Math.pow(1 + mRate, months)) / (Math.pow(1 + mRate, months) - 1);
+    const rental = propVal * yld;
+
+    if (valLabel)    valLabel.textContent    = fmt(propVal);
+    if (downLabel)   downLabel.textContent   = downInput.value + '%';
+    if (tenureLabel) tenureLabel.textContent = tenureInput.value + (tenureInput.value === '1' ? ' Year' : ' Years');
+    if (yieldLabel)  yieldLabel.textContent  = yieldInput.value + '% p.a.';
+    if (equityEl)    equityEl.textContent    = fmt(equity);
+    if (loanEl)      loanEl.textContent      = fmt(loan);
+    if (monthlyEl)   monthlyEl.textContent   = fmt(monthly);
+    if (rentalEl)    rentalEl.textContent    = fmt(rental);
+  };
+
+  [valInput, downInput, tenureInput, yieldInput].forEach(inp => {
+    inp.addEventListener('input', window.calcROI);
+  });
+
+  window.calcROI(); // Run on page load
+})();
+
+
+/* =================================================================
+   SCHEDULE INSPECTION MODAL — Real Estate Page
+   ================================================================= */
+(function () {
+  const overlay = document.getElementById('inspect-modal-overlay');
+  const closeBtn = document.getElementById('inspect-modal-close');
+  const form = document.getElementById('inspect-form');
+
+  if (!overlay) return;
+
+  const closeModal = () => {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  };
+
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) closeModal();
+  });
+
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const name     = document.getElementById('insp-name')?.value.trim() || '';
+      const phone    = document.getElementById('insp-phone')?.value.trim() || '';
+      const email    = document.getElementById('insp-email')?.value.trim() || 'Not provided';
+      const propType = document.getElementById('insp-property')?.value || 'Not specified';
+      const date     = document.getElementById('insp-date')?.value || 'Flexible';
+      const notes    = document.getElementById('insp-message')?.value.trim() || '';
+
+      if (!name || !phone) {
+        alert('Please provide your name and phone/WhatsApp number.');
+        return;
+      }
+
+      const msg =
+        `🏠 *REEL Properties — Private Inspection Request*\n\n` +
+        `*Name:* ${name}\n` +
+        `*Phone/WhatsApp:* ${phone}\n` +
+        `*Email:* ${email}\n` +
+        `*Property Interest:* ${propType}\n` +
+        `*Preferred Date:* ${date}\n` +
+        `*Notes:* ${notes || 'None'}\n\n` +
+        `_Sent from royaltyexecutiveempire.com_`;
+
+      window.open(`https://wa.me/2348067029444?text=${encodeURIComponent(msg)}`, '_blank');
+      closeModal();
+      form.reset();
+    });
+  }
+})();
+
+
+/* =================================================================
+   PROPERTY FILTER BAR — Real Estate Page
+   ================================================================= */
+(function () {
+  const chips = document.querySelectorAll('.re-chip');
+  const countEl = document.getElementById('re-prop-count');
+  if (!chips.length) return;
+
+  let currentFilter = 'all';
+
+  const applyFilter = () => {
+    const cards = document.querySelectorAll('#properties-grid .listing-card, #properties-grid article');
+    let visible = 0;
+
+    cards.forEach(card => {
+      const cat = (card.dataset.category || card.dataset.cat || '').toLowerCase();
+      const show = currentFilter === 'all' || cat.includes(currentFilter);
+      card.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+
+    if (countEl) {
+      countEl.textContent = currentFilter === 'all'
+        ? (visible > 0 ? visible : 'All')
+        : visible;
+    }
+  };
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      currentFilter = chip.dataset.filter || 'all';
+      applyFilter();
+    });
+  });
+
+  // Observe when Firebase loads cards so filter count updates
+  const propertiesGrid = document.getElementById('properties-grid');
+  if (propertiesGrid) {
+    const observer = new MutationObserver(applyFilter);
+    observer.observe(propertiesGrid, { childList: true, subtree: true });
+  }
+})();
+

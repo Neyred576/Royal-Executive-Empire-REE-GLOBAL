@@ -590,3 +590,72 @@ h1, h2, h3, h4, h5, h6, p, span, li, a {
     grid-template-columns: repeat(3, 1fr) !important;
   }
 }
+
+/* ===========================================
+   MEGA-MENU RESPONSIVE
+   =========================================== */
+@media (max-width: 991px) {
+  .mega-menu-wrapper { display: none !important; }
+}
+@media (min-width: 992px) {
+  /* Hide the mobile fallback dropdown completely on desktop — mega-menu takes over */
+  #our-divisions-dropdown .nav-dropdown,
+  .nav-item-dropdown .nav-dropdown {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+}
+@media (min-width: 992px) and (max-width: 1200px) {
+  .mega-menu-wrapper {
+    width: 700px;
+    min-width: 0;
+  }
+  .mega-menu-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ===========================================
+   CURRENCY SWITCHER RESPONSIVE
+   =========================================== */
+@media (max-width: 480px) {
+  .currency-btn { padding: 6px 10px; font-size: 0.7rem; }
+  .currency-dropdown { right: -10px; min-width: 160px; }
+}
+
+/* ===========================================
+   ROI CALCULATOR RESPONSIVE
+   =========================================== */
+@media (max-width: 768px) {
+  .roi-calculator { padding: 28px 20px; }
+  .roi-grid { grid-template-columns: 1fr; gap: 28px; }
+  .roi-cta-row { flex-direction: column; }
+  .roi-cta-row .btn-primary,
+  .roi-cta-row .btn-ghost { width: 100%; justify-content: center; }
+}
+
+/* ===========================================
+   PROPERTY FILTER BAR RESPONSIVE
+   =========================================== */
+@media (max-width: 768px) {
+  .re-filter-bar { padding: 16px 18px; gap: 12px; }
+  .re-filter-bar-title { width: 100%; }
+}
+
+/* ===========================================
+   INSPECTION MODAL RESPONSIVE
+   =========================================== */
+@media (max-width: 600px) {
+  .inspect-modal { padding: 28px 20px; }
+  .inspect-row { grid-template-columns: 1fr; }
+}
+
+/* ===========================================
+   ACCOUNT PAGE RESPONSIVE
+   =========================================== */
+@media (max-width: 768px) {
+  .auth-user-header { flex-wrap: wrap; gap: 14px; }
+  .auth-signout-btn { margin-left: 0; width: 100%; text-align: center; }
+  .auth-tabs { overflow-x: auto; }
+}
+
