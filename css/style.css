@@ -2629,74 +2629,106 @@ section,
     filter: none !important;
     contain: none !important;
   }
+  :root { --nav-h: 70px; }
   .nav-inner {
-    padding: 0 14px;
-    gap: 8px;
-    width: 100%;
-    max-width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    padding: 0 16px !important;
+    gap: 12px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
     overflow: visible;
   }
   .nav-logo {
-    gap: 8px;
-    flex-shrink: 1;
-    min-width: 0;
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    flex-shrink: 0 !important;
+    min-width: 0 !important;
   }
   .nav-logo-img-wrap {
-    width: 44px;
-    height: 44px;
-    flex-shrink: 0;
+    width: 42px !important;
+    height: 42px !important;
+    flex-shrink: 0 !important;
+    border-radius: 50% !important;
   }
   .nav-brand-name {
-    font-size: 1.15rem;
-    line-height: 1.1;
+    font-size: 1.25rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.8px !important;
+    color: var(--gold-300, #F7E7A9) !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
   }
   .nav-brand-sub {
-    display: none !important; /* Prevent header overflow on mobile */
+    display: none !important;
   }
   .nav-actions {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-left: auto;
-    margin-right: 4px;
-    flex-shrink: 0;
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    margin-left: auto !important;
+    margin-right: 0 !important;
+    flex-shrink: 0 !important;
+  }
+  .currency-btn {
+    padding: 6px 11px !important;
+    font-size: 0.74rem !important;
+    gap: 5px !important;
+    border-radius: 20px !important;
+    background: rgba(212, 175, 55, 0.08) !important;
+    border: 1px solid rgba(212, 175, 55, 0.25) !important;
+    color: var(--gold-300) !important;
+    white-space: nowrap !important;
   }
   .nav-icon {
-    width: 36px;
-    height: 36px;
-    flex-shrink: 0;
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 50% !important;
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(212, 175, 55, 0.18) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+    transition: all 0.2s ease !important;
   }
   .nav-icon svg {
-    width: 16px;
-    height: 16px;
+    width: 17px !important;
+    height: 17px !important;
   }
-  .nav-btn-contact {
-    display: inline-flex !important;
-    align-items: center;
-    justify-content: center;
-    padding: 7px 14px;
-    font-size: 0.78rem;
-    font-weight: 700;
-    white-space: nowrap;
-    border-radius: var(--radius-pill);
-    flex-shrink: 0;
+  /* Hide the wide "Contact Us" text button from top header on mobile screens to prevent squeezing */
+  @media (max-width: 768px) {
+    .nav-btn-contact {
+      display: none !important;
+    }
   }
-  .nav-hamburger {
-    display: flex;
-    width: 36px;
-    height: 36px;
-    padding: 6px;
-    flex-shrink: 0;
+  @media (min-width: 769px) {
+    .nav-btn-contact {
+      display: inline-flex !important;
+      align-items: center;
+      justify-content: center;
+      padding: 7px 14px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      white-space: nowrap;
+      border-radius: var(--radius-pill);
+      flex-shrink: 0;
+    }
   }
   .nav-hamburger {
     display: flex !important;
-    width: 36px;
-    height: 36px;
-    padding: 6px;
-    flex-shrink: 0;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 38px !important;
+    height: 38px !important;
+    border-radius: 50% !important;
+    background: rgba(212, 175, 55, 0.08) !important;
+    border: 1px solid rgba(212, 175, 55, 0.25) !important;
+    padding: 8px !important;
+    flex-shrink: 0 !important;
+    margin-left: 2px !important;
     z-index: 10002 !important;
     position: relative !important;
   }
@@ -2892,37 +2924,36 @@ section,
 
 @media (max-width: 480px) {
   .nav-inner {
-    padding: 0 8px;
-    gap: 5px;
+    padding: 0 14px !important;
+    gap: 8px !important;
   }
   .nav-logo-img-wrap {
-    width: 36px;
-    height: 36px;
+    width: 38px !important;
+    height: 38px !important;
   }
   .nav-brand-name {
-    font-size: 0.98rem;
+    font-size: 1.15rem !important;
   }
   .nav-actions {
-    gap: 4px;
-    margin-right: 2px;
+    gap: 8px !important;
+    margin-right: 0 !important;
+  }
+  .currency-btn {
+    padding: 5px 8px !important;
+    font-size: 0.7rem !important;
   }
   .nav-icon {
-    width: 32px;
-    height: 32px;
+    width: 34px !important;
+    height: 34px !important;
   }
   .nav-icon svg {
-    width: 14px;
-    height: 14px;
-  }
-  .nav-btn-contact {
-    padding: 6px 10px;
-    font-size: 0.72rem;
-    letter-spacing: 0.2px;
+    width: 15px !important;
+    height: 15px !important;
   }
   .nav-hamburger {
-    width: 32px;
-    height: 32px;
-    padding: 5px;
+    width: 36px !important;
+    height: 36px !important;
+    padding: 7px !important;
   }
 
   .hero-headline { font-size: 2rem; }
@@ -3869,3 +3900,41 @@ section,
 }
 .social-btn svg { width: 20px; height: 20px; flex-shrink: 0; }
 
+
+/* Mobile Menu Drawer Contact CTA */
+.nav-item-mobile-contact {
+  margin-top: 18px !important;
+  padding-top: 16px !important;
+  border-top: 1px solid rgba(212, 175, 55, 0.18) !important;
+  border-bottom: none !important;
+  width: 100% !important;
+  list-style: none !important;
+}
+.nav-drawer-contact-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  width: 100% !important;
+  padding: 13px 20px !important;
+  border-radius: 100px !important;
+  background: var(--gold-gradient) !important;
+  color: #0b0b0b !important;
+  font-family: var(--font-display, inherit) !important;
+  font-weight: 700 !important;
+  font-size: 0.95rem !important;
+  letter-spacing: 0.5px !important;
+  text-transform: uppercase !important;
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.35) !important;
+  transition: all 0.25s ease !important;
+  text-decoration: none !important;
+}
+.nav-drawer-contact-btn:hover,
+.nav-drawer-contact-btn:active {
+  filter: brightness(1.1) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 25px rgba(212, 175, 55, 0.5) !important;
+}
+@media (min-width: 992px) {
+  .nav-item-mobile-contact { display: none !important; }
+}

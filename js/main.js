@@ -193,9 +193,24 @@ document.addEventListener('DOMContentLoaded', () => {
   if (hamburger) hamburger.addEventListener('click', toggleMenu);
   if (navOverlay) navOverlay.addEventListener('click', toggleMenu);
 
+  // Inject mobile drawer "Contact Us" CTA button so it is always accessible when menu is opened
+  if (navLinks && !navLinks.querySelector('.nav-item-mobile-contact')) {
+    const contactLi = document.createElement('li');
+    contactLi.className = 'nav-item-mobile-contact';
+    contactLi.innerHTML = `
+      <a href="contact.html" class="nav-drawer-contact-btn" aria-label="Contact REEL Executive Team">
+        <span>Contact Us</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16" aria-hidden="true">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    `;
+    navLinks.appendChild(contactLi);
+  }
+
   // Close menu on link click
   if (navLinks && hamburger) {
-    navLinks.querySelectorAll('.nav-link, .nav-dropdown a').forEach(link => {
+    navLinks.querySelectorAll('.nav-link, .nav-dropdown a, .nav-drawer-contact-btn').forEach(link => {
       link.addEventListener('click', (e) => {
         // Do NOT close menu if clicking the divisions dropdown toggle
         if (link.id === 'our-divisions-toggle' || link.closest('#our-divisions-toggle') || link.parentElement.classList.contains('nav-item-dropdown')) {
