@@ -16,7 +16,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.65;
 }
-html.no-scroll, body.no-scroll { overflow: hidden; height: 100vh; touch-action: none; }
+html.no-scroll, body.no-scroll { overflow: hidden !important; height: 100% !important; max-height: 100vh !important; }
 img { display: block; max-width: 100%; height: auto; }
 a { text-decoration: none; color: inherit; }
 ul { list-style: none; }
@@ -28,10 +28,8 @@ input, textarea, select { font-family: inherit; }
    GPU compositing hints, layout containment & paint reduction
    ================================================================ */
 
-/* Promote animated layers to their own compositor layer */
-.main-nav,
-#hero-canvas,
-.nav-links {
+/* Promote animated layers to their own compositor layer - Never apply transform to .main-nav */
+#hero-canvas {
   will-change: transform;
   transform: translateZ(0);
 }
@@ -884,11 +882,14 @@ section,
 }
 /* On desktop: if .nav-item-dropdown ALSO contains a mega-menu-wrapper,
    keep the fallback .nav-dropdown completely hidden. */
-.nav-item-dropdown:hover .mega-menu-wrapper ~ .nav-dropdown,
-.nav-item-dropdown:hover .nav-dropdown:has(~ .mega-menu-wrapper) {
-  opacity: 0 !important;
-  visibility: hidden !important;
-  pointer-events: none !important;
+/* On desktop ONLY: if .nav-item-dropdown ALSO contains a mega-menu-wrapper, keep fallback hidden */
+@media (min-width: 992px) {
+  .nav-item-dropdown:hover .mega-menu-wrapper ~ .nav-dropdown,
+  .nav-item-dropdown:hover .nav-dropdown:has(~ .mega-menu-wrapper) {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
 }
 .nav-dropdown li {
   list-style: none;
@@ -2622,6 +2623,11 @@ section,
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
     background: rgba(10, 10, 10, 0.96) !important;
+    transform: none !important;
+    will-change: auto !important;
+    perspective: none !important;
+    filter: none !important;
+    contain: none !important;
   }
   .nav-inner {
     padding: 0 14px;
@@ -2685,27 +2691,66 @@ section,
     padding: 6px;
     flex-shrink: 0;
   }
-  .nav-links {
-    position: fixed;
-    top: 0; right: 0; bottom: 0;
-    width: min(340px, 92vw);
-    background: rgba(8, 8, 8, 0.98);
-    backdrop-filter: blur(28px);
-    -webkit-backdrop-filter: blur(28px);
-    flex-direction: column;
-    align-items: stretch;
-    justify-content: flex-start;
-    padding: 85px 24px 40px;
-    gap: 4px;
-    transform: translateX(100%);
-    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    border-left: 1px solid rgba(212,175,55,0.18);
-    box-shadow: -12px 0 50px rgba(0,0,0,0.8);
-    z-index: 1000;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+  .nav-hamburger {
+    display: flex !important;
+    width: 36px;
+    height: 36px;
+    padding: 6px;
+    flex-shrink: 0;
+    z-index: 10002 !important;
+    position: relative !important;
   }
-  .nav-links.open { transform: translateX(0); }
+  .nav-links {
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: min(340px, 88vw) !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    background: #0d0d0d !important;
+    background: linear-gradient(180deg, #111111 0%, #060606 100%) !important;
+    backdrop-filter: blur(28px) !important;
+    -webkit-backdrop-filter: blur(28px) !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    padding: 85px 24px 40px !important;
+    gap: 4px !important;
+    transform: translateX(100%) !important;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    border-left: 1px solid rgba(212,175,55,0.2) !important;
+    box-shadow: -15px 0 50px rgba(0,0,0,0.85) !important;
+    z-index: 10001 !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-y !important;
+  }
+  .nav-links.open { transform: translateX(0) !important; }
+  .nav-overlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    background: rgba(0, 0, 0, 0.75) !important;
+    backdrop-filter: blur(4px) !important;
+    -webkit-backdrop-filter: blur(4px) !important;
+    z-index: 10000 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transition: opacity 0.3s ease, visibility 0.3s ease !important;
+  }
+  .nav-overlay.show {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+  }
   .nav-links li {
     width: 100%;
     text-align: left;
@@ -2743,40 +2788,49 @@ section,
     position: static !important;
     width: 100% !important;
     min-width: 0 !important;
+    background: rgba(212, 175, 55, 0.04) !important;
+    border: 1px solid rgba(212, 175, 55, 0.16) !important;
+    border-radius: 10px !important;
+    padding: 8px 6px !important;
+    box-shadow: none !important;
+    margin: 6px 0 12px !important;
+    display: none !important;
     opacity: 1 !important;
     visibility: visible !important;
     transform: none !important;
-    background: rgba(212, 175, 55, 0.04) !important;
-    border: 1px solid rgba(212, 175, 55, 0.15) !important;
-    border-radius: 10px !important;
-    padding: 6px 4px !important;
-    box-shadow: none !important;
-    margin: 4px 0 10px !important;
-    display: none !important;
+    pointer-events: auto !important;
   }
   .nav-item-dropdown.open .nav-dropdown {
     display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
   }
   .nav-dropdown li {
     border-bottom: none !important;
   }
   .nav-dropdown a {
-    font-size: 0.92rem !important;
-    padding: 10px 14px !important;
+    font-size: 0.94rem !important;
+    padding: 11px 16px !important;
     text-align: left !important;
-    color: var(--w70) !important;
+    color: var(--w80, #e0e0e0) !important;
     display: flex !important;
     align-items: center !important;
     gap: 8px !important;
     border-radius: 6px !important;
     transition: all 0.2s ease !important;
     white-space: normal !important;
+    background: rgba(255, 255, 255, 0.02) !important;
+    margin-bottom: 4px !important;
+    border: 1px solid rgba(212, 175, 55, 0.08) !important;
   }
   .nav-dropdown a:hover,
-  .nav-dropdown a.active {
-    background: rgba(212,175,55,0.12) !important;
-    color: var(--gold-300) !important;
-    padding-left: 18px !important;
+  .nav-dropdown a.active,
+  .nav-dropdown a:active {
+    background: rgba(212, 175, 55, 0.14) !important;
+    color: var(--gold-300, #F7E7A9) !important;
+    border-color: rgba(212, 175, 55, 0.35) !important;
+    padding-left: 20px !important;
   }
   .nav-link-cta { 
     padding: 14px 28px; 

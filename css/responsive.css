@@ -427,7 +427,7 @@ table {
 
 /* ===========================================
    MOBILE NAV (max 991px)
-@media (max-width: 991px) {
+@media (max-width: 992px) {
   .main-nav,
   .main-nav.scrolled {
     height: var(--nav-h);
@@ -435,29 +435,50 @@ table {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
     background: rgba(10, 10, 10, 0.96) !important;
+    transform: none !important;
+    will-change: auto !important;
+    perspective: none !important;
+    filter: none !important;
+    contain: none !important;
   }
 
   .nav-hamburger { display: flex !important; }
 
+  .nav-hamburger {
+    display: flex !important;
+    width: 36px;
+    height: 36px;
+    padding: 6px;
+    flex-shrink: 0;
+    z-index: 10002 !important;
+    position: relative !important;
+  }
   .nav-links {
-    position: fixed;
-    top: 0; right: 0; bottom: 0;
-    width: min(340px, 92vw);
-    background: rgba(8, 8, 8, 0.98);
-    backdrop-filter: blur(28px);
-    -webkit-backdrop-filter: blur(28px);
-    flex-direction: column;
-    align-items: stretch;
-    justify-content: flex-start;
-    padding: 85px 24px 40px;
-    gap: 4px;
-    transform: translateX(100%);
-    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    border-left: 1px solid rgba(212, 175, 55, 0.18);
-    box-shadow: -12px 0 50px rgba(0, 0, 0, 0.8);
-    z-index: 1000;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: min(340px, 88vw) !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    background: #0d0d0d !important;
+    background: linear-gradient(180deg, #111111 0%, #060606 100%) !important;
+    backdrop-filter: blur(28px) !important;
+    -webkit-backdrop-filter: blur(28px) !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    padding: 85px 24px 40px !important;
+    gap: 4px !important;
+    transform: translateX(100%) !important;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    border-left: 1px solid rgba(212, 175, 55, 0.2) !important;
+    box-shadow: -15px 0 50px rgba(0, 0, 0, 0.85) !important;
+    z-index: 10001 !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-y !important;
   }
 
   .nav-links.open { transform: translateX(0); }
@@ -502,20 +523,24 @@ table {
     position: static !important;
     width: 100% !important;
     min-width: 0 !important;
+    background: rgba(212, 175, 55, 0.04) !important;
+    border: 1px solid rgba(212, 175, 55, 0.16) !important;
+    border-radius: 10px !important;
+    padding: 8px 6px !important;
+    box-shadow: none !important;
+    margin: 6px 0 12px !important;
+    display: none !important;
     opacity: 1 !important;
     visibility: visible !important;
     transform: none !important;
-    background: rgba(212, 175, 55, 0.04) !important;
-    border: 1px solid rgba(212, 175, 55, 0.15) !important;
-    border-radius: 10px !important;
-    padding: 6px 4px !important;
-    box-shadow: none !important;
-    margin: 4px 0 10px !important;
-    display: none !important;
+    pointer-events: auto !important;
   }
 
   .nav-item-dropdown.open .nav-dropdown {
     display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
   }
 
   .nav-dropdown::before { display: none; }
@@ -636,7 +661,7 @@ h1, h2, h3, h4, h5, h6, p, span, li, a {
 /* ===========================================
    MEGA-MENU RESPONSIVE
    =========================================== */
-@media (max-width: 991px) {
+@media (max-width: 992px) {
   .mega-menu-wrapper { display: none !important; }
 }
 @media (min-width: 992px) {

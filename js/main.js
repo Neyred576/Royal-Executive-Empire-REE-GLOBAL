@@ -260,14 +260,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const dropdownToggles = document.querySelectorAll('.nav-item-dropdown > .nav-link, #our-divisions-toggle');
   dropdownToggles.forEach(toggle => {
     toggle.addEventListener('click', (e) => {
-      if (window.innerWidth <= 991) {
+      const isMobile = window.innerWidth <= 992 || window.matchMedia('(max-width: 992px)').matches;
+      if (isMobile) {
         e.preventDefault();
         e.stopPropagation();
         const parent = toggle.closest('.nav-item-dropdown');
         if (parent) {
           const isCurrentlyOpen = parent.classList.contains('open');
           parent.classList.toggle('open');
-          const arrow = toggle.querySelector('.drop-arrow');
+          toggle.setAttribute('aria-expanded', !isCurrentlyOpen ? 'true' : 'false');
+          const arrow = parent.querySelector('.drop-arrow');
           if (arrow) {
             arrow.style.transition = 'transform 0.3s ease';
             arrow.style.transform = !isCurrentlyOpen ? 'rotate(180deg)' : 'rotate(0deg)';
