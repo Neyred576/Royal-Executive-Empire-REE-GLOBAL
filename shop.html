@@ -884,7 +884,7 @@
     // Populate image
     const imgCol = document.getElementById('modal-img-col');
     if (product.image) {
-      imgCol.innerHTML = `<img src="${product.image}" alt="${product.name || 'Product'}" style="width:100%;height:100%;object-fit:cover;object-position:${product.imagePos || 'center center'};" decoding="async" loading="lazy"><div class="shop-modal-badge">New</div>`;
+      imgCol.innerHTML = `<img src="${product.image}" alt="${product.name || 'Product'}" style="width:100%;height:100%;object-fit:cover;object-position:${product.imagePos || 'center center'};" decoding="async" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='/Images/BG/reel_logo.png'; this.style.objectFit='contain'; this.style.padding='40px';"><div class="shop-modal-badge">New</div>`;
     } else {
       imgCol.innerHTML = `<div class="shop-modal-img-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(212,175,55,0.3)" stroke-width="1.5" width="80" height="80"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div><div class="shop-modal-badge">New</div>`;
     }
@@ -942,7 +942,7 @@
       <div class="product-card" data-pid="${pid}" style="cursor:pointer;">
         <div class="product-img-wrap">
           ${p.image
-            ? `<img src="${p.image}" alt="${p.name || 'Product'}" class="product-img" style="object-position:${p.imagePos||'center center'}" decoding="async" loading="lazy">`
+            ? `<img src="${p.image}" alt="${p.name || 'Product'}" class="product-img" style="object-position:${p.imagePos||'center center'}" decoding="async" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='/Images/BG/reel_logo.png'; this.style.objectFit='contain'; this.style.padding='30px';">`
             : `<div class="product-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" style="opacity:0.3;"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>`
           }
           <div class="product-badge">New</div>

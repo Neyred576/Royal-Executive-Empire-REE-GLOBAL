@@ -536,7 +536,7 @@
     if (!others.length) return '<p style="color:var(--w40);font-size:0.85rem">No other articles yet.</p>';
     return others.map(b => `
       <a href="article.html?id=${b.id}" class="rel-post">
-        <div class="rel-thumb">${b.image ? `<img src="${b.image}" alt="${b.title}" style="object-position:${b.imagePos||'center'}" decoding="async" loading="lazy">` : '<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.02);color:rgba(212,175,55,0.4);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24"><path d="M4 22h14a2 2 0 0 0 2-2V7.5L14.5 2H6a2 2 0 0 0-2 2v4"></path><polyline points="14 2 14 8 20 8"></polyline><path d="M2 15h10"></path><path d="M2 19h10"></path></svg></div>'}</div>
+        <div class="rel-thumb">${b.image ? `<img src="${b.image}" alt="${b.title}" style="object-position:${b.imagePos||'center'}" decoding="async" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='/Images/BG/reel_logo.png'; this.style.objectFit='contain';">` : '<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.02);color:rgba(212,175,55,0.4);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24"><path d="M4 22h14a2 2 0 0 0 2-2V7.5L14.5 2H6a2 2 0 0 0-2 2v4"></path><polyline points="14 2 14 8 20 8"></polyline><path d="M2 15h10"></path><path d="M2 19h10"></path></svg></div>'}</div>
         <div><div class="rel-title">${b.title}</div><div class="rel-date">${b.date || ''}</div></div>
       </a>
     `).join('');
@@ -599,7 +599,7 @@
         <!-- Hero -->
         <div class="article-hero">
           <div class="article-hero-bg">
-            ${b.image ? `<img src="${b.image}" alt="${b.title}" style="object-position:${b.imagePos||'center center'}" decoding="async" loading="lazy">` : ''}
+            ${b.image ? `<img src="${b.image}" alt="${b.title}" style="object-position:${b.imagePos||'center center'}" decoding="async" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='/Images/BG/reel_logo.png'; this.style.objectFit='contain';">` : ''}
           </div>
           <div class="article-hero-overlay"></div>
           <div class="article-hero-body">
