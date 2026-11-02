@@ -1,0 +1,47 @@
+# ─── MIME Types (fixes blank white page on shared hosting) ───────────────────
+<IfModule mod_mime.c>
+  AddType application/javascript .js .mjs
+  AddType text/css               .css
+  AddType image/webp             .webp
+  AddType image/png              .png
+  AddType image/x-icon           .ico
+  AddType image/svg+xml          .svg
+</IfModule>
+
+# ─── Enable GZIP compression ─────────────────────────────────────────────────
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript
+</IfModule>
+
+# ─── SPA Routing & Asset Fallback ───────────────────────────────────────────
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # If requested from /assets/..., look for file in root as well
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^assets/(.*)$ /$1 [L]
+
+  # Don't rewrite index.html
+  RewriteRule ^index\.html$ - [L]
+
+  # SPA fallback: everything else to index.html
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>
+
+# ─── Security Headers ─────────────────────────────────────────────────────────
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+</IfModule>
+
+# ─── Cache static assets ─────────────────────────────────────────────────────
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType text/css               "access plus 1 year"
+  ExpiresByType image/webp             "access plus 1 month"
+  ExpiresByType image/png              "access plus 1 month"
+</IfModule>
