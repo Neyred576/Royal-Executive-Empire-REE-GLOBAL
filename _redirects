@@ -9,8 +9,11 @@ http://www.royaltyexecutiveempire.com/*    https://reelholding.com.ng/:splat    
 /vannys-tech-hub.html       /reel-tech-hub.html         301
 /efuas-auto-center          /reel-auto-center.html      301
 /efuas-auto-center.html     /reel-auto-center.html      301
-/glorious-global-palace     /reel-global-palace.html    301
-/glorious-global-palace.html /reel-global-palace.html   301
+/glorious-global-palace     https://reelglobal.reelholding.com.ng 301!
+/glorious-global-palace.html https://reelglobal.reelholding.com.ng 301!
+/reel-global-palace.html    https://reelglobal.reelholding.com.ng 301!
+/reel-global-palace         https://reelglobal.reelholding.com.ng 301!
+/reel-global-palace/*       https://reelglobal.reelholding.com.ng/:splat 301!
 
 # Netlify Redirects — Old WordPress URLs to New Pages
 # Format: /old-path  /new-path  status-code
