@@ -15,6 +15,16 @@ http://www.royaltyexecutiveempire.com/*    https://reelholding.com.ng/:splat    
 /reel-global-palace         https://reelglobal.reelholding.com.ng 301!
 /reel-global-palace/*       https://reelglobal.reelholding.com.ng/:splat 301!
 
+# REEL Properties Subdomain Redirects
+/real-estate                 https://reelproperties.reelholding.com.ng 301!
+/real-estate/                https://reelproperties.reelholding.com.ng 301!
+/real-estate.html            https://reelproperties.reelholding.com.ng 301!
+/real-estate/*               https://reelproperties.reelholding.com.ng/:splat 301!
+/property-details            https://reelproperties.reelholding.com.ng 301!
+/property-details/           https://reelproperties.reelholding.com.ng 301!
+/property-details.html       https://reelproperties.reelholding.com.ng 301!
+/property-details/*          https://reelproperties.reelholding.com.ng/:splat 301!
+
 # Netlify Redirects — Old WordPress URLs to New Pages
 # Format: /old-path  /new-path  status-code
 /shop                   /shop.html              301
@@ -28,7 +38,6 @@ http://www.royaltyexecutiveempire.com/*    https://reelholding.com.ng/:splat    
 /contact                /contact.html           301
 /contact-us             /contact.html           301
 /contact/               /contact.html           301
-/real-estate            /real-estate.html       301
 /music                  /music-store.html       301
 /music-store            /music-store.html       301
 
