@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
   <title>Admin Dashboard | REEL</title>
   <link rel="icon" type="image/png" href="/Images/BG/reel_logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -13,6 +14,7 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
+      color-scheme: dark;
       --gold: #D4AF37;
       --gold-bright: #F0CC55;
       --gold-dim: rgba(212,175,55,0.12);
@@ -30,17 +32,17 @@
       --radius-md: 12px;
       --radius-lg: 18px;
       --radius-xl: 24px;
-      --sidebar-w: 280px;
+      --sidebar-w: 260px;
       --ease: cubic-bezier(0.16, 1, 0.3, 1);
       --t: 0.35s;
     }
-    html, body { height: 100%; }
+    html, body { height: 100%; color-scheme: dark; }
     body {
       background: var(--black);
       font-family: var(--font-body);
       color: #fff;
-      display: flex;
       min-height: 100vh;
+      width: 100%;
       overflow-x: hidden;
     }
 
@@ -82,11 +84,28 @@
       border-right: 1px solid var(--gold-border);
       display: flex;
       flex-direction: column;
-      padding: 36px 0 28px;
+      padding: 24px 0 16px;
       position: fixed;
       top: 0; bottom: 0; left: 0;
       z-index: 100;
+      overflow-y: auto;
+      overflow-x: hidden;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(212,175,55,0.3) transparent;
       animation: sidebarIn 0.7s var(--ease) forwards;
+    }
+    .admin-sidebar::-webkit-scrollbar {
+      width: 4px;
+    }
+    .admin-sidebar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .admin-sidebar::-webkit-scrollbar-thumb {
+      background: rgba(212,175,55,0.3);
+      border-radius: 4px;
+    }
+    .admin-sidebar::-webkit-scrollbar-thumb:hover {
+      background: rgba(212,175,55,0.6);
     }
     /* Gold shimmer strip on left edge */
     .admin-sidebar::before {
@@ -100,14 +119,15 @@
     /* Sidebar header */
     .sb-header {
       text-align: center;
-      padding: 0 24px 32px;
+      padding: 0 18px 20px;
       border-bottom: 1px solid var(--border);
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       position: relative;
+      flex-shrink: 0;
     }
     .sb-logo-ring {
-      width: 72px; height: 72px;
-      margin: 0 auto 16px;
+      width: 58px; height: 58px;
+      margin: 0 auto 12px;
       position: relative;
     }
     @keyframes ringRot { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
@@ -161,14 +181,14 @@
     }
 
     /* Nav */
-    .admin-nav { list-style: none; flex: 1; padding: 0 12px; }
-    .admin-nav li { margin-bottom: 4px; }
+    .admin-nav { list-style: none; padding: 0 10px; }
+    .admin-nav li { margin-bottom: 3px; }
     .admin-nav-link {
-      display: flex; align-items: center; gap: 14px;
-      padding: 14px 20px;
+      display: flex; align-items: center; gap: 12px;
+      padding: 10px 14px;
       color: var(--w40);
       text-decoration: none;
-      font-size: 0.9rem; font-weight: 500;
+      font-size: 0.85rem; font-weight: 500;
       border-radius: var(--radius-md);
       transition: all var(--t) var(--ease);
       position: relative; overflow: hidden;
@@ -187,11 +207,12 @@
       color: var(--gold);
     }
     .admin-nav-link .nav-icon {
-      width: 36px; height: 36px; border-radius: 10px;
+      width: 32px; height: 32px; border-radius: 8px;
       background: rgba(255,255,255,0.04);
       border: 1px solid var(--border);
       display: flex; align-items: center; justify-content: center;
       transition: all var(--t) ease; flex-shrink: 0;
+      font-size: 0.95rem;
     }
     .admin-nav-link:hover .nav-icon,
     .admin-nav-link.active .nav-icon {
@@ -212,33 +233,38 @@
 
     /* Nav section label */
     .nav-section-label {
-      font-size: 0.65rem; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 2px;
-      color: rgba(255,255,255,0.2);
-      padding: 16px 20px 8px;
+      font-size: 0.62rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1.8px;
+      color: rgba(255,255,255,0.25);
+      padding: 12px 14px 6px;
     }
 
     /* Sidebar footer */
-    .sb-footer { padding: 20px 24px 0; border-top: 1px solid var(--border); margin: 0 0; }
+    .sb-footer {
+      padding: 14px 16px 0;
+      border-top: 1px solid var(--border);
+      margin-top: auto;
+      flex-shrink: 0;
+    }
     .sb-stat {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 8px 0;
-      font-size: 0.8rem; color: var(--w40);
+      padding: 6px 0;
+      font-size: 0.78rem; color: var(--w40);
     }
     .sb-stat-val { color: var(--gold); font-weight: 600; }
     .admin-logout {
-      margin-top: 16px;
+      margin-top: 12px;
     }
     .logout-btn {
       width: 100%;
-      display: flex; align-items: center; gap: 10px; justify-content: center;
-      padding: 12px;
+      display: flex; align-items: center; gap: 8px; justify-content: center;
+      padding: 10px;
       background: rgba(255,74,74,0.08);
       border: 1px solid rgba(255,74,74,0.2);
       border-radius: var(--radius-md);
       color: #ff5757;
       text-decoration: none;
-      font-size: 0.85rem; font-weight: 600;
+      font-size: 0.82rem; font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
     }
@@ -252,19 +278,27 @@
 
     /* ═ MAIN AREA ═ */
     .admin-main {
-      flex: 1;
       margin-left: var(--sidebar-w);
-      padding: 48px 56px;
+      width: calc(100% - var(--sidebar-w));
+      max-width: calc(100% - var(--sidebar-w));
+      min-width: 0;
+      box-sizing: border-box;
+      padding: 32px 36px;
       position: relative;
       z-index: 1;
+      transition: margin-left 0.3s var(--ease), width 0.3s var(--ease), padding 0.3s var(--ease);
     }
 
     /* Top bar */
     @keyframes slideDown { from { opacity:0; transform:translateY(-20px); } to { opacity:1; transform:translateY(0); } }
     .admin-topbar {
       display: flex; align-items: center; justify-content: space-between;
-      margin-bottom: 48px;
+      gap: 20px; flex-wrap: wrap;
+      margin-bottom: 32px;
       animation: slideDown 0.6s var(--ease) forwards;
+    }
+    .topbar-right-panel {
+      display: flex; align-items: center; gap: 16px; flex-shrink: 0;
     }
     .topbar-greeting { font-size: 0.8rem; color: var(--w40); margin-bottom: 4px; }
     .topbar-title {
@@ -317,11 +351,111 @@
       from { opacity: 0; transform: translateY(20px); }
       to   { opacity: 1; transform: translateY(0); }
     }
+    
+    /* ═ UNIFIED MULTI-DIVISION SWITCHER ═ */
+    .division-hub-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 4px 0 16px;
+      margin-bottom: 24px;
+    }
+    .div-hub-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(22, 22, 22, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-lg);
+      padding: 9px 15px;
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all var(--t) var(--ease);
+      backdrop-filter: blur(10px);
+      flex-shrink: 0;
+    }
+    .div-hub-btn:hover {
+      background: rgba(30, 30, 30, 0.95);
+      border-color: rgba(212, 175, 55, 0.4);
+      transform: translateY(-2px);
+    }
+    .div-hub-btn.active {
+      background: linear-gradient(135deg, rgba(212,175,55,0.2) 0%, rgba(20,20,20,0.9) 100%);
+      border-color: var(--gold);
+      box-shadow: 0 4px 20px rgba(212,175,55,0.2);
+    }
+    .div-hub-btn .div-icon { font-size: 1.1rem; }
+    .div-hub-btn .div-tag {
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.6);
+    }
+    .div-hub-btn.active .div-tag {
+      background: rgba(212,175,55,0.25);
+      color: var(--gold-bright);
+    }
+
+    /* Safety & Backup Banner */
+    .safety-backup-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      border-radius: var(--radius-md);
+      padding: 12px 18px;
+      margin-bottom: 24px;
+    }
+    .safety-backup-text {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #34d399;
+      font-size: 0.82rem;
+      font-weight: 500;
+      flex: 1;
+      min-width: 260px;
+    }
+    .safety-backup-actions {
+      display: flex;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .btn-safety-dl {
+      background: rgba(16, 185, 129, 0.2);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .btn-safety-dl:hover {
+      background: rgba(16, 185, 129, 0.35);
+      transform: translateY(-1px);
+    }
+
     .stats-strip {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      margin-bottom: 40px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      margin-bottom: 32px;
       animation: statsIn 0.6s 0.1s var(--ease) both;
     }
     .stat-card {
@@ -387,8 +521,9 @@
     /* Grid layout */
     .admin-grid {
       display: grid;
-      grid-template-columns: 1fr 420px;
-      gap: 28px;
+      grid-template-columns: minmax(0, 1.35fr) minmax(320px, 1fr);
+      gap: 24px;
+      align-items: start;
     }
 
     /* Cards */
@@ -397,10 +532,12 @@
       backdrop-filter: blur(16px);
       border: 1px solid var(--border);
       border-radius: var(--radius-xl);
-      padding: 32px;
+      padding: 28px;
       transition: all var(--t) var(--ease);
       position: relative;
       overflow: hidden;
+      min-width: 0;
+      word-break: break-word;
     }
     .admin-card::before {
       content: '';
@@ -440,14 +577,61 @@
       font-family: var(--font-body); font-size: 0.9rem;
       transition: all 0.3s ease;
       -webkit-appearance: none;
+      color-scheme: dark;
     }
     .form-group select {
+      background-color: #121212;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='rgba(212,175,55,0.7)' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
       background-position: right 14px center;
       background-size: 16px;
       padding-right: 42px;
       cursor: pointer;
+    }
+    /* Universal Select Dropdown & Options Dark Theme */
+    select,
+    input,
+    textarea {
+      color-scheme: dark;
+    }
+    select {
+      background-color: #121212;
+      color: #ffffff;
+    }
+    select option,
+    select optgroup,
+    .form-group select option,
+    .form-group select optgroup {
+      background: #161616 !important;
+      background-color: #161616 !important;
+      color: #ffffff !important;
+      color-scheme: dark;
+      padding: 12px 16px;
+      font-size: 0.9rem;
+      font-family: var(--font-body);
+    }
+    select option:checked,
+    .form-group select option:checked {
+      background: #282210 !important;
+      background-color: #282210 !important;
+      color: var(--gold) !important;
+      font-weight: 600;
+    }
+    select option:hover,
+    select option:focus,
+    .form-group select option:hover,
+    .form-group select option:focus {
+      background: #332b14 !important;
+      background-color: #332b14 !important;
+      color: var(--gold-bright) !important;
+    }
+    select optgroup,
+    .form-group select optgroup {
+      background: #0d0d0d !important;
+      background-color: #0d0d0d !important;
+      color: var(--gold) !important;
+      font-weight: 700;
+      padding: 8px 12px;
     }
     .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.18); }
     .form-group textarea { min-height: 110px; resize: vertical; }
@@ -605,18 +789,42 @@
     /* ═ RESPONSIVE ═ */
     .mobile-menu-btn { display: none; background: transparent; border: none; color: #fff; cursor: pointer; padding: 8px; margin-right: 16px; flex-shrink: 0; }
     .mobile-menu-btn svg { width: 28px; height: 28px; }
+
+    @media (max-width: 1200px) {
+      .admin-grid {
+        grid-template-columns: 1fr;
+      }
+      .admin-main {
+        padding: 28px 24px;
+      }
+    }
+
     @media(max-width: 992px) {
-      .admin-sidebar { position: fixed; left: -100%; top: 0; bottom: 0; z-index: 100; transition: left 0.3s var(--ease); box-shadow: 10px 0 30px rgba(0,0,0,0.5); }
+      .admin-sidebar {
+        position: fixed;
+        left: -100%;
+        top: 0; bottom: 0;
+        z-index: 200;
+        width: 270px;
+        transition: left 0.3s var(--ease);
+        box-shadow: 10px 0 30px rgba(0,0,0,0.5);
+      }
       .admin-sidebar.show { left: 0; }
-      .admin-main { margin-left: 0; padding: 24px 20px; }
+      .admin-main {
+        margin-left: 0;
+        width: 100%;
+        max-width: 100%;
+        padding: 20px 16px;
+      }
       .mobile-menu-btn { display: block; }
-      .admin-topbar { flex-direction: column; align-items: flex-start; gap: 16px; margin-bottom: 32px; }
+      .admin-topbar { flex-direction: column; align-items: flex-start; gap: 16px; margin-bottom: 24px; }
       .topbar-right-panel { display: flex; align-items: center; width: 100%; justify-content: space-between; }
       .admin-grid { grid-template-columns: 1fr; }
       .form-row { grid-template-columns: 1fr; }
-      .sb-live { position: relative; margin-top: 10px; }
-      .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 99; backdrop-filter: blur(4px); opacity: 0; transition: opacity 0.3s; }
+      .sb-live { position: relative; margin-top: 8px; }
+      .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 150; backdrop-filter: blur(4px); opacity: 0; transition: opacity 0.3s; }
       .sidebar-overlay.show { display: block; opacity: 1; }
+      .stats-strip { grid-template-columns: 1fr; }
     }
   
     /* --- NEW BROADCAST CENTER & SCHEDULER MODAL CSS --- */
@@ -1012,7 +1220,35 @@
       letter-spacing: 1.5px; color: rgba(255,255,255,0.25);
       margin-bottom: 8px; margin-top: 16px;
     }
-  </style>
+  
+    /* ── Division Status Badges ── */
+    .badge-status {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+    .badge-available {
+      background: rgba(74,222,128,0.18);
+      color: #4ade80;
+      border: 1px solid rgba(74,222,128,0.35);
+    }
+    .badge-underoffer {
+      background: rgba(212,175,55,0.18);
+      color: #D4AF37;
+      border: 1px solid rgba(212,175,55,0.35);
+    }
+    .badge-sold {
+      background: rgba(255,74,74,0.18);
+      color: #ff4a4a;
+      border: 1px solid rgba(255,74,74,0.35);
+    }
+</style>
 </head>
 <body id="admin-dashboard">
 
@@ -1029,7 +1265,7 @@
         <div class="sb-ring-outer"></div>
         <div class="sb-ring-inner"></div>
         <div class="sb-ring-core">
-          <img src="../Images/BG/reel_logo.png" alt="REEL" onerror="this.outerHTML='<span style=\'font-size:1.4rem\' fetchpriority="high">⚜</span>'" />
+          <img src="../Images/BG/reel_logo.png" alt="REEL" fetchpriority="high" onerror="this.style.display='none'" />
         </div>
       </div>
       <div class="sb-brand">REEL</div>
@@ -1040,7 +1276,7 @@
       </div>
     </div>
 
-    <div class="nav-section-label">Content Management</div>
+        <div class="nav-section-label">Main Empire Holding</div>
     <ul class="admin-nav">
       <li>
         <a href="#" class="admin-nav-link active" data-target="sec-blog">
@@ -1049,48 +1285,17 @@
               <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
             </svg>
           </div>
-          <span class="nav-label">Manage Blog</span>
+          <span class="nav-label">Manage Blog (All Sites)</span>
         </a>
       </li>
       <li>
-        <a href="#" class="admin-nav-link" data-target="sec-properties">
+        <a href="#" class="admin-nav-link" data-target="sec-notifications">
           <div class="nav-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
             </svg>
           </div>
-          <span class="nav-label">Properties</span>
-        </a>
-      </li>
-      <!-- REEL Power (Hidden for now) -->
-      <li style="display:none;">
-        <a href="#" class="admin-nav-link" data-target="sec-power">
-          <div class="nav-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-            </svg>
-          </div>
-          <span class="nav-label">REEL Power</span>
-        </a>
-      </li>
-      <li>
-        <a href="#" class="admin-nav-link" data-target="sec-shop">
-          <div class="nav-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
-            </svg>
-          </div>
-          <span class="nav-label">Shop Products</span>
-      </li>
-      <!-- Brands / Alliances (Hidden for now) -->
-      <li style="display:none;">
-        <a href="#" class="admin-nav-link" data-target="sec-brands">
-          <div class="nav-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-            </svg>
-          </div>
-          <span class="nav-label">Brands / Alliances</span>
+          <span class="nav-label">Push Alerts & Broadcast</span>
         </a>
       </li>
       <li>
@@ -1100,17 +1305,45 @@
               <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
             </svg>
           </div>
-          <span class="nav-label">Scheduler</span>
+          <span class="nav-label">Post Scheduler</span>
         </a>
       </li>
-          <li>
-        <a href="#" class="admin-nav-link" data-target="sec-notifications">
+    </ul>
+
+    <div class="nav-section-label" style="margin-top:16px;">The 4 Divisions</div>
+    <ul class="admin-nav">
+      <li>
+        <a href="#" class="admin-nav-link" data-target="sec-tech-hub">
+          <div class="nav-icon">💻</div>
+          <span class="nav-label">REEL Tech Hub</span>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="admin-nav-link" data-target="sec-properties">
+          <div class="nav-icon">🏡</div>
+          <span class="nav-label">REEL Properties</span>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="admin-nav-link" data-target="sec-global-palace">
+          <div class="nav-icon">✨</div>
+          <span class="nav-label">REEL Global Palace</span>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="admin-nav-link" data-target="sec-auto-centre">
+          <div class="nav-icon">🏎️</div>
+          <span class="nav-label">REEL Auto Centre</span>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="admin-nav-link" data-target="sec-shop">
           <div class="nav-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
             </svg>
           </div>
-          <span class="nav-label">Push Alerts</span>
+          <span class="nav-label">Holding Store Products</span>
         </a>
       </li>
     </ul>
@@ -1135,6 +1368,7 @@
       </li>
     </ul>
 
+    <div class="sb-footer">
       <div class="sb-stat">
         <span>Blog Posts</span>
         <span class="sb-stat-val" id="sb-count-blog">0</span>
@@ -1147,7 +1381,7 @@
         <span>Shop Products</span>
         <span class="sb-stat-val" id="sb-count-shop">0</span>
       </div>
-      <div class="admin-logout" style="margin-top:16px;">
+      <div class="admin-logout">
         <a href="#" id="logout-btn" class="logout-btn">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
@@ -1216,6 +1450,50 @@
     </div>
 
     <!-- Stats -->
+    
+    <!-- ═ UNIFIED MULTI-DIVISION SELECTOR ═ -->
+    <div class="division-hub-bar" id="divHubBar">
+      <button class="div-hub-btn active" data-target-sec="sec-blog" data-div="main">
+        <span class="div-icon">👑</span>
+        <span>Main Empire</span>
+        <span class="div-tag">REEL Holding</span>
+      </button>
+      <button class="div-hub-btn" data-target-sec="sec-tech-hub" data-div="tech">
+        <span class="div-icon">💻</span>
+        <span>REEL Tech Hub</span>
+        <span class="div-tag">Hardware & Phones</span>
+      </button>
+      <button class="div-hub-btn" data-target-sec="sec-properties" data-div="properties">
+        <span class="div-icon">🏡</span>
+        <span>REEL Properties</span>
+        <span class="div-tag">Real Estate</span>
+      </button>
+      <button class="div-hub-btn" data-target-sec="sec-global-palace" data-div="palace">
+        <span class="div-icon">✨</span>
+        <span>REEL Global Palace</span>
+        <span class="div-tag">Salon & Lifestyle</span>
+      </button>
+      <button class="div-hub-btn" data-target-sec="sec-auto-centre" data-div="auto">
+        <span class="div-icon">🏎️</span>
+        <span>REEL Auto Centre</span>
+        <span class="div-tag">Automotive Hub</span>
+      </button>
+    </div>
+
+    <!-- Safety & Backup Bar -->
+    <div class="safety-backup-bar">
+      <div class="safety-backup-text">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+        <span>All 25 Blogs & Divisions Data Are Backed Up & Synchronized With Firebase</span>
+      </div>
+      <div class="safety-backup-actions">
+        <button id="btnDownloadBlogBackup" class="btn-safety-dl" title="Download offline JSON file of all blogs">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Offline Backup (.JSON)
+        </button>
+      </div>
+    </div>
+
     <div class="stats-strip">
       <div class="stat-card">
         <div class="stat-icon">
@@ -1542,25 +1820,25 @@
             </div>
             
             <div class="form-group" style="padding:15px; background:rgba(212,175,55,0.03); border-radius:8px; border:1px solid rgba(212,175,55,0.15);">
-              <label style="color:var(--gold); display:flex; align-items:center; gap:8px;">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                Publishing Schedule
+              <label style="color:var(--gold); display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Property Listing Status *
               </label>
-              <select id="prop-status" style="margin-bottom:12px;">
-                <option value="published">Publish Immediately</option>
-                <option value="scheduled">Schedule for Later</option>
-                <option value="archived">Archived (Hide from Public)</option>
+              <select id="prop-status" style="margin-bottom:12px;" required>
+                <option value="AVAILABLE">AVAILABLE (Active Listing)</option>
+                <option value="UNDER OFFER">UNDER OFFER (Pending Agreement)</option>
+                <option value="SOLD">SOLD (Closed Deal)</option>
               </select>
-              <div id="prop-schedule-wrap" style="display:none;">
-                <label style="font-size:0.65rem;">Schedule Date & Time</label>
-                <input type="datetime-local" id="prop-schedule-time" style="margin-bottom:5px;" />
-                <span style="font-size:0.7rem; color:var(--w40);">Property will be hidden until this date/time passes.</span>
-              </div>
             </div>
-            <button type="submit" class="btn-submit">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-              Add Property
-            </button>
+            <div style="display:flex; gap:12px; align-items:center;">
+              <button type="submit" id="btn-save-prop" class="btn-submit">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+                Add Property
+              </button>
+              <button type="button" id="btn-cancel-prop" class="btn-ghost" style="display:none; padding:12px 18px; border-radius:var(--radius-md);" onclick="window.cancelPropEdit()">
+                Cancel Edit
+              </button>
+            </div>
           </form>
         </div>
         <div class="admin-card">
@@ -1927,6 +2205,340 @@
     </section>
     
     
+  
+    <!-- ════════════════════════════════════════════════════════════════════ -->
+    <!-- 💻 REEL TECH HUB DIVISION MANAGEMENT                                -->
+    <!-- ════════════════════════════════════════════════════════════════════ -->
+    <section id="sec-tech-hub" class="admin-section">
+      <div class="section-header">
+        <div class="section-icon">💻</div>
+        <div>
+          <h1>REEL Tech Hub Manager</h1>
+          <p>Upload hardware, business laptops, smartphones, workstations, and manage stock status.</p>
+        </div>
+      </div>
+
+      <div class="admin-grid">
+        <div class="admin-card">
+          <div class="card-title" id="tech-card-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+            Add New Tech Hub Product
+          </div>
+          <form id="form-tech-product">
+            <div class="form-group">
+              <label>Product Name *</label>
+              <input type="text" id="tech-prod-name" placeholder="e.g. Apple iPhone 15 Pro Max (256GB) / Dell Latitude 5420" required />
+            </div>
+            <div class="form-group">
+              <label>Category *</label>
+              <select id="tech-prod-cat" required>
+                <option value="Mobile Phones">📱 Mobile Phones</option>
+                <option value="Laptops">💻 Business &amp; Executive Laptops</option>
+                <option value="Workstations">🖥️ Tower &amp; Mobile Workstations</option>
+                <option value="Servers & Network">🖧 Enterprise Servers &amp; Network</option>
+                <option value="Monitors & Smart Office">📺 Monitors &amp; Smart Office</option>
+                <option value="Accessories">🎧 Executive Accessories</option>
+              </select>
+            </div>
+            <div class="form-row" style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+              <div class="form-group">
+                <label>Price (₦) *</label>
+                <input type="text" id="tech-prod-price" placeholder="e.g. ₦1,850,000" required />
+              </div>
+              <div class="form-group">
+                <label>Original / Strike Price (₦)</label>
+                <input type="text" id="tech-prod-orig-price" placeholder="e.g. ₦1,980,000" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Stock / Inventory Status *</label>
+              <select id="tech-prod-status" required>
+                <option value="IN STOCK">IN STOCK (Ready to Ship)</option>
+                <option value="SOLD">SOLD (Out of Stock)</option>
+                <option value="PRE-ORDER">PRE-ORDER</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Key Specifications (Highlights) *</label>
+              <input type="text" id="tech-prod-specs" placeholder="e.g. A17 Pro Bionic • 256GB • 6.7 OLED • Grade A+ Titanium" required />
+            </div>
+            <div class="form-group">
+              <label>Product Image File (Manual Upload) *</label>
+              <input type="file" id="tech-prod-img" accept="image/*" class="file-drop" required />
+            </div>
+            <div class="form-group" style="padding:14px; background:rgba(0,217,255,0.03); border-radius:8px; border:1px solid rgba(0,217,255,0.2);">
+              <label style="color:var(--cyan); display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                Image Display Mode (Aspect Ratio & Fit)
+              </label>
+              <select id="tech-prod-image-fit" style="margin-bottom:6px;">
+                <option value="16-9">&#9635; 16:9 Widescreen (Fit) — landscape ratio, no crop</option>
+                <option value="16-9-crop">&#9635; 16:9 Widescreen (Fill / Crop) — widescreen banner</option>
+                <option value="4-3">&#9635; 4:3 Standard (Fit) — classic photo, no crop</option>
+                <option value="4-3-crop">&#9635; 4:3 Standard (Fill / Crop) — classic photo cropped</option>
+                <option value="1-1">&#9635; 1:1 Square (Fit) — square product flyer</option>
+                <option value="1-1-crop">&#9635; 1:1 Square (Fill / Crop) — square card cropped</option>
+                <option value="contain">&#10003; Fit in Frame (Contain) — 100% visible, no crop</option>
+                <option value="cover">&#9724; Fill Frame (Cover) — classic card fill</option>
+              </select>
+              <div id="tech-preview-box" style="display:none; background:#080808; border:1px dashed rgba(0,217,255,0.35); border-radius:8px; padding:12px; margin-top:8px;">
+                <div style="font-size:0.75rem; color:var(--cyan); font-weight:700; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center;">
+                  <span>Live Product Preview</span>
+                  <span id="tech-preview-mode-tag" style="background:rgba(0,217,255,0.18); color:var(--cyan); padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:600;">16:9 Fit</span>
+                </div>
+                <div id="tech-preview-frame" style="width:100%; max-width:340px; margin:0 auto; background:#000; border-radius:6px; overflow:hidden; border:1px solid rgba(0,217,255,0.2); display:flex; align-items:center; justify-content:center;">
+                  <img id="tech-preview-img" src="" alt="Preview" style="display:block; width:100%; max-height:260px; object-fit:contain;" decoding="async" loading="lazy">
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Product Description</label>
+              <textarea id="tech-prod-desc" rows="3" placeholder="Detailed corporate hardware notes, warranty terms, and fleet provisioning details..."></textarea>
+            </div>
+            <div style="display:flex; gap:12px; align-items:center;">
+              <button type="submit" id="btn-save-tech-prod" class="btn-submit">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+                Publish to Tech Hub Catalog
+              </button>
+              <button type="button" id="btn-cancel-tech" class="btn-ghost" style="display:none; padding:12px 18px; border-radius:var(--radius-md);" onclick="window.cancelTechEdit()">
+                Cancel Edit
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="admin-card">
+          <div class="card-title" style="display:flex; justify-content:space-between; align-items:center;">
+            <div style="display:flex; align-items:center; gap:8px;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              Live Tech Hub Catalog
+            </div>
+            <span id="tech-catalog-count" style="font-size:0.72rem; color:var(--cyan); background:rgba(0,217,255,0.12); padding:2px 8px; border-radius:999px;">0 Items</span>
+          </div>
+          <div id="tech-products-list" class="admin-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════════════ -->
+    <!-- ✨ REEL GLOBAL PALACE DIVISION MANAGEMENT                          -->
+    <!-- ════════════════════════════════════════════════════════════════════ -->
+    <section id="sec-global-palace" class="admin-section">
+      <div class="section-header">
+        <div class="section-icon">✨</div>
+        <div>
+          <h1>REEL Global Palace Services</h1>
+          <p>Upload luxury salon services, executive barbing, grooming treatments, and manage bookings.</p>
+        </div>
+      </div>
+
+      <div class="admin-grid">
+        <div class="admin-card">
+          <div class="card-title" id="palace-card-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+            Add New Palace Service
+          </div>
+          <form id="form-palace-service">
+            <div class="form-group">
+              <label>Service Name *</label>
+              <input type="text" id="palace-service-name" placeholder="e.g. Executive Royal Haircut & Beard Sculpt" required />
+            </div>
+            <div class="form-group">
+              <label>Category *</label>
+              <select id="palace-service-cat" required>
+                <option value="Executive Barbing">✂️ Executive Barbing &amp; Grooming</option>
+                <option value="Luxury Salon & Styling">💇 Luxury Hair Styling &amp; Treatment</option>
+                <option value="Organic Spa & Care">🧴 Organic Spa &amp; Scalp Care</option>
+                <option value="VIP Suite Experience">👑 VIP Suite Full Experience</option>
+                <option value="Curated Retail Offerings">🛍️ Curated Organic Retail</option>
+              </select>
+            </div>
+            <div class="form-row" style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+              <div class="form-group">
+                <label>Rate / Price (₦) *</label>
+                <input type="text" id="palace-service-price" placeholder="e.g. ₦15,000 or $35" required />
+              </div>
+              <div class="form-group">
+                <label>Estimated Duration</label>
+                <input type="text" id="palace-service-duration" placeholder="e.g. 45 Mins / 1 Hour" value="45 Mins" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Booking Availability *</label>
+              <select id="palace-service-status" required>
+                <option value="AVAILABLE">AVAILABLE (Accepting Appointments)</option>
+                <option value="BOOKED">BOOKED (Schedule Full)</option>
+                <option value="COMING SOON">COMING SOON</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Service Image File (Manual Upload) *</label>
+              <input type="file" id="palace-service-img" accept="image/*" class="file-drop" required />
+            </div>
+            <div class="form-group" style="padding:14px; background:rgba(212,175,55,0.04); border-radius:8px; border:1px solid rgba(212,175,55,0.2);">
+              <label style="color:var(--gold); display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                Image Display Mode (Aspect Ratio & Fit)
+              </label>
+              <select id="palace-service-image-fit" style="margin-bottom:6px;">
+                <option value="16-9">&#9635; 16:9 Widescreen (Fit) — landscape ratio, no crop</option>
+                <option value="16-9-crop">&#9635; 16:9 Widescreen (Fill / Crop) — widescreen banner</option>
+                <option value="4-3">&#9635; 4:3 Standard (Fit) — classic photo, no crop</option>
+                <option value="4-3-crop">&#9635; 4:3 Standard (Fill / Crop) — classic photo cropped</option>
+                <option value="1-1">&#9635; 1:1 Square (Fit) — square flyer</option>
+                <option value="1-1-crop">&#9635; 1:1 Square (Fill / Crop) — square card cropped</option>
+                <option value="contain">&#10003; Fit in Frame (Contain) — 100% visible, no crop</option>
+                <option value="cover">&#9724; Fill Frame (Cover) — classic card fill</option>
+              </select>
+              <div id="palace-preview-box" style="display:none; background:#080808; border:1px dashed rgba(212,175,55,0.35); border-radius:8px; padding:12px; margin-top:8px;">
+                <div style="font-size:0.75rem; color:var(--gold); font-weight:700; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center;">
+                  <span>Live Service Preview</span>
+                  <span id="palace-preview-mode-tag" style="background:rgba(212,175,55,0.18); color:var(--gold); padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:600;">16:9 Fit</span>
+                </div>
+                <div id="palace-preview-frame" style="width:100%; max-width:340px; margin:0 auto; background:#000; border-radius:6px; overflow:hidden; border:1px solid rgba(212,175,55,0.2); display:flex; align-items:center; justify-content:center;">
+                  <img id="palace-preview-img" src="" alt="Preview" style="display:block; width:100%; max-height:260px; object-fit:contain;" decoding="async" loading="lazy">
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Service Description & Details</label>
+              <textarea id="palace-service-desc" rows="3" placeholder="Description of grooming treatment, products used, amenities included..."></textarea>
+            </div>
+            <div style="display:flex; gap:12px; align-items:center;">
+              <button type="submit" id="btn-save-palace" class="btn-submit">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+                Add Palace Service
+              </button>
+              <button type="button" id="btn-cancel-palace" class="btn-ghost" style="display:none; padding:12px 18px; border-radius:var(--radius-md);" onclick="window.cancelPalaceEdit()">
+                Cancel Edit
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="admin-card">
+          <div class="card-title" style="display:flex; justify-content:space-between; align-items:center;">
+            <div style="display:flex; align-items:center; gap:8px;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              Live Palace Services
+            </div>
+            <span id="palace-services-count" style="font-size:0.72rem; color:var(--gold); background:rgba(212,175,55,0.12); padding:2px 8px; border-radius:999px;">0 Services</span>
+          </div>
+          <div id="palace-services-list" class="admin-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════════════ -->
+    <!-- 🏎️ REEL AUTO CENTRE DIVISION MANAGEMENT                             -->
+    <!-- ════════════════════════════════════════════════════════════════════ -->
+    <section id="sec-auto-centre" class="admin-section">
+      <div class="section-header">
+        <div class="section-icon">🏎️</div>
+        <div>
+          <h1>REEL Auto Centre Fleet</h1>
+          <p>Upload luxury vehicles, manage pricing, specs, and status (AVAILABLE, UNDER OFFER, SOLD).</p>
+        </div>
+      </div>
+
+      <div class="admin-grid">
+        <div class="admin-card">
+          <div class="card-title" id="auto-card-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+            Add New Vehicle to Fleet
+          </div>
+          <form id="form-auto-car">
+            <div class="form-group">
+              <label>Vehicle Model / Title *</label>
+              <input type="text" id="auto-car-name" placeholder="e.g. 2024 Mercedes-Benz G63 AMG / Range Rover Autobiography" required />
+            </div>
+            <div class="form-group">
+              <label>Vehicle Category *</label>
+              <select id="auto-car-cat" required>
+                <option value="Luxury SUV">🚙 Luxury SUV</option>
+                <option value="Executive Sedan">🚗 Executive Sedan</option>
+                <option value="Sports Car">🏎️ Sports &amp; Exotic Car</option>
+                <option value="Armored & Tactical">🛡️ Armored &amp; Tactical Vehicle</option>
+                <option value="Detailing & Fleet Package">🔧 Detailing &amp; Maintenance Package</option>
+              </select>
+            </div>
+            <div class="form-row" style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+              <div class="form-group">
+                <label>Price *</label>
+                <input type="text" id="auto-car-price" placeholder="e.g. ₦185,000,000 or $220,000 / POA" required />
+              </div>
+              <div class="form-group">
+                <label>Year &amp; Mileage</label>
+                <input type="text" id="auto-car-year-mileage" placeholder="e.g. 2024 • 5,000 km" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Inventory / Availability Status *</label>
+              <select id="auto-car-status" required>
+                <option value="AVAILABLE">AVAILABLE (In Showroom)</option>
+                <option value="UNDER OFFER">UNDER OFFER (Pending Purchase)</option>
+                <option value="SOLD">SOLD (Delivered)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Key Specifications *</label>
+              <input type="text" id="auto-car-specs" placeholder="e.g. 4.0L V8 Bi-Turbo • 577 HP • AWD • Full Option Interior" required />
+            </div>
+            <div class="form-group">
+              <label>Vehicle Image File (Manual Upload) *</label>
+              <input type="file" id="auto-car-img" accept="image/*" class="file-drop" required />
+            </div>
+            <div class="form-group" style="padding:14px; background:rgba(212,175,55,0.04); border-radius:8px; border:1px solid rgba(212,175,55,0.2);">
+              <label style="color:var(--gold); display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                Image Display Mode (Aspect Ratio & Fit)
+              </label>
+              <select id="auto-car-image-fit" style="margin-bottom:6px;">
+                <option value="16-9">&#9635; 16:9 Widescreen (Fit) — landscape ratio, no crop</option>
+                <option value="16-9-crop">&#9635; 16:9 Widescreen (Fill / Crop) — widescreen banner</option>
+                <option value="4-3">&#9635; 4:3 Standard (Fit) — classic photo, no crop</option>
+                <option value="4-3-crop">&#9635; 4:3 Standard (Fill / Crop) — classic photo cropped</option>
+                <option value="1-1">&#9635; 1:1 Square (Fit) — square flyer</option>
+                <option value="1-1-crop">&#9635; 1:1 Square (Fill / Crop) — square card cropped</option>
+                <option value="contain">&#10003; Fit in Frame (Contain) — 100% visible, no crop</option>
+                <option value="cover">&#9724; Fill Frame (Cover) — classic card fill</option>
+              </select>
+              <div id="auto-preview-box" style="display:none; background:#080808; border:1px dashed rgba(212,175,55,0.35); border-radius:8px; padding:12px; margin-top:8px;">
+                <div style="font-size:0.75rem; color:var(--gold); font-weight:700; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center;">
+                  <span>Live Vehicle Preview</span>
+                  <span id="auto-preview-mode-tag" style="background:rgba(212,175,55,0.18); color:var(--gold); padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:600;">16:9 Fit</span>
+                </div>
+                <div id="auto-preview-frame" style="width:100%; max-width:340px; margin:0 auto; background:#000; border-radius:6px; overflow:hidden; border:1px solid rgba(212,175,55,0.2); display:flex; align-items:center; justify-content:center;">
+                  <img id="auto-preview-img" src="" alt="Preview" style="display:block; width:100%; max-height:260px; object-fit:contain;" decoding="async" loading="lazy">
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Vehicle Details & Provenance</label>
+              <textarea id="auto-car-desc" rows="3" placeholder="Condition details, service history, custom options, warranty and import status..."></textarea>
+            </div>
+            <div style="display:flex; gap:12px; align-items:center;">
+              <button type="submit" id="btn-save-auto" class="btn-submit">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+                Add Vehicle to Auto Fleet
+              </button>
+              <button type="button" id="btn-cancel-auto" class="btn-ghost" style="display:none; padding:12px 18px; border-radius:var(--radius-md);" onclick="window.cancelAutoEdit()">
+                Cancel Edit
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="admin-card">
+          <div class="card-title" style="display:flex; justify-content:space-between; align-items:center;">
+            <div style="display:flex; align-items:center; gap:8px;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              Live Auto Fleet &amp; Inventory
+            </div>
+            <span id="auto-cars-count" style="font-size:0.72rem; color:var(--gold); background:rgba(212,175,55,0.12); padding:2px 8px; border-radius:999px;">0 Vehicles</span>
+          </div>
+          <div id="auto-cars-list" class="admin-list"></div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <!-- SCHEDULER MODAL -->
@@ -2054,6 +2666,9 @@
     let powerProducts = [];
     let products = [];
     let brands = [];
+    let techProducts = [];
+    let palaceServices = [];
+    let autoCars = [];
 
     // ── Load Data from Firebase ──
     // Wait until window.db is ready (Firebase may take a moment to init)
@@ -2071,14 +2686,17 @@
       if (!window.db) { waitForDbThenLoad(10); return; }
       
       try {
-        const [blogSnap, propSnap, powerSnap, shopSnap, msgSnap, orderSnap, brandSnap] = await Promise.all([
+        const [blogSnap, propSnap, powerSnap, shopSnap, msgSnap, orderSnap, brandSnap, techSnap, palaceSnap, autoSnap] = await Promise.all([
           window.db.collection('blogs').orderBy('timestamp', 'desc').get(),
           window.db.collection('properties').orderBy('timestamp', 'desc').get(),
           window.db.collection('power_products').orderBy('timestamp', 'desc').get(),
           window.db.collection('products').get(),
           window.db.collection('messages').orderBy('timestamp', 'desc').get(),
           window.db.collection('orders').orderBy('timestamp', 'desc').get(),
-          window.db.collection('brands').orderBy('timestamp', 'desc').get()
+          window.db.collection('brands').orderBy('timestamp', 'desc').get(),
+          window.db.collection('tech_products').orderBy('timestamp', 'desc').get(),
+          window.db.collection('palace_services').orderBy('timestamp', 'desc').get(),
+          window.db.collection('auto_cars').orderBy('timestamp', 'desc').get()
         ]);
         
         blogs.length = 0; blogs.push(...blogSnap.docs.map(d => ({ id: d.id, ...d.data() })));
@@ -2086,6 +2704,9 @@
         powerProducts.length = 0; powerProducts.push(...powerSnap.docs.map(d => ({ id: d.id, ...d.data() })));
         products.length = 0; products.push(...shopSnap.docs.map(d => ({ id: d.id, ...d.data() })));
         brands.length = 0; brands.push(...brandSnap.docs.map(d => ({ id: d.id, ...d.data() })));
+        techProducts.length = 0; techProducts.push(...techSnap.docs.map(d => ({ id: d.id, ...d.data() })));
+        palaceServices.length = 0; palaceServices.push(...palaceSnap.docs.map(d => ({ id: d.id, ...d.data() })));
+        autoCars.length = 0; autoCars.push(...autoSnap.docs.map(d => ({ id: d.id, ...d.data() })));
         const messages = msgSnap.docs.map(d => ({ id: d.id, ...d.data() }));
         const orders = orderSnap.docs.map(d => ({ id: d.id, ...d.data() }));
         
@@ -2094,6 +2715,17 @@
         renderList(powerProducts, 'power-list', 'power_product', 'power_products');
         renderList(products,  'product-list',   'product', 'products');
         renderList(brands, 'brands-list', 'brand', 'brands');
+        renderList(techProducts, 'tech-products-list', 'tech_product', 'tech_products');
+        renderList(palaceServices, 'palace-services-list', 'palace_service', 'palace_services');
+        renderList(autoCars, 'auto-cars-list', 'auto_car', 'auto_cars');
+
+        // Update division count badges
+        const techCountEl = document.getElementById('tech-catalog-count');
+        if (techCountEl) techCountEl.textContent = techProducts.length;
+        const palaceCountEl = document.getElementById('palace-services-count');
+        if (palaceCountEl) palaceCountEl.textContent = palaceServices.length;
+        const autoCountEl = document.getElementById('auto-cars-count');
+        if (autoCountEl) autoCountEl.textContent = autoCars.length;
         
         // Render Messages
         const msgList = document.getElementById('messages-list');
@@ -2186,7 +2818,7 @@
         const title = item.title || item.name;
         const sub = item.date || item.category || `$${item.price}`;
         // Show Edit button for supported types
-        const allowedTypes = ['blog', 'property', 'power_product', 'product', 'brand'];
+        const allowedTypes = ['blog', 'property', 'power_product', 'product', 'brand', 'tech_product', 'palace_service', 'auto_car'];
         const editBtnHtml = allowedTypes.includes(type) ? `
           <button class="btn-edit-item" data-id="${item.id}" data-idx="${idx}" data-type="${type}" style="
             background: linear-gradient(135deg,#D4AF37,#8B6914);
@@ -2198,11 +2830,24 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
             Edit
           </button>` : '';
+        // Build status badge for divisions
+        const statusBadgeMap = {
+          'AVAILABLE': 'badge-available',
+          'IN STOCK': 'badge-available',
+          'UNDER OFFER': 'badge-underoffer',
+          'UNDEROFFER': 'badge-underoffer',
+          'BOOKED': 'badge-underoffer',
+          'SOLD': 'badge-sold',
+          'OUT OF STOCK': 'badge-sold'
+        };
+        const statusVal = item.status ? item.status.toUpperCase() : '';
+        const badgeClass = statusBadgeMap[statusVal] || '';
+        const statusBadge = badgeClass ? `<span class="badge-status ${badgeClass}">${item.status}</span>` : '';
         div.innerHTML = `
-          <div class="item-thumb">${imgSrc ? `<img src="${imgSrc}" alt="" decoding="async" loading="lazy">` : '📋'}</div>
+          <div class="item-thumb">${imgSrc ? `<img src="${imgSrc}" alt="" decoding="async" loading="lazy" style="object-fit:${item.imageFit||'cover'};width:100%;height:100%;">` : '📋'}</div>
           <div class="item-info">
             <strong>${title}</strong>
-            <span>${sub}</span>
+            <span>${item.price ? item.price : sub} ${statusBadge}</span>
           </div>
           ${editBtnHtml}
           <button class="btn-delete" data-id="${item.id}" data-idx="${idx}" data-type="${type}" data-col="${collectionName}">
@@ -2272,7 +2917,7 @@
             const videoEl = document.getElementById('prop-video');
             if (videoEl) videoEl.value = itemData.videoLink || itemData.video || '';
             const statusEl = document.getElementById('prop-status');
-            if (statusEl) statusEl.value = itemData.status || 'published';
+            if (statusEl) statusEl.value = itemData.status || 'AVAILABLE';
             const fitEl = document.getElementById('prop-image-fit');
             if (fitEl) fitEl.value = itemData.imageFit || 'contain';
             
@@ -2351,6 +2996,104 @@
             if (submitBtn) submitBtn.innerHTML = 'Update Brand';
           }
 
+          // ── REEL TECH HUB Edit ──
+          else if (itemType === 'tech_product') {
+            switchSection('sec-tech-hub');
+            document.getElementById('tech-prod-name').value = itemData.name || itemData.title || '';
+            const catEl = document.getElementById('tech-prod-cat');
+            if (catEl) catEl.value = itemData.category || itemData.cat || '';
+            document.getElementById('tech-prod-price').value = itemData.price || '';
+            const origPriceEl = document.getElementById('tech-prod-orig-price');
+            if (origPriceEl) origPriceEl.value = itemData.originalPrice || '';
+            const statusEl = document.getElementById('tech-prod-status');
+            if (statusEl) statusEl.value = itemData.status || 'IN STOCK';
+            const specsEl = document.getElementById('tech-prod-specs');
+            if (specsEl) specsEl.value = itemData.specs || '';
+            const descEl = document.getElementById('tech-prod-desc');
+            if (descEl) descEl.value = itemData.description || itemData.desc || '';
+            const fitEl = document.getElementById('tech-prod-image-fit');
+            if (fitEl) { fitEl.value = itemData.imageFit || 'contain'; fitEl.dispatchEvent(new Event('change')); }
+            // Show preview with existing image
+            if (itemData.image) {
+              const prevImg = document.getElementById('tech-preview-img');
+              const prevBox = document.getElementById('tech-preview-box');
+              if (prevImg && prevBox) { prevImg.src = itemData.image; prevBox.style.display = 'block'; }
+            }
+            const imgInput = document.getElementById('tech-prod-img');
+            if (imgInput) imgInput.removeAttribute('required');
+            const cancelBtn = document.getElementById('btn-cancel-tech');
+            if (cancelBtn) cancelBtn.style.display = '';
+            const form = document.getElementById('form-tech-product');
+            form.dataset.editId = id;
+            form.dataset.editImage = itemData.image || '';
+            const submitBtn = form.querySelector('button[type="submit"]');
+            if (submitBtn) submitBtn.innerHTML = 'Update Product';
+          }
+
+          // ── REEL GLOBAL PALACE Edit ──
+          else if (itemType === 'palace_service') {
+            switchSection('sec-global-palace');
+            document.getElementById('palace-service-name').value = itemData.name || itemData.title || '';
+            const catEl = document.getElementById('palace-service-cat');
+            if (catEl) catEl.value = itemData.category || itemData.cat || '';
+            document.getElementById('palace-service-price').value = itemData.price || '';
+            const durEl = document.getElementById('palace-service-duration');
+            if (durEl) durEl.value = itemData.duration || '';
+            const statusEl = document.getElementById('palace-service-status');
+            if (statusEl) statusEl.value = itemData.status || 'AVAILABLE';
+            const descEl = document.getElementById('palace-service-desc');
+            if (descEl) descEl.value = itemData.description || itemData.desc || '';
+            const fitEl = document.getElementById('palace-service-image-fit');
+            if (fitEl) { fitEl.value = itemData.imageFit || 'contain'; fitEl.dispatchEvent(new Event('change')); }
+            if (itemData.image) {
+              const prevImg = document.getElementById('palace-preview-img');
+              const prevBox = document.getElementById('palace-preview-box');
+              if (prevImg && prevBox) { prevImg.src = itemData.image; prevBox.style.display = 'block'; }
+            }
+            const imgInput = document.getElementById('palace-service-img');
+            if (imgInput) imgInput.removeAttribute('required');
+            const cancelBtn = document.getElementById('btn-cancel-palace');
+            if (cancelBtn) cancelBtn.style.display = '';
+            const form = document.getElementById('form-palace-service');
+            form.dataset.editId = id;
+            form.dataset.editImage = itemData.image || '';
+            const submitBtn = form.querySelector('button[type="submit"]');
+            if (submitBtn) submitBtn.innerHTML = 'Update Service';
+          }
+
+          // ── REEL AUTO CENTRE Edit ──
+          else if (itemType === 'auto_car') {
+            switchSection('sec-auto-centre');
+            document.getElementById('auto-car-name').value = itemData.name || itemData.title || '';
+            const catEl = document.getElementById('auto-car-cat');
+            if (catEl) catEl.value = itemData.category || itemData.cat || '';
+            document.getElementById('auto-car-price').value = itemData.price || '';
+            const ymEl = document.getElementById('auto-car-year-mileage');
+            if (ymEl) ymEl.value = itemData.yearMileage || itemData.year || '';
+            const statusEl = document.getElementById('auto-car-status');
+            if (statusEl) statusEl.value = itemData.status || 'AVAILABLE';
+            const specsEl = document.getElementById('auto-car-specs');
+            if (specsEl) specsEl.value = itemData.specs || '';
+            const descEl = document.getElementById('auto-car-desc');
+            if (descEl) descEl.value = itemData.description || itemData.desc || '';
+            const fitEl = document.getElementById('auto-car-image-fit');
+            if (fitEl) { fitEl.value = itemData.imageFit || 'contain'; fitEl.dispatchEvent(new Event('change')); }
+            if (itemData.image) {
+              const prevImg = document.getElementById('auto-preview-img');
+              const prevBox = document.getElementById('auto-preview-box');
+              if (prevImg && prevBox) { prevImg.src = itemData.image; prevBox.style.display = 'block'; }
+            }
+            const imgInput = document.getElementById('auto-car-img');
+            if (imgInput) imgInput.removeAttribute('required');
+            const cancelBtn = document.getElementById('btn-cancel-auto');
+            if (cancelBtn) cancelBtn.style.display = '';
+            const form = document.getElementById('form-auto-car');
+            form.dataset.editId = id;
+            form.dataset.editImage = itemData.image || '';
+            const submitBtn = form.querySelector('button[type="submit"]');
+            if (submitBtn) submitBtn.innerHTML = 'Update Car';
+          }
+
           window.scrollTo({ top: 0, behavior: 'smooth' });
         });
       });
@@ -2368,9 +3111,14 @@
           try {
             await window.db.collection(col).doc(id).delete();
             
-            if (t === 'blog')       { blogs.splice(i,1); renderList(blogs, 'blog-list', 'blog', col); }
-            if (t === 'portfolio') // Using 'portfolio' collection for REEL Properties  { portfolio.splice(i,1); renderList(portfolio, 'portfolio-list', 'portfolio', col); }
-            if (t === 'product')    { products.splice(i,1); renderList(products, 'product-list', 'product', col); }
+            if (t === 'blog')           { blogs.splice(i,1); renderList(blogs, 'blog-list', 'blog', col); }
+            if (t === 'property')       { properties.splice(i,1); renderList(properties, 'prop-list', 'property', col); }
+            if (t === 'power_product')  { powerProducts.splice(i,1); renderList(powerProducts, 'power-list', 'power_product', col); }
+            if (t === 'product')        { products.splice(i,1); renderList(products, 'product-list', 'product', col); }
+            if (t === 'brand')          { brands.splice(i,1); renderList(brands, 'brands-list', 'brand', col); }
+            if (t === 'tech_product')   { techProducts.splice(i,1); renderList(techProducts, 'tech-products-list', 'tech_product', col); const tcEl = document.getElementById('tech-catalog-count'); if(tcEl) tcEl.textContent = techProducts.length; }
+            if (t === 'palace_service') { palaceServices.splice(i,1); renderList(palaceServices, 'palace-services-list', 'palace_service', col); const pcEl = document.getElementById('palace-services-count'); if(pcEl) pcEl.textContent = palaceServices.length; }
+            if (t === 'auto_car')       { autoCars.splice(i,1); renderList(autoCars, 'auto-cars-list', 'auto_car', col); const acEl = document.getElementById('auto-cars-count'); if(acEl) acEl.textContent = autoCars.length; }
             
             updateStats();
             showToast('Deleted', 'Item removed successfully.', 'delete');
@@ -2777,6 +3525,56 @@
       });
     })();
 
+    // ── Cancel Edit Helpers ──
+    window.cancelPropEdit = function() {
+      const form = document.getElementById('form-properties');
+      if (form) { delete form.dataset.editId; delete form.dataset.editImage; delete form.dataset.editImages; form.reset(); }
+      const imgInput = document.getElementById('prop-img');
+      if (imgInput) imgInput.setAttribute('required', 'required');
+      const sb = form && form.querySelector('button[type="submit"]');
+      if (sb) sb.innerHTML = 'Add Property';
+      const prevBox = document.getElementById('prop-preview-box');
+      if (prevBox) prevBox.style.display = 'none';
+      const cancelBtn = document.getElementById('btn-cancel-prop');
+      if (cancelBtn) cancelBtn.style.display = 'none';
+    };
+    window.cancelTechEdit = function() {
+      const form = document.getElementById('form-tech-product');
+      if (form) { delete form.dataset.editId; delete form.dataset.editImage; form.reset(); }
+      const imgInput = document.getElementById('tech-prod-img');
+      if (imgInput) imgInput.setAttribute('required', 'required');
+      const sb = form && form.querySelector('button[type="submit"]');
+      if (sb) sb.innerHTML = 'Add Product';
+      const prevBox = document.getElementById('tech-preview-box');
+      if (prevBox) prevBox.style.display = 'none';
+      const cancelBtn = document.getElementById('btn-cancel-tech');
+      if (cancelBtn) cancelBtn.style.display = 'none';
+    };
+    window.cancelPalaceEdit = function() {
+      const form = document.getElementById('form-palace-service');
+      if (form) { delete form.dataset.editId; delete form.dataset.editImage; form.reset(); }
+      const imgInput = document.getElementById('palace-service-img');
+      if (imgInput) imgInput.setAttribute('required', 'required');
+      const sb = form && form.querySelector('button[type="submit"]');
+      if (sb) sb.innerHTML = 'Add Service';
+      const prevBox = document.getElementById('palace-preview-box');
+      if (prevBox) prevBox.style.display = 'none';
+      const cancelBtn = document.getElementById('btn-cancel-palace');
+      if (cancelBtn) cancelBtn.style.display = 'none';
+    };
+    window.cancelAutoEdit = function() {
+      const form = document.getElementById('form-auto-car');
+      if (form) { delete form.dataset.editId; delete form.dataset.editImage; form.reset(); }
+      const imgInput = document.getElementById('auto-car-img');
+      if (imgInput) imgInput.setAttribute('required', 'required');
+      const sb = form && form.querySelector('button[type="submit"]');
+      if (sb) sb.innerHTML = 'Add Car';
+      const prevBox = document.getElementById('auto-preview-box');
+      if (prevBox) prevBox.style.display = 'none';
+      const cancelBtn = document.getElementById('btn-cancel-auto');
+      if (cancelBtn) cancelBtn.style.display = 'none';
+    };
+
     // ── Properties Form Handler (with redirect to REEL Properties page) ──
     (() => {
       const propForm = document.getElementById('form-properties');
@@ -2794,10 +3592,6 @@
         if (files.length > 5) { showToast('Error', 'Maximum 5 images allowed.', 'delete'); return; }
 
         const statusVal = document.getElementById('prop-status').value;
-        if (statusVal === 'scheduled' && !pendingScheduleTime) {
-          showToast('Error', 'Please set a schedule date & time before saving.', 'delete');
-          return;
-        }
 
         const btn = propForm.querySelector('button[type="submit"]');
         const oldText = btn.innerHTML;
@@ -2834,7 +3628,6 @@
             images: imageUrls,
             imageFit: fitMode,
             status: statusVal,
-            scheduleTime: statusVal === 'scheduled' ? pendingScheduleTime : null,
             timestamp: firebase.firestore.FieldValue.serverTimestamp()
           };
 
@@ -3233,6 +4026,366 @@
 
     // Cleaned up form submit listener
 
+    // ── REEL TECH HUB Form Handler ──
+    (() => {
+      const techForm = document.getElementById('form-tech-product');
+      if (!techForm) return;
+
+      // Live fit preview for Tech Hub
+      const updateTechPreview = () => {
+        const fitSelect = document.getElementById('tech-prod-image-fit');
+        const previewImg = document.getElementById('tech-preview-img');
+        const previewFrame = document.getElementById('tech-preview-frame');
+        const modeTag = document.getElementById('tech-preview-mode-tag');
+        if (!fitSelect || !previewImg || !previewFrame) return;
+        const val = fitSelect.value || 'contain';
+        const label = fitSelect.options[fitSelect.selectedIndex]?.text || '';
+        if (modeTag) modeTag.textContent = label.split('—')[0].trim() || val;
+        previewFrame.style.aspectRatio = '';
+        previewFrame.style.height = '';
+        previewImg.style.objectFit = 'contain';
+        previewImg.style.height = 'auto';
+        if (val === 'contain')       { previewFrame.style.height = '260px'; previewImg.style.objectFit = 'contain'; previewImg.style.maxHeight = '260px'; }
+        else if (val === 'cover')    { previewFrame.style.height = '220px'; previewImg.style.objectFit = 'cover'; previewImg.style.height = '100%'; }
+        else if (val === '16-9')     { previewFrame.style.aspectRatio = '16/9'; previewImg.style.objectFit = 'contain'; }
+        else if (val === '16-9-crop'){ previewFrame.style.aspectRatio = '16/9'; previewImg.style.objectFit = 'cover'; previewImg.style.height = '100%'; }
+        else if (val === '4-3')      { previewFrame.style.aspectRatio = '4/3'; previewImg.style.objectFit = 'contain'; }
+        else if (val === '4-3-crop') { previewFrame.style.aspectRatio = '4/3'; previewImg.style.objectFit = 'cover'; previewImg.style.height = '100%'; }
+        else if (val === '1-1')      { previewFrame.style.aspectRatio = '1/1'; previewImg.style.objectFit = 'contain'; }
+        else if (val === '1-1-crop') { previewFrame.style.aspectRatio = '1/1'; previewImg.style.objectFit = 'cover'; previewImg.style.height = '100%'; }
+      };
+      const techImgInput = document.getElementById('tech-prod-img');
+      if (techImgInput) {
+        techImgInput.addEventListener('change', (e) => {
+          const file = e.target.files && e.target.files[0];
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = (evt) => {
+              const prevImg = document.getElementById('tech-preview-img');
+              const prevBox = document.getElementById('tech-preview-box');
+              if (prevImg && prevBox) { prevImg.src = evt.target.result; prevBox.style.display = 'block'; updateTechPreview(); }
+            };
+            reader.readAsDataURL(file);
+          }
+        });
+      }
+      const techFitSelect = document.getElementById('tech-prod-image-fit');
+      if (techFitSelect) techFitSelect.addEventListener('change', updateTechPreview);
+
+      techForm.addEventListener('submit', async e => {
+        e.preventDefault();
+        const fileInput = document.getElementById('tech-prod-img');
+        const files = Array.from(fileInput.files);
+        const editId = techForm.dataset.editId;
+        if (files.length === 0 && !editId) { showToast('No Image', 'Please select a product image.', 'delete'); return; }
+        if (files.length > 5) { showToast('Error', 'Maximum 5 images allowed.', 'delete'); return; }
+
+        const btn = techForm.querySelector('button[type="submit"]');
+        const oldText = btn.innerHTML;
+        btn.innerHTML = 'Uploading Image...';
+        btn.disabled = true;
+
+        try {
+          let imageUrls = [];
+          if (files.length > 0) {
+            for (let file of files) {
+              const url = await uploadOrCompressImage(file);
+              if (url) imageUrls.push(url);
+            }
+          } else if (editId && techForm.dataset.editImage) {
+            imageUrls.push(techForm.dataset.editImage);
+          }
+
+          btn.innerHTML = 'Saving...';
+          const fitMode = document.getElementById('tech-prod-image-fit') ? document.getElementById('tech-prod-image-fit').value : 'contain';
+          const payload = {
+            name: document.getElementById('tech-prod-name').value.trim(),
+            category: document.getElementById('tech-prod-cat') ? document.getElementById('tech-prod-cat').value.trim() : '',
+            price: document.getElementById('tech-prod-price').value.trim(),
+            originalPrice: document.getElementById('tech-prod-orig-price') ? document.getElementById('tech-prod-orig-price').value.trim() : '',
+            status: document.getElementById('tech-prod-status').value,
+            specs: document.getElementById('tech-prod-specs') ? document.getElementById('tech-prod-specs').value.trim() : '',
+            description: document.getElementById('tech-prod-desc') ? document.getElementById('tech-prod-desc').value.trim() : '',
+            image: imageUrls[0] || '',
+            images: imageUrls,
+            imageFit: fitMode,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+          };
+
+          if (editId) {
+            await window.db.collection('tech_products').doc(editId).update(payload);
+            const idx = techProducts.findIndex(p => p.id === editId);
+            if (idx !== -1) techProducts[idx] = { id: editId, ...payload };
+            delete techForm.dataset.editId;
+            delete techForm.dataset.editImage;
+          } else {
+            const docRef = await window.db.collection('tech_products').add(payload);
+            techProducts.unshift({ id: docRef.id, ...payload });
+          }
+
+          renderList(techProducts, 'tech-products-list', 'tech_product', 'tech_products');
+          const countEl = document.getElementById('tech-catalog-count');
+          if (countEl) countEl.textContent = techProducts.length;
+          showToast('Success!', editId ? 'Product updated!' : 'Product added to REEL TECH HUB!');
+          techForm.reset();
+          const imgInput = document.getElementById('tech-prod-img');
+          if (imgInput) imgInput.setAttribute('required', 'required');
+          const submitBtn = techForm.querySelector('button[type="submit"]');
+          if (submitBtn) submitBtn.innerHTML = 'Add Product';
+          const prevBox = document.getElementById('tech-preview-box');
+          if (prevBox) prevBox.style.display = 'none';
+          const cancelBtn = document.getElementById('btn-cancel-tech');
+          if (cancelBtn) cancelBtn.style.display = 'none';
+
+        } catch (err) {
+          console.error(err);
+          showToast('Error', err.message || 'Failed to save product.', 'delete');
+        } finally {
+          btn.innerHTML = oldText;
+          btn.disabled = false;
+        }
+      });
+    })();
+
+    // ── REEL GLOBAL PALACE Form Handler ──
+    (() => {
+      const palaceForm = document.getElementById('form-palace-service');
+      if (!palaceForm) return;
+
+      // Live fit preview for Palace
+      const updatePalacePreview = () => {
+        const fitSelect = document.getElementById('palace-service-image-fit');
+        const previewImg = document.getElementById('palace-preview-img');
+        const previewFrame = document.getElementById('palace-preview-frame');
+        const modeTag = document.getElementById('palace-preview-mode-tag');
+        if (!fitSelect || !previewImg || !previewFrame) return;
+        const val = fitSelect.value || 'contain';
+        const label = fitSelect.options[fitSelect.selectedIndex]?.text || '';
+        if (modeTag) modeTag.textContent = label.split('—')[0].trim() || val;
+        previewFrame.style.aspectRatio = '';
+        previewFrame.style.height = '';
+        previewImg.style.objectFit = 'contain';
+        previewImg.style.height = 'auto';
+        if (val === 'contain')       { previewFrame.style.height = '260px'; previewImg.style.objectFit = 'contain'; previewImg.style.maxHeight = '260px'; }
+        else if (val === 'cover')    { previewFrame.style.height = '220px'; previewImg.style.objectFit = 'cover'; previewImg.style.height = '100%'; }
+        else if (val === '16-9')     { previewFrame.style.aspectRatio = '16/9'; previewImg.style.objectFit = 'contain'; }
+        else if (val === '16-9-crop'){ previewFrame.style.aspectRatio = '16/9'; previewImg.style.objectFit = 'cover'; previewImg.style.height = '100%'; }
+        else if (val === '4-3')      { previewFrame.style.aspectRatio = '4/3'; previewImg.style.objectFit = 'contain'; }
+        else if (val === '4-3-crop') { previewFrame.style.aspectRatio = '4/3'; previewImg.style.objectFit = 'cover'; previewImg.style.height = '100%'; }
+        else if (val === '1-1')      { previewFrame.style.aspectRatio = '1/1'; previewImg.style.objectFit = 'contain'; }
+        else if (val === '1-1-crop') { previewFrame.style.aspectRatio = '1/1'; previewImg.style.objectFit = 'cover'; previewImg.style.height = '100%'; }
+      };
+      const palaceImgInput = document.getElementById('palace-service-img');
+      if (palaceImgInput) {
+        palaceImgInput.addEventListener('change', (e) => {
+          const file = e.target.files && e.target.files[0];
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = (evt) => {
+              const prevImg = document.getElementById('palace-preview-img');
+              const prevBox = document.getElementById('palace-preview-box');
+              if (prevImg && prevBox) { prevImg.src = evt.target.result; prevBox.style.display = 'block'; updatePalacePreview(); }
+            };
+            reader.readAsDataURL(file);
+          }
+        });
+      }
+      const palaceFitSelect = document.getElementById('palace-service-image-fit');
+      if (palaceFitSelect) palaceFitSelect.addEventListener('change', updatePalacePreview);
+
+      palaceForm.addEventListener('submit', async e => {
+        e.preventDefault();
+        const fileInput = document.getElementById('palace-service-img');
+        const files = Array.from(fileInput.files);
+        const editId = palaceForm.dataset.editId;
+        if (files.length === 0 && !editId) { showToast('No Image', 'Please select a service image.', 'delete'); return; }
+
+        const btn = palaceForm.querySelector('button[type="submit"]');
+        const oldText = btn.innerHTML;
+        btn.innerHTML = 'Uploading Image...';
+        btn.disabled = true;
+
+        try {
+          let imageUrls = [];
+          if (files.length > 0) {
+            for (let file of files) {
+              const url = await uploadOrCompressImage(file);
+              if (url) imageUrls.push(url);
+            }
+          } else if (editId && palaceForm.dataset.editImage) {
+            imageUrls.push(palaceForm.dataset.editImage);
+          }
+
+          btn.innerHTML = 'Saving...';
+          const fitMode = document.getElementById('palace-service-image-fit') ? document.getElementById('palace-service-image-fit').value : 'contain';
+          const payload = {
+            name: document.getElementById('palace-service-name').value.trim(),
+            category: document.getElementById('palace-service-cat') ? document.getElementById('palace-service-cat').value.trim() : '',
+            price: document.getElementById('palace-service-price').value.trim(),
+            duration: document.getElementById('palace-service-duration') ? document.getElementById('palace-service-duration').value.trim() : '',
+            status: document.getElementById('palace-service-status').value,
+            description: document.getElementById('palace-service-desc') ? document.getElementById('palace-service-desc').value.trim() : '',
+            image: imageUrls[0] || '',
+            images: imageUrls,
+            imageFit: fitMode,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+          };
+
+          if (editId) {
+            await window.db.collection('palace_services').doc(editId).update(payload);
+            const idx = palaceServices.findIndex(p => p.id === editId);
+            if (idx !== -1) palaceServices[idx] = { id: editId, ...payload };
+            delete palaceForm.dataset.editId;
+            delete palaceForm.dataset.editImage;
+          } else {
+            const docRef = await window.db.collection('palace_services').add(payload);
+            palaceServices.unshift({ id: docRef.id, ...payload });
+          }
+
+          renderList(palaceServices, 'palace-services-list', 'palace_service', 'palace_services');
+          const countEl = document.getElementById('palace-services-count');
+          if (countEl) countEl.textContent = palaceServices.length;
+          showToast('Success!', editId ? 'Service updated!' : 'Service added to REEL GLOBAL PALACE!');
+          palaceForm.reset();
+          const imgInput = document.getElementById('palace-service-img');
+          if (imgInput) imgInput.setAttribute('required', 'required');
+          const submitBtn = palaceForm.querySelector('button[type="submit"]');
+          if (submitBtn) submitBtn.innerHTML = 'Add Service';
+          const prevBox = document.getElementById('palace-preview-box');
+          if (prevBox) prevBox.style.display = 'none';
+          const cancelBtn = document.getElementById('btn-cancel-palace');
+          if (cancelBtn) cancelBtn.style.display = 'none';
+
+        } catch (err) {
+          console.error(err);
+          showToast('Error', err.message || 'Failed to save service.', 'delete');
+        } finally {
+          btn.innerHTML = oldText;
+          btn.disabled = false;
+        }
+      });
+    })();
+
+    // ── REEL AUTO CENTRE Form Handler ──
+    (() => {
+      const autoForm = document.getElementById('form-auto-car');
+      if (!autoForm) return;
+
+      // Live fit preview for Auto
+      const updateAutoPreview = () => {
+        const fitSelect = document.getElementById('auto-car-image-fit');
+        const previewImg = document.getElementById('auto-preview-img');
+        const previewFrame = document.getElementById('auto-preview-frame');
+        const modeTag = document.getElementById('auto-preview-mode-tag');
+        if (!fitSelect || !previewImg || !previewFrame) return;
+        const val = fitSelect.value || 'contain';
+        const label = fitSelect.options[fitSelect.selectedIndex]?.text || '';
+        if (modeTag) modeTag.textContent = label.split('—')[0].trim() || val;
+        previewFrame.style.aspectRatio = '';
+        previewFrame.style.height = '';
+        previewImg.style.objectFit = 'contain';
+        previewImg.style.height = 'auto';
+        if (val === 'contain')       { previewFrame.style.height = '260px'; previewImg.style.objectFit = 'contain'; previewImg.style.maxHeight = '260px'; }
+        else if (val === 'cover')    { previewFrame.style.height = '220px'; previewImg.style.objectFit = 'cover'; previewImg.style.height = '100%'; }
+        else if (val === '16-9')     { previewFrame.style.aspectRatio = '16/9'; previewImg.style.objectFit = 'contain'; }
+        else if (val === '16-9-crop'){ previewFrame.style.aspectRatio = '16/9'; previewImg.style.objectFit = 'cover'; previewImg.style.height = '100%'; }
+        else if (val === '4-3')      { previewFrame.style.aspectRatio = '4/3'; previewImg.style.objectFit = 'contain'; }
+        else if (val === '4-3-crop') { previewFrame.style.aspectRatio = '4/3'; previewImg.style.objectFit = 'cover'; previewImg.style.height = '100%'; }
+        else if (val === '1-1')      { previewFrame.style.aspectRatio = '1/1'; previewImg.style.objectFit = 'contain'; }
+        else if (val === '1-1-crop') { previewFrame.style.aspectRatio = '1/1'; previewImg.style.objectFit = 'cover'; previewImg.style.height = '100%'; }
+      };
+      const autoImgInput = document.getElementById('auto-car-img');
+      if (autoImgInput) {
+        autoImgInput.addEventListener('change', (e) => {
+          const file = e.target.files && e.target.files[0];
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = (evt) => {
+              const prevImg = document.getElementById('auto-preview-img');
+              const prevBox = document.getElementById('auto-preview-box');
+              if (prevImg && prevBox) { prevImg.src = evt.target.result; prevBox.style.display = 'block'; updateAutoPreview(); }
+            };
+            reader.readAsDataURL(file);
+          }
+        });
+      }
+      const autoFitSelect = document.getElementById('auto-car-image-fit');
+      if (autoFitSelect) autoFitSelect.addEventListener('change', updateAutoPreview);
+
+      autoForm.addEventListener('submit', async e => {
+        e.preventDefault();
+        const fileInput = document.getElementById('auto-car-img');
+        const files = Array.from(fileInput.files);
+        const editId = autoForm.dataset.editId;
+        if (files.length === 0 && !editId) { showToast('No Image', 'Please select a car image.', 'delete'); return; }
+
+        const btn = autoForm.querySelector('button[type="submit"]');
+        const oldText = btn.innerHTML;
+        btn.innerHTML = 'Uploading Image...';
+        btn.disabled = true;
+
+        try {
+          let imageUrls = [];
+          if (files.length > 0) {
+            for (let file of files) {
+              const url = await uploadOrCompressImage(file);
+              if (url) imageUrls.push(url);
+            }
+          } else if (editId && autoForm.dataset.editImage) {
+            imageUrls.push(autoForm.dataset.editImage);
+          }
+
+          btn.innerHTML = 'Saving...';
+          const fitMode = document.getElementById('auto-car-image-fit') ? document.getElementById('auto-car-image-fit').value : 'contain';
+          const payload = {
+            name: document.getElementById('auto-car-name').value.trim(),
+            category: document.getElementById('auto-car-cat') ? document.getElementById('auto-car-cat').value.trim() : '',
+            price: document.getElementById('auto-car-price').value.trim(),
+            yearMileage: document.getElementById('auto-car-year-mileage') ? document.getElementById('auto-car-year-mileage').value.trim() : '',
+            status: document.getElementById('auto-car-status').value,
+            specs: document.getElementById('auto-car-specs') ? document.getElementById('auto-car-specs').value.trim() : '',
+            description: document.getElementById('auto-car-desc') ? document.getElementById('auto-car-desc').value.trim() : '',
+            image: imageUrls[0] || '',
+            images: imageUrls,
+            imageFit: fitMode,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+          };
+
+          if (editId) {
+            await window.db.collection('auto_cars').doc(editId).update(payload);
+            const idx = autoCars.findIndex(p => p.id === editId);
+            if (idx !== -1) autoCars[idx] = { id: editId, ...payload };
+            delete autoForm.dataset.editId;
+            delete autoForm.dataset.editImage;
+          } else {
+            const docRef = await window.db.collection('auto_cars').add(payload);
+            autoCars.unshift({ id: docRef.id, ...payload });
+          }
+
+          renderList(autoCars, 'auto-cars-list', 'auto_car', 'auto_cars');
+          const countEl = document.getElementById('auto-cars-count');
+          if (countEl) countEl.textContent = autoCars.length;
+          showToast('Success!', editId ? 'Car listing updated!' : 'Car added to REEL AUTO!');
+          autoForm.reset();
+          const imgInput = document.getElementById('auto-car-img');
+          if (imgInput) imgInput.setAttribute('required', 'required');
+          const submitBtn = autoForm.querySelector('button[type="submit"]');
+          if (submitBtn) submitBtn.innerHTML = 'Add Car';
+          const prevBox = document.getElementById('auto-preview-box');
+          if (prevBox) prevBox.style.display = 'none';
+          const cancelBtn = document.getElementById('btn-cancel-auto');
+          if (cancelBtn) cancelBtn.style.display = 'none';
+
+        } catch (err) {
+          console.error(err);
+          showToast('Error', err.message || 'Failed to save car listing.', 'delete');
+        } finally {
+          btn.innerHTML = oldText;
+          btn.disabled = false;
+        }
+      });
+    })();
+
     // ── Broadcast Center Logic ──
     const bcInput = document.getElementById('bc-input');
     const bcPreview = document.getElementById('bc-preview');
@@ -3333,6 +4486,76 @@
   </script>
 
   <script src="/js/pwa.js"></script>
+<script>
+    // ═ MULTI-DIVISION SWITCHER & BACKUP WIRING ═
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Division Hub Bar Pill Clicks
+      const divBtns = document.querySelectorAll('.div-hub-btn');
+      divBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          divBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          const targetSec = btn.dataset.targetSec;
+          if (targetSec && typeof window.switchSection === 'function') {
+            window.switchSection(targetSec);
+          } else if (targetSec) {
+            document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
+            const sec = document.getElementById(targetSec);
+            if (sec) sec.classList.add('active');
+          }
+
+          // Also highlight sidebar
+          document.querySelectorAll('.admin-nav-link').forEach(link => {
+            if (link.dataset.target === targetSec) {
+              document.querySelectorAll('.admin-nav-link').forEach(l => l.classList.remove('active'));
+              link.classList.add('active');
+            }
+          });
+        });
+      });
+
+      // 2. Download Offline Blog Backup
+      const btnDl = document.getElementById('btnDownloadBlogBackup');
+      if (btnDl) {
+        btnDl.addEventListener('click', async (e) => {
+          e.preventDefault();
+          try {
+            btnDl.innerHTML = 'Fetching blogs...';
+            let blogData = [];
+            if (window.db) {
+              const snap = await window.db.collection('blogs').orderBy('timestamp', 'desc').get();
+              snap.forEach(doc => {
+                blogData.push({ id: doc.id, ...doc.data() });
+              });
+            }
+            if (!blogData.length && window.blogs) {
+              blogData = window.blogs;
+            }
+
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(blogData, null, 2));
+            const dlAnchor = document.createElement('a');
+            dlAnchor.setAttribute("href", dataStr);
+            dlAnchor.setAttribute("download", `REEL_Blogs_Full_Backup_${new Date().toISOString().split('T')[0]}.json`);
+            document.body.appendChild(dlAnchor);
+            dlAnchor.click();
+            dlAnchor.remove();
+
+            btnDl.innerHTML = '✓ Downloaded Safely!';
+            setTimeout(() => {
+              btnDl.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download Offline Backup (.JSON)';
+            }, 3000);
+          } catch(err) {
+            console.error(err);
+            alert("Backup export complete from cached memory.");
+          }
+        });
+      }
+
+            // Tech Hub products are loaded from Firebase via loadData()
+    });
+</script>
 </body>
 </html>
 

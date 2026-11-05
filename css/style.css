@@ -3938,3 +3938,157 @@ section,
 @media (min-width: 992px) {
   .nav-item-mobile-contact { display: none !important; }
 }
+
+
+/* ── Footer Instagram Feed Widget (Replaces Calendar) ── */
+.footer-insta-col { min-width: 0; }
+.footer-insta-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 14px;
+  padding: 14px;
+  backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.footer-insta-card:hover {
+  border-color: rgba(212, 175, 55, 0.45);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(212, 175, 55, 0.08);
+}
+.insta-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.insta-user-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.insta-icon {
+  color: var(--gold-300, #D4AF37);
+}
+.insta-handle {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.02em;
+}
+.insta-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: rgba(212, 175, 55, 0.15);
+  color: var(--gold-300, #D4AF37);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+}
+.insta-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+.insta-tile {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #111;
+  display: block;
+}
+.insta-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+.insta-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold-300, #D4AF37);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.insta-tile:hover img {
+  transform: scale(1.1);
+}
+.insta-tile:hover .insta-overlay {
+  opacity: 1;
+}
+.insta-follow-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.16), rgba(212, 175, 55, 0.04));
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  color: var(--gold-300, #D4AF37);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.insta-follow-btn:hover {
+  background: var(--gold-gradient, linear-gradient(135deg, #D4AF37, #8B6914));
+  color: #000;
+  border-color: transparent;
+}
+
+
+
+/* ── Enhanced Live Instagram Post Grid Styling ── */
+.insta-live-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ff3b5c;
+  margin-right: 4px;
+  animation: instaPulse 1.6s infinite ease-in-out;
+}
+@keyframes instaPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+.insta-type-icon {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.65);
+  color: #fff;
+  border-radius: 4px;
+  padding: 2px 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  font-size: 0.6rem;
+}
+.insta-overlay-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.insta-overlay-inner svg {
+  fill: #ff3b5c;
+}
+

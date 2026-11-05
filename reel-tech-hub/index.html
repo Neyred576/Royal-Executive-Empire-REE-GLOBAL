@@ -39,25 +39,25 @@
   <!-- ==================== NAVIGATION BAR ==================== -->
   <header class="rth-nav" id="mainNav">
     <div class="nav-container">
-      <a href="#hero" class="nav-brand">
-        <img src="Images/reel_logo.png?v=4" alt="REEL Logo" class="nav-logo-img" />
-        <div class="nav-brand-text">
+      <div class="nav-brand" style="display:flex; align-items:center; gap:12px;">
+        <a href="https://reelholding.com.ng/" title="Return to Main Empire Homepage">
+          <img src="Images/reel_logo.png?v=4" alt="Royalty Executive Empire Logo" class="nav-logo-img" />
+        </a>
+        <a href="#hero" class="nav-brand-text" style="text-decoration:none; display:flex; flex-direction:column;" title="REEL Tech Hub Homepage">
           <span class="brand-main">REEL TECH HUB</span>
-          <span class="brand-sub">Digital & Smart Solutions</span>
-        </div>
-      </a>
+          <span class="brand-sub">Royalty Executive Empire Limited</span>
+        </a>
+      </div>
 
       <nav class="nav-links" id="navLinks">
         <a href="#solutions" class="nav-link">What We Do</a>
         <a href="#hardware" class="nav-link">Laptops & PCs</a>
         <a href="#why-us" class="nav-link">Why REEL</a>
-        <a href="#contact" class="nav-link">Contact Us</a>
-        <a href="javascript:void(0)" onclick="window.goToMainEmpire()" class="nav-link nav-back-reel" title="Return to Royal Executive Empire Main Website">
-          <i class="fa-solid fa-crown"></i> Royal Executive Empire
-        </a>
+        <a href="shop.html" class="nav-link">Shop</a>
+        <a href="https://reelholding.com.ng/contact.html" class="nav-link">Contact Us</a>
       </nav>
 
-      <a href="#contact" class="btn-cyan nav-cta">
+      <a href="https://reelholding.com.ng/contact.html" class="btn-cyan nav-cta">
         <i class="fa-solid fa-envelope"></i> Contact Us
       </a>
 
@@ -568,176 +568,80 @@
     </div>
   </section>
 
-  <!-- ==================== CONTACT US SECTION (Updated per Screenshot 2 with Real Main Site Info) ==================== -->
-  <section class="section contact-section" id="contact">
+  <!-- ==================== FOOTER (Matches Main REEL Website) ==================== -->
+  <footer class="rth-footer" role="contentinfo" style="background:#05070c; border-top:1px solid rgba(212,175,55,0.25); padding:60px 0 24px;">
     <div class="container">
-      <div class="section-header text-center reveal-up">
-        <span class="section-badge">GET IN TOUCH</span>
-        <h2 class="section-title">Contact <span class="gradient-text">REEL Tech Hub</span></h2>
-        <p class="section-desc">Whether you need enterprise IT infrastructure, high-performance computing hardware, or technical training &mdash; our team is here to assist you.</p>
-      </div>
-
-      <div class="contact-grid">
-        <!-- Authentic Contact Info Cards from Main Website -->
-        <div class="contact-info reveal-left">
-          
-          <!-- Head Office -->
-          <div class="cinfo-card cinfo-reel-hq">
-            <div class="cinfo-icon"><i class="fa-solid fa-location-dot"></i></div>
-            <div>
-              <strong>Head Office &mdash; Nigeria</strong>
-              <p>Plaza 30, Alatishe, Along Lekki–Epe Expressway, Ibeju-Lekki, Lagos State, Nigeria</p>
-            </div>
-          </div>
-
-          <!-- Email -->
-          <div class="cinfo-card">
-            <div class="cinfo-icon"><i class="fa-solid fa-envelope"></i></div>
-            <div>
-              <strong>Email Us</strong>
-              <p><a href="mailto:admin@reelholding.com.ng">admin@reelholding.com.ng</a></p>
-            </div>
-          </div>
-
-          <!-- Phone Numbers -->
-          <div class="cinfo-card">
-            <div class="cinfo-icon"><i class="fa-solid fa-phone"></i></div>
-            <div>
-              <strong>Call Us Directly</strong>
-              <p>
-                <a href="tel:+2348067029444">+234 806 702 9444</a> &bull; 
-                <a href="tel:+2349118024521">+234 911 802 4521</a>
-              </p>
-            </div>
-          </div>
-
-          <!-- Direct WhatsApp -->
-          <div class="cinfo-card">
-            <div class="cinfo-icon"><i class="fa-brands fa-whatsapp"></i></div>
-            <div>
-              <strong>WhatsApp Direct Message</strong>
-              <p><a href="https://wa.me/2348067029444" target="_blank" rel="noopener" style="color: #25D366; font-weight: 600;">Chat on WhatsApp (+234 806 702 9444) →</a></p>
-            </div>
-          </div>
-
-          <!-- WhatsApp Channel -->
-          <div class="cinfo-card">
-            <div class="cinfo-icon"><i class="fa-solid fa-bullhorn"></i></div>
-            <div>
-              <strong>Official WhatsApp Channel</strong>
-              <p><a href="https://whatsapp.com/channel/0029Vb8f98uFsn0ZxQtIix05" target="_blank" rel="noopener" style="color: var(--cyan); font-weight: 600;">Join REEL WhatsApp Channel →</a></p>
-            </div>
-          </div>
-
-          <!-- Parent Holding Portal Link -->
-          <div class="cinfo-card">
-            <div class="cinfo-icon"><i class="fa-solid fa-crown"></i></div>
-            <div>
-              <strong>Royalty Executive Empire Limited (REEL)</strong>
-              <p>Parent Holding Company</p>
-              <a href="javascript:void(0)" onclick="window.goToMainEmpire()" style="color: var(--gold); font-size: 0.85rem; font-weight: 600;">Visit Empire Portal →</a>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Contact Form -->
-        <form class="contact-form reveal-right" id="procurementForm" onsubmit="event.preventDefault(); window.handleProcurementSubmit();">
-          <h3 style="font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 20px;">Send Us a Message</h3>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="contactName">Full Name *</label>
-              <input type="text" id="contactName" placeholder="Your Name" required />
-            </div>
-            <div class="form-group">
-              <label for="contactCompany">Company / Organization</label>
-              <input type="text" id="contactCompany" placeholder="Company Name" />
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="contactEmail">Email Address *</label>
-              <input type="email" id="contactEmail" placeholder="name@company.com" required />
-            </div>
-            <div class="form-group">
-              <label for="contactPhone">Phone / WhatsApp Number *</label>
-              <input type="tel" id="contactPhone" placeholder="+234..." required />
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="contactNeed">Service or Requirement of Interest *</label>
-            <select id="contactNeed">
-              <option value="Enterprise Laptops & PCs">Quality Business Laptops & Desktop PCs</option>
-              <option value="Enterprise Digital Transformation">Enterprise Digital Transformation</option>
-              <option value="Smart Office Solutions">Smart Technology & Office Solutions</option>
-              <option value="Digital Skills Training">Digital Skills Training Programmes</option>
-              <option value="Technical Support">Technical Support & Systems Integration</option>
-              <option value="General Partnership">Strategic Partnership / Consultation</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="contactMessage">Your Message / Project Details</label>
-            <textarea id="contactMessage" placeholder="Tell us about your requirements..."></textarea>
-          </div>
-
-          <button type="submit" class="btn-cyan btn-full">
-            <i class="fa-solid fa-paper-plane"></i> Send Message
-          </button>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== FOOTER (Updated per Screenshot 1: Removed Solutions & Hardware) ==================== -->
-  <footer class="rth-footer">
-    <div class="container">
-      <div class="footer-top footer-clean-grid">
+      <div class="footer-top" style="display:grid; grid-template-columns: 2fr 1fr 1fr 1.2fr; gap:36px; padding-bottom:40px; border-bottom:1px solid rgba(255,255,255,0.08);">
         <!-- Column 1: Brand Info -->
         <div class="footer-brand-col">
-          <div class="footer-logo-wrap">
-            <img src="Images/reel_logo.png?v=4" alt="REEL Logo" width="46" height="46" />
+          <div class="footer-logo-wrap" style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+            <a href="https://reelholding.com.ng/" title="Royalty Executive Empire Limited">
+              <img src="Images/reel_logo.png?v=4" alt="REEL Logo" width="46" height="46" style="filter: drop-shadow(0 2px 8px rgba(212,175,55,0.4));" />
+            </a>
             <div>
-              <span class="footer-brand-main">REEL TECH HUB</span>
-              <span class="footer-brand-sub">ROYALTY EXECUTIVE EMPIRE LIMITED</span>
+              <span class="footer-brand-main" style="display:block; font-size:1.15rem; font-weight:700; color:#fff; letter-spacing:0.05em;">REEL TECH HUB</span>
+              <span class="footer-brand-sub" style="display:block; font-size:0.7rem; color:rgba(212,175,55,0.85); letter-spacing:0.12em; text-transform:uppercase;">ROYALTY EXECUTIVE EMPIRE LIMITED</span>
             </div>
           </div>
-          <p class="footer-tagline">
+          <p class="footer-tagline" style="font-size:0.85rem; line-height:1.6; color:rgba(255,255,255,0.65); max-width:340px; margin-bottom:18px;">
             Empowering the future with advanced digital solutions, software development, technical skills training, and enterprise-grade computing hardware tailored for global leaders.
           </p>
+          <!-- Social Icons matching main site -->
+          <div style="display:flex; gap:10px; align-items:center;">
+            <a href="https://web.facebook.com/ReelHolding/" target="_blank" rel="noopener" style="width:34px; height:34px; border-radius:50%; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); display:flex; align-items:center; justify-content:center; color:#fff; text-decoration:none;"><i class="fa-brands fa-facebook-f" style="font-size:0.8rem;"></i></a>
+            <a href="https://x.com/ReelHolding" target="_blank" rel="noopener" style="width:34px; height:34px; border-radius:50%; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); display:flex; align-items:center; justify-content:center; color:#fff; text-decoration:none;"><i class="fa-brands fa-x-twitter" style="font-size:0.8rem;"></i></a>
+            <a href="https://www.instagram.com/reelholding/" target="_blank" rel="noopener" style="width:34px; height:34px; border-radius:50%; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); display:flex; align-items:center; justify-content:center; color:#fff; text-decoration:none;"><i class="fa-brands fa-instagram" style="font-size:0.8rem;"></i></a>
+            <a href="https://www.youtube.com/@ReelHolding" target="_blank" rel="noopener" style="width:34px; height:34px; border-radius:50%; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); display:flex; align-items:center; justify-content:center; color:#fff; text-decoration:none;"><i class="fa-brands fa-youtube" style="font-size:0.8rem;"></i></a>
+            <a href="https://www.tiktok.com/@reelholding" target="_blank" rel="noopener" style="width:34px; height:34px; border-radius:50%; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); display:flex; align-items:center; justify-content:center; color:#fff; text-decoration:none;"><i class="fa-brands fa-tiktok" style="font-size:0.8rem;"></i></a>
+            <a href="https://linkedin.com/company/reelholding" target="_blank" rel="noopener" style="width:34px; height:34px; border-radius:50%; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); display:flex; align-items:center; justify-content:center; color:#fff; text-decoration:none;"><i class="fa-brands fa-linkedin-in" style="font-size:0.8rem;"></i></a>
+          </div>
         </div>
 
-        <!-- Column 2: Direct Contact (From Main Website) -->
+        <!-- Column 2: Navigation Links -->
         <div class="footer-links-col">
-          <h4>GET IN TOUCH</h4>
-          <ul class="footer-contact-list">
-            <li><i class="fa-solid fa-location-dot" style="color:var(--cyan); margin-right: 8px;"></i> Lekki–Epe Expressway, Lagos, Nigeria</li>
-            <li><a href="tel:+2348067029444"><i class="fa-solid fa-phone" style="color:var(--cyan); margin-right: 8px;"></i> +234 806 702 9444</a></li>
-            <li><a href="mailto:admin@reelholding.com.ng"><i class="fa-solid fa-envelope" style="color:var(--cyan); margin-right: 8px;"></i> admin@reelholding.com.ng</a></li>
-            <li><a href="https://whatsapp.com/channel/0029Vb8f98uFsn0ZxQtIix05" target="_blank" rel="noopener" style="color: #25D366;"><i class="fa-brands fa-whatsapp" style="margin-right: 8px;"></i> WhatsApp Channel</a></li>
+          <h4 style="font-size:0.85rem; font-weight:700; color:#D4AF37; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:16px;">NAVIGATION</h4>
+          <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px; font-size:0.85rem;">
+            <li><a href="https://reelholding.com.ng/" style="color:rgba(255,255,255,0.7); text-decoration:none;">Main REEL Website</a></li>
+            <li><a href="#solutions" style="color:rgba(255,255,255,0.7); text-decoration:none;">What We Do</a></li>
+            <li><a href="#hardware" style="color:rgba(255,255,255,0.7); text-decoration:none;">Laptops & PCs</a></li>
+            <li><a href="shop.html" style="color:rgba(255,255,255,0.7); text-decoration:none;">Tech Hub Shop</a></li>
+            <li><a href="https://reelholding.com.ng/contact.html" style="color:rgba(255,255,255,0.7); text-decoration:none;">Contact Us</a></li>
           </ul>
         </div>
 
         <!-- Column 3: REEL Divisions -->
         <div class="footer-links-col">
-          <h4>REEL DIVISIONS</h4>
-          <ul>
-            <li><a href="javascript:void(0)" onclick="window.goToMainEmpire()">REEL Global Empire</a></li>
-            <li><a href="javascript:void(0)" onclick="window.goToMainEmpire()">REEL Auto Centre</a></li>
-            <li><a href="javascript:void(0)" onclick="window.goToMainEmpire()">REEL Properties</a></li>
-            <li><a href="javascript:void(0)" onclick="window.goToMainEmpire()">REEL Global Palace</a></li>
+          <h4 style="font-size:0.85rem; font-weight:700; color:#D4AF37; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:16px;">REEL DIVISIONS</h4>
+          <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px; font-size:0.85rem;">
+            <li><a href="https://reeltech.reelholding.com.ng" style="color:rgba(255,255,255,0.7); text-decoration:none;">REEL Tech Hub</a></li>
+            <li><a href="https://the-new-reel-suv.ai.studio" style="color:rgba(255,255,255,0.7); text-decoration:none;">REEL Auto Centre</a></li>
+            <li><a href="https://reelproperties.reelholding.com.ng" style="color:rgba(255,255,255,0.7); text-decoration:none;">REEL Properties</a></li>
+            <li><a href="https://reelglobal.reelholding.com.ng" style="color:rgba(255,255,255,0.7); text-decoration:none;">REEL Global Palace</a></li>
+            <li><a href="https://reelholding.com.ng/leadership.html" style="color:rgba(255,255,255,0.7); text-decoration:none;">Meet Our Leadership</a></li>
           </ul>
+        </div>
+
+        <!-- Column 4: Contact & Channel -->
+        <div class="footer-links-col">
+          <h4 style="font-size:0.85rem; font-weight:700; color:#D4AF37; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:16px;">GET IN TOUCH</h4>
+          <ul class="footer-contact-list" style="list-style:none; padding:0; margin:0 0 16px 0; display:flex; flex-direction:column; gap:10px; font-size:0.85rem; color:rgba(255,255,255,0.7);">
+            <li><i class="fa-solid fa-location-dot" style="color:#D4AF37; margin-right: 8px;"></i> Lekki–Epe Expressway, Lagos, Nigeria</li>
+            <li><a href="tel:+2348067029444" style="color:inherit; text-decoration:none;"><i class="fa-solid fa-phone" style="color:#D4AF37; margin-right: 8px;"></i> +234 806 702 9444</a></li>
+            <li><a href="mailto:admin@reelholding.com.ng" style="color:inherit; text-decoration:none;"><i class="fa-solid fa-envelope" style="color:#D4AF37; margin-right: 8px;"></i> admin@reelholding.com.ng</a></li>
+          </ul>
+          <a href="https://whatsapp.com/channel/0029Vb8f98uFsn0ZxQtIix05" target="_blank" rel="noopener noreferrer" style="display:inline-flex; align-items:center; gap:8px; padding:10px 16px; border-radius:999px; background:rgba(37,211,102,0.15); border:1px solid rgba(37,211,102,0.35); color:#25D366; text-decoration:none; font-size:0.8rem; font-weight:600;">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span>Join WhatsApp Channel</span>
+          </a>
         </div>
       </div>
 
-      <div class="footer-bottom">
-        <p>&copy; 2026 REEL Tech Hub. All Rights Reserved. A proud division of Royalty Executive Empire Limited.</p>
-        <a href="javascript:void(0)" onclick="window.goToMainEmpire()" class="footer-back-reel">
-          <i class="fa-solid fa-crown"></i> Royal Executive Empire
-        </a>
+      <div class="footer-bottom" style="padding-top:24px; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:16px; font-size:0.8rem; color:rgba(255,255,255,0.5);">
+        <p>&copy; 2026 Royalty Executive Empire Limited. All Rights Reserved. A proud division of REEL.</p>
+        <div style="display:flex; gap:18px;">
+          <a href="https://reelholding.com.ng/privacy.html" style="color:inherit; text-decoration:none;">Privacy Policy</a>
+          <a href="https://reelholding.com.ng/terms.html" style="color:inherit; text-decoration:none;">Terms of Service</a>
+        </div>
       </div>
     </div>
   </footer>

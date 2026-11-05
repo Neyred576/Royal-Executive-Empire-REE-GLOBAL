@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Scroll to Top Button Visibility
     const scrollBtn = document.getElementById('scrollTopBtn');
     if (scrollBtn) {
-      if (window.scrollY > 600) {
+      if (window.scrollY > 250) {
         scrollBtn.classList.add('show');
       } else {
         scrollBtn.classList.remove('show');
