@@ -482,6 +482,26 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
   <script src="../js/firebase-init.js"></script>
+  <script>
+    // Ensure Firebase is initialized even if loaded standalone without ../js/
+    if (typeof firebase !== 'undefined' && (!window.db || !firebase.apps.length)) {
+      try {
+        if (!firebase.apps.length) {
+          firebase.initializeApp({
+            apiKey: "AIzaSyA0CCQzLvA4pZc_fJJSzN6V98IwN9TfofY",
+            authDomain: "royal-executive-empire-ree.firebaseapp.com",
+            projectId: "royal-executive-empire-ree",
+            storageBucket: "royal-executive-empire-ree.firebasestorage.app",
+            messagingSenderId: "933257264677",
+            appId: "1:933257264677:web:d5ee8e282f819cf39a89cc"
+          });
+        }
+        window.db = firebase.firestore();
+      } catch (e) {
+        console.warn('Firebase init fallback:', e);
+      }
+    }
+  </script>
   <script src="js/main.js?v=4"></script>
   <script>
     // Category filter logic
@@ -521,43 +541,86 @@
         });
       });
 
+      function renderProducts(productsList) {
+        if (!productsList || productsList.length === 0) return;
+        grid.innerHTML = '';
+        productsList.forEach(p => {
+          const statusUp = (p.status || 'IN STOCK').toUpperCase();
+          const isSold = statusUp === 'SOLD';
+          const badgeText = p.status || 'In Stock';
+          const badgeColor = isSold ? '#ff4a4a' : '#22c55e';
+          const waText = encodeURIComponent('Hello REEL Tech Hub, I want to inquire about: ' + (p.name || p.title || ''));
+          const card = document.createElement('div');
+          card.className = 'shop-card';
+          card.dataset.category = p.category || 'General';
+          card.innerHTML = `
+            <div class="shop-card-img-wrap">
+              <span class="shop-badge" style="background:${badgeColor};color:#fff;border:none;">${badgeText}</span>
+              ${p.image ? `<img src="${p.image}" alt="${p.name || ''}" loading="lazy" style="object-fit:${p.imageFit || 'cover'};width:100%;height:100%;">` : '<div style="width:100%;height:220px;background:rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:center;color:#D4AF37;font-size:2rem;">📦</div>'}
+            </div>
+            <div class="shop-card-body">
+              <div class="shop-card-cat">${p.category || 'Product'}</div>
+              <h3 class="shop-card-title">${p.name || p.title || 'Untitled'}</h3>
+              ${p.specs ? `<p class="shop-card-specs">${p.specs}</p>` : (p.description ? `<p class="shop-card-specs">${p.description}</p>` : '')}
+              <div class="shop-card-footer">
+                <div class="shop-price">${p.price ? (p.price.toString().startsWith('₦') ? p.price : '₦' + p.price) : ''}${p.originalPrice ? ` <span>${p.originalPrice}</span>` : ''}</div>
+                ${!isSold ? `<a href="https://wa.me/2348067029444?text=${waText}" target="_blank" rel="noopener" class="btn-buy-wa">
+                  <i class="fa-brands fa-whatsapp"></i> Inquire
+                </a>` : `<span style="color:#ff4a4a;font-weight:700;font-size:0.85rem;">SOLD</span>`}
+              </div>
+            </div>
+          `;
+          grid.appendChild(card);
+        });
+        applyFilter();
+      }
+
+      function loadViaRestApi() {
+        fetch('https://firestore.googleapis.com/v1/projects/royal-executive-empire-ree/databases/(default)/documents/tech_products', { cache: 'no-store' })
+          .then(res => res.json())
+          .then(data => {
+            if (!data || !data.documents) return;
+            const parseVal = v => {
+              if (!v) return '';
+              if ('stringValue' in v) return v.stringValue;
+              if ('integerValue' in v) return v.integerValue;
+              if ('arrayValue' in v) return (v.arrayValue.values || []).map(parseVal);
+              return '';
+            };
+            const list = data.documents.map(d => {
+              const f = d.fields || {};
+              const rawImgs = parseVal(f.images);
+              const imgs = Array.isArray(rawImgs) ? rawImgs : [];
+              return {
+                id: d.name.split('/').pop(),
+                name: parseVal(f.name) || 'Untitled',
+                category: parseVal(f.category) || 'Hardware',
+                price: parseVal(f.price) || '',
+                originalPrice: parseVal(f.originalPrice) || '',
+                status: parseVal(f.status) || 'IN STOCK',
+                specs: parseVal(f.specs) || '',
+                description: parseVal(f.description) || '',
+                image: parseVal(f.image) || (imgs[0] || ''),
+                imageFit: parseVal(f.imageFit) || 'cover',
+                timestamp: parseVal(f.timestamp) || ''
+              };
+            });
+            list.sort((a,b) => (b.timestamp || '').localeCompare(a.timestamp || ''));
+            renderProducts(list);
+          })
+          .catch(err => console.error('REST API load error:', err));
+      }
+
       function loadTechProducts() {
-        if (!window.db) { setTimeout(loadTechProducts, 300); return; }
-        window.db.collection('tech_products').orderBy('timestamp', 'desc').get().then(snap => {
-          if (snap.empty) return; // keep any hardcoded fallback cards
-          // Clear hardcoded items and replace with live data
-          grid.innerHTML = '';
-          snap.docs.forEach(doc => {
-            const p = { id: doc.id, ...doc.data() };
-            const statusUp = (p.status || 'IN STOCK').toUpperCase();
-            const isSold = statusUp === 'SOLD';
-            const badgeText = p.status || 'In Stock';
-            const badgeColor = isSold ? '#ff4a4a' : '#D4AF37';
-            const waText = encodeURIComponent('Hello REEL Tech Hub, I want to inquire about: ' + (p.name || p.title || ''));
-            const card = document.createElement('div');
-            card.className = 'shop-card';
-            card.dataset.category = p.category || 'General';
-            card.innerHTML = `
-              <div class="shop-card-img-wrap">
-                <span class="shop-badge" style="background:${badgeColor};">${badgeText}</span>
-                ${p.image ? `<img src="${p.image}" alt="${p.name || ''}" loading="lazy" style="object-fit:${p.imageFit || 'cover'};width:100%;height:100%;">` : '<div style="width:100%;height:220px;background:rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:center;color:#D4AF37;font-size:2rem;">📦</div>'}
-              </div>
-              <div class="shop-card-body">
-                <div class="shop-card-cat">${p.category || 'Product'}</div>
-                <h3 class="shop-card-title">${p.name || p.title || 'Untitled'}</h3>
-                ${p.specs ? `<p class="shop-card-specs">${p.specs}</p>` : (p.description ? `<p class="shop-card-specs">${p.description}</p>` : '')}
-                <div class="shop-card-footer">
-                  <div class="shop-price">${p.price || ''}${p.originalPrice ? ` <span>${p.originalPrice}</span>` : ''}</div>
-                  ${!isSold ? `<a href="https://wa.me/2348067029444?text=${waText}" target="_blank" rel="noopener" class="btn-buy-wa">
-                    <i class="fa-brands fa-whatsapp"></i> Inquire
-                  </a>` : `<span style="color:#ff4a4a;font-weight:700;font-size:0.85rem;">SOLD</span>`}
-                </div>
-              </div>
-            `;
-            grid.appendChild(card);
-          });
-          applyFilter();
-        }).catch(err => console.error('Tech products load error:', err));
+        if (window.db) {
+          window.db.collection('tech_products').orderBy('timestamp', 'desc').get().then(snap => {
+            if (snap.empty) { loadViaRestApi(); return; }
+            const items = snap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            renderProducts(items);
+          }).catch(() => loadViaRestApi());
+        } else {
+          loadViaRestApi();
+        }
       }
       loadTechProducts();
     });
