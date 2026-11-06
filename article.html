@@ -267,7 +267,7 @@
             <li><a href="https://reelglobal.reelholding.com.ng" >REEL Global Palace</a></li>
           </ul>
         </li>
-        <li><a href="blog.html" class="nav-link">Blog</a></li>
+        <li><a href="blog.html" class="nav-link">News & Media</a></li>
         <li><a href="shop.html" class="nav-link">Shop</a></li>
         </ul>
     <div class="nav-actions">
@@ -611,7 +611,7 @@
     const main = document.getElementById('article-main');
 
     if (!articleId) {
-      main.innerHTML = `<div style="text-align:center;padding:200px 20px"><h1 style="color:#fff;font-family:var(--font-display);font-size:3rem">Article Not Found</h1><a href="blog.html" style="color:var(--gold-300);margin-top:20px;display:inline-block">&larr; Return to Blog</a></div>`;
+      main.innerHTML = `<div style="text-align:center;padding:200px 20px"><h1 style="color:#fff;font-family:var(--font-display);font-size:3rem">Article Not Found</h1><a href="blog.html" style="color:var(--gold-300);margin-top:20px;display:inline-block">&larr; Return to News & Media</a></div>`;
       return;
     }
 
@@ -621,7 +621,7 @@
       window.db.collection('blogs').orderBy('timestamp', 'desc').limit(8).get()
     ]).then(([doc, allSnap]) => {
       if (!doc.exists) {
-        main.innerHTML = `<div style="text-align:center;padding:200px 20px"><h1 style="color:#fff;font-family:var(--font-display);font-size:3rem">Article Not Found</h1><a href="blog.html" style="color:var(--gold-300);margin-top:20px;display:inline-block">&larr; Return to Blog</a></div>`;
+        main.innerHTML = `<div style="text-align:center;padding:200px 20px"><h1 style="color:#fff;font-family:var(--font-display);font-size:3rem">Article Not Found</h1><a href="blog.html" style="color:var(--gold-300);margin-top:20px;display:inline-block">&larr; Return to News & Media</a></div>`;
         return;
       }
 
@@ -741,7 +741,7 @@
 
     }).catch(err => {
       console.error('Article load error:', err);
-      document.getElementById('article-main').innerHTML = `<div style="text-align:center;padding:200px 20px"><h1 style="color:#fff;font-family:var(--font-display)">Error Loading Article</h1><p style="color:var(--w50);margin-top:12px">Please check your connection and try again.</p><a href="blog.html" style="color:var(--gold-300);margin-top:20px;display:inline-block">&larr; Return to Blog</a></div>`;
+      document.getElementById('article-main').innerHTML = `<div style="text-align:center;padding:200px 20px"><h1 style="color:#fff;font-family:var(--font-display)">Error Loading Article</h1><p style="color:var(--w50);margin-top:12px">Please check your connection and try again.</p><a href="blog.html" style="color:var(--gold-300);margin-top:20px;display:inline-block">&larr; Return to News & Media</a></div>`;
     });
   }
 

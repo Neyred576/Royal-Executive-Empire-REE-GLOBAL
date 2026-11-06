@@ -1769,13 +1769,49 @@
               <label>Property Title</label>
               <input type="text" id="prop-title" placeholder="e.g. Marina Luxury Villas, Dubai" required />
             </div>
-            <div class="form-group">
-              <label>Caption / Location</label>
-              <input type="text" id="prop-caption" placeholder="e.g. 4 Beds | 5 Baths | Downtown" required />
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px;">
+              <div class="form-group">
+                <label>Main Category *</label>
+                <select id="prop-category" required onchange="window.updatePropSubcategories()">
+                  <option value="">-- Select Category --</option>
+                  <option value="Properties for Sale">Properties for Sale</option>
+                  <option value="Properties for Rent">Properties for Rent</option>
+                  <option value="Luxury Properties">Luxury Properties</option>
+                  <option value="Commercial Properties">Commercial Properties</option>
+                  <option value="Land & Plots">Land & Plots</option>
+                  <option value="Property Investment">Property Investment</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Subcategory</label>
+                <select id="prop-subcategory">
+                  <option value="">-- Select Subcategory --</option>
+                </select>
+              </div>
+            </div>
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px;">
+              <div class="form-group">
+                <label>Location Area *</label>
+                <select id="prop-location" required>
+                  <option value="">-- Select Location --</option>
+                  <option value="Lekki">Lekki</option>
+                  <option value="Sangotedo">Sangotedo</option>
+                  <option value="Ajah">Ajah</option>
+                  <option value="Ibeju Lekki">Ibeju Lekki</option>
+                  <option value="Abuja">Abuja</option>
+                  <option value="Victoria Island">Victoria Island</option>
+                  <option value="Ikoyi">Ikoyi</option>
+                  <option value="Other">Other Location</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Caption / Highlights</label>
+                <input type="text" id="prop-caption" placeholder="e.g. 4 Beds | 5 Baths | Sangotedo" required />
+              </div>
             </div>
             <div class="form-group">
               <label>Price (Optional)</label>
-              <input type="text" id="prop-price" placeholder="e.g. Contact for Pricing or $5M" />
+              <input type="text" id="prop-price" placeholder="e.g. Contact for Pricing or ₦195M" />
             </div>
             <div class="form-group">
               <label>Property Images (Max 5)</label>
@@ -2847,7 +2883,7 @@
           <div class="item-thumb">${imgSrc ? `<img src="${imgSrc}" alt="" decoding="async" loading="lazy" style="object-fit:${item.imageFit||'cover'};width:100%;height:100%;">` : '📋'}</div>
           <div class="item-info">
             <strong>${title}</strong>
-            <span>${item.price ? item.price : sub} ${statusBadge}</span>
+            <span>${item.category ? `<span style="background:rgba(212,175,55,0.14); color:var(--gold); border:1px solid rgba(212,175,55,0.25); font-size:0.68rem; padding:2px 8px; border-radius:4px; margin-right:6px; font-weight:600;">${item.category}${item.location ? ' · ' + item.location : ''}</span>` : ''}${item.price ? item.price : sub} ${statusBadge}</span>
           </div>
           ${editBtnHtml}
           <button class="btn-delete" data-id="${item.id}" data-idx="${idx}" data-type="${type}" data-col="${collectionName}">
@@ -2910,6 +2946,13 @@
           else if (itemType === 'property') {
             switchSection('sec-properties');
             document.getElementById('prop-title').value = itemData.title || '';
+            const catEl = document.getElementById('prop-category');
+            if (catEl) {
+              catEl.value = itemData.category || '';
+              if (window.updatePropSubcategories) window.updatePropSubcategories(itemData.subcategory || '');
+            }
+            const locEl = document.getElementById('prop-location');
+            if (locEl) locEl.value = itemData.location || '';
             document.getElementById('prop-caption').value = itemData.caption || '';
             document.getElementById('prop-price').value = itemData.price || '';
             const detailsEl = document.getElementById('prop-details');
@@ -3525,10 +3568,38 @@
       });
     })();
 
+    // ── REEL Properties Subcategories Mapping ──
+    window.propSubcategoriesMap = {
+      "Properties for Sale": ["Houses", "Apartments", "Land", "Commercial"],
+      "Properties for Rent": ["Houses", "Apartments", "Offices", "Shops"],
+      "Luxury Properties": ["Luxury Homes", "Penthouses", "Premium Estates"],
+      "Commercial Properties": ["Offices", "Retail", "Warehouses"],
+      "Land & Plots": ["Residential Land", "Commercial Land"],
+      "Property Investment": ["Investment Opportunities", "Off-Plan"]
+    };
+    window.updatePropSubcategories = function(preselected) {
+      const catEl = document.getElementById('prop-category');
+      const subEl = document.getElementById('prop-subcategory');
+      if (!catEl || !subEl) return;
+      const cat = catEl.value;
+      subEl.innerHTML = '<option value="">-- Select Subcategory --</option>';
+      if (cat && window.propSubcategoriesMap[cat]) {
+        window.propSubcategoriesMap[cat].forEach(s => {
+          const opt = document.createElement('option');
+          opt.value = s;
+          opt.textContent = s;
+          if (preselected && preselected === s) opt.selected = true;
+          subEl.appendChild(opt);
+        });
+      }
+    };
+
     // ── Cancel Edit Helpers ──
     window.cancelPropEdit = function() {
       const form = document.getElementById('form-properties');
       if (form) { delete form.dataset.editId; delete form.dataset.editImage; delete form.dataset.editImages; form.reset(); }
+      const subEl = document.getElementById('prop-subcategory');
+      if (subEl) subEl.innerHTML = '<option value="">-- Select Subcategory --</option>';
       const imgInput = document.getElementById('prop-img');
       if (imgInput) imgInput.setAttribute('required', 'required');
       const sb = form && form.querySelector('button[type="submit"]');
@@ -3618,8 +3689,14 @@
 
           // 3. Save to Firestore
           const fitMode = document.getElementById('prop-image-fit') ? document.getElementById('prop-image-fit').value : 'contain';
+          const catVal = document.getElementById('prop-category') ? document.getElementById('prop-category').value : '';
+          const subcatVal = document.getElementById('prop-subcategory') ? document.getElementById('prop-subcategory').value : '';
+          const locVal = document.getElementById('prop-location') ? document.getElementById('prop-location').value : '';
           const payload = {
             title: document.getElementById('prop-title').value.trim(),
+            category: catVal,
+            subcategory: subcatVal,
+            location: locVal,
             caption: document.getElementById('prop-caption').value.trim(),
             price: document.getElementById('prop-price').value.trim(),
             details: document.getElementById('prop-details') ? document.getElementById('prop-details').value.trim() : '',
@@ -3647,7 +3724,7 @@
 
           // 4. Redirect to the REEL Properties page after a short delay
           setTimeout(() => {
-            window.open('../real-estate.html', '_blank');
+            window.open('https://reelproperties.reelholding.com.ng', '_blank');
           }, 1500);
 
           propForm.reset();

@@ -267,6 +267,13 @@ document.addEventListener('DOMContentLoaded', () => {
               if (doc.exists) {
                 const data = doc.data();
                 document.getElementById('prop-title').value = data.title || '';
+                if (document.getElementById('prop-category')) {
+                  document.getElementById('prop-category').value = data.category || '';
+                  if (window.updatePropSubcategories) window.updatePropSubcategories(data.subcategory || '');
+                }
+                if (document.getElementById('prop-location')) {
+                  document.getElementById('prop-location').value = data.location || '';
+                }
                 document.getElementById('prop-caption').value = data.caption || '';
                 document.getElementById('prop-price').value = data.price || '';
                 document.getElementById('prop-details').value = data.details || '';
@@ -570,6 +577,9 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('form-properties').addEventListener('submit', (e) => {
       e.preventDefault();
       const title = document.getElementById('prop-title').value;
+      const category = (document.getElementById('prop-category') || {}).value || '';
+      const subcategory = (document.getElementById('prop-subcategory') || {}).value || '';
+      const location = (document.getElementById('prop-location') || {}).value || '';
       const caption = document.getElementById('prop-caption').value;
       const price = document.getElementById('prop-price').value;
       const details = (document.getElementById('prop-details') || {}).value || '';
@@ -588,7 +598,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const isEdit = !!window.editPropId;
 
       const saveProp = (imageData) => {
-        const payload = { title, caption, price, details, video, status, scheduleTime: sTime };
+        const payload = { title, category, subcategory, location, caption, price, details, video, status, scheduleTime: sTime };
         if (imageData) payload.image = imageData;
 
         let promise;

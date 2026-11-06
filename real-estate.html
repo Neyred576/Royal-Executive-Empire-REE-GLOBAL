@@ -204,7 +204,7 @@
           <li><a href="https://reelglobal.reelholding.com.ng" >REEL Global Palace</a></li>
         </ul>
       </li>
-      <li><a href="blog.html" class="nav-link">Blog</a></li>
+      <li><a href="blog.html" class="nav-link">News & Media</a></li>
       <li><a href="shop.html" class="nav-link">Shop</a></li>
     </ul>
     <div class="nav-actions">
@@ -395,11 +395,15 @@
       <span class="re-filter-bar-title">Filter</span>
       <div class="re-filter-chips" role="group" aria-label="Property type filter">
         <button class="re-chip active" data-filter="all" id="re-chip-all">All Properties</button>
-        <button class="re-chip" data-filter="residential" id="re-chip-residential">Residential</button>
+        <button class="re-chip" data-filter="sale" id="re-chip-sale">Properties for Sale</button>
+        <button class="re-chip" data-filter="rent" id="re-chip-rent">Properties for Rent</button>
+        <button class="re-chip" data-filter="luxury" id="re-chip-luxury">Luxury Properties</button>
         <button class="re-chip" data-filter="commercial" id="re-chip-commercial">Commercial</button>
-        <button class="re-chip" data-filter="luxury" id="re-chip-luxury">Luxury Villa</button>
-        <button class="re-chip" data-filter="penthouse" id="re-chip-penthouse">Penthouse</button>
-        <button class="re-chip" data-filter="offplan" id="re-chip-offplan">Off-Plan</button>
+        <button class="re-chip" data-filter="land" id="re-chip-land">Land &amp; Plots</button>
+        <button class="re-chip" data-filter="sangotedo" id="re-chip-sangotedo">Sangotedo</button>
+        <button class="re-chip" data-filter="lekki" id="re-chip-lekki">Lekki</button>
+        <button class="re-chip" data-filter="abuja" id="re-chip-abuja">Abuja</button>
+        <button class="re-chip" data-filter="investment" id="re-chip-investment">Property Investment</button>
       </div>
       <div class="re-filter-count" aria-live="polite">Showing <span id="re-prop-count">All</span> properties</div>
     </div>
@@ -870,8 +874,9 @@
               const fit = p.imageFit || 'contain';
               const fitClass = 'fit-' + fit;
               const rawPriceNum = parseFloat((p.price || '').replace(/[^0-9.]/g, ''));
+              const searchTokens = ((p.category || '') + ' ' + (p.subcategory || '') + ' ' + (p.location || '') + ' ' + (p.title || '') + ' ' + (p.caption || '')).toLowerCase();
               return `
-              <article class="listing-card reveal-up" data-category="${(p.category || '').toLowerCase()}" style="animation-delay: ${i * 0.1}s; cursor: pointer;" onclick="window.location.href='property-details.html?id=' + encodeURIComponent(p.id)">
+              <article class="listing-card reveal-up" data-category="${searchTokens}" style="animation-delay: ${i * 0.1}s; cursor: pointer;" onclick="window.location.href='property-details.html?id=' + encodeURIComponent(p.id)">
                 <div class="listing-img ${fitClass}" style="background-image: url('${p.image}');">
                   ${p.price ? `<div class="listing-badge" data-base-price="${isNaN(rawPriceNum) ? '' : rawPriceNum}">${p.price}</div>` : ''}
                 </div>
@@ -884,6 +889,31 @@
               </article>
             `;
             }).join('');
+
+          // Wire filter chips
+          const filterChips = document.querySelectorAll('.re-chip');
+          filterChips.forEach(chip => {
+            chip.onclick = () => {
+              filterChips.forEach(c => c.classList.remove('active'));
+              chip.classList.add('active');
+              const filter = (chip.getAttribute('data-filter') || 'all').toLowerCase();
+              const cards = document.querySelectorAll('#properties-grid .listing-card');
+              let visibleCount = 0;
+              cards.forEach(card => {
+                const cardCat = (card.getAttribute('data-category') || '').toLowerCase();
+                if (filter === 'all' || cardCat.includes(filter)) {
+                  card.style.display = '';
+                  visibleCount++;
+                } else {
+                  card.style.display = 'none';
+                }
+              });
+              const countEl = document.getElementById('re-prop-count');
+              if (countEl) countEl.textContent = filter === 'all' ? 'All (' + visibleCount + ')' : visibleCount;
+            };
+          });
+          const countEl = document.getElementById('re-prop-count');
+          if (countEl) countEl.textContent = 'All (' + props.length + ')';
 
           // Re-trigger reveal animations & currency updates
           if (typeof window.applyGlobalCurrency === 'function') {
