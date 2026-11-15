@@ -221,7 +221,7 @@ table {
 
   .nav-brand-sub { display: none; }
   .nav-hamburger { display: flex; }
-  .nav-btn-contact { display: none !important; }
+  .nav-btn-contact, .nav-btn-news, .nav-btn-media { display: none !important; }
 
   .section-header { margin-bottom: 36px; }
   .section-eyebrow { font-size: 9px; letter-spacing: 3px; padding: 6px 14px; }

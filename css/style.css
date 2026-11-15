@@ -1022,6 +1022,38 @@ section,
   transform: translateY(-2px);
 }
 
+/* News & Media Button (Border design matching Contact Us) */
+.nav-btn-news,
+.nav-btn-media {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 18px;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--gold-border);
+  background: rgba(255, 255, 255, 0.04);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+  transition: all var(--t-fast);
+  margin-right: 6px;
+}
+.nav-btn-news:hover,
+.nav-btn-news.active,
+.nav-btn-media:hover,
+.nav-btn-media.active {
+  background: var(--gold-fill);
+  color: var(--gold-300);
+  border-color: var(--gold-400);
+  box-shadow: 0 4px 18px rgba(212, 175, 55, 0.35);
+  transform: translateY(-2px);
+}
+
 /* Footer Channel Button */
 .btn-join-channel {
   display: inline-flex;
@@ -2379,20 +2411,14 @@ section,
   font-size: 0.88rem;
   color: var(--w60);
   transition: all var(--t-fast);
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  display: block;
 }
 .footer-links-list li a::before {
-  content: 'â€º';
-  font-size: 1rem;
-  color: var(--gold-300);
-  opacity: 0;
-  transform: translateX(-4px);
-  transition: all var(--t-fast);
+  display: none !important;
+  content: none !important;
 }
-.footer-links-list li a:hover { color: var(--gold-300); padding-left: 4px; }
-.footer-links-list li a:hover::before { opacity: 1; transform: translateX(0); }
+.footer-links-list li a:hover { color: var(--gold-300); }
+.footer-links-list li a:hover::before { display: none !important; content: none !important; }
 
 .footer-news-desc { font-size: 0.87rem; color: var(--w60); line-height: 1.7; margin-bottom: 20px; }
 .footer-newsletter {
@@ -2698,14 +2724,18 @@ section,
     width: 17px !important;
     height: 17px !important;
   }
-  /* Hide the wide "Contact Us" text button from top header on mobile screens to prevent squeezing */
+  /* Hide wide text action buttons from top header on mobile screens to prevent squeezing */
   @media (max-width: 768px) {
-    .nav-btn-contact {
+    .nav-btn-contact,
+    .nav-btn-news,
+    .nav-btn-media {
       display: none !important;
     }
   }
   @media (min-width: 769px) {
-    .nav-btn-contact {
+    .nav-btn-contact,
+    .nav-btn-news,
+    .nav-btn-media {
       display: inline-flex !important;
       align-items: center;
       justify-content: center;
@@ -2973,7 +3003,9 @@ section,
   .nav-logo-img-wrap { width: 34px; height: 34px; }
   .nav-brand-name { font-size: 0.95rem; }
   .nav-icon { width: 32px; height: 32px; }
-  .nav-btn-contact { padding: 5px 11px; font-size: 0.72rem; }
+  .nav-btn-contact,
+  .nav-btn-news,
+  .nav-btn-media { padding: 5px 11px; font-size: 0.72rem; }
   .nav-hamburger { width: 32px; height: 32px; }
 }
 
@@ -3961,31 +3993,43 @@ section,
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 8px;
+  width: 100%;
 }
 .insta-user-info {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
 }
 .insta-icon {
   color: var(--gold-300, #D4AF37);
+  flex-shrink: 0;
 }
 .insta-handle {
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
   letter-spacing: 0.02em;
 }
 .insta-badge {
-  font-size: 0.65rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  padding: 2px 7px;
-  border-radius: 999px;
-  background: rgba(212, 175, 55, 0.15);
-  color: var(--gold-300, #D4AF37);
-  border: 1px solid rgba(212, 175, 55, 0.3);
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 5px !important;
+  flex-shrink: 0 !important;
+  white-space: nowrap !important;
+  font-size: 0.65rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  padding: 3px 8px !important;
+  border-radius: 999px !important;
+  background: rgba(212, 175, 55, 0.15) !important;
+  color: var(--gold-300, #D4AF37) !important;
+  border: 1px solid rgba(212, 175, 55, 0.3) !important;
+  line-height: 1 !important;
 }
 .insta-grid {
   display: grid;
@@ -4050,12 +4094,13 @@ section,
 
 /* ── Enhanced Live Instagram Post Grid Styling ── */
 .insta-live-dot {
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #ff3b5c;
-  margin-right: 4px;
+  display: inline-block !important;
+  width: 6px !important;
+  height: 6px !important;
+  border-radius: 50% !important;
+  background: #ff3b5c !important;
+  flex-shrink: 0 !important;
+  margin: 0 !important;
   animation: instaPulse 1.6s infinite ease-in-out;
 }
 @keyframes instaPulse {

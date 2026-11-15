@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       </div>
     `;
-    navActions.insertAdjacentHTML('afterbegin', bellHtml);
+    navActions.insertAdjacentHTML('beforeend', bellHtml);
   }
 
   const notifBtn = document.getElementById('notif-btn');

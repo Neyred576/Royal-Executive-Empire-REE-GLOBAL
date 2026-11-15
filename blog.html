@@ -1,7 +1,15 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <script>
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+    window.addEventListener('load', function() { window.scrollTo(0, 0); });
+    window.addEventListener('pageshow', function() { window.scrollTo(0, 0); });
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>News &amp; Media | REEL &mdash; Royalty Executive Empire Limited</title>
   <link rel="icon" type="image/png" href="/Images/BG/reel_logo.png" />
@@ -53,7 +61,7 @@
     /* ── Hero ── */
     .blog-hero {
       position: relative;
-      padding: 160px 0 90px;
+      padding: 85px 0 16px;
       overflow: hidden;
       background-color: var(--black-900);
       border-bottom: 1px solid var(--gold-border);
@@ -76,44 +84,44 @@
     }
     .blog-hero-inner { position: relative; z-index: 2; }
     .blog-hero-eyebrow {
-      display: flex; align-items: center; gap: 14px;
-      margin-bottom: 20px;
-      font-size: 0.72rem; font-weight: 700; letter-spacing: 3px;
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 6px;
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 2.5px;
       text-transform: uppercase; color: var(--gold-300);
     }
     .blog-hero-eyebrow::before {
       content: ''; display: block;
-      width: 40px; height: 1px;
+      width: 28px; height: 1px;
       background: var(--gold-gradient);
     }
     .blog-hero-title {
       font-family: var(--font-display);
-      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-size: clamp(1.6rem, 2.6vw, 2.2rem);
       color: #fff;
-      line-height: 1.0;
-      margin-bottom: 24px;
+      line-height: 1.1;
+      margin-bottom: 6px;
     }
     .blog-hero-title span { color: var(--gold-300); }
     .blog-hero-desc {
       color: var(--w50);
-      font-size: 1.1rem;
-      max-width: 500px;
-      line-height: 1.8;
+      font-size: 0.88rem;
+      max-width: 540px;
+      line-height: 1.5;
     }
 
     /* ── Filter Bar ── */
     .filter-bar {
-      display: flex; align-items: center; gap: 10px;
+      display: flex; align-items: center; gap: 8px;
       flex-wrap: wrap;
-      margin-bottom: 56px;
+      margin-bottom: 20px;
     }
     .filter-chip {
-      padding: 9px 22px;
+      padding: 6px 18px;
       border-radius: 999px;
       border: 1px solid var(--gold-border);
       background: transparent;
       color: var(--w60);
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       font-weight: 600;
       letter-spacing: 0.5px;
       cursor: pointer;
@@ -130,59 +138,135 @@
     .blog-page-layout {
       display: grid;
       grid-template-columns: 1fr 320px;
-      gap: 60px;
+      gap: 40px;
       align-items: start;
     }
 
-    /* ── Featured Card ── */
+    /* ── Featured Card (Medium Size, 2-Column Split) ── */
     .blog-featured {
       position: relative;
       border-radius: var(--radius-xl);
       overflow: hidden;
       cursor: pointer;
-      margin-bottom: 40px;
+      margin-bottom: 28px;
       border: 1px solid var(--gold-border);
-      transition: all 0.35s;
+      background: rgba(255, 255, 255, 0.02);
+      transition: all 0.35s ease;
+      display: grid;
+      grid-template-columns: 310px 1fr;
+      align-items: stretch;
+      min-height: 280px;
+      max-height: 330px;
     }
-    .blog-featured:hover { border-color: var(--gold-300); box-shadow: var(--gold-glow); }
+    .blog-featured:hover {
+      border-color: var(--gold-300);
+      box-shadow: var(--gold-glow);
+      transform: translateY(-3px);
+    }
+    .blog-featured-media {
+      position: relative;
+      background: #0a0a0a;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      min-height: 280px;
+    }
+    .blog-featured-media-blur {
+      position: absolute;
+      inset: -15px;
+      background-size: cover;
+      background-position: center;
+      filter: blur(20px);
+      opacity: 0.28;
+      pointer-events: none;
+    }
     .blog-featured-img {
-      width: 100%; height: 460px;
-      object-fit: cover;
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      max-height: 320px;
+      object-fit: contain;
       display: block;
       transition: transform 0.6s cubic-bezier(0.2,0.8,0.2,1);
     }
-    .blog-featured:hover .blog-featured-img { transform: scale(1.03); }
-    .blog-featured-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
+    .blog-featured:hover .blog-featured-img {
+      transform: scale(1.03);
     }
     .blog-featured-body {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      padding: 36px;
+      padding: 22px 26px;
+      background: rgba(14, 14, 14, 0.98);
+      border-left: 1px solid rgba(212, 175, 55, 0.18);
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
     .blog-featured-tag {
+      align-self: flex-start;
       display: inline-block;
-      padding: 4px 14px;
+      padding: 3px 12px;
       border-radius: 999px;
       background: var(--gold-fill);
       border: 1px solid var(--gold-border);
       color: var(--gold-300);
-      font-size: 0.68rem;
+      font-size: 0.65rem;
       font-weight: 700;
       letter-spacing: 1.5px;
       text-transform: uppercase;
-      margin-bottom: 14px;
+      margin-bottom: 8px;
     }
     .blog-featured-title {
       font-family: var(--font-display);
-      font-size: 2rem;
+      font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+      font-weight: 800 !important;
       color: #fff;
-      line-height: 1.2;
-      margin-bottom: 10px;
+      line-height: 1.3;
+      margin-bottom: 8px;
+      transition: color 0.3s;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
-    .blog-featured-meta {
+    .blog-featured:hover .blog-featured-title {
+      color: var(--gold-300);
+    }
+    .blog-featured-excerpt {
+      font-size: 0.82rem;
+      color: var(--w60);
+      line-height: 1.55;
+      margin-bottom: 14px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .blog-featured-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: auto;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 0.78rem;
+      color: rgba(255, 255, 255, 0.55);
+    }
+    .blog-featured-read {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--gold-300);
+      font-weight: 700;
       font-size: 0.8rem;
-      color: rgba(255,255,255,0.55);
+      transition: gap 0.2s;
+    }
+    .blog-featured:hover .blog-featured-read {
+      gap: 10px;
     }
     .blog-featured-label {
       font-size: 0.65rem;
@@ -199,11 +283,27 @@
       background: var(--gold-300);
     }
 
+    @media (max-width: 900px) {
+      .blog-featured {
+        grid-template-columns: 1fr;
+        max-height: none;
+      }
+      .blog-featured-media {
+        min-height: 220px;
+        max-height: 280px;
+      }
+      .blog-featured-body {
+        border-left: none;
+        border-top: 1px solid rgba(212, 175, 55, 0.18);
+        padding: 20px;
+      }
+    }
+
     /* ── Blog Card ── */
-    .blog-list { display: flex; flex-direction: column; gap: 24px; }
+    .blog-list { display: flex; flex-direction: column; gap: 16px; }
     .blog-card {
       display: grid;
-      grid-template-columns: 160px 1fr;
+      grid-template-columns: 140px 1fr;
       gap: 0;
       background: rgba(255,255,255,0.025);
       border: 1px solid var(--gold-border);
@@ -216,13 +316,13 @@
     .blog-card:hover {
       border-color: var(--gold-300);
       box-shadow: var(--gold-glow-sm);
-      transform: translateX(6px);
+      transform: translateX(4px);
     }
     .blog-card-thumb {
       background: var(--black-700);
       display: flex; align-items: center; justify-content: center;
-      font-size: 2.5rem;
-      min-height: 160px;
+      font-size: 2.2rem;
+      min-height: 130px;
       overflow: hidden;
       position: relative;
     }
@@ -234,37 +334,41 @@
     }
     .blog-card:hover .blog-card-thumb img { transform: scale(1.06); }
     .blog-card-body {
-      padding: 22px 24px;
+      padding: 16px 20px;
       display: flex; flex-direction: column; justify-content: center;
     }
     .blog-card-tag {
-      font-size: 0.65rem;
+      font-size: 0.62rem;
       font-weight: 700;
       letter-spacing: 1.5px;
       text-transform: uppercase;
       color: var(--gold-300);
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
     .blog-card-title {
       font-family: var(--font-display);
-      font-size: 1.1rem;
+      font-size: 1.05rem;
+      font-weight: 800 !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
       color: #fff;
       line-height: 1.35;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       transition: color 0.3s;
     }
     .blog-card:hover .blog-card-title { color: var(--gold-300); }
     .blog-card-excerpt {
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       color: var(--w50);
-      line-height: 1.65;
-      margin-bottom: 12px;
+      line-height: 1.5;
+      margin-bottom: 8px;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
-    .blog-card-date { font-size: 0.75rem; color: var(--w40); }
+    .blog-card-date { font-size: 0.72rem; color: var(--w40); }
 
     /* ── Sidebar ── */
     .blog-sidebar { position: sticky; top: 100px; }
@@ -369,7 +473,7 @@
     @media (max-width: 640px) { 
       .blog-card { grid-template-columns: 1fr; } 
       .blog-card-thumb { min-height: 220px; height: 220px; } 
-      .blog-featured-img { height: 280px; }
+      .blog-featured-img { height: 220px; }
       .blog-featured-title { font-size: 1.6rem; }
     }
   </style>
@@ -382,7 +486,7 @@
 <div class="bg-animated-glow"></div>
 
 <!-- NAVIGATION -->
-<nav id="main-nav" class="main-nav scrolled" role="navigation" aria-label="Main navigation">
+<nav id="main-nav" class="main-nav" role="navigation" aria-label="Main navigation">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo" aria-label="REEL Home">
       <div class="nav-logo-img-wrap">
@@ -395,97 +499,10 @@
       </div>
     </a>
     <ul class="nav-links" id="nav-links" role="list">
-      <li class="nav-item-dropdown" id="our-divisions-dropdown">
-        <a href="javascript:void(0)" class="nav-link" aria-haspopup="true" aria-expanded="false" id="our-divisions-toggle">
-          Our Divisions <svg class="drop-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left:4px; vertical-align: middle; margin-top:-2px;"><path d="M6 9l6 6 6-6"/></svg>
-        </a>
-
-        <!-- ══ MEGA-MENU ══ -->
-        <div class="mega-menu-wrapper" role="region" aria-label="Our Divisions Mega Menu">
-          <div class="mega-menu-header">
-            <span class="mega-menu-title">✦ &nbsp; Our Four Divisions &nbsp; ✦</span>
-            <span style="font-size:0.72rem; color:var(--w30);">Each division is an independently outstanding platform</span>
-          </div>
-          <div class="mega-menu-grid">
-
-            <!-- REEL Tech Hub -->
-            <a href="https://reeltech.reelholding.com.ng" class="mega-div-card" aria-label="REEL Tech Hub">
-              <div class="mega-div-img-wrap">
-                <img src="Images/divisions/reel_tech_hub.png" alt="REEL Tech Hub" class="mega-div-img" onerror="this.style.display='none'" decoding="async" loading="lazy">
-                <div class="mega-div-img-overlay"></div>
-                <span class="mega-div-num">01</span>
-                
-              </div>
-              <div class="mega-div-body">
-                <div class="mega-div-name"><span>REEL</span> Tech Hub</div>
-                <p class="mega-div-desc">Digital transformation, smart solutions &amp; enterprise technology across Africa.</p>
-                <span class="mega-div-link">Explore Division <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
-              </div>
-            </a>
-
-            <!-- REEL Auto Centre -->
-            <a href="https://reelauto.reelholding.com.ng" class="mega-div-card" aria-label="REEL Auto Centre">
-              <div class="mega-div-img-wrap">
-                <img src="Images/divisions/reel_auto.png" alt="REEL Auto Centre" class="mega-div-img" onerror="this.style.display='none'" decoding="async" loading="lazy">
-                <div class="mega-div-img-overlay"></div>
-                <span class="mega-div-num">02</span>
-                
-              </div>
-              <div class="mega-div-body">
-                <div class="mega-div-name"><span>REEL</span> Auto Centre</div>
-                <p class="mega-div-desc">Premium automotive care, executive detailing &amp; fleet maintenance services.</p>
-                <span class="mega-div-link">Explore Division <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
-              </div>
-            </a>
-
-            <!-- REEL Properties -->
-            <a href="https://reelproperties.reelholding.com.ng" class="mega-div-card" aria-label="REEL Properties">
-              <div class="mega-div-img-wrap">
-                <img src="Images/divisions/reel_properties.png" alt="REEL Properties" class="mega-div-img" onerror="this.style.display='none'" decoding="async" loading="lazy">
-                <div class="mega-div-img-overlay"></div>
-                <span class="mega-div-num">03</span>
-              </div>
-              <div class="mega-div-body">
-                <div class="mega-div-name"><span>REEL</span> Properties</div>
-                <p class="mega-div-desc">Luxury residential &amp; commercial real estate investments across Africa &amp; beyond.</p>
-                <span class="mega-div-link">View Listings <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
-              </div>
-            </a>
-
-            <!-- REEL Global Palace -->
-            <a href="https://reelglobal.reelholding.com.ng" class="mega-div-card" aria-label="REEL Global Palace">
-              <div class="mega-div-img-wrap">
-                <img src="Images/divisions/reel_global_palace.png" alt="REEL Global Palace" class="mega-div-img" onerror="this.style.display='none'" decoding="async" loading="lazy">
-                <div class="mega-div-img-overlay"></div>
-                <span class="mega-div-num">04</span>
-                
-              </div>
-              <div class="mega-div-body">
-                <div class="mega-div-name"><span>REEL</span> Global Palace</div>
-                <p class="mega-div-desc">Luxury beauty, grooming &amp; elite lifestyle experiences — crafted to the REEL standard.</p>
-                <span class="mega-div-link">Explore Division <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
-              </div>
-            </a>
-
-          </div><!-- /.mega-menu-grid -->
-        </div><!-- /.mega-menu-wrapper -->
-
-        <!-- Mobile fallback simple dropdown -->
-        <ul class="nav-dropdown" role="list" aria-label="Our Divisions submenu">
-          <li><a href="https://reeltech.reelholding.com.ng" >REEL Tech Hub</a></li>
-          <li><a href="https://reelauto.reelholding.com.ng" >REEL Auto Centre</a></li>
-          <li><a href="https://reelproperties.reelholding.com.ng" >REEL Properties</a></li>
-          <li><a href="https://reelglobal.reelholding.com.ng" >REEL Global Palace</a></li>
-        </ul>
-      </li>
-      <li><a href="blog.html" class="nav-link active">News & Media</a></li>
+      <li><a href="index.html#divisions" class="nav-link">Our Divisions</a></li>
     </ul>
     <div class="nav-actions">
-
-      <a href="cart.html" class="nav-icon cart-icon" aria-label="Shopping Cart">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-        <span class="cart-count">0</span>
-      </a>
+      <a href="blog.html" class="nav-btn-news active">News &amp; Media</a>
       <a href="contact.html" class="nav-btn-contact">Contact Us</a>
     </div>
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
@@ -505,7 +522,7 @@
 </section>
 
 <!-- MAIN CONTENT -->
-<section class="section section--dark">
+<section class="section section--dark" style="padding: 18px 0 80px;">
   <div class="container">
     <!-- Filter chips -->
     <div class="filter-bar" id="filter-bar">
@@ -630,7 +647,10 @@
                   <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" class="insta-icon">
                     <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                   </svg>
-                  <span class="insta-handle">@reelholding</span>
+                  <div style="display:flex;flex-direction:column;line-height:1.2;">
+                    <span style="font-weight:900;text-transform:uppercase;color:#fff;font-size:10px;letter-spacing:0.5px;">ROYALTY EXECUTIVE EMPIRE LIMITED</span>
+                    <span class="insta-handle" style="font-size:12px;color:rgba(255,255,255,0.7);">@reelholding</span>
+                  </div>
                 </a>
                 <span class="insta-badge"><span class="insta-live-dot"></span> Live</span>
               </div>
@@ -756,18 +776,15 @@
           </script>
           <div class="footer-contact-details">
             <p>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                <polyline points="22,6 12,13 2,6" />
-              </svg>
-              <a href="mailto:admin@reelholding.com.ng">admin@reelholding.com.ng</a>
-            </p>
-            <p>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.23h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.77a16 16 0 0 0 6 6l.97-.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2z" />
-              </svg>
-              <span>(<span>(<a href="tel:+2348067029444">+234 806 702 9444</a> - <a href="tel:+2349118024521">+234 911 802 4521</a>)</span>)</span>
-            </p>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.23h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.77a16 16 0 0 0 6 6l.97-.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2z" />
+                </svg>
+                <a href="tel:+2348067029444">+234 806 702 9444</a>
+              </p>
+              <p>
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="color:#25D366;width:18px;height:18px;flex-shrink:0;"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.03-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                <a href="https://wa.me/2349118024521" target="_blank" rel="noopener noreferrer">+234 911 802 4521</a>
+              </p>
             <p>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
@@ -817,38 +834,16 @@
 
   document.getElementById('footer-year').textContent = new Date().getFullYear();
 
+  // Reset scroll to top on initial page load
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+  window.scrollTo(0, 0);
+
   function getExcerpt(text, len = 120) {
     if (!text) return '';
     text = text.replace(/<[^>]*>?/gm, ''); // Strip HTML tags
     return text.length > len ? text.substring(0, len).trimEnd() + '…' : text;
-  }
-
-  // Convert stored imageFit value to inline CSS for blog thumbnails
-  function getBlogFitStyle(imageFit, imagePos) {
-    const pos = imagePos || 'center center';
-    const fit = imageFit || 'cover';
-    if (fit === 'contain') {
-      return `object-fit:contain !important; object-position:${pos}; width:100%; height:100%; background:rgba(0,0,0,0.85);`;
-    }
-    if (fit === '16-9' || fit === '16:9') {
-      return `object-fit:contain !important; aspect-ratio:16/9; width:100%; height:100%; background:rgba(0,0,0,0.85); object-position:${pos};`;
-    }
-    if (fit === '16-9-crop') {
-      return `object-fit:cover !important; aspect-ratio:16/9; width:100%; height:100%; object-position:${pos};`;
-    }
-    if (fit === '4-3' || fit === '4:3') {
-      return `object-fit:contain !important; aspect-ratio:4/3; width:100%; height:100%; background:rgba(0,0,0,0.85); object-position:${pos};`;
-    }
-    if (fit === '4-3-crop') {
-      return `object-fit:cover !important; aspect-ratio:4/3; width:100%; height:100%; object-position:${pos};`;
-    }
-    if (fit === '1-1' || fit === '1:1') {
-      return `object-fit:contain !important; aspect-ratio:1/1; width:100%; height:100%; background:rgba(0,0,0,0.85); object-position:${pos};`;
-    }
-    if (fit === '1-1-crop') {
-      return `object-fit:cover !important; aspect-ratio:1/1; width:100%; height:100%; object-position:${pos};`;
-    }
-    return `object-fit:cover !important; object-position:${pos}; width:100%; height:100%;`;
   }
 
   function renderFeatured(blog) {
@@ -856,13 +851,21 @@
     if (!blog) { wrap.innerHTML = ''; return; }
     wrap.innerHTML = `
       <div class="blog-featured-label">Featured Article</div>
-      <a href="article.html?id=${blog.id}" class="blog-featured" style="display:block;text-decoration:none;">
-        ${blog.image ? `<img src="${blog.image}" alt="${blog.title}" class="blog-featured-img" style="${getBlogFitStyle(blog.imageFit, blog.imagePos)}" decoding="async" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='/Images/BG/reel_logo.png'; this.style.objectFit='contain'; this.style.padding='40px';">` : `<div class="blog-featured-img" style="background:linear-gradient(135deg,#1a1000,#0d0800);display:flex;align-items:center;justify-content:center;color:rgba(212,175,55,0.4);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="80" height="80"><path d="M4 22h14a2 2 0 0 0 2-2V7.5L14.5 2H6a2 2 0 0 0-2 2v4"></path><polyline points="14 2 14 8 20 8"></polyline><path d="M2 15h10"></path><path d="M2 19h10"></path></svg></div>`}
-        <div class="blog-featured-overlay"></div>
+      <a href="article?id=${blog.id}" class="blog-featured" style="text-decoration:none;">
+        <div class="blog-featured-media">
+          ${blog.image ? `
+            <div class="blog-featured-media-blur" style="background-image:url('${blog.image}')"></div>
+            <img src="${blog.image}" alt="${blog.title}" class="blog-featured-img" decoding="async" loading="eager" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='/Images/BG/reel_logo.png';">
+          ` : `<div style="background:linear-gradient(135deg,#1a1000,#0d0800);display:flex;align-items:center;justify-content:center;color:rgba(212,175,55,0.4);width:100%;height:100%;min-height:280px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="64" height="64"><path d="M4 22h14a2 2 0 0 0 2-2V7.5L14.5 2H6a2 2 0 0 0-2 2v4"></path><polyline points="14 2 14 8 20 8"></polyline><path d="M2 15h10"></path><path d="M2 19h10"></path></svg></div>`}
+        </div>
         <div class="blog-featured-body">
           <div class="blog-featured-tag">${blog.category || 'Uncategorized'}</div>
           <div class="blog-featured-title">${blog.title}</div>
-          <div class="blog-featured-meta">${blog.date || ''}</div>
+          <div class="blog-featured-excerpt">${getExcerpt(blog.content, 140)}</div>
+          <div class="blog-featured-footer">
+            <span>${blog.date || ''}</span>
+            <span class="blog-featured-read">Read Article <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          </div>
         </div>
       </a>
     `;
@@ -875,9 +878,9 @@
       return;
     }
     list.innerHTML = blogs.map(b => `
-      <a href="article.html?id=${b.id}" class="blog-card" style="text-decoration:none;">
+      <a href="article?id=${b.id}" class="blog-card" style="text-decoration:none;">
         <div class="blog-card-thumb">
-          ${b.image ? `<img src="${b.image}" alt="${b.title}" style="${getBlogFitStyle(b.imageFit, b.imagePos)}" decoding="async" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='/Images/BG/reel_logo.png'; this.style.objectFit='contain'; this.style.padding='20px';">` : '<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.02);color:rgba(212,175,55,0.4);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48"><path d="M4 22h14a2 2 0 0 0 2-2V7.5L14.5 2H6a2 2 0 0 0-2 2v4"></path><polyline points="14 2 14 8 20 8"></polyline><path d="M2 15h10"></path><path d="M2 19h10"></path></svg></div>'}
+          ${b.image ? `<img src="${b.image}" alt="${b.title}" style="width:100%;height:100%;object-fit:cover;object-position:${b.imagePos || 'center center'};" decoding="async" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='/Images/BG/reel_logo.png'; this.style.objectFit='contain'; this.style.padding='20px';">` : '<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.02);color:rgba(212,175,55,0.4);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48"><path d="M4 22h14a2 2 0 0 0 2-2V7.5L14.5 2H6a2 2 0 0 0-2 2v4"></path><polyline points="14 2 14 8 20 8"></polyline><path d="M2 15h10"></path><path d="M2 19h10"></path></svg></div>'}
         </div>
         <div class="blog-card-body">
           <div class="blog-card-tag">${b.category || ''}</div>
@@ -896,7 +899,7 @@
     el.innerHTML = recent.map(b => `
       <div class="recent-post">
         <div class="rp-thumb">${b.image ? `<img src="${b.image}" alt="${b.title}" style="object-fit:cover;object-position:${b.imagePos||'center'};width:100%;height:100%;" decoding="async" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='/Images/BG/reel_logo.png'; this.style.objectFit='contain';">` : '<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.02);color:rgba(212,175,55,0.4);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24"><path d="M4 22h14a2 2 0 0 0 2-2V7.5L14.5 2H6a2 2 0 0 0-2 2v4"></path><polyline points="14 2 14 8 20 8"></polyline><path d="M2 15h10"></path><path d="M2 19h10"></path></svg></div>'}</div>
-        <div class="rp-text"><a href="article.html?id=${b.id}">${b.title}</a><div class="rp-date">${b.date || ''}</div></div>
+        <div class="rp-text"><a href="article?id=${b.id}">${b.title}</a><div class="rp-date">${b.date || ''}</div></div>
       </div>
     `).join('');
   }
@@ -916,10 +919,45 @@
     filterBlogBy(chip.dataset.cat);
   });
 
-  function loadBlogs() {
-    if (!window.db) { setTimeout(loadBlogs, 60); return; }
-    window.db.collection('blogs').orderBy('timestamp', 'desc').get().then(snap => {
-      let _fetched = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+  async function fetchViaRest() {
+    try {
+      const res = await fetch('https://firestore.googleapis.com/v1/projects/royal-executive-empire-ree/databases/(default)/documents/blogs');
+      if (!res.ok) throw new Error('REST failed');
+      const data = await res.json();
+      return (data.documents || []).map(d => {
+        const id = d.name.split('/').pop();
+        const f = d.fields || {};
+        const parsed = { id };
+        for (const [k, v] of Object.entries(f)) {
+          if (v.stringValue !== undefined) parsed[k] = v.stringValue;
+          else if (v.timestampValue !== undefined) parsed[k] = v.timestampValue;
+          else if (v.booleanValue !== undefined) parsed[k] = v.booleanValue;
+          else if (v.integerValue !== undefined) parsed[k] = parseInt(v.integerValue);
+        }
+        return parsed;
+      });
+    } catch (e) {
+      console.warn('REST fallback failed:', e);
+      return [];
+    }
+  }
+
+  async function loadBlogs() {
+    let _fetched = [];
+    if (window.db) {
+      try {
+        const snap = await window.db.collection('blogs').orderBy('timestamp', 'desc').get();
+        _fetched = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+      } catch (err) {
+        console.warn('SDK fetch error in blog.html:', err);
+      }
+    }
+
+    if (!_fetched.length) {
+      _fetched = await fetchViaRest();
+    }
+
+    if (_fetched.length) {
       const _now = new Date();
       allBlogs = _fetched.filter(item => {
         if(item.status === 'scheduled' && item.scheduleTime) {
@@ -931,10 +969,12 @@
       renderFeatured(allBlogs[0] || null);
       renderCards(allBlogs.length > 1 ? allBlogs.slice(1) : []);
       renderRecentWidget(allBlogs);
-    }).catch(err => {
-      console.error('Blog load error:', err);
+      window.scrollTo(0, 0);
+    } else if (!window.db && typeof firebase !== 'undefined') {
+      setTimeout(loadBlogs, 60);
+    } else {
       document.getElementById('blog-list').innerHTML = `<div class="empty-state"><h3>Could not load articles</h3><p>Please check your connection and refresh.</p></div>`;
-    });
+    }
   }
 
   loadBlogs();

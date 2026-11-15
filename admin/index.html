@@ -1866,6 +1866,14 @@
                 <option value="SOLD">SOLD (Closed Deal)</option>
               </select>
             </div>
+            <div class="form-group" style="padding:15px; background:rgba(212,175,55,0.03); border-radius:8px; border:1px solid rgba(212,175,55,0.15); margin-bottom:16px;">
+              <label style="display:flex; align-items:center; gap:8px; cursor:pointer; color:#fff;">
+                <input type="checkbox" id="prop-featured" style="width:18px;height:18px;accent-color:var(--gold);" />
+                <span style="font-weight:600;">⭐ Mark as Featured Property</span>
+              </label>
+              <p style="font-size:0.75rem; color:var(--w40); margin-top:5px;">Featured properties appear prominently in the Featured Homes section on the REEL Properties homepage.</p>
+            </div>
+
             <div style="display:flex; gap:12px; align-items:center;">
               <button type="submit" id="btn-save-prop" class="btn-submit">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
@@ -2879,12 +2887,24 @@
         const statusVal = item.status ? item.status.toUpperCase() : '';
         const badgeClass = statusBadgeMap[statusVal] || '';
         const statusBadge = badgeClass ? `<span class="badge-status ${badgeClass}">${item.status}</span>` : '';
+        const isFeatured = item.featured === true || item.featured === 'true';
+        const featuredBtnHtml = (type === 'property') ? `
+          <button type="button" class="btn-toggle-featured" data-id="${item.id}" data-col="${collectionName}" data-featured="${isFeatured}" style="
+            background:${isFeatured ? 'linear-gradient(135deg,#D4AF37,#AA7C11)' : 'rgba(255,255,255,0.06)'};
+            color:${isFeatured ? '#000' : 'rgba(255,255,255,0.7)'};
+            border:1px solid ${isFeatured ? '#D4AF37' : 'rgba(255,255,255,0.15)'};
+            border-radius:8px; padding:6px 12px; font-size:0.75rem; font-weight:700;
+            cursor:pointer; display:flex; align-items:center; gap:5px; margin-right:6px; flex-shrink:0; transition:all .2s;
+          ">
+            <span>⭐</span> ${isFeatured ? 'Featured' : 'Mark Featured'}
+          </button>` : '';
         div.innerHTML = `
           <div class="item-thumb">${imgSrc ? `<img src="${imgSrc}" alt="" decoding="async" loading="lazy" style="object-fit:${item.imageFit||'cover'};width:100%;height:100%;">` : '📋'}</div>
           <div class="item-info">
             <strong>${title}</strong>
             <span>${item.category ? `<span style="background:rgba(212,175,55,0.14); color:var(--gold); border:1px solid rgba(212,175,55,0.25); font-size:0.68rem; padding:2px 8px; border-radius:4px; margin-right:6px; font-weight:600;">${item.category}${item.location ? ' · ' + item.location : ''}</span>` : ''}${item.price ? item.price : sub} ${statusBadge}</span>
           </div>
+          ${featuredBtnHtml}
           ${editBtnHtml}
           <button class="btn-delete" data-id="${item.id}" data-idx="${idx}" data-type="${type}" data-col="${collectionName}">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>
@@ -2892,6 +2912,29 @@
           </button>
         `;
         c.appendChild(div);
+      });
+
+      // Wire Featured Toggle buttons
+      c.querySelectorAll('.btn-toggle-featured').forEach(btn => {
+        btn.addEventListener('click', async (e) => {
+          e.stopPropagation();
+          const id = btn.dataset.id;
+          const col = btn.dataset.col;
+          const current = btn.dataset.featured === 'true';
+          const next = !current;
+          btn.disabled = true;
+          try {
+            await window.db.collection(col).doc(id).update({ featured: next });
+            const item = arr.find(x => x.id === id);
+            if (item) item.featured = next;
+            showToast('Featured Updated', `Property is now ${next ? 'Featured ⭐' : 'Unfeatured'}`);
+            renderList(arr, containerId, type, col);
+          } catch(err) {
+            console.error('Featured toggle error:', err);
+            showToast('Error', 'Failed to toggle featured status', 'delete');
+            btn.disabled = false;
+          }
+        });
       });
 
       // Wire Edit buttons for items
@@ -2982,6 +3025,9 @@
             form.dataset.editId = id;
             form.dataset.editImage = itemData.image || '';
             form.dataset.editImages = JSON.stringify(itemData.images || (itemData.image ? [itemData.image] : []));
+            if (document.getElementById('prop-featured')) {
+              document.getElementById('prop-featured').checked = itemData.featured === true || itemData.featured === 'true';
+            }
             const submitBtn = form.querySelector('button[type="submit"]');
             if (submitBtn) submitBtn.innerHTML = 'Update Property';
           }
@@ -3598,6 +3644,8 @@
     window.cancelPropEdit = function() {
       const form = document.getElementById('form-properties');
       if (form) { delete form.dataset.editId; delete form.dataset.editImage; delete form.dataset.editImages; form.reset(); }
+      const featBox = document.getElementById('prop-featured');
+      if (featBox) featBox.checked = false;
       const subEl = document.getElementById('prop-subcategory');
       if (subEl) subEl.innerHTML = '<option value="">-- Select Subcategory --</option>';
       const imgInput = document.getElementById('prop-img');
@@ -3705,6 +3753,7 @@
             images: imageUrls,
             imageFit: fitMode,
             status: statusVal,
+            featured: document.getElementById('prop-featured') ? document.getElementById('prop-featured').checked : false,
             timestamp: firebase.firestore.FieldValue.serverTimestamp()
           };
 
