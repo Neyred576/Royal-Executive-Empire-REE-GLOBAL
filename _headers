@@ -1,0 +1,38 @@
+# Global Edge Caching & Performance Headers (Cloudflare CDN / Netlify)
+# Royalty Executive Empire Limited (REEL)
+
+# Long-lived immutable cache for static media assets
+/Images/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+# High-performance caching for CSS stylesheets with stale-while-revalidate
+/css/*
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+# High-performance caching for JavaScript bundles
+/js/*
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+# Web Fonts caching
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+# Documents, PDFs & Portfolios
+/*.pdf
+  Cache-Control: public, max-age=86400, stale-while-revalidate=3600
+  Content-Disposition: inline
+
+# HTML files - always fresh with ETag revalidation
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Global Security & Transport headers
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin

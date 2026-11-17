@@ -76,7 +76,7 @@
     <div class="preloader-inner">
       <div class="preloader-logo-wrap">
         <div class="preloader-ring"></div>
-        <img src="Images/BG/reel_logo.png" alt="REEL" class="preloader-logo-img"
+        <img loading="eager" fetchpriority="high" src="Images/BG/reel_logo.png" alt="REEL" class="preloader-logo-img"
           onerror="this.style.display='none';document.querySelector('.preloader-crown').style.display='flex'" fetchpriority="high">
         <div class="preloader-crown" style="display:none">
           <span>&#9884;</span>
@@ -94,33 +94,20 @@
 
   <!-- ============================================================ -->
   <!-- COOKIE CONSENT                                                 -->
-  <!-- ============================================================ -->
-  <div id="cookie-consent" class="cookie-consent" role="alert">
-    <div class="cookie-inner">
-      <div class="cookie-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24" style="color:var(--gold-300)"><path d="M12 22C6.48 22 2 17.52 2 12S6.48 2 12 2s10 4.48 10 10-4.48 10-10 10z"/><path d="M12 8v4l3 3"/></svg></div>
-      <p>We use cookies to enhance your experience. By continuing, you agree to our <a href="privacy.html"
-          class="gold-link">Privacy Policy</a>.</p>
-      <div class="cookie-btns">
-        <button id="cookie-accept" class="btn-gold-xs">Accept All</button>
-        <button id="cookie-decline" class="btn-ghost-xs">Decline</button>
-      </div>
-    </div>
-  </div>
 
+    <!-- ============================================================ -->
+  <!-- WHATSAPP FLOATING BUTTON                                      -->
   <!-- ============================================================ -->
-  <!-- FLOATING WHATSAPP BUTTON                                       -->
-  <!-- ============================================================ -->
-  <a href="https://wa.me/2348067029444" target="_blank" rel="noopener noreferrer" id="whatsapp-btn" class="whatsapp-btn"
-    aria-label="Chat on WhatsApp">
+  <a href="https://wa.me/2348067029444" target="_blank" rel="noopener noreferrer"
+     class="whatsapp-btn" aria-label="Chat with REEL on WhatsApp">
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path
-        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
     </svg>
+    <span class="whatsapp-label">Chat on WhatsApp</span>
     <span class="whatsapp-pulse"></span>
-    <span class="whatsapp-label">Chat with Us</span>
   </a>
 
-  <!-- ============================================================ -->
+<!-- ============================================================ -->
   <!-- SCROLL TO TOP                                                  -->
   <!-- ============================================================ -->
   <button id="scroll-top-btn" class="scroll-top-btn" aria-label="Back to top">
@@ -138,7 +125,7 @@
       <!-- Logo -->
       <a href="index.html" class="nav-logo" aria-label="REEL Home">
         <div class="nav-logo-img-wrap">
-          <img src="Images/BG/reel_logo.png" alt="REEL Logo" class="nav-logo-img"
+          <img loading="eager" fetchpriority="high" src="Images/BG/reel_logo.png" alt="REEL Logo" class="nav-logo-img"
             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" fetchpriority="high">
           <div class="nav-logo-crown" style="display:none">&#9884;</div>
         </div>
@@ -179,7 +166,7 @@
 
     <!-- Background -->
     <div class="hero-bg">
-      <img src="Images/hero_bg.png" alt="" class="hero-bg-img" role="presentation"
+      <img loading="eager" fetchpriority="high" decoding="async" src="Images/hero_bg.webp" alt="" class="hero-bg-img" role="presentation"
         onerror="this.style.display='none'" fetchpriority="high">
       <div class="hero-bg-gradient"></div>
       <div class="hero-bg-vignette"></div>
@@ -197,7 +184,7 @@
     <div class="hero-content">
       <div class="hero-logo-wrap" data-anim="scale-in" data-delay="0">
         <div class="hero-logo-ring"></div>
-        <img src="Images/BG/reel_logo.png" alt="REEL &mdash; Royalty Executive Empire Limited Logo" class="hero-logo"
+        <img loading="lazy" decoding="async" src="Images/BG/reel_logo.png" alt="REEL &mdash; Royalty Executive Empire Limited Logo" class="hero-logo"
           onerror="this.style.display='none';this.nextElementSibling.style.display='block'" fetchpriority="high">
         <div class="hero-logo-fallback" style="display:none" aria-hidden="true">&#9884; REEL &#9884;</div>
       </div>
@@ -248,7 +235,7 @@
         <!-- Division 01 — REEL Tech Hub -->
         <article class="division-card glass-card reveal-up" id="division-reeltechhub">
           <div class="div-img-wrap">
-            <img src="Images/divisions/reel_tech_hub.png" alt="REEL Tech Hub Division" class="div-img"
+            <img src="Images/divisions/reel_tech_hub.webp" alt="REEL Tech Hub Division" class="div-img"
               onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#001a10,#000d08)'" decoding="async" loading="lazy">
             <div class="div-img-overlay" aria-hidden="true"></div>
             <div class="div-float-icon" aria-hidden="true">
@@ -274,7 +261,7 @@
         <!-- Division 02 — REEL Auto Centre -->
         <article class="division-card glass-card reveal-up" id="division-reelautocentre">
           <div class="div-img-wrap">
-            <img src="Images/divisions/reel_auto.png" alt="REEL Auto Centre Division" class="div-img"
+            <img src="Images/divisions/reel_auto.webp" alt="REEL Auto Centre Division" class="div-img"
               onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#0d0800,#060400)'" decoding="async" loading="lazy">
             <div class="div-img-overlay" aria-hidden="true"></div>
             <div class="div-float-icon" aria-hidden="true">
@@ -301,7 +288,7 @@
         <!-- Division 03 — REEL Properties -->
         <article class="division-card glass-card reveal-up" id="division-reelproperties">
           <div class="div-img-wrap">
-            <img src="Images/divisions/reel_properties.png" alt="REEL Properties Division" class="div-img"
+            <img src="Images/divisions/reel_properties.webp" alt="REEL Properties Division" class="div-img"
               onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#0a0800,#080600)'" decoding="async" loading="lazy">
             <div class="div-img-overlay" aria-hidden="true"></div>
             <div class="div-float-icon" aria-hidden="true">
@@ -327,7 +314,7 @@
         <!-- Division 04 — REEL Global Palace -->
         <article class="division-card glass-card reveal-up" id="division-reelglobalpalace">
           <div class="div-img-wrap">
-            <img src="Images/divisions/reel_global_palace.png" alt="REEL Global Palace Division" class="div-img"
+            <img src="Images/divisions/reel_global_palace.webp" alt="REEL Global Palace Division" class="div-img"
               onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#1a0d00,#0d0600)'" decoding="async" loading="lazy">
             <div class="div-img-overlay" aria-hidden="true"></div>
             <div class="div-float-icon" aria-hidden="true">
@@ -368,7 +355,7 @@
           <div class="founder-img-card">
             <div class="founder-img-glow" aria-hidden="true"></div>
             <div class="founder-img-border" aria-hidden="true"></div>
-            <img src="Images/Prince Ose/DSC_4948 copy.jpg" alt="Onosedeba Israel Ose &mdash; Founder &amp; CEO, REEL"
+            <img loading="lazy" decoding="async" src="Images/Prince Ose/DSC_4948 copy.webp" alt="Onosedeba Israel Ose &mdash; Founder &amp; CEO, REEL"
               class="founder-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" fetchpriority="high">
             <div class="founder-photo-fallback" style="display:none" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" style="opacity: 0.5; margin-bottom: 8px;"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
@@ -441,7 +428,7 @@
       <!-- Story Banner -->
       <div class="story-card glass-card reveal-up">
         <div class="story-logo">
-          <img src="Images/BG/reel_logo.png" alt="REEL" onerror="this.style.display='none'" fetchpriority="high">
+          <img loading="lazy" decoding="async" src="Images/BG/reel_logo.png" alt="REEL" onerror="this.style.display='none'" fetchpriority="high">
           <div class="story-logo-glow" aria-hidden="true"></div>
         </div>
         <div class="story-body">
@@ -713,7 +700,7 @@
         </div>
         <div class="csr-visual reveal-right">
           <div class="csr-image-wrap">
-            <img src="Images/Social Responsibilities/Prince Ose (15).jpg.jpeg" alt="CSR Initiative" onerror="this.src='Images/BG/reel_logo.png'" decoding="async" loading="lazy">
+            <img src="Images/Social Responsibilities/Prince Ose (15).jpg.webp" alt="CSR Initiative" onerror="this.src='Images/BG/reel_logo.png'" decoding="async" loading="lazy">
             <div class="csr-overlay-card">
               <span style="display:block; font-size:0.75rem; text-transform:uppercase; letter-spacing:1.5px; color:var(--gold-400); font-weight:700; margin-bottom:4px;">Community Commitment</span>
               <strong style="font-size: 1.05rem; line-height: 1.35; display:block;">Empowering African Youth Through Leadership &amp; Community Initiatives</strong>
@@ -839,7 +826,7 @@
           <!-- Brand Column -->
           <div class="footer-col footer-brand-col">
             <a href="#home" class="footer-logo-link" aria-label="REEL Home">
-              <img src="Images/BG/reel_logo.png" alt="REEL" class="footer-logo"
+              <img loading="lazy" decoding="async" src="Images/BG/reel_logo.png" alt="REEL" class="footer-logo"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='block'" fetchpriority="high">
               <div class="footer-logo-fallback" style="display:none">&#9884; REEL</div>
             </a>
@@ -902,7 +889,7 @@
               </div>
               <div class="insta-grid">
                 <a href="https://www.instagram.com/reelholding/" target="_blank" rel="noopener noreferrer" class="insta-tile" title="View REEL Properties post on Instagram">
-                  <img src="Images/real_estate_hero.png" alt="REEL Luxury Properties" loading="lazy" />
+                  <img src="Images/real_estate_hero.webp" alt="REEL Luxury Properties" loading="lazy" />
                   <span class="insta-type-icon">
                     <svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M4 4h16v16H4z"/></svg>
                   </span>
@@ -914,7 +901,7 @@
                   </div>
                 </a>
                 <a href="https://www.instagram.com/reelholding/" target="_blank" rel="noopener noreferrer" class="insta-tile" title="View REEL Auto post on Instagram">
-                  <img src="Images/efuas_auto_center_hero.jpg" alt="REEL Auto Centre" loading="lazy" />
+                  <img src="Images/efuas_auto_center_hero.webp" alt="REEL Auto Centre" loading="lazy" />
                   <span class="insta-type-icon">
                     <svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
                   </span>
@@ -926,7 +913,7 @@
                   </div>
                 </a>
                 <a href="https://www.instagram.com/reelholding/" target="_blank" rel="noopener noreferrer" class="insta-tile" title="View REEL Tech Hub post on Instagram">
-                  <img src="Images/vannys_tech_hub_hero.jpg" alt="REEL Tech Hub" loading="lazy" />
+                  <img src="Images/vannys_tech_hub_hero.webp" alt="REEL Tech Hub" loading="lazy" />
                   <span class="insta-type-icon">
                     <svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M4 4h16v16H4z"/></svg>
                   </span>
@@ -938,7 +925,7 @@
                   </div>
                 </a>
                 <a href="https://www.instagram.com/reelholding/" target="_blank" rel="noopener noreferrer" class="insta-tile" title="View REEL Global Palace post on Instagram">
-                  <img src="Images/glorious_global_palace_hero.jpg" alt="REEL Global Palace" loading="lazy" />
+                  <img src="Images/glorious_global_palace_hero.webp" alt="REEL Global Palace" loading="lazy" />
                   <span class="insta-type-icon">
                     <svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
                   </span>
@@ -950,7 +937,7 @@
                   </div>
                 </a>
                 <a href="https://www.instagram.com/reelholding/" target="_blank" rel="noopener noreferrer" class="insta-tile" title="View REEL Leadership post on Instagram">
-                  <img src="Images/Prince Ose/About/DSC_4985 copy.jpg" alt="REEL Executive Leadership" loading="lazy" />
+                  <img src="Images/Prince Ose/About/DSC_4985 copy.webp" alt="REEL Executive Leadership" loading="lazy" />
                   <span class="insta-type-icon">
                     <svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M4 4h16v16H4z"/></svg>
                   </span>
@@ -962,7 +949,7 @@
                   </div>
                 </a>
                 <a href="https://www.instagram.com/reelholding/" target="_blank" rel="noopener noreferrer" class="insta-tile" title="View REEL Power & Energy post on Instagram">
-                  <img src="Images/reel_power_hero.png" alt="REEL Power Infrastructure" loading="lazy" />
+                  <img src="Images/reel_power_hero.webp" alt="REEL Power Infrastructure" loading="lazy" />
                   <span class="insta-type-icon">
                     <svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
                   </span>
@@ -1204,6 +1191,44 @@ document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') closeFounderModal();
 });
 </script>
+
+        <button type="submit" class="portfolio-form-submit">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span>Access &amp; Download Portfolio (PDF)</span>
+        </button>
+
+        <p class="portfolio-modal-notice">&#128274; Absolute client discretion guaranteed. Your inquiry is directed immediately to the Private Client Executive Desk.</p>
+      </form>
+
+      <div id="reel-portfolio-success" class="portfolio-success-box">
+        <div class="portfolio-success-crest">&#9813;</div>
+        <h4 class="portfolio-success-title">Portfolio Download Initialized</h4>
+        <p class="portfolio-success-text">Your copy of the <strong>2026 REEL Executive Portfolio (PDF)</strong> is now downloading. A dedicated Private Client Executive has been assigned to your profile.</p>
+        <button type="button" class="portfolio-form-submit" onclick="window.closePortfolioModal();" style="max-width:240px;margin:0 auto;">
+          <span>Return to Empire Site</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+        <button type="submit" class="portfolio-form-submit">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span>Access &amp; Download Portfolio (PDF)</span>
+        </button>
+
+        <p class="portfolio-modal-notice">&#128274; Absolute client discretion guaranteed. Your inquiry is directed immediately to the Private Client Executive Desk.</p>
+      </form>
+
+      <div id="reel-portfolio-success" class="portfolio-success-box">
+        <div class="portfolio-success-crest">&#9813;</div>
+        <h4 class="portfolio-success-title">Portfolio Download Initialized</h4>
+        <p class="portfolio-success-text">Your copy of the <strong>2026 REEL Executive Portfolio (PDF)</strong> is now downloading. A dedicated Private Client Executive has been assigned to your profile.</p>
+        <button type="button" class="portfolio-form-submit" onclick="window.closePortfolioModal();" style="max-width:240px;margin:0 auto;">
+          <span>Return to Empire Site</span>
+        </button>
+      </div>
+    </div>
+  </div>
 
 </body>
 

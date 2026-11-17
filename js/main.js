@@ -17,6 +17,19 @@
   window.addEventListener('hashchange', cleanUrl);
 })();
 
+
+// ── SEO Slug helper (used for article URLs) ───────────────────────────────────
+function slugify(text) {
+  if (!text) return '';
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/&+/g, 'and')
+    .replace(/[^\w\s-]/g, '')
+    .replace(/[\s_-]+/g, '-')
+    .replace(/^-+|-+$/, '');
+}
+
 document.addEventListener('DOMContentLoaded', () => {
 
   // Clean URL bar guarantee
@@ -813,7 +826,7 @@ document.addEventListener('DOMContentLoaded', () => {
                   </div>
                   <h2 style="font-family: var(--font-display); font-size: 2rem; color: #fff; margin-bottom: 16px;">${b.title}</h2>
                   <p style="color: var(--w60); line-height: 1.8; margin-bottom: 24px;">${plainText.substring(0, 150)}...</p>
-                  <a href="article.html?id=${b.id}" class="gold-link" style="font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem;">Read Full Article &rarr;</a>
+                  <a href="/article/${slugify(b.title)}/" class="gold-link" style="font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem;">Read Full Article &rarr;</a>
                 </div>
               </article>
             `;
@@ -845,7 +858,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
           sliderBlogs.forEach(b => {
             hpBlogSlider.innerHTML += `
-              <a href="article.html?id=${b.id}" class="hp-blog-card">
+              <a href="/article/${slugify(b.title)}/" class="hp-blog-card">
                 <img src="${b.image}" alt="${b.title}" class="hp-blog-img" onerror="this.src='Images/BG/logo%20bg.png'"/>
                 <div class="hp-blog-body">
                   <span class="hp-blog-cat">${b.category || 'Updates'}</span>
@@ -879,7 +892,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let target = '';
             
             if (b.linkedBlogId) {
-              linkHref = `article.html?id=${b.linkedBlogId}`;
+              linkHref = `/article/?id=${b.linkedBlogId}`;
             } else if (b.link) {
               linkHref = b.link;
               target = 'target="_blank"';
@@ -1491,3 +1504,184 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 })();
 
+
+
+/* ====================================================================
+   LUXURY CONCIERGE & PRIVATE 2026 PORTFOLIO MODAL LOGIC
+   ==================================================================== */
+(function initLuxuryFeatures() {
+  // 1. Unified Floating Concierge Logic
+  const concierge = document.getElementById('reel-concierge');
+  const toggleBtn = document.getElementById('reel-concierge-toggle');
+  const panel = document.getElementById('reel-concierge-panel');
+  const closeBtn = document.getElementById('reel-concierge-close');
+
+  if (toggleBtn && panel) {
+    const openConcierge = () => {
+      panel.classList.add('is-open');
+      toggleBtn.setAttribute('aria-expanded', 'true');
+      panel.setAttribute('aria-hidden', 'false');
+    };
+
+    const closeConcierge = () => {
+      panel.classList.remove('is-open');
+      toggleBtn.setAttribute('aria-expanded', 'false');
+      panel.setAttribute('aria-hidden', 'true');
+    };
+
+    toggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (panel.classList.contains('is-open')) {
+        closeConcierge();
+      } else {
+        openConcierge();
+      }
+    });
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeConcierge();
+      });
+    }
+
+    // Close when clicking outside
+    document.addEventListener('click', (e) => {
+      if (panel.classList.contains('is-open') && !concierge.contains(e.target)) {
+        closeConcierge();
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && panel.classList.contains('is-open')) {
+        closeConcierge();
+      }
+    });
+  }
+
+  // 2. Private 2026 Executive Portfolio Modal & Lead Capture
+  const portfolioModal = document.getElementById('reel-portfolio-modal');
+  const portfolioCloseBtn = document.getElementById('reel-portfolio-close');
+  const portfolioForm = document.getElementById('reel-portfolio-form');
+  const portfolioSuccess = document.getElementById('reel-portfolio-success');
+
+  window.openPortfolioModal = function(e) {
+    if (e) e.preventDefault();
+    if (portfolioModal) {
+      portfolioModal.classList.add('is-active');
+      portfolioModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+  };
+
+  window.closePortfolioModal = function() {
+    if (portfolioModal) {
+      portfolioModal.classList.remove('is-active');
+      portfolioModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (portfolioForm) portfolioForm.style.display = '';
+      if (portfolioSuccess) portfolioSuccess.style.display = 'none';
+    }
+  };
+
+  // Bind all triggers with class .btn-open-portfolio or href="#download-portfolio"
+  document.querySelectorAll('.btn-open-portfolio, a[href="#download-portfolio"]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.openPortfolioModal(e);
+    });
+  });
+
+  if (portfolioCloseBtn) {
+    portfolioCloseBtn.addEventListener('click', window.closePortfolioModal);
+  }
+
+  if (portfolioModal) {
+    portfolioModal.addEventListener('click', (e) => {
+      if (e.target === portfolioModal) {
+        window.closePortfolioModal();
+      }
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && portfolioModal && portfolioModal.classList.contains('is-active')) {
+      window.closePortfolioModal();
+    }
+  });
+
+  // Handle lead submission
+  if (portfolioForm) {
+    portfolioForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById('port-name')?.value || '';
+      const email = document.getElementById('port-email')?.value || '';
+      const phone = document.getElementById('port-phone')?.value || '';
+      const interest = document.getElementById('port-interest')?.value || 'All Divisions';
+      const range = document.getElementById('port-range')?.value || 'General Portfolio';
+
+      const leadData = {
+        name,
+        email,
+        phone,
+        interest,
+        range,
+        timestamp: new Date().toISOString(),
+        source: 'Main Holding 2026 Executive Portfolio Download'
+      };
+
+      try {
+        const stored = JSON.parse(localStorage.getItem('reel_private_leads') || '[]');
+        stored.push(leadData);
+        localStorage.setItem('reel_private_leads', JSON.stringify(stored));
+      } catch (err) {}
+
+      // Trigger actual download of the 2026 Executive Portfolio PDF
+      const downloadLink = document.createElement('a');
+      downloadLink.href = 'REEL_2026_Executive_Portfolio.pdf';
+      downloadLink.download = 'REEL_2026_Executive_Portfolio.pdf';
+      downloadLink.target = '_blank';
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+
+      // Transition to luxury success state inside modal
+      portfolioForm.style.display = 'none';
+      if (portfolioSuccess) {
+        portfolioSuccess.style.display = 'block';
+      }
+    });
+  }
+
+  // 3. Subtle Parallax & Scroll Entrance Reveals
+  const revealElements = document.querySelectorAll('.card, .division-card, .founder-quote-card, .service-card');
+  revealElements.forEach(el => el.classList.add('reveal-on-scroll'));
+
+  if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal-on-scroll').forEach(el => revealObserver.observe(el));
+  } else {
+    document.querySelectorAll('.reveal-on-scroll').forEach(el => el.classList.add('is-revealed'));
+  }
+
+  // Subtle Hero Parallax
+  const heroSection = document.querySelector('.hero, .hero-section, #home');
+  if (heroSection) {
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      if (scrolled < 900) {
+        heroSection.style.backgroundPositionY = `${scrolled * 0.3}px`;
+      }
+    }, { passive: true });
+  }
+})();

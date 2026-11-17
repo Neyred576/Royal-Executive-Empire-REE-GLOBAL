@@ -51,5 +51,9 @@ http://www.royaltyexecutiveempire.com/*    https://reelholding.com.ng/:splat    
 /wp-content/*           /index.html             301
 /wp-includes/*          /index.html             301
 
+# Clean Blog Article Title URLs (Rewrite to article.html so JavaScript router handles title slug)
+/article/*              /article.html           200
+/article                /article.html           200
+
 # Catch-all: anything not matched goes to 404
 /*                      /404.html               404

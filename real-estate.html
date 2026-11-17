@@ -115,7 +115,7 @@
   <div class="nav-inner">
     <a href="index.html" class="nav-logo" aria-label="REEL Home">
       <div class="nav-logo-img-wrap">
-        <img src="Images/BG/reel_logo.png" alt="REEL Logo" class="nav-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" fetchpriority="high">
+        <img loading="eager" fetchpriority="high" src="Images/BG/reel_logo.png" alt="REEL Logo" class="nav-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" fetchpriority="high">
         <div class="nav-logo-crown" style="display:none">&#9884;</div>
       </div>
       <div class="nav-logo-text"><span class="nav-brand-name">REEL</span><span class="nav-brand-sub">Royalty Executive Empire Limited</span></div>
@@ -135,7 +135,7 @@
 
 <section class="div-page-hero">
   <!-- Landscape image background -->
-  <img class="hero-img-bg" src="Images/divisions/reel_properties.png" alt="REEL Properties Hero" fetchpriority="high" decoding="async" loading="lazy">
+  <img class="hero-img-bg" src="Images/divisions/reel_properties.webp" alt="REEL Properties Hero" fetchpriority="high" decoding="async" loading="lazy">
   <div class="hero-video-overlay"></div>
   <div class="container" style="position:relative; z-index:2;">
     <div class="hero-eyebrow"><span class="eyebrow-line"></span><span>REEL Division</span></div>
@@ -263,7 +263,7 @@
 
 <section id="properties" class="section section--dark section--properties">
   <!-- Ghost Background Image -->
-  <img class="properties-bg-img" src="Images/reel_properties_section_bg.jpg" alt="" aria-hidden="true" decoding="async" loading="lazy">
+  <img class="properties-bg-img" src="Images/reel_properties_section_bg.webp" alt="" aria-hidden="true" decoding="async" loading="lazy">
   <!-- Vignette overlay -->
   <div class="properties-bg-vignette" aria-hidden="true"></div>
   <!-- Floating Orb Layer -->
@@ -318,7 +318,7 @@
   }
   .properties-cta-section::before {
     content: ''; position: absolute; inset: 0;
-    background: linear-gradient(rgba(8,8,8,0.55), rgba(8,8,8,0.75)), url('Images/reel_properties_cta_bg.png') center center / cover no-repeat;
+    background: linear-gradient(rgba(8,8,8,0.55), rgba(8,8,8,0.75)), url('Images/reel_properties_cta_bg.webp') center center / cover no-repeat;
     animation: heroBgZoom 20s ease-in-out infinite alternate;
     z-index: 0; will-change: transform;
   }
@@ -496,7 +496,7 @@
         <!-- Brand Column -->
         <div class="footer-col footer-brand-col">
           <a href="index.html" class="footer-logo-link" aria-label="REEL Home">
-            <img src="Images/BG/reel_logo.png" alt="REEL" class="footer-logo"
+            <img loading="lazy" decoding="async" src="Images/BG/reel_logo.png" alt="REEL" class="footer-logo"
               onerror="this.style.display='none';this.nextElementSibling.style.display='block'" fetchpriority="high">
             <div class="footer-logo-fallback" style="display:none">&#9884; REEL</div>
           </a>
@@ -556,7 +556,7 @@
               </div>
               <div class="insta-grid">
                 <a href="https://www.instagram.com/reelholding/" target="_blank" rel="noopener noreferrer" class="insta-tile" title="View REEL Properties post on Instagram">
-                  <img src="Images/real_estate_hero.png" alt="REEL Luxury Properties" loading="lazy" />
+                  <img src="Images/real_estate_hero.webp" alt="REEL Luxury Properties" loading="lazy" />
                   <span class="insta-type-icon">
                     <svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M4 4h16v16H4z"/></svg>
                   </span>
@@ -568,7 +568,7 @@
                   </div>
                 </a>
                 <a href="https://www.instagram.com/reelholding/" target="_blank" rel="noopener noreferrer" class="insta-tile" title="View REEL Auto post on Instagram">
-                  <img src="Images/efuas_auto_center_hero.jpg" alt="REEL Auto Centre" loading="lazy" />
+                  <img src="Images/efuas_auto_center_hero.webp" alt="REEL Auto Centre" loading="lazy" />
                   <span class="insta-type-icon">
                     <svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
                   </span>
@@ -580,7 +580,7 @@
                   </div>
                 </a>
                 <a href="https://www.instagram.com/reelholding/" target="_blank" rel="noopener noreferrer" class="insta-tile" title="View REEL Tech Hub post on Instagram">
-                  <img src="Images/vannys_tech_hub_hero.jpg" alt="REEL Tech Hub" loading="lazy" />
+                  <img src="Images/vannys_tech_hub_hero.webp" alt="REEL Tech Hub" loading="lazy" />
                   <span class="insta-type-icon">
                     <svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M4 4h16v16H4z"/></svg>
                   </span>
@@ -592,7 +592,7 @@
                   </div>
                 </a>
                 <a href="https://www.instagram.com/reelholding/" target="_blank" rel="noopener noreferrer" class="insta-tile" title="View REEL Global Palace post on Instagram">
-                  <img src="Images/glorious_global_palace_hero.jpg" alt="REEL Global Palace" loading="lazy" />
+                  <img src="Images/glorious_global_palace_hero.webp" alt="REEL Global Palace" loading="lazy" />
                   <span class="insta-type-icon">
                     <svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
                   </span>
@@ -604,7 +604,7 @@
                   </div>
                 </a>
                 <a href="https://www.instagram.com/reelholding/" target="_blank" rel="noopener noreferrer" class="insta-tile" title="View REEL Leadership post on Instagram">
-                  <img src="Images/Prince Ose/About/DSC_4985 copy.jpg" alt="REEL Executive Leadership" loading="lazy" />
+                  <img src="Images/Prince Ose/About/DSC_4985 copy.webp" alt="REEL Executive Leadership" loading="lazy" />
                   <span class="insta-type-icon">
                     <svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M4 4h16v16H4z"/></svg>
                   </span>
@@ -616,7 +616,7 @@
                   </div>
                 </a>
                 <a href="https://www.instagram.com/reelholding/" target="_blank" rel="noopener noreferrer" class="insta-tile" title="View REEL Power & Energy post on Instagram">
-                  <img src="Images/reel_power_hero.png" alt="REEL Power Infrastructure" loading="lazy" />
+                  <img src="Images/reel_power_hero.webp" alt="REEL Power Infrastructure" loading="lazy" />
                   <span class="insta-type-icon">
                     <svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
                   </span>
