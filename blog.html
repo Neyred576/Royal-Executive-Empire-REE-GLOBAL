@@ -328,7 +328,8 @@
     }
     .blog-card-thumb img {
       width: 100%; height: 100%;
-      object-fit: cover;
+      object-fit: contain;
+      background: #08090d;
       position: absolute; inset: 0;
       transition: transform 0.5s ease;
     }
@@ -526,11 +527,12 @@
   <div class="container">
     <!-- Filter chips -->
     <div class="filter-bar" id="filter-bar">
-      <button class="filter-chip active" data-cat="all">All</button>
-      <button class="filter-chip" data-cat="Real Estate">Real Estate</button>
-      <button class="filter-chip" data-cat="Business">Business</button>
-      <button class="filter-chip" data-cat="Technology">Technology</button>
-      <button class="filter-chip" data-cat="Branding & Marketing">Branding & Marketing</button>
+      <button class="filter-chip active" data-cat="all">All Insights</button>
+      <button class="filter-chip" data-cat="REEL Properties">REEL Properties</button>
+      <button class="filter-chip" data-cat="Technology">Technology &amp; Hardware</button>
+      <button class="filter-chip" data-cat="REEL Power">REEL Power</button>
+      <button class="filter-chip" data-cat="REEL Branding">Branding &amp; Identity</button>
+      <button class="filter-chip" data-cat="REEL Business">Business &amp; Advisory</button>
       <button class="filter-chip" data-cat="Executive Lifestyle">Executive Lifestyle</button>
     </div>
 
@@ -561,11 +563,29 @@
         <div class="sidebar-widget reveal-right" style="transition-delay:0.1s">
           <div class="widget-title">Categories</div>
           <div class="cat-list">
-            <button class="cat-chip" onclick="filterBlogBy('Real Estate')">Real Estate</button>
-            <button class="cat-chip" onclick="filterBlogBy('Business')">Business</button>
-            <button class="cat-chip" onclick="filterBlogBy('Technology')">Technology</button>
-            <button class="cat-chip" onclick="filterBlogBy('Branding & Marketing')">Branding & Marketing</button>
+            <button class="cat-chip" onclick="filterBlogBy('all')">All Insights</button>
+            <button class="cat-chip" onclick="filterBlogBy('REEL Properties')">REEL Properties</button>
+            <button class="cat-chip" onclick="filterBlogBy('Technology')">Technology &amp; Hardware</button>
+            <button class="cat-chip" onclick="filterBlogBy('REEL Power')">REEL Power</button>
+            <button class="cat-chip" onclick="filterBlogBy('REEL Branding')">Branding &amp; Identity</button>
+            <button class="cat-chip" onclick="filterBlogBy('REEL Business')">Business &amp; Advisory</button>
             <button class="cat-chip" onclick="filterBlogBy('Executive Lifestyle')">Executive Lifestyle</button>
+          </div>
+        </div>
+
+        <div class="sidebar-widget reveal-right" style="transition-delay:0.15s">
+          <div class="widget-title">Popular Tags</div>
+          <div class="cat-list" style="display:flex; flex-wrap:wrap; gap:8px;">
+            <button class="cat-chip" style="font-size:0.75rem; padding:4px 11px; border-radius:20px;" onclick="filterBlogByTag('Luxury')">#Luxury</button>
+            <button class="cat-chip" style="font-size:0.75rem; padding:4px 11px; border-radius:20px;" onclick="filterBlogByTag('RealEstate')">#RealEstate</button>
+            <button class="cat-chip" style="font-size:0.75rem; padding:4px 11px; border-radius:20px;" onclick="filterBlogByTag('Tech')">#Tech</button>
+            <button class="cat-chip" style="font-size:0.75rem; padding:4px 11px; border-radius:20px;" onclick="filterBlogByTag('Hardware')">#Hardware</button>
+            <button class="cat-chip" style="font-size:0.75rem; padding:4px 11px; border-radius:20px;" onclick="filterBlogByTag('Power')">#Power</button>
+            <button class="cat-chip" style="font-size:0.75rem; padding:4px 11px; border-radius:20px;" onclick="filterBlogByTag('Solar')">#Solar</button>
+            <button class="cat-chip" style="font-size:0.75rem; padding:4px 11px; border-radius:20px;" onclick="filterBlogByTag('Branding')">#Branding</button>
+            <button class="cat-chip" style="font-size:0.75rem; padding:4px 11px; border-radius:20px;" onclick="filterBlogByTag('Leadership')">#Leadership</button>
+            <button class="cat-chip" style="font-size:0.75rem; padding:4px 11px; border-radius:20px;" onclick="filterBlogByTag('Africa')">#Africa</button>
+            <button class="cat-chip" style="font-size:0.75rem; padding:4px 11px; border-radius:20px;" onclick="filterBlogByTag('Investment')">#Investment</button>
           </div>
         </div>
 
@@ -737,7 +757,7 @@
 
         <!-- Services Links -->
         <div class="footer-col">
-          <h3 class="footer-heading">Our Divisions</h3>
+          <h3 class="footer-heading">Quick Links</h3>
           <nav aria-label="Footer divisions links">
               <ul class="footer-links-list">
                 <li><a href="https://reeltech.reelholding.com.ng" >REEL Tech Hub</a></li>
@@ -868,7 +888,7 @@
         <div class="blog-featured-media">
           ${blog.image ? `
             <div class="blog-featured-media-blur" style="background-image:url('${blog.image}')"></div>
-            <img src="${blog.image}" alt="${blog.title}" class="blog-featured-img" decoding="async" loading="eager" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='/Images/BG/reel_logo.png';">
+            <img src="${blog.image}" alt="${blog.title}" class="blog-featured-img" decoding="async" loading="eager" referrerpolicy="no-referrer" onerror="this.onerror=null; if(this.src.endsWith('.png')){this.src=this.src.replace(/\\.png$/, '.webp');}else if(this.src.endsWith('.webp')){this.src=this.src.replace(/\\.webp$/, '.png');}else{this.src='Images/BG/logo%20bg.png';}">
           ` : `<div style="background:linear-gradient(135deg,#1a1000,#0d0800);display:flex;align-items:center;justify-content:center;color:rgba(212,175,55,0.4);width:100%;height:100%;min-height:280px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="64" height="64"><path d="M4 22h14a2 2 0 0 0 2-2V7.5L14.5 2H6a2 2 0 0 0-2 2v4"></path><polyline points="14 2 14 8 20 8"></polyline><path d="M2 15h10"></path><path d="M2 19h10"></path></svg></div>`}
         </div>
         <div class="blog-featured-body">
@@ -893,7 +913,7 @@
     list.innerHTML = blogs.map(b => `
       <a href="/article/${slugify(b.title)}/" class="blog-card" style="text-decoration:none;">
         <div class="blog-card-thumb">
-          ${b.image ? `<img src="${b.image}" alt="${b.title}" style="width:100%;height:100%;object-fit:cover;object-position:${b.imagePos || 'center center'};" decoding="async" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='/Images/BG/reel_logo.png'; this.style.objectFit='contain'; this.style.padding='20px';">` : '<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.02);color:rgba(212,175,55,0.4);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48"><path d="M4 22h14a2 2 0 0 0 2-2V7.5L14.5 2H6a2 2 0 0 0-2 2v4"></path><polyline points="14 2 14 8 20 8"></polyline><path d="M2 15h10"></path><path d="M2 19h10"></path></svg></div>'}
+          ${b.image ? `<img src="${b.image}" alt="${b.title}" style="width:100%;height:100%;object-fit:contain;background:#08090d;object-position:${b.imagePos || 'center center'};" decoding="async" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='/Images/BG/reel_logo.png'; this.style.objectFit='contain'; this.style.padding='20px';">` : '<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.02);color:rgba(212,175,55,0.4);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48"><path d="M4 22h14a2 2 0 0 0 2-2V7.5L14.5 2H6a2 2 0 0 0-2 2v4"></path><polyline points="14 2 14 8 20 8"></polyline><path d="M2 15h10"></path><path d="M2 19h10"></path></svg></div>'}
         </div>
         <div class="blog-card-body">
           <div class="blog-card-tag">${b.category || ''}</div>
@@ -917,10 +937,48 @@
     `).join('');
   }
 
+  const categoryAliases = {
+    'Real Estate': ['Real Estate', 'REEL Properties', 'Properties'],
+    'REEL Properties': ['Real Estate', 'REEL Properties', 'Properties'],
+    'Technology': ['Technology', 'REEL Tech Hub', 'Tech'],
+    'REEL Tech Hub': ['Technology', 'REEL Tech Hub', 'Tech'],
+    'Branding & Marketing': ['Branding & Marketing', 'REEL Branding', 'Branding'],
+    'REEL Branding': ['Branding & Marketing', 'REEL Branding', 'Branding'],
+    'Business': ['Business', 'REEL Business', 'Corporate'],
+    'REEL Business': ['Business', 'REEL Business', 'Corporate'],
+    'REEL Power': ['REEL Power', 'Power', 'Energy'],
+    'Executive Lifestyle': ['Executive Lifestyle', 'REEL Global Palace', 'Lifestyle'],
+  };
+
+  function matchesCategory(b, cat) {
+    if (!cat || cat === 'all') return true;
+    const itemCat = (b.category || '').trim();
+    if (itemCat.toLowerCase() === cat.toLowerCase()) return true;
+    const aliases = categoryAliases[cat] || [cat];
+    return aliases.some(a => a.toLowerCase() === itemCat.toLowerCase());
+  }
+
   function filterBlogBy(cat) {
     currentFilter = cat;
-    document.querySelectorAll('.filter-chip').forEach(c => { c.classList.toggle('active', c.dataset.cat === cat || (cat === 'all' && c.dataset.cat === 'all')); });
-    const filtered = cat === 'all' ? allBlogs : allBlogs.filter(b => b.category === cat);
+    document.querySelectorAll('.filter-chip').forEach(c => {
+      c.classList.toggle('active', c.dataset.cat === cat || (cat === 'all' && c.dataset.cat === 'all'));
+    });
+    const filtered = allBlogs.filter(b => matchesCategory(b, cat));
+    renderFeatured(filtered[0] || null);
+    renderCards(filtered.length > 1 ? filtered.slice(1) : []);
+  }
+
+  function filterBlogByTag(tag) {
+    currentFilter = tag;
+    document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+    const tLower = tag.toLowerCase().replace(/^#/, '');
+    const filtered = allBlogs.filter(b => {
+      const titleMatch = (b.title || '').toLowerCase().includes(tLower);
+      const catMatch = (b.category || '').toLowerCase().includes(tLower);
+      const tagMatch = (b.tags || '').toLowerCase().includes(tLower);
+      const contentMatch = (b.content || '').toLowerCase().includes(tLower);
+      return titleMatch || catMatch || tagMatch || contentMatch;
+    });
     renderFeatured(filtered[0] || null);
     renderCards(filtered.length > 1 ? filtered.slice(1) : []);
   }

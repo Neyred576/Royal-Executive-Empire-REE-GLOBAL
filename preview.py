@@ -266,9 +266,15 @@ def find_available_port(start_port=8080, max_attempts=50):
 
 class CustomHandler(SimpleHTTPRequestHandler):
     def do_GET(self):
-        # Support SPA fallback for /reel-global-palace/
         path_without_query = self.path.split('?')[0]
-        if path_without_query.startswith('/reel-global-palace'):
+        query = ('?' + self.path.split('?')[1]) if '?' in self.path else ''
+        if path_without_query.startswith('/article'):
+            self.path = '/article.html' + query
+        elif path_without_query == '/blog':
+            self.path = '/blog.html' + query
+        elif path_without_query == '/cart':
+            self.path = '/cart.html' + query
+        elif path_without_query.startswith('/reel-global-palace'):
             local_rel = path_without_query.lstrip('/')
             full_path = os.path.join(WORKSPACE_DIR, local_rel)
             if not os.path.exists(full_path):

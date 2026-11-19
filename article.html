@@ -447,7 +447,7 @@
 
         <!-- Services Links -->
         <div class="footer-col">
-          <h3 class="footer-heading">Our Divisions</h3>
+          <h3 class="footer-heading">Quick Links</h3>
           <nav aria-label="Footer divisions links">
               <ul class="footer-links-list">
                 <li><a href="https://reeltech.reelholding.com.ng" >REEL Tech Hub</a></li>
@@ -650,11 +650,72 @@
       if (!canonicalTag) { canonicalTag = document.createElement('link'); canonicalTag.rel = 'canonical'; document.head.appendChild(canonicalTag); }
       canonicalTag.href = canonicalUrl;
 
+      // Inject Schema.org Article & Breadcrumbs for Google SEO Rich Snippets
+      let oldJsonLd = document.getElementById('article-schema-jsonld');
+      if (oldJsonLd) oldJsonLd.remove();
+      const schemaScript = document.createElement('script');
+      schemaScript.id = 'article-schema-jsonld';
+      schemaScript.type = 'application/ld+json';
+      const fullImgUrl = b.image ? (b.image.startsWith('http') ? b.image : `https://reelholding.com.ng/${b.image.replace(/^\//, '')}`) : 'https://reelholding.com.ng/Images/BG/reel_logo.png';
+      schemaScript.text = JSON.stringify({
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "BlogPosting",
+            "@id": canonicalUrl + "#article",
+            "isPartOf": {
+              "@type": "Blog",
+              "@id": "https://reelholding.com.ng/blog.html#blog",
+              "name": "REEL News & Media",
+              "publisher": {
+                "@type": "Organization",
+                "name": "Royalty Executive Empire Limited",
+                "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://reelholding.com.ng/Images/BG/reel_logo.png"
+                }
+              }
+            },
+            "headline": b.title,
+            "description": metaDesc.content,
+            "image": fullImgUrl,
+            "datePublished": b.timestamp || new Date().toISOString(),
+            "dateModified": b.timestamp || new Date().toISOString(),
+            "mainEntityOfPage": canonicalUrl,
+            "author": {
+              "@type": "Organization",
+              "name": "Royalty Executive Empire Limited",
+              "url": "https://reelholding.com.ng"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "Royalty Executive Empire Limited",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://reelholding.com.ng/Images/BG/reel_logo.png"
+              }
+            },
+            "articleSection": b.category || "General",
+            "keywords": b.seoKeyword || b.category || "Executive Insights, Business Africa"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": canonicalUrl + "#breadcrumb",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://reelholding.com.ng/" },
+              { "@type": "ListItem", "position": 2, "name": "News & Media", "item": "https://reelholding.com.ng/blog.html" },
+              { "@type": "ListItem", "position": 3, "name": b.title, "item": canonicalUrl }
+            ]
+          }
+        ]
+      });
+      document.head.appendChild(schemaScript);
+
       main.innerHTML = `
         <!-- Hero -->
         <div class="article-hero">
           <div class="article-hero-bg">
-            ${b.image ? `<img src="${b.image}" alt="${b.title}" style="object-position:${b.imagePos||'center center'}; filter: blur(24px); opacity: 0.38; transform: scale(1.08);" decoding="async" loading="lazy" referrerpolicy="no-referrer">` : ''}
+            ${b.image ? `<img src="${b.image}" alt="${b.title}" style="object-position:${b.imagePos||'center center'}; filter: blur(24px); opacity: 0.38; transform: scale(1.08);" decoding="async" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">` : ''}
           </div>
           <div class="article-hero-overlay"></div>
           <div class="article-hero-body">
@@ -687,7 +748,7 @@
                 </a>
                 ${b.image ? `
                 <div class="article-featured-image-box" style="margin-bottom:34px; border-radius:18px; overflow:hidden; border:1px solid rgba(212,175,55,0.25); background:transparent; box-shadow:0 12px 40px rgba(0,0,0,0.7); display:block; width:100%; line-height:0;">
-                  <img src="${b.image}" alt="${b.title}" style="${getArticleImgStyle(b.imageFit, b.imagePos)}" decoding="async" loading="eager" />
+                  <img src="${b.image}" alt="${b.title}" style="${getArticleImgStyle(b.imageFit, b.imagePos)}" decoding="async" loading="eager" onerror="this.onerror=null; if(this.src.endsWith('.png')){this.src=this.src.replace(/\\.png$/, '.webp');}else if(this.src.endsWith('.webp')){this.src=this.src.replace(/\\.webp$/, '.png');}else{this.src='Images/BG/logo%20bg.png';}" />
                 </div>
                 ` : ''}
                 <article class="article-content">

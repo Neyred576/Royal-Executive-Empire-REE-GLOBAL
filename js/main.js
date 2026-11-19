@@ -843,71 +843,167 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- HOMEPAGE RECENT INSIGHTS SLIDER ---
     const hpBlogSlider = document.getElementById('dynamic-homepage-blogs');
     if (hpBlogSlider) {
-      try {
-        const snapshot = await window.db.collection('blogs').orderBy('timestamp', 'desc').limit(8).get();
-        const hpBlogs = [];
-        snapshot.forEach(doc => {
-          const data = { id: doc.id, ...doc.data() };
-          if (isLive(data)) hpBlogs.push(data);
+      const renderSliderItems = (items) => {
+        if (!items || items.length === 0) return;
+        hpBlogSlider.innerHTML = '';
+        // Duplicate 3x for seamless infinite scroll
+        const sliderBlogs = [...items, ...items, ...items];
+        sliderBlogs.forEach(b => {
+          const cat = b.category || 'Insights';
+          const title = b.title || 'Executive Insight';
+          const date = b.date || 'REEL';
+          const img = b.image || 'Images/BG/logo%20bg.png';
+          hpBlogSlider.innerHTML += `
+            <a href="/article/${slugify(title)}/" class="hp-blog-card">
+              <div class="hp-blog-img-wrap">
+                <img src="${img}" alt="" aria-hidden="true" class="hp-blog-img-bg" />
+                <img src="${img}" alt="${title}" class="hp-blog-img" loading="lazy" decoding="async" onerror="this.onerror=null; if(this.src.endsWith('.png')){this.src=this.src.replace(/\\.png$/,'.webp');}else if(this.src.endsWith('.webp')){this.src=this.src.replace(/\\.webp$/,'.png');}else{this.src='Images/BG/logo%20bg.png';}" />
+              </div>
+              <div class="hp-blog-body">
+                <span class="hp-blog-cat">${cat}</span>
+                <h3 class="hp-blog-title">${title}</h3>
+                <span class="hp-blog-date">📅 ${date}</span>
+              </div>
+            </a>
+          `;
         });
+      };
 
-        if (hpBlogs.length > 0) {
-          hpBlogSlider.innerHTML = ''; 
-          // We duplicate the array to ensure seamless infinite scrolling
-          const sliderBlogs = [...hpBlogs, ...hpBlogs, ...hpBlogs]; 
-
-          sliderBlogs.forEach(b => {
-            hpBlogSlider.innerHTML += `
-              <a href="/article/${slugify(b.title)}/" class="hp-blog-card">
-                <img src="${b.image}" alt="${b.title}" class="hp-blog-img" onerror="this.src='Images/BG/logo%20bg.png'"/>
-                <div class="hp-blog-body">
-                  <span class="hp-blog-cat">${b.category || 'Updates'}</span>
-                  <h3 class="hp-blog-title">${b.title}</h3>
-                  <span class="hp-blog-date">${b.date}</span>
-                </div>
-              </a>
-            `;
-          });
-        } else {
-          hpBlogSlider.innerHTML = '<p style="color:var(--w50); padding: 20px;">No insights available yet.</p>';
+      const fallbackHpBlogs = [
+        {
+          title: "The Executive's Guide to Building a Brand Empire in Africa",
+          category: "REEL Branding",
+          date: "Nov 2026",
+          image: "Images/uploads/blogs_0JF4o1z9dFj7Q0YhyO9f.webp"
+        },
+        {
+          title: "Why Mobile Charging Infrastructure Is Becoming Essential for Venues",
+          category: "REEL Power",
+          date: "Nov 2026",
+          image: "Images/uploads/blogs_1LRrXPZEEF6OxE5S2lPV.webp"
+        },
+        {
+          title: "Corporate Branding That Commands Respect & High-Ticket Deals",
+          category: "Branding & Marketing",
+          date: "Nov 2026",
+          image: "Images/uploads/blogs_36YR70VQ0QhMQ7CexSAo.webp"
+        },
+        {
+          title: "Smart Office, Smarter Leader: The Executive Tech Hardware Playbook",
+          category: "Technology",
+          date: "Nov 2026",
+          image: "Images/uploads/blogs_4LFRtPJq2rXY7SkfI9XP.webp"
+        },
+        {
+          title: "Commercial Real Estate & Luxury Hospitality in Emerging African Cities",
+          category: "REEL Properties",
+          date: "Nov 2026",
+          image: "Images/uploads/blogs_4MRecIHPHbMHIAumKsez.webp"
         }
-      } catch (e) { console.error("Error fetching homepage blogs:", e); }
+      ];
+
+      // Pre-render immediately with fallback so no flicker
+      renderSliderItems(fallbackHpBlogs);
+
+      // Now fetch freshest from Firestore
+      (async () => {
+        try {
+          let fetched = [];
+          if (window.db) {
+            const snapshot = await window.db.collection('blogs').orderBy('timestamp', 'desc').limit(8).get();
+            snapshot.forEach(doc => {
+              const data = { id: doc.id, ...doc.data() };
+              if (isLive(data)) fetched.push(data);
+            });
+          }
+          if (fetched.length === 0) {
+            // REST Fallback
+            const res = await fetch('https://firestore.googleapis.com/v1/projects/royal-executive-empire-ree/databases/(default)/documents/blogs');
+            if (res.ok) {
+              const resData = await res.json();
+              (resData.documents || []).forEach(d => {
+                const f = d.fields || {};
+                const item = {
+                  id: d.name.split('/').pop(),
+                  title: f.title?.stringValue || '',
+                  category: f.category?.stringValue || 'Insights',
+                  date: f.date?.stringValue || '',
+                  image: f.image?.stringValue || '',
+                  status: f.status?.stringValue || 'published'
+                };
+                if (isLive(item)) fetched.push(item);
+              });
+            }
+          }
+          if (fetched.length > 0) {
+            renderSliderItems(fetched);
+          }
+        } catch (e) {
+          console.warn("Homepage blogs fetch note:", e);
+        }
+      })();
     }
 
     const allianceContainer = document.getElementById('dynamic-alliance-container');
     if (allianceContainer) {
       try {
-        const snapshot = await window.db.collection('brands').orderBy('timestamp', 'asc').get();
-        const brands = [];
-        snapshot.forEach(doc => {
-          const data = { id: doc.id, ...doc.data() };
-          // We can reuse isLive for scheduling, or just push. Let's use isLive.
-          if (isLive(data)) brands.push(data);
+        // Base strategic partnership brands (all 12 brands)
+        const basePartnerships = [
+          { name: 'Alessi', image: 'Images/Strategic%20Patnerships/ALESSI.PNG' },
+          { name: 'Erolins Properties LTD', image: 'Images/Strategic%20Patnerships/Erolins%20Properties%20LTD.jpeg' },
+          { name: 'Eva Solo', image: 'Images/Strategic%20Patnerships/Eva%20Solo.PNG' },
+          { name: 'FLOS', image: 'Images/Strategic%20Patnerships/FLOS.PNG' },
+          { name: 'HAY', image: 'Images/Strategic%20Patnerships/HAY.PNG' },
+          { name: 'Joseph Joseph', image: 'Images/Strategic%20Patnerships/Joseph%20Joseph.PNG' },
+          { name: 'KLOBER', image: 'Images/Strategic%20Patnerships/KLOBER.PNG' },
+          { name: 'Louis Poulsen', image: 'Images/Strategic%20Patnerships/Louis%20Poulsen.PNG' },
+          { name: 'Magisso', image: 'Images/Strategic%20Patnerships/Magisso.PNG' },
+          { name: 'Pedani', image: 'Images/Strategic%20Patnerships/Pedani.jpeg' },
+          { name: 'Prese\'s Bag\'s & Shoes', image: 'Images/Strategic%20Patnerships/Prese\'s%20Bag\'s%20&%20Shoes.jpeg' },
+          { name: 'Service Connect', image: 'Images/Strategic%20Patnerships/Service%20Connect.jpeg' }
+        ];
+
+        let extraBrands = [];
+        if (window.db) {
+          try {
+            const snapshot = await window.db.collection('brands').orderBy('timestamp', 'asc').get();
+            snapshot.forEach(doc => {
+              const data = { id: doc.id, ...doc.data() };
+              if (isLive(data)) extraBrands.push(data);
+            });
+          } catch(err) {
+            console.warn("Firestore brands fallback:", err);
+          }
+        }
+
+        const allBrands = [...basePartnerships];
+        extraBrands.forEach(eb => {
+          if (!allBrands.some(b => b.name.toLowerCase() === (eb.name||'').toLowerCase())) {
+            allBrands.push(eb);
+          }
         });
 
-        if (brands.length > 0) {
-          let htmlStr = '';
-          brands.forEach(b => {
-            let linkHref = 'javascript:void(0)';
-            let target = '';
-            
-            if (b.linkedBlogId) {
-              linkHref = `/article/?id=${b.linkedBlogId}`;
-            } else if (b.link) {
-              linkHref = b.link;
-              target = 'target="_blank"';
-            }
-
-            htmlStr += `
-              <a href="${linkHref}" ${target} style="display:flex;align-items:center;">
-                <img src="${b.image}" alt="${b.name}" class="partner-logo" onerror="this.style.display='none'" />
+        let htmlStr = '';
+        allBrands.forEach(b => {
+          let linkHref = 'javascript:void(0)';
+          let target = '';
+          if (b.linkedBlogId) {
+            linkHref = `/article/?id=${b.linkedBlogId}`;
+          } else if (b.link) {
+            linkHref = b.link;
+            target = 'target="_blank"';
+          }
+          htmlStr += `
+            <div class="partner-logo-item">
+              <a href="${linkHref}" ${target} style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;">
+                <img src="${b.image}" alt="${b.name}" class="partner-logo" loading="lazy" onerror="this.onerror=null; if(this.src.endsWith('.png')){this.src=this.src.replace(/\\.png$/,'.webp');}else{this.parentElement.parentElement.style.display='none';}" />
               </a>
-            `;
-          });
-          // Duplicate for seamless marquee scroll
-          allianceContainer.innerHTML = htmlStr + htmlStr;
-        }
-      } catch (e) { console.error("Error fetching brands:", e); }
+            </div>
+          `;
+        });
+        // Duplicate for seamless 360 infinite scrolling
+        allianceContainer.innerHTML = htmlStr + htmlStr;
+      } catch (e) { console.error("Error populating brands:", e); }
     }
 
     // --- REEL POWER PRODUCT LINEUP ---

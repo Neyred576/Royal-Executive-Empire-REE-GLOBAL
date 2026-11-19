@@ -183,11 +183,15 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 16px;
+  gap: 20px;
   font-size: 11.5px;
   color: var(--mute);
   border-bottom: 1px solid var(--line);
-  padding-bottom: 6px;
+  padding-bottom: 8px;
+}
+.co .co-brand {
+  flex: 1;
+  min-width: 250px;
 }
 .co .co-name {
   display: block;
@@ -210,8 +214,10 @@ body {
   text-align: right;
   display: flex;
   flex-direction: column;
-  gap: 1px;
-  min-width: 250px;
+  gap: 2px;
+  width: 420px;
+  max-width: 58%;
+  flex-shrink: 0;
 }
 .editable-co-input {
   border: none;
@@ -221,8 +227,9 @@ body {
   font-size: 11.5px;
   color: var(--mute);
   outline: none;
-  padding: 0;
+  padding: 1px 0;
   width: 100%;
+  box-sizing: border-box;
 }
 .editable-co-input:hover, .editable-co-input:focus {
   background: rgba(184, 146, 58, 0.08);
@@ -232,8 +239,8 @@ body {
 /* Metadata Form Grid */
 .grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px 24px;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px 18px;
   margin: 8px 0;
 }
 .f label {
@@ -299,6 +306,33 @@ td input {
 }
 td input.n {
   text-align: right;
+}
+.amt-col {
+  padding-right: 4px;
+  vertical-align: middle;
+}
+.amt-input-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 2px;
+  width: 100%;
+}
+.amt-input-wrap .cur-sym {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--mute);
+  white-space: nowrap;
+  user-select: none;
+}
+td input.a {
+  font-weight: 600;
+  text-align: right;
+  width: 100%;
+}
+td input.a:focus {
+  background: rgba(184, 146, 58, 0.08);
+  border-radius: 2px;
 }
 .amt {
   text-align: right;
@@ -556,13 +590,13 @@ td input.n {
       
       <!-- Company Details (All Editable) -->
       <div class="co">
-        <div style="flex:1;">
+        <div class="co-brand">
           <input type="text" class="co-name" id="co-name-input" value="Royalty Executive Empire Limited" aria-label="Company Name">
           <small class="co-tagline">EXECUTIVE EMPIRE LIMITED</small>
         </div>
         <div class="co-details">
           <div><input type="text" class="editable-co-input" id="co-phone" value="Mobile No: +971561347581" aria-label="Phone Number"></div>
-          <div><input type="text" class="editable-co-input" id="co-email" value="[email@royaltyexecutiveempire.com]" aria-label="Email Address"></div>
+          <div><input type="text" class="editable-co-input" id="co-email" value="email@royaltyexecutiveempire.com" aria-label="Email Address"></div>
           <div><input type="text" class="editable-co-input" id="co-web" value="royaltyexecutiveempire.com" aria-label="Website"></div>
         </div>
       </div>
@@ -578,6 +612,16 @@ td input.n {
           <input id="dt" class="in" type="date">
         </div>
         <div class="f">
+          <label for="doc-cur">Currency</label>
+          <select class="in" id="doc-cur">
+            <option value="₦">NGN - Naira (₦)</option>
+            <option value="AED ">AED - Dirham (AED)</option>
+            <option value="$">USD - Dollar ($)</option>
+            <option value="£">GBP - Pound (£)</option>
+            <option value="€">EUR - Euro (€)</option>
+          </select>
+        </div>
+        <div class="f">
           <label for="div">Division</label>
           <select class="in" id="div">
             <option>REEL Properties</option>
@@ -587,11 +631,11 @@ td input.n {
             <option>Royalty Executive Empire Limited</option>
           </select>
         </div>
-        <div class="f">
+        <div class="f" style="grid-column: span 2;">
           <label for="ref">Order, invoice or booking reference</label>
           <input id="ref" class="in" value="" placeholder="Optional reference">
         </div>
-        <div class="f">
+        <div class="f" style="grid-column: span 2;">
           <label for="cn" id="lbl-party">Received From</label>
           <input id="cn" class="in" value="" placeholder="Customer or company name">
         </div>
@@ -606,10 +650,10 @@ td input.n {
         <table>
           <thead>
             <tr>
-              <th style="width:46%">Description</th>
+              <th style="width:45%">Description</th>
               <th class="r" style="width:10%">Qty</th>
               <th class="r" style="width:20%">Unit Price</th>
-              <th class="r" style="width:19%">Amount</th>
+              <th class="r" style="width:20%">Amount</th>
               <th style="width:5%" class="r"></th>
             </tr>
           </thead>
@@ -685,7 +729,7 @@ td input.n {
             <option>Cheque</option>
           </select>
         </div>
-        <div class="f">
+        <div class="f" style="grid-column: span 2;">
           <label for="tx">Transaction Reference</label>
           <input id="tx" class="in" value="" placeholder="Transfer or POS reference">
         </div>
@@ -699,7 +743,7 @@ td input.n {
 
       <!-- Terms & Disclaimer (Editable) -->
       <p class="terms" contenteditable="true" id="terms-text" title="Click to edit terms">
-        [Insert your confirmed returns, refund and warranty terms here.] This receipt confirms payment received and is valid with an authorised REEL signature or stamp.
+        This receipt confirms payment received and is valid with an authorised REEL signature or stamp.
       </p>
 
     </div>
@@ -787,19 +831,56 @@ td input.n {
     });
   }
 
-  function addRow(d, q, p) {
+  function addRow(d, q, p, a) {
     var tr = document.createElement("tr");
+    var cur = $("cur") ? $("cur").value : "₦";
     tr.innerHTML = '<td><input class="d" aria-label="Description" placeholder="Enter service or item description"></td>' +
-      '<td><input class="n q" type="number" min="0" step="1" aria-label="Quantity" placeholder="1"></td>' +
+      '<td><input class="n q" type="number" min="0" step="1" aria-label="Quantity" value="1" placeholder="1"></td>' +
       '<td><input class="n p" type="number" min="0" step="0.01" aria-label="Unit price" placeholder="0.00"></td>' +
-      '<td class="amt">0.00</td>' +
+      '<td class="amt-col"><div class="amt-input-wrap"><span class="cur-sym">' + cur + '</span><input class="n a" type="number" min="0" step="0.01" aria-label="Amount" placeholder="0.00"></div></td>' +
       '<td class="r"><button class="x" aria-label="Remove line" title="Delete line">&times;</button></td>';
     
-    if (d) tr.querySelector(".d").value = d;
-    if (q) tr.querySelector(".q").value = q;
-    if (p) tr.querySelector(".p").value = p;
+    var inD = tr.querySelector(".d");
+    var inQ = tr.querySelector(".q");
+    var inP = tr.querySelector(".p");
+    var inA = tr.querySelector(".a");
+    var btnX = tr.querySelector(".x");
 
-    tr.querySelector(".x").onclick = function() {
+    if (d) inD.value = d;
+    if (q !== undefined && q !== "") inQ.value = q;
+    if (p !== undefined && p !== "") inP.value = p;
+    if (a !== undefined && a !== "") inA.value = a;
+
+    function onQtyPriceChange() {
+      var qtyVal = inQ.value;
+      var qty = qtyVal === "" ? 1 : (parseFloat(qtyVal) || 0);
+      var price = parseFloat(inP.value) || 0;
+      if (inP.value !== "") {
+        inA.value = (qty * price).toFixed(2);
+      } else if (inA.value !== "" && qty > 0) {
+        inP.value = (parseFloat(inA.value) / qty).toFixed(2);
+      }
+      calc();
+    }
+
+    function onAmountChange() {
+      var amt = parseFloat(inA.value);
+      if (isNaN(amt)) {
+        inP.value = "";
+      } else {
+        var qtyVal = inQ.value;
+        var qty = (qtyVal === "" || parseFloat(qtyVal) <= 0) ? 1 : parseFloat(qtyVal);
+        if (inQ.value === "") inQ.value = "1";
+        inP.value = (amt / qty).toFixed(2);
+      }
+      calc();
+    }
+
+    inQ.addEventListener("input", onQtyPriceChange);
+    inP.addEventListener("input", onQtyPriceChange);
+    inA.addEventListener("input", onAmountChange);
+
+    btnX.onclick = function() {
       if (rows.children.length > 1) {
         tr.remove();
         calc();
@@ -810,12 +891,32 @@ td input.n {
 
   function calc() {
     var sub = 0;
+    var currentCur = $("cur").value;
+
+    // Update all currency symbols in the table
+    document.querySelectorAll(".cur-sym").forEach(function(s){
+      s.textContent = currentCur;
+    });
+
     Array.prototype.forEach.call(rows.children, function(tr) {
-      var q = parseFloat(tr.querySelector(".q").value) || 0;
-      var p = parseFloat(tr.querySelector(".p").value) || 0;
-      var amt = q * p;
-      tr.querySelector(".amt").textContent = fmt(amt);
-      sub += amt;
+      var inQ = tr.querySelector(".q");
+      var inP = tr.querySelector(".p");
+      var inA = tr.querySelector(".a");
+      if (!inQ || !inP || !inA) return;
+
+      var qVal = inQ.value;
+      var q = qVal === "" ? 1 : (parseFloat(qVal) || 0);
+      var p = parseFloat(inP.value) || 0;
+      var aVal = parseFloat(inA.value);
+
+      var lineAmt = 0;
+      if (!isNaN(aVal)) {
+        lineAmt = aVal;
+      } else if (inP.value !== "") {
+        lineAmt = q * p;
+        inA.value = lineAmt.toFixed(2);
+      }
+      sub += lineAmt;
     });
 
     var disc = Math.min(parseFloat($("disc").value) || 0, sub);
@@ -833,9 +934,9 @@ td input.n {
   // Reset: Clears every user input completely
   function reset() {
     rows.innerHTML = "";
-    // Clean empty initial rows with placeholders
-    addRow("", "", "");
-    addRow("", "", "");
+    // Clean initial rows with default quantity 1
+    addRow("", "1", "");
+    addRow("", "1", "");
 
     var now = new Date();
     var pad = function(x){ return String(x).padStart(2, "0"); };
@@ -855,6 +956,7 @@ td input.n {
     $("vat").value = "0";
     $("paid").value = "0";
 
+    updatePaymentMethod();
     calc();
   }
 
@@ -878,7 +980,7 @@ td input.n {
     if (isInv) {
       terms.textContent = "Payment is due upon receipt or within agreed terms. Please quote invoice number during settlement. Valid with an authorised REEL signature.";
     } else {
-      terms.textContent = "[Insert your confirmed returns, refund and warranty terms here.] This receipt confirms payment received and is valid with an authorised REEL signature or stamp.";
+      terms.textContent = "This receipt confirms payment received and is valid with an authorised REEL signature or stamp.";
     }
   }
 
@@ -898,12 +1000,47 @@ td input.n {
     var p = divPresets[sel];
     if (p) {
       $("div").value = p.division;
-      $("co-email").value = "[" + p.email + "]";
+      $("co-email").value = p.email;
       $("co-web").value = p.web;
     }
   }
 
-  // 1-PAGE PDF GENERATOR (Guaranteed fits 100% of header, items, totals, bank, signatures, terms, and footer)
+  function onCurrencyChange(val) {
+    if ($("cur")) $("cur").value = val;
+    if ($("doc-cur")) $("doc-cur").value = val;
+
+    // Automatically select the appropriate bank account preset
+    var bpSelect = $("bank-preset");
+    if (bpSelect) {
+      if (val.indexOf("AED") !== -1) {
+        bpSelect.value = "fab-aed"; // First Abu Dhabi Bank (FAB) for UAE
+      } else if (val.indexOf("$") !== -1) {
+        bpSelect.value = "dom-usd"; // Zenith USD Domiciliary
+      } else if (val.indexOf("₦") !== -1) {
+        bpSelect.value = "zenith-ngn"; // Zenith Bank (NGN)
+      }
+      updateBankPreset();
+    }
+
+    calc();
+  }
+
+  function updatePaymentMethod() {
+    var pm = $("pm").value.toLowerCase();
+    var isBankTransfer = pm.includes("bank") || pm.includes("wire") || pm.includes("transfer");
+    var bankBox = $("bank-box");
+    var toggleBank = $("toggle-bank");
+
+    if (isBankTransfer) {
+      bankBox.style.display = "block";
+      if (toggleBank) toggleBank.checked = true;
+    } else {
+      bankBox.style.display = "none";
+      if (toggleBank) toggleBank.checked = false;
+    }
+  }
+
+  // 1-PAGE PDF GENERATOR
   function downloadPDF() {
     var original = $("sheet");
     var docNo = ($("no").value || "REEL-Document").replace(/[^a-zA-Z0-9_-]/g, "_");
@@ -928,11 +1065,11 @@ td input.n {
     // Remove UI buttons from clone
     clone.querySelectorAll(".x, .add").forEach(function(el){ el.remove(); });
 
-    // Check bank box display
-    var isBankChecked = $("toggle-bank").checked;
+    // Check bank box display accurately
+    var isBankVisible = window.getComputedStyle($("bank-box")).display !== "none";
     var cloneBank = clone.querySelector("#bank-box");
     if (cloneBank) {
-      cloneBank.style.display = isBankChecked ? "block" : "none";
+      cloneBank.style.display = isBankVisible ? "block" : "none";
     }
 
     // Mount clone at (0,0) offscreen with exact single-page A4 dimensions
@@ -977,9 +1114,19 @@ td input.n {
     });
   }
 
-  document.addEventListener("input", calc);
-  $("cur").onchange = calc;
-  $("add").onclick = function(){ addRow("", "", ""); };
+  document.addEventListener("input", function(e){
+    if (e.target.id === "disc" || e.target.id === "vat" || e.target.id === "paid") {
+      calc();
+    }
+  });
+
+  $("cur").onchange = function(){ onCurrencyChange(this.value); };
+  if ($("doc-cur")) {
+    $("doc-cur").onchange = function(){ onCurrencyChange(this.value); };
+  }
+
+  $("pm").onchange = updatePaymentMethod;
+  $("add").onclick = function(){ addRow("", "1", ""); };
   $("btn-new").onclick = reset;
   $("btn-print").onclick = function(){ window.print(); };
   $("btn-download-pdf").onclick = downloadPDF;
