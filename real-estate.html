@@ -744,7 +744,7 @@
           if (!p.status) return true;
           const s = p.status.toUpperCase();
           // Show AVAILABLE and UNDER OFFER; hide SOLD
-          if (s === 'AVAILABLE' || s === 'UNDER OFFER' || s === 'UNDEROFFER') return true;
+          if (s === 'AVAILABLE' || s === 'UNDER OFFER' || s === 'UNDEROFFER' || s === 'COMING SOON') return true;
           // Legacy: also show 'published' or scheduled items whose time has passed
           if (s === 'PUBLISHED') return true;
           if (s === 'SCHEDULED' && p.scheduleTime) return new Date() >= new Date(p.scheduleTime);
@@ -768,7 +768,7 @@
               return `
               <article class="listing-card reveal-up" data-category="${searchTokens}" style="animation-delay: ${i * 0.1}s; cursor: pointer;" onclick="window.location.href='property-details.html?id=' + encodeURIComponent(p.id)">
                 <div class="listing-img ${fitClass}" style="background-image: url('${p.image}');">
-                  ${p.price ? `<div class="listing-badge" data-base-price="${isNaN(rawPriceNum) ? '' : rawPriceNum}">${p.price}</div>` : ''}
+                  ${(p.status && p.status.toUpperCase() === 'COMING SOON') ? `<div class="listing-badge" style="background: linear-gradient(135deg, #0284c7, #38bdf8); color:#fff; border-color:rgba(56,189,248,0.5);">COMING SOON</div>` : (p.price ? `<div class="listing-badge" data-base-price="${isNaN(rawPriceNum) ? '' : rawPriceNum}">${p.price}</div>` : '')}
                 </div>
                 <div class="listing-info">
                   <div class="listing-type">${p.category || 'Featured Property'}</div>
