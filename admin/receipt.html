@@ -479,17 +479,27 @@ td input.a:focus, td input:focus {
   background: #000000;
   color: #cfc7b3;
   text-align: center;
-  padding: 6px 14px;
+  padding: 8px 16px 12px;
   border-top: 2px solid var(--gold);
-  font-size: 9.5px;
+  font-size: 10px;
+  line-height: 1.4;
   flex-shrink: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 .foot b {
   display: block;
-  font: 700 11.5px "Cormorant Garamond", Georgia, serif;
+  font: 700 12px "Cormorant Garamond", Georgia, serif;
   color: var(--gold-l);
-  letter-spacing: 0.08em;
-  margin-bottom: 1px;
+  letter-spacing: 0.1em;
+  margin-bottom: 2px;
+}
+.foot span {
+  display: block;
+  font-size: 9.5px;
+  color: #cfc7b3;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
 }
 
 /* Invoice History Slide-Over Panel */
@@ -955,11 +965,10 @@ td input.a:focus, td input:focus {
       </p>
 
     </div>
-
     <!-- Luxury Gold Footer (Guaranteed Visible) -->
     <footer class="foot">
       <b>Building Empires, Shaping Futures, Leading Innovation.</b>
-      Thank you for choosing Royalty Executive Empire Limited.
+      <span>Thank you for choosing Royalty Executive Empire Limited.</span>
     </footer>
 
   </main>
@@ -1547,10 +1556,8 @@ td input.a:focus, td input:focus {
     var original = $("sheet");
     var docNo = ($("no").value || "REEL-Document").replace(/[^a-zA-Z0-9_-]/g, "_");
 
-    // Clone element
     var clone = original.cloneNode(true);
 
-    // Sync input values into clone
     var origInputs = original.querySelectorAll("input, select");
     var cloneInputs = clone.querySelectorAll("input, select");
     for (var i = 0; i < origInputs.length; i++) {
@@ -1564,23 +1571,20 @@ td input.a:focus, td input:focus {
       }
     }
 
-    // Remove action buttons from clone
     clone.querySelectorAll(".x, .add").forEach(function(el){ el.remove(); });
 
-    // Check bank box display accurately
     var isBankVisible = window.getComputedStyle($("bank-box")).display !== "none";
     var cloneBank = clone.querySelector("#bank-box");
     if (cloneBank) {
       cloneBank.style.display = isBankVisible ? "block" : "none";
     }
 
-    // Position clone cleanly off-screen with exact single-page A4 dimensions
     clone.style.position = "fixed";
     clone.style.top = "0px";
     clone.style.left = "0px";
-    clone.style.width = "794px"; /* Exactly 210mm at 96 DPI */
-    clone.style.minHeight = "1120px";
-    clone.style.height = "1120px";
+    clone.style.width = "794px";
+    clone.style.minHeight = "1118px";
+    clone.style.height = "1118px";
     clone.style.margin = "0";
     clone.style.boxShadow = "none";
     clone.style.zIndex = "-9999";
@@ -1589,13 +1593,13 @@ td input.a:focus, td input:focus {
 
     document.body.appendChild(clone);
 
-    // Ensure content fits within 1120px without any clipping of footer/signature
     var actualH = clone.scrollHeight;
-    if (actualH > 1120) {
-      var scale = 1115 / actualH;
+    if (actualH > 1118) {
+      var scale = 1110 / actualH;
       clone.style.transform = "scale(" + scale + ")";
       clone.style.transformOrigin = "top left";
       clone.style.width = (794 / scale) + "px";
+      clone.style.height = (1118 / scale) + "px";
     }
 
     var opt = {
@@ -1611,7 +1615,7 @@ td input.a:focus, td input:focus {
         x: 0,
         y: 0,
         width: 794,
-        height: 1120,
+        height: 1118,
         windowWidth: 794
       },
       jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
