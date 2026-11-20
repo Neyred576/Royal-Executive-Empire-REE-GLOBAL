@@ -1070,21 +1070,21 @@
       padding: 10px 0 50px;
       overflow-x: auto;
     }
-    .reel-sheet {
+        .reel-sheet {
       width: 210mm;
-      height: 297mm;
-      max-height: 297mm;
+      min-height: 297mm;
+      max-width: 210mm;
       background: #ffffff;
       color: #111111;
       box-shadow: 0 12px 48px rgba(0,0,0,0.6);
-      overflow: hidden;
+      overflow: visible;
       position: relative;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       font-family: 'Jost', -apple-system, sans-serif;
-      font-size: 13px;
-      line-height: 1.35;
+      font-size: 12.5px;
+      line-height: 1.3;
       box-sizing: border-box;
     }
     .rs-head {
@@ -1093,12 +1093,12 @@
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      padding: 14px 30px;
-      border-bottom: 3px solid #B8923A;
+      padding: 10px 24px;
+      border-bottom: 2px solid #B8923A;
       flex-shrink: 0;
     }
     .rs-head-logo {
-      height: 74px;
+      height: 54px;
       width: auto;
       display: block;
     }
@@ -1108,44 +1108,46 @@
     }
     .rs-head-title-wrap h1 {
       margin: 0;
-      font: 700 27px "Cormorant Garamond", Georgia, serif;
-      letter-spacing: 0.16em;
+      font: 700 22px "Cormorant Garamond", Georgia, serif;
+      letter-spacing: 0.14em;
       color: #E4C772;
       text-transform: uppercase;
       line-height: 1;
     }
     .rs-head-title-wrap div {
-      font-size: 11px;
+      font-size: 10px;
       color: #cfc7b3;
-      margin-top: 3px;
+      margin-top: 2px;
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
     .rs-body {
-      padding: 16px 30px 12px;
+      padding: 8px 24px 6px;
       flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      box-sizing: border-box;
     }
     .rs-co {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      gap: 20px;
-      font-size: 11.5px;
+      gap: 16px;
+      font-size: 11px;
       color: #6b665a;
       border-bottom: 1px solid #d9d3c3;
-      padding-bottom: 8px;
+      padding-bottom: 4px;
+      margin-bottom: 4px;
     }
     .rs-co .rs-co-brand {
       flex: 1;
-      min-width: 250px;
+      min-width: 240px;
     }
     .rs-co-name {
       display: block;
       color: #111111;
-      font: 700 17px "Cormorant Garamond", Georgia, serif;
+      font: 700 15px "Cormorant Garamond", Georgia, serif;
       letter-spacing: 0.02em;
       border: none;
       background: transparent;
@@ -1154,7 +1156,7 @@
     }
     .rs-co-tagline {
       color: #B8923A;
-      font-size: 10.5px;
+      font-size: 9.5px;
       font-weight: 600;
       display: block;
       margin-top: 1px;
@@ -1163,8 +1165,8 @@
       text-align: right;
       display: flex;
       flex-direction: column;
-      gap: 2px;
-      width: 420px;
+      gap: 1px;
+      width: 400px;
       max-width: 58%;
       flex-shrink: 0;
     }
@@ -1173,7 +1175,7 @@
       background: transparent;
       text-align: right;
       font-family: inherit;
-      font-size: 11.5px;
+      font-size: 11px;
       color: #6b665a;
       outline: none;
       padding: 1px 0;
@@ -1187,14 +1189,14 @@
     .rs-grid {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      gap: 8px 18px;
-      margin: 10px 0;
+      gap: 5px 14px;
+      margin: 4px 0 6px;
     }
     .rs-f label {
       display: block;
-      font-size: 10px;
+      font-size: 9px;
       color: #6b665a;
-      margin-bottom: 2px;
+      margin-bottom: 1px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
       font-weight: 600;
@@ -1202,31 +1204,23 @@
     input.rs-in, textarea.rs-in, select.rs-in {
       width: 100%;
       font-family: inherit;
-      font-size: 12.5px;
+      font-size: 11px;
       color: #111111;
       background: transparent;
       border: 0;
       border-bottom: 1px solid #d9d3c3;
-      padding: 4px 0;
+      padding: 3px 0;
       border-radius: 0;
       outline: none;
       transition: all 0.2s;
+      box-sizing: border-box;
     }
     input.rs-in:focus, textarea.rs-in:focus, select.rs-in:focus {
       border-bottom: 1.5px solid #B8923A;
       background: rgba(184, 146, 58, 0.04);
     }
-    textarea.rs-in {
-      resize: none;
-      height: 38px;
-      min-height: 38px;
-      border: 1px solid #d9d3c3;
-      padding: 4px 6px;
-      border-radius: 2px;
-      font-size: 12px;
-    }
     .rs-tablewrap {
-      margin-top: 6px;
+      margin-top: 4px;
     }
     table.rs-table {
       width: 100%;
@@ -1235,9 +1229,9 @@
     table.rs-table th {
       background: #000000;
       color: #E4C772;
-      font: 600 11.5px 'Jost', sans-serif;
+      font: 700 9.5px 'Jost', sans-serif;
       text-align: left;
-      padding: 7px 6px;
+      padding: 4px 6px;
       letter-spacing: 0.5px;
     }
     table.rs-table th.r, table.rs-table td.r {
@@ -1245,7 +1239,7 @@
     }
     table.rs-table td {
       border-bottom: 1px solid #d9d3c3;
-      padding: 2px 4px;
+      padding: 3px 6px;
       vertical-align: middle;
       color: #111111;
     }
@@ -1254,10 +1248,11 @@
       border: 0;
       background: transparent;
       font-family: inherit;
-      font-size: 12.5px;
+      font-size: 11px;
       color: #111111;
-      padding: 5px 2px;
+      padding: 2px 4px;
       outline: none;
+      box-sizing: border-box;
     }
     table.rs-table td input.n {
       text-align: right;
@@ -1274,7 +1269,7 @@
       width: 100%;
     }
     .rs-amt-input-wrap .rs-cur-sym {
-      font-size: 11.5px;
+      font-size: 11px;
       font-weight: 600;
       color: #6b665a;
       white-space: nowrap;
@@ -1298,30 +1293,30 @@
       padding-right: 6px;
       font-variant-numeric: tabular-nums;
       font-weight: 600;
-      font-size: 12.5px;
+      font-size: 11px;
     }
     .rs-x {
       border: 0;
       background: none;
       color: #ff4d4d;
       cursor: pointer;
-      font-size: 16px;
+      font-size: 14px;
       font-weight: bold;
-      padding: 1px 4px;
+      padding: 0 3px;
       border-radius: 3px;
     }
     .rs-x:hover {
       background: rgba(255, 77, 77, 0.15);
     }
     .rs-add {
-      margin: 6px 0 0;
+      margin: 3px 0 0;
       font-family: inherit;
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: 600;
       color: #B8923A;
       background: none;
       border: 1px dashed #B8923A;
-      padding: 4px 10px;
+      padding: 3px 8px;
       cursor: pointer;
       border-radius: 3px;
       transition: all 0.2s;
@@ -1330,27 +1325,27 @@
       background: rgba(184, 146, 58, 0.1);
     }
     .rs-tot {
-      margin: 6px 0 0 auto;
-      width: min(300px, 100%);
+      margin: 2px 0 0 auto;
+      width: min(280px, 100%);
     }
     .rs-tot-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 3px 0;
+      padding: 1.5px 0;
       border-bottom: 1px solid #d9d3c3;
       font-variant-numeric: tabular-nums;
-      font-size: 12px;
+      font-size: 11px;
       color: #111111;
     }
     .rs-tot-row input {
-      width: 75px;
+      width: 70px;
       text-align: right;
       border: 0;
       border-bottom: 1px solid #d9d3c3;
       padding: 1px 2px;
       font-family: inherit;
-      font-size: 12px;
+      font-size: 11px;
       outline: none;
       background: transparent;
       color: #111111;
@@ -1358,26 +1353,26 @@
     .rs-grand {
       background: #000000 !important;
       color: #E4C772 !important;
-      padding: 7px 10px !important;
-      margin-top: 4px;
-      font: 700 17px "Cormorant Garamond", Georgia, serif !important;
+      padding: 4px 8px !important;
+      margin-top: 3px;
+      font: 700 14px "Cormorant Garamond", Georgia, serif !important;
       border: 0 !important;
       border-radius: 2px;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.04em;
     }
     .rs-bank-box {
-      margin-top: 8px;
+      margin-top: 4px;
       border: 1px solid #B8923A;
       border-radius: 3px;
-      padding: 8px 12px;
+      padding: 4px 10px;
       background: rgba(184, 146, 58, 0.03);
     }
     .rs-bank-title {
-      font: 700 11.5px 'Jost', sans-serif;
+      font: 700 10px 'Jost', sans-serif;
       color: #B8923A;
       text-transform: uppercase;
       letter-spacing: 0.8px;
-      margin-bottom: 4px;
+      margin-bottom: 2px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -1385,10 +1380,10 @@
     .rs-bank-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 4px 16px;
+      gap: 2px 14px;
     }
     .rs-bank-item-label {
-      font-size: 9.5px;
+      font-size: 9px;
       text-transform: uppercase;
       display: block;
       color: #6b665a;
@@ -1398,10 +1393,10 @@
       border-bottom: 1px dashed #d9d3c3;
       background: transparent;
       font-family: inherit;
-      font-size: 11px;
+      font-size: 10px;
       color: #111111;
       width: 100%;
-      padding: 1px 0;
+      padding: 0;
       outline: none;
     }
     .rs-bank-item input:focus {
@@ -1410,46 +1405,248 @@
     .rs-sig {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 36px;
-      margin: 18px 0 4px;
+      gap: 28px;
+      margin: 6px 0 2px;
     }
     .rs-sig div {
       border-top: 1px solid #111111;
-      padding-top: 4px;
-      font-size: 10px;
+      padding-top: 3px;
+      font-size: 9px;
       color: #6b665a;
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
     .rs-terms {
-      font-size: 10px;
+      font-size: 8.5px;
       color: #6b665a;
-      margin-top: 8px;
-      line-height: 1.4;
+      margin-top: 3px;
+      line-height: 1.25;
       outline: none;
-    }
-    .rs-terms:focus {
-      background: rgba(184, 146, 58, 0.05);
     }
     .rs-foot {
       background: #000000;
       color: #cfc7b3;
       text-align: center;
-      padding: 10px 16px;
-      border-top: 3px solid #B8923A;
-      font-size: 11px;
+      padding: 6px 14px;
+      border-top: 2px solid #B8923A;
+      font-size: 9.5px;
       flex-shrink: 0;
     }
     .rs-foot b {
       display: block;
-      font: 700 14px "Cormorant Garamond", Georgia, serif;
+      font: 700 11.5px "Cormorant Garamond", Georgia, serif;
       color: #E4C772;
       letter-spacing: 0.08em;
-      margin-bottom: 2px;
+      margin-bottom: 1px;
     }
+
+    /* Invoices & Receipts History Drawer for Admin */
+    .hist-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.78);
+      z-index: 9999;
+      align-items: flex-start;
+      justify-content: flex-end;
+    }
+    .hist-overlay.open { display: flex; }
+    .hist-panel {
+      width: 490px;
+      max-width: 96vw;
+      height: 100vh;
+      background: #0d0d0d;
+      border-left: 2px solid var(--gold, #B8923A);
+      display: flex;
+      flex-direction: column;
+      box-shadow: -10px 0 40px rgba(0,0,0,0.7);
+    }
+    .hist-head {
+      background: #000;
+      padding: 14px 18px;
+      border-bottom: 1px solid rgba(184,146,58,0.3);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      justify-content: space-between;
+    }
+    .hist-head h2 {
+      font: 700 17px "Cormorant Garamond", Georgia, serif;
+      color: var(--gold-light, #E4C772);
+      letter-spacing: 0.06em;
+      margin: 0;
+      flex: 1;
+    }
+    .hist-close {
+      background: none;
+      border: 1px solid rgba(184,146,58,0.4);
+      color: #cfc7b3;
+      border-radius: 4px;
+      padding: 4px 10px;
+      cursor: pointer;
+      font-size: 12px;
+      transition: all 0.2s;
+    }
+    .hist-close:hover { background: rgba(184,146,58,0.15); color: #fff; }
+    .hist-stats {
+      display: flex;
+      background: rgba(255,255,255,0.03);
+      border-bottom: 1px solid rgba(184,146,58,0.2);
+      padding: 8px 18px;
+      gap: 14px;
+    }
+    .hist-stat-item {
+      flex: 1;
+      text-align: center;
+    }
+    .hist-stat-val {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--gold-light, #E4C772);
+    }
+    .hist-stat-lbl {
+      font-size: 9.5px;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .hist-search {
+      padding: 10px 18px;
+      border-bottom: 1px solid rgba(184,146,58,0.2);
+      display: flex;
+      gap: 8px;
+    }
+    .hist-search input {
+      flex: 1;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(184,146,58,0.3);
+      border-radius: 5px;
+      color: #fff;
+      padding: 6px 10px;
+      font-size: 11.5px;
+      font-family: inherit;
+      outline: none;
+      box-sizing: border-box;
+    }
+    .hist-search select {
+      background: #1a1a1a;
+      border: 1px solid rgba(184,146,58,0.3);
+      border-radius: 5px;
+      color: #fff;
+      padding: 6px 8px;
+      font-size: 11px;
+      font-family: inherit;
+      outline: none;
+    }
+    .hist-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 6px 0;
+    }
+    .hist-list::-webkit-scrollbar { width: 4px; }
+    .hist-list::-webkit-scrollbar-thumb { background: rgba(184,146,58,0.3); border-radius: 2px; }
+    .hist-item {
+      padding: 10px 18px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      transition: background 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .hist-item:hover { background: rgba(184,146,58,0.08); }
+    .hist-item-badge {
+      font-size: 9px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 3px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+    .hist-item-badge.inv {
+      background: rgba(184,146,58,0.2);
+      border: 1px solid #B8923A;
+      color: #E4C772;
+    }
+    .hist-item-badge.rec {
+      background: rgba(76,175,80,0.2);
+      border: 1px solid #4caf50;
+      color: #81c784;
+    }
+    .hist-item-info { flex: 1; min-width: 0; }
+    .hist-item-no {
+      font-size: 12px;
+      font-weight: 600;
+      color: #fff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .hist-item-sub {
+      font-size: 10.5px;
+      color: #888;
+      margin-top: 1px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .hist-item-amt {
+      font-size: 12px;
+      font-weight: 700;
+      color: #E4C772;
+      white-space: nowrap;
+    }
+    .hist-item-actions {
+      display: flex;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+    .hist-btn {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #cfc7b3;
+      border-radius: 4px;
+      padding: 3px 7px;
+      font-size: 10.5px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    .hist-btn:hover { background: rgba(184,146,58,0.2); border-color: #B8923A; color: #fff; }
+    .hist-btn.reissue { color: #64b5f6; border-color: rgba(100,181,246,0.3); }
+    .hist-btn.reissue:hover { background: rgba(100,181,246,0.15); }
+    .hist-btn.del { color: #ff6b6b; border-color: rgba(255,107,107,0.3); }
+    .hist-btn.del:hover { background: rgba(255,107,107,0.15); }
+    .hist-empty {
+      text-align: center;
+      padding: 50px 20px;
+      color: #666;
+      font-size: 12.5px;
+    }
+    .hist-empty b { display: block; font-size: 14px; margin-bottom: 6px; color: #888; }
+    .hist-footer {
+      padding: 10px 18px;
+      border-top: 1px solid rgba(184,146,58,0.2);
+      display: flex;
+      gap: 8px;
+    }
+    .hist-footer-btn {
+      flex: 1;
+      background: none;
+      border: 1px solid rgba(255,107,107,0.4);
+      color: #ff6b6b;
+      border-radius: 5px;
+      padding: 6px;
+      font-size: 11px;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .hist-footer-btn:hover { background: rgba(255,107,107,0.12); }
 
     /* Print media rules for Admin - STRICTLY 1 PAGE */
     @media print {
+      .hist-overlay { display: none !important; }
       @page {
         size: A4 portrait;
         margin: 0;
@@ -3621,8 +3818,12 @@
           </select>
 
           <button id="adm-btn-new" class="btn btn-outline" style="padding:7px 12px; font-size:0.8rem;" title="Clear all details and start fresh">🔄 New Document</button>
+          <button id="adm-btn-save-inv" class="btn btn-outline" style="padding:7px 12px; font-size:0.8rem; border-color:#4caf50; color:#81c784;" title="Save document to history">💾 Save</button>
+          <button id="adm-btn-history" class="btn btn-outline" style="padding:7px 14px; font-size:0.8rem; border-color:var(--gold); color:var(--gold-light);" title="View all saved invoices & receipts">
+            📁 All Invoices <span class="badge" id="adm-inv-count-badge" style="background:var(--gold); color:#000; font-weight:700; margin-left:4px; padding:2px 6px; border-radius:10px;">0</span>
+          </button>
           <button id="adm-btn-download-pdf" class="btn btn-primary" style="padding:7px 14px; font-size:0.8rem;" title="Download clean 1-page PDF">💾 Download 1-Page PDF</button>
-          <button id="adm-btn-print" class="btn btn-outline" style="padding:7px 12px; font-size:0.8rem;" title="Print or save as PDF">🖨️ Print / Save</button>
+          <button id="adm-btn-print" class="btn btn-outline" style="padding:7px 12px; font-size:0.8rem;" title="Print or save as PDF">🖨️ Print</button>
         </div>
       </div>
 
@@ -3770,25 +3971,6 @@
               </div>
             </div>
 
-            <!-- Payment Method & Transaction Reference (Notes & Remarks REMOVED as requested) -->
-            <div class="rs-grid" style="margin-top:8px;">
-              <div class="rs-f">
-                <label for="adm-pm">Payment Method</label>
-                <select class="rs-in" id="adm-pm">
-                  <option>Bank transfer</option>
-                  <option>Card (POS)</option>
-                  <option>Cash</option>
-                  <option>Online payment</option>
-                  <option>Wire transfer</option>
-                  <option>Cheque</option>
-                </select>
-              </div>
-              <div class="rs-f" style="grid-column: span 2;">
-                <label for="adm-tx">Transaction Reference</label>
-                <input id="adm-tx" class="rs-in" value="" placeholder="Transfer or POS reference">
-              </div>
-            </div>
-
             <!-- Signatures -->
             <div class="rs-sig">
               <div>Received by (name, signature and stamp)</div>
@@ -3810,7 +3992,46 @@
 
         </div>
       </div>
-    </section>
+    
+    <!-- History Slide-Over Panel for Admin -->
+    <div class="hist-overlay" id="adm-hist-overlay">
+      <div class="hist-panel">
+        <div class="hist-head">
+          <h2>📋 Invoices &amp; Receipts History</h2>
+          <button class="hist-close" id="adm-hist-close-btn">✕ Close</button>
+        </div>
+        <div class="hist-stats">
+          <div class="hist-stat-item">
+            <div class="hist-stat-val" id="adm-stat-total-docs">0</div>
+            <div class="hist-stat-lbl">Total Docs</div>
+          </div>
+          <div class="hist-stat-item">
+            <div class="hist-stat-val" id="adm-stat-total-inv">0</div>
+            <div class="hist-stat-lbl">Invoices</div>
+          </div>
+          <div class="hist-stat-item">
+            <div class="hist-stat-val" id="adm-stat-total-rec">0</div>
+            <div class="hist-stat-lbl">Receipts</div>
+          </div>
+        </div>
+        <div class="hist-search">
+          <input type="text" id="adm-hist-search-input" placeholder="Search by number, customer, amount…">
+          <select id="adm-hist-filter-type">
+            <option value="ALL">All Types</option>
+            <option value="INVOICE">Invoices Only</option>
+            <option value="RECEIPT">Receipts Only</option>
+          </select>
+        </div>
+        <div class="hist-list" id="adm-hist-list">
+          <div class="hist-empty"><b>No Documents Saved Yet</b>Invoices &amp; Receipts will be saved here automatically when generated.</div>
+        </div>
+        <div class="hist-footer">
+          <button class="hist-btn" id="adm-btn-export-history" style="flex:1;">📥 Export Backup</button>
+          <button class="hist-footer-btn" id="adm-btn-clear-history">🗑️ Clear History</button>
+        </div>
+      </div>
+    </div>
+</section>
 
   </main>
 
@@ -5980,6 +6201,49 @@
       const rows = $('adm-rows');
       if (!rows) return;
 
+      const HIST_KEY = "reel_invoice_history";
+
+      function getHistory() {
+        try { return JSON.parse(localStorage.getItem(HIST_KEY) || "[]"); }
+        catch(e) { return []; }
+      }
+
+      function saveHistory(arr) {
+        localStorage.setItem(HIST_KEY, JSON.stringify(arr));
+      }
+
+      function updateInvCounter() {
+        const hist = getHistory();
+        let invCount = 0;
+        let recCount = 0;
+        hist.forEach(d => {
+          if (d.docType === "INVOICE") invCount++;
+          else recCount++;
+        });
+
+        const badge = $('adm-inv-count-badge');
+        if (badge) badge.textContent = hist.length;
+
+        if ($('adm-stat-total-docs')) $('adm-stat-total-docs').textContent = hist.length;
+        if ($('adm-stat-total-inv')) $('adm-stat-total-inv').textContent = invCount;
+        if ($('adm-stat-total-rec')) $('adm-stat-total-rec').textContent = recCount;
+      }
+
+      function generateDocNumber(docType) {
+        const now = new Date();
+        const pad = (x) => String(x).padStart(2, '0');
+        const ymd = now.getFullYear() + pad(now.getMonth() + 1) + pad(now.getDate());
+        const prefix = docType === 'INVOICE' ? 'INV' : 'REEL';
+        
+        const hist = getHistory();
+        const todayCount = hist.filter(d => {
+          return (d.docType === docType) && (d.no && d.no.indexOf(ymd) !== -1);
+        }).length;
+        
+        const seq = String(todayCount + 1).padStart(3, '0');
+        return prefix + '-' + ymd + '-' + seq;
+      }
+
       const bankPresets = {
         'zenith-ngn': {
           bank: 'Zenith Bank Plc',
@@ -6042,7 +6306,7 @@
       };
 
       function fmt(n) {
-        const c = $('adm-cur').value;
+        const c = $('adm-cur') ? $('adm-cur').value : '₦';
         return c + (isNaN(n) ? 0 : n).toLocaleString('en-US', {
           minimumFractionDigits: 2,
           maximumFractionDigits: 2
@@ -6109,9 +6373,8 @@
 
       function calc() {
         let sub = 0;
-        const currentCur = $('adm-cur').value;
+        const currentCur = $('adm-cur') ? $('adm-cur').value : '₦';
 
-        // Update all currency symbols in the table
         document.querySelectorAll('.rs-cur-sym').forEach(s => {
           s.textContent = currentCur;
         });
@@ -6149,10 +6412,214 @@
         $('adm-bal').textContent = fmt(bal);
       }
 
-      // Reset: Clears every user input completely
+      function captureCurrentDoc() {
+        const items = [];
+        Array.prototype.forEach.call(rows.children, function(tr) {
+          const d = tr.querySelector('.d') ? tr.querySelector('.d').value : '';
+          const q = tr.querySelector('.q') ? tr.querySelector('.q').value : '';
+          const p = tr.querySelector('.p') ? tr.querySelector('.p').value : '';
+          const a = tr.querySelector('.a') ? tr.querySelector('.a').value : '';
+          items.push({ d, q, p, a });
+        });
+
+        return {
+          id: Date.now(),
+          savedAt: new Date().toISOString(),
+          docType: $('adm-doc-type') ? $('adm-doc-type').value : 'RECEIPT',
+          no: $('adm-no') ? $('adm-no').value : '',
+          dt: $('adm-dt') ? $('adm-dt').value : '',
+          currency: $('adm-cur') ? $('adm-cur').value : '₦',
+          division: $('adm-div') ? $('adm-div').value : '',
+          pm: $('adm-pm') ? $('adm-pm').value : '',
+          ref: $('adm-ref') ? $('adm-ref').value : '',
+          cn: $('adm-cn') ? $('adm-cn').value : '',
+          cc: $('adm-cc') ? $('adm-cc').value : '',
+          disc: $('adm-disc') ? $('adm-disc').value : '0',
+          vat: $('adm-vat') ? $('adm-vat').value : '0',
+          paid: $('adm-paid') ? $('adm-paid').value : '0',
+          subtotal: $('adm-sub') ? $('adm-sub').textContent : '',
+          total: $('adm-total') ? $('adm-total').textContent : '',
+          bal: $('adm-bal') ? $('adm-bal').textContent : '',
+          bankName: $('adm-bank-name') ? $('adm-bank-name').value : '',
+          bankAccName: $('adm-bank-acc-name') ? $('adm-bank-acc-name').value : '',
+          bankAccNum: $('adm-bank-acc-num') ? $('adm-bank-acc-num').value : '',
+          bankSwift: $('adm-bank-swift') ? $('adm-bank-swift').value : '',
+          bankVisible: $('adm-bank-box') ? window.getComputedStyle($('adm-bank-box')).display !== 'none' : false,
+          coName: $('adm-co-name') ? $('adm-co-name').value : '',
+          coPhone: $('adm-co-phone') ? $('adm-co-phone').value : '',
+          coEmail: $('adm-co-email') ? $('adm-co-email').value : '',
+          coWeb: $('adm-co-web') ? $('adm-co-web').value : '',
+          termsText: $('adm-terms-text') ? $('adm-terms-text').textContent : '',
+          items: items
+        };
+      }
+
+      function saveCurrentDoc(silent) {
+        const doc = captureCurrentDoc();
+        if (!doc.no) return;
+        const hist = getHistory();
+        const idx = hist.findIndex(d => d.no === doc.no);
+        if (idx !== -1) {
+          hist[idx] = doc;
+        } else {
+          hist.push(doc);
+        }
+        saveHistory(hist);
+        updateInvCounter();
+        if (!silent) {
+          const btn = $('adm-btn-save-inv');
+          if (btn) {
+            btn.textContent = '✅ Saved!';
+            setTimeout(() => { btn.textContent = '💾 Save'; }, 1500);
+          }
+        }
+      }
+
+      function restoreDoc(doc, isReissue) {
+        if ($('adm-doc-type') && doc.docType) {
+          $('adm-doc-type').value = doc.docType;
+          setDocMode();
+        }
+
+        if (isReissue) {
+          $('adm-no').value = generateDocNumber(doc.docType);
+          const now = new Date();
+          const pad = (x) => String(x).padStart(2, '0');
+          $('adm-dt').value = now.getFullYear() + '-' + pad(now.getMonth() + 1) + '-' + pad(now.getDate());
+        } else {
+          if ($('adm-no') && doc.no) $('adm-no').value = doc.no;
+          if ($('adm-dt') && doc.dt) $('adm-dt').value = doc.dt;
+        }
+
+        if ($('adm-ref')) $('adm-ref').value = doc.ref || '';
+        if ($('adm-cn')) $('adm-cn').value = doc.cn || '';
+        if ($('adm-cc')) $('adm-cc').value = doc.cc || '';
+        if ($('adm-disc')) $('adm-disc').value = doc.disc || '0';
+        if ($('adm-vat')) $('adm-vat').value = doc.vat || '0';
+        if ($('adm-paid')) $('adm-paid').value = doc.paid || '0';
+
+        if ($('adm-co-name') && doc.coName) $('adm-co-name').value = doc.coName;
+        if ($('adm-co-phone') && doc.coPhone) $('adm-co-phone').value = doc.coPhone;
+        if ($('adm-co-email') && doc.coEmail) $('adm-co-email').value = doc.coEmail;
+        if ($('adm-co-web') && doc.coWeb) $('adm-co-web').value = doc.coWeb;
+
+        if (doc.currency) {
+          onCurrencyChange(doc.currency);
+        }
+        if ($('adm-div') && doc.division) $('adm-div').value = doc.division;
+        if ($('adm-pm') && doc.pm) {
+          $('adm-pm').value = doc.pm;
+          updatePaymentMethod();
+        }
+
+        if ($('adm-bank-name') && doc.bankName) $('adm-bank-name').value = doc.bankName;
+        if ($('adm-bank-acc-name') && doc.bankAccName) $('adm-bank-acc-name').value = doc.bankAccName;
+        if ($('adm-bank-acc-num') && doc.bankAccNum) $('adm-bank-acc-num').value = doc.bankAccNum;
+        if ($('adm-bank-swift') && doc.bankSwift) $('adm-bank-swift').value = doc.bankSwift;
+        if ($('adm-bank-box') && doc.bankVisible !== undefined) {
+          $('adm-bank-box').style.display = doc.bankVisible ? 'block' : 'none';
+          if ($('adm-toggle-bank')) $('adm-toggle-bank').checked = doc.bankVisible;
+        }
+
+        if ($('adm-terms-text') && doc.termsText) $('adm-terms-text').textContent = doc.termsText;
+
+        rows.innerHTML = '';
+        if (doc.items && doc.items.length > 0) {
+          doc.items.forEach(it => { addRow(it.d, it.q, it.p, it.a); });
+        } else {
+          addRow('', '1', '');
+        }
+        calc();
+      }
+
+      window.renderAdmHistory = function() {
+        const hist = getHistory();
+        const search = ($('adm-hist-search-input') ? $('adm-hist-search-input').value : '').toLowerCase().trim();
+        const filterType = $('adm-hist-filter-type') ? $('adm-hist-filter-type').value : 'ALL';
+        const list = $('adm-hist-list');
+        updateInvCounter();
+
+        if (hist.length === 0) {
+          list.innerHTML = '<div class="hist-empty"><b>No Documents Saved Yet</b>Invoices &amp; Receipts will be saved here automatically when generated.</div>';
+          return;
+        }
+
+        let filtered = hist.filter(d => {
+          if (filterType !== 'ALL' && d.docType !== filterType) return false;
+          if (!search) return true;
+          return (d.no || '').toLowerCase().includes(search) ||
+                 (d.cn || '').toLowerCase().includes(search) ||
+                 (d.total || '').toLowerCase().includes(search) ||
+                 (d.division || '').toLowerCase().includes(search) ||
+                 (d.pm || '').toLowerCase().includes(search);
+        });
+
+        filtered = filtered.slice().reverse();
+
+        if (filtered.length === 0) {
+          list.innerHTML = '<div class="hist-empty"><b>No matching documents</b>Try a different search filter.</div>';
+          return;
+        }
+
+        list.innerHTML = '';
+        filtered.forEach(doc => {
+          const div = document.createElement('div');
+          div.className = 'hist-item';
+          const saved = new Date(doc.savedAt);
+          const dateStr = saved.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+          const timeStr = saved.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+          const isInv = doc.docType === 'INVOICE';
+
+          div.innerHTML =
+            '<span class="hist-item-badge ' + (isInv ? 'inv' : 'rec') + '">' + doc.docType + '</span>' +
+            '<div class="hist-item-info">' +
+              '<div class="hist-item-no">' + (doc.no || '(No Number)') + '</div>' +
+              '<div class="hist-item-sub">' + (doc.cn || 'No Client') + ' &bull; ' + dateStr + ' ' + timeStr + (doc.division ? ' &bull; ' + doc.division : '') + '</div>' +
+            '</div>' +
+            '<span class="hist-item-amt">' + (doc.total || '—') + '</span>' +
+            '<div class="hist-item-actions">' +
+              '<button class="hist-btn" onclick="loadAdmDoc(' + doc.id + ', false)" title="Load and edit this document">✏️ Edit</button>' +
+              '<button class="hist-btn reissue" onclick="loadAdmDoc(' + doc.id + ', true)" title="Reissue with new number and today date">🔄 Reissue</button>' +
+              '<button class="hist-btn" onclick="quickAdmDownloadPDF(' + doc.id + ')" title="Download PDF">💾 PDF</button>' +
+              '<button class="hist-btn del" onclick="deleteAdmDoc(' + doc.id + ')" title="Delete">🗑️</button>' +
+            '</div>';
+          list.appendChild(div);
+        });
+      };
+
+      window.loadAdmDoc = function(id, isReissue) {
+        const hist = getHistory();
+        const doc = hist.find(d => d.id === id);
+        if (!doc) return;
+        const msg = isReissue
+          ? "Reissue " + doc.no + "? This will load all client and line item details with a NEW invoice number and today's date."
+          : "Load " + doc.no + " for editing? This will replace the active sheet.";
+        if (!confirm(msg)) return;
+        restoreDoc(doc, isReissue);
+        $('adm-hist-overlay').classList.remove('open');
+      };
+
+      window.deleteAdmDoc = function(id) {
+        const hist = getHistory();
+        const doc = hist.find(d => d.id === id);
+        if (!doc) return;
+        if (!confirm("Permanently delete " + doc.no + " from history?")) return;
+        const newHist = hist.filter(d => d.id !== id);
+        saveHistory(newHist);
+        renderAdmHistory();
+      };
+
+      window.quickAdmDownloadPDF = function(id) {
+        const hist = getHistory();
+        const doc = hist.find(d => d.id === id);
+        if (!doc) return;
+        restoreDoc(doc, false);
+        $('adm-hist-overlay').classList.remove('open');
+        setTimeout(downloadPDF, 300);
+      };
+
       function reset() {
         rows.innerHTML = '';
-        // Start with clean rows with quantity defaulted to 1
         addRow('', '1', '');
         addRow('', '1', '');
 
@@ -6162,14 +6629,12 @@
         
         $('adm-dt').value = ymd;
         const docType = $('adm-doc-type').value;
-        const prefix = docType === 'INVOICE' ? 'INV' : 'REEL';
-        $('adm-no').value = prefix + '-' + ymd.replace(/-/g, '') + '-001';
+        $('adm-no').value = generateDocNumber(docType);
 
-        // Clear all customer and transaction fields
         $('adm-ref').value = '';
         $('adm-cn').value = '';
         $('adm-cc').value = '';
-        $('adm-tx').value = '';
+        if ($('adm-tx')) $('adm-tx').value = '';
         $('adm-disc').value = '0';
         $('adm-vat').value = '0';
         $('adm-paid').value = '0';
@@ -6192,6 +6657,8 @@
           $('adm-no').value = curVal.replace('REEL-', 'INV-');
         } else if (!isInv && curVal.startsWith('INV-')) {
           $('adm-no').value = curVal.replace('INV-', 'REEL-');
+        } else if (!curVal) {
+          $('adm-no').value = generateDocNumber(type);
         }
 
         const terms = $('adm-terms-text');
@@ -6203,43 +6670,31 @@
       }
 
       function updateBankPreset() {
-        const sel = $('adm-bank-preset').value;
-        const p = bankPresets[sel];
-        if (p) {
-          $('adm-bank-name').value = p.bank;
-          $('adm-bank-acc-name').value = p.name;
-          $('adm-bank-acc-num').value = p.num;
-          $('adm-bank-swift').value = p.swift;
-        }
+        const v = $('adm-bank-preset').value;
+        const p = bankPresets[v];
+        if (!p) return;
+        $('adm-bank-name').value = p.bank;
+        $('adm-bank-acc-name').value = p.name;
+        $('adm-bank-acc-num').value = p.num;
+        $('adm-bank-swift').value = p.swift;
       }
 
       function updateDivisionPreset() {
-        const sel = $('adm-div-preset').value;
-        const p = divPresets[sel];
-        if (p) {
-          $('adm-div').value = p.division;
-          $('adm-co-email').value = p.email;
-          $('adm-co-web').value = p.web;
-        }
+        const v = $('adm-div-preset').value;
+        const p = divPresets[v];
+        if (!p) return;
+        $('adm-div').value = p.division;
+        $('adm-co-email').value = p.email;
+        $('adm-co-web').value = p.web;
       }
 
       function onCurrencyChange(val) {
-        if ($('adm-cur')) $('adm-cur').value = val;
-        if ($('adm-doc-cur')) $('adm-doc-cur').value = val;
-
-        // Auto-switch bank preset
-        const bpSelect = $('adm-bank-preset');
-        if (bpSelect) {
-          if (val.indexOf('AED') !== -1) {
-            bpSelect.value = 'fab-aed'; // First Abu Dhabi Bank (FAB) for UAE
-          } else if (val.indexOf('$') !== -1) {
-            bpSelect.value = 'dom-usd'; // Zenith USD Domiciliary
-          } else if (val.indexOf('₦') !== -1) {
-            bpSelect.value = 'zenith-ngn'; // Zenith Bank (NGN)
-          }
-          updateBankPreset();
+        if ($('adm-cur') && $('adm-cur').value !== val) {
+          $('adm-cur').value = val;
         }
-
+        if ($('adm-doc-cur') && $('adm-doc-cur').value !== val) {
+          $('adm-doc-cur').value = val;
+        }
         calc();
       }
 
@@ -6258,15 +6713,15 @@
         }
       }
 
-      // GUARANTEED 1-PAGE PDF GENERATOR
+      // GUARANTEED 1-PAGE PDF GENERATOR (Auto-scales so signatures & footer NEVER get cut off)
       function downloadPDF() {
+        saveCurrentDoc(true);
+
         const original = $('admin-receipt-sheet');
         const docNo = ($('adm-no').value || 'REEL-Document').replace(/[^a-zA-Z0-9_-]/g, '_');
 
-        // Clone element
         const clone = original.cloneNode(true);
 
-        // Sync input values into clone
         const origInputs = original.querySelectorAll('input, select');
         const cloneInputs = clone.querySelectorAll('input, select');
         for (let i = 0; i < origInputs.length; i++) {
@@ -6280,22 +6735,20 @@
           }
         }
 
-        // Remove buttons in clone so they don't show on PDF
         clone.querySelectorAll('.rs-x, .rs-add').forEach(el => el.remove());
 
-        // Check bank box display accurately
         const isBankVisible = window.getComputedStyle($('adm-bank-box')).display !== 'none';
         const cloneBank = clone.querySelector('#adm-bank-box');
         if (cloneBank) {
           cloneBank.style.display = isBankVisible ? 'block' : 'none';
         }
 
-        // Position clone cleanly at top-left off viewport with exact A4 proportions
         clone.style.position = 'fixed';
         clone.style.top = '0px';
         clone.style.left = '0px';
-        clone.style.width = '794px'; /* Exactly 210mm at 96 DPI */
-        clone.style.height = '1120px'; /* Exactly 296mm at 96 DPI */
+        clone.style.width = '794px';
+        clone.style.minHeight = '1120px';
+        clone.style.height = '1120px';
         clone.style.margin = '0';
         clone.style.boxShadow = 'none';
         clone.style.zIndex = '-9999';
@@ -6303,6 +6756,14 @@
         clone.style.overflow = 'hidden';
 
         document.body.appendChild(clone);
+
+        const actualH = clone.scrollHeight;
+        if (actualH > 1120) {
+          const scale = 1115 / actualH;
+          clone.style.transform = 'scale(' + scale + ')';
+          clone.style.transformOrigin = 'top left';
+          clone.style.width = (794 / scale) + 'px';
+        }
 
         const opt = {
           margin: 0,
@@ -6344,26 +6805,75 @@
         }
       });
 
-      $('adm-cur').onchange = function() { onCurrencyChange(this.value); };
+      if ($('adm-cur')) {
+        $('adm-cur').onchange = function() { onCurrencyChange(this.value); };
+      }
       if ($('adm-doc-cur')) {
         $('adm-doc-cur').onchange = function() { onCurrencyChange(this.value); };
       }
 
-      $('adm-pm').onchange = updatePaymentMethod;
-      $('adm-add-row').onclick = () => addRow('', '1', '');
-      $('adm-btn-new').onclick = reset;
-      $('adm-btn-print').onclick = () => window.print();
-      $('adm-btn-download-pdf').onclick = downloadPDF;
-      $('adm-doc-type').onchange = setDocMode;
-      $('adm-div-preset').onchange = updateDivisionPreset;
-      $('adm-bank-preset').onchange = updateBankPreset;
+      if ($('adm-pm')) $('adm-pm').onchange = updatePaymentMethod;
+      if ($('adm-add-row')) $('adm-add-row').onclick = () => addRow('', '1', '');
+      if ($('adm-btn-new')) $('adm-btn-new').onclick = reset;
+      if ($('adm-btn-save-inv')) $('adm-btn-save-inv').onclick = () => saveCurrentDoc(false);
+      if ($('adm-btn-print')) $('adm-btn-print').onclick = () => { saveCurrentDoc(true); window.print(); };
+      if ($('adm-btn-download-pdf')) $('adm-btn-download-pdf').onclick = downloadPDF;
+      if ($('adm-doc-type')) $('adm-doc-type').onchange = setDocMode;
+      if ($('adm-div-preset')) $('adm-div-preset').onchange = updateDivisionPreset;
+      if ($('adm-bank-preset')) $('adm-bank-preset').onchange = updateBankPreset;
 
-      $('adm-toggle-bank').onchange = function() {
-        $('adm-bank-box').style.display = this.checked ? 'block' : 'none';
-      };
+      if ($('adm-toggle-bank')) {
+        $('adm-toggle-bank').onchange = function() {
+          $('adm-bank-box').style.display = this.checked ? 'block' : 'none';
+        };
+      }
 
-      // Initial run: starts clean and empty
+      // History drawer bindings
+      if ($('adm-btn-history')) {
+        $('adm-btn-history').onclick = function() {
+          renderAdmHistory();
+          $('adm-hist-overlay').classList.add('open');
+        };
+      }
+      if ($('adm-hist-close-btn')) {
+        $('adm-hist-close-btn').onclick = function() {
+          $('adm-hist-overlay').classList.remove('open');
+        };
+      }
+      if ($('adm-hist-overlay')) {
+        $('adm-hist-overlay').onclick = function(e) {
+          if (e.target === this) this.classList.remove('open');
+        };
+      }
+      if ($('adm-hist-search-input')) {
+        $('adm-hist-search-input').oninput = renderAdmHistory;
+      }
+      if ($('adm-hist-filter-type')) {
+        $('adm-hist-filter-type').onchange = renderAdmHistory;
+      }
+      if ($('adm-btn-clear-history')) {
+        $('adm-btn-clear-history').onclick = function() {
+          if (!confirm("Are you sure you want to delete ALL saved invoices and receipts?")) return;
+          saveHistory([]);
+          renderAdmHistory();
+        };
+      }
+      if ($('adm-btn-export-history')) {
+        $('adm-btn-export-history').onclick = function() {
+          const data = localStorage.getItem(HIST_KEY) || '[]';
+          const blob = new Blob([data], { type: 'application/json' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'reel-invoices-backup-' + new Date().toISOString().slice(0, 10) + '.json';
+          a.click();
+          URL.revokeObjectURL(url);
+        };
+      }
+
+      // Initial run: starts clean and initializes counter
       reset();
+      updateInvCounter();
     })();
 
 
