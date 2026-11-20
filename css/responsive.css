@@ -47,12 +47,11 @@ body {
   html {
     scroll-behavior: auto;
   }
-  /* Shorter, snappier transitions on mobile */
-  *,
-  *::before,
-  *::after {
-    transition-duration: 0.15s !important;
-    animation-duration: 0.25s !important;
+  /* Snappy tap feel for buttons/links on mobile without altering keyframe animations */
+  button,
+  .btn,
+  a {
+    transition-duration: 0.2s;
   }
 }
 

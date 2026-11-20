@@ -1974,7 +1974,9 @@ section,
   animation: scroll-left 35s linear infinite;
 }
 .partners-track--reverse { animation: scroll-right 30s linear infinite; }
-.partners-carousel:hover .partners-track { animation-play-state: paused; }
+.partners-carousel:hover .partners-track,
+.partners-carousel:active .partners-track,
+.partners-carousel:focus-within .partners-track { animation-play-state: paused; }
 
 @keyframes scroll-left { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @keyframes scroll-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
