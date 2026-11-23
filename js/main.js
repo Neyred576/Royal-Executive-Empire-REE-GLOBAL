@@ -947,17 +947,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const allianceContainer = document.getElementById('dynamic-alliance-container');
     if (allianceContainer) {
       try {
-        // Base strategic partnership brands (all 12 brands)
+        // Base strategic partnership brands (New Brands)
         const basePartnerships = [
-          { name: 'Alessi', image: 'Images/Strategic%20Patnerships/ALESSI.PNG' },
           { name: 'Erolins Properties LTD', image: 'Images/Strategic%20Patnerships/Erolins%20Properties%20LTD.jpeg' },
-          { name: 'Eva Solo', image: 'Images/Strategic%20Patnerships/Eva%20Solo.PNG' },
-          { name: 'FLOS', image: 'Images/Strategic%20Patnerships/FLOS.PNG' },
-          { name: 'HAY', image: 'Images/Strategic%20Patnerships/HAY.PNG' },
-          { name: 'Joseph Joseph', image: 'Images/Strategic%20Patnerships/Joseph%20Joseph.PNG' },
-          { name: 'KLOBER', image: 'Images/Strategic%20Patnerships/KLOBER.PNG' },
-          { name: 'Louis Poulsen', image: 'Images/Strategic%20Patnerships/Louis%20Poulsen.PNG' },
-          { name: 'Magisso', image: 'Images/Strategic%20Patnerships/Magisso.PNG' },
           { name: 'Pedani', image: 'Images/Strategic%20Patnerships/Pedani.jpeg' },
           { name: 'Prese\'s Bag\'s & Shoes', image: 'Images/Strategic%20Patnerships/Prese\'s%20Bag\'s%20&%20Shoes.jpeg' },
           { name: 'Service Connect', image: 'Images/Strategic%20Patnerships/Service%20Connect.jpeg' }
@@ -983,8 +975,14 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         });
 
+        // Ensure marquee has enough items per cycle for seamless animation on all screens (at least 12 items)
+        let displayList = [...allBrands];
+        while (displayList.length < 12) {
+          displayList = displayList.concat(allBrands);
+        }
+
         let htmlStr = '';
-        allBrands.forEach(b => {
+        displayList.forEach(b => {
           let linkHref = 'javascript:void(0)';
           let target = '';
           if (b.linkedBlogId) {
