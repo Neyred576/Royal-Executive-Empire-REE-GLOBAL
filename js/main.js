@@ -241,7 +241,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let touchEndX = 0;
 
   const handleSwipe = () => {
-    if (window.innerWidth > 992) return; // Only handle on mobile
+    // Mobile nav drawer is disabled on mobile — swipe gestures are desktop-only
+    if (window.innerWidth <= 992) return;
     if (!hamburger) return;
 
     const swipeDist = touchEndX - touchStartX;

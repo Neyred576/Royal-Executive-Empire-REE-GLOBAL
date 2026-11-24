@@ -11,16 +11,16 @@
     window.addEventListener('pageshow', function() { window.scrollTo(0, 0); });
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>News &amp; Media | REEL &mdash; Royalty Executive Empire Limited</title>
-  <link rel="icon" type="image/png" href="/Images/BG/reel_logo.png" />
-  <meta name="description" content="Read the latest articles, news, and insights from Royalty Executive Empire Limited (REEL) &mdash; covering luxury, business, technology, and global impact." />
-  <meta name="keywords" content="REEL blog, Royalty Executive Empire Limited news, luxury insights, business articles, Africa innovation" />
+  <title>News &amp; Media Room | REEL &mdash; Royalty Executive Empire Limited</title>
+  <link rel="icon" type="image/png" href="Images/BG/reel_logo.png" />
+  <meta name="description" content="Official News, Media Room, and Executive Insights from Royalty Executive Empire Limited (REEL) &mdash; covering luxury mobility, commercial properties, clean power infrastructure, and African enterprise." />
+  <meta name="keywords" content="REEL newsroom, Royalty Executive Empire Limited press, luxury insights, business articles, African infrastructure, REEL Auto, REEL Power, REEL Properties" />
   <meta name="author" content="Onosedeba Israel Ose" />
   <meta name="robots" content="index, follow" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": ["Organization", "LocalBusiness"],
+    "@type": ["Organization", "NewsMediaOrganization"],
     "name": "Royalty Executive Empire Limited",
     "alternateName": "REEL",
     "url": "https://reelholding.com.ng",
@@ -34,448 +34,1028 @@
     "contactPoint": {
       "@type": "ContactPoint",
       "telephone": ["+2348067029444", "+2349118024521"],
-      "contactType": "customer service",
+      "contactType": "corporate communications",
       "email": "admin@reelholding.com.ng"
-    },
-    "sameAs": [
-      "https://web.facebook.com/ReelHolding/",
-      "https://x.com/ReelHolding",
-      "https://www.instagram.com/reelholding/",
-      "https://linkedin.com/company/reelholding",
-      "https://www.youtube.com/@ReelHolding",
-      "https://www.tiktok.com/@reelholding"
-    ]
+    }
   }
   </script>
-  <meta property="og:title" content="Blog &amp; News | REEL" />
-  <meta property="og:description" content="Latest trends, inspiration, and innovations from Royalty Executive Empire Limited and our global partners." />
+  <meta property="og:title" content="News &amp; Media Room | REEL" />
+  <meta property="og:description" content="Official Press Releases, Executive Thought Leadership, and Media Assets from Royalty Executive Empire Limited." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="Images/BG/reel_logo.png" />
+  <meta property="og:image" content="https://reelholding.com.ng/Images/BG/reel_logo.png" />
   <meta name="theme-color" content="#D4AF37" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=13" />
-  <link rel="stylesheet" href="css/responsive.css?v=13" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css?v=14" />
+  <link rel="stylesheet" href="css/responsive.css?v=14" />
+
   <style>
-    /* ── Hero ── */
-    .blog-hero {
-      position: relative;
-      padding: 85px 0 16px;
-      overflow: hidden;
-      background-color: var(--black-900);
+    /* ══════════════════════════════════════════════════════════════
+       UNIFIED MASTER DESIGN STYLES FOR REEL NEWS & MEDIA
+    ══════════════════════════════════════════════════════════════ */
+    :root {
+      --gold-primary: #D4AF37;
+      --gold-glow: 0 0 24px rgba(212, 175, 55, 0.2);
+      --gold-border: rgba(212, 175, 55, 0.25);
+      --obsidian-bg: #09090b;
+      --card-bg: rgba(18, 18, 20, 0.85);
+      --card-hover-border: rgba(212, 175, 55, 0.6);
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-quote: 'Cormorant Garamond', Georgia, serif;
+    }
+
+    body {
+      background-color: var(--obsidian-bg);
+      color: #ffffff;
+      font-family: var(--font-body, 'Outfit', sans-serif);
+      overflow-x: hidden;
+    }
+
+    /* ── Editorial Masthead (Clean, No Live Wire) ── */
+    .editorial-masthead {
+      text-align: center;
+      padding: 96px 0 24px;
       border-bottom: 1px solid var(--gold-border);
+      margin-bottom: 32px;
+      background: radial-gradient(ellipse at 50% 0%, rgba(212, 175, 55, 0.08) 0%, transparent 60%);
     }
-    .blog-hero::after {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(to right, rgba(10, 10, 10, 0.72) 0%, rgba(10, 10, 10, 0.35) 45%, rgba(10, 10, 10, 0.65) 100%),
-                  linear-gradient(rgba(10, 10, 10, 0.25), rgba(10, 10, 10, 0.7)),
-                  url('Images/blog_hero_bg.webp') center center / cover no-repeat;
-      animation: heroBgZoom 25s ease-in-out infinite alternate;
-      z-index: 0; will-change: transform;
+    .masthead-meta-bar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-weight: 800;
+      color: var(--gold-primary);
+      margin-bottom: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding-bottom: 8px;
     }
-    .blog-hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 5% 50%, rgba(212,175,55,0.12) 0%, transparent 40%);
-      pointer-events: none;
-      z-index: 1;
-    }
-    .blog-hero-inner { position: relative; z-index: 2; }
-    .blog-hero-eyebrow {
-      display: flex; align-items: center; gap: 10px;
-      margin-bottom: 6px;
-      font-size: 0.68rem; font-weight: 700; letter-spacing: 2.5px;
-      text-transform: uppercase; color: var(--gold-300);
-    }
-    .blog-hero-eyebrow::before {
-      content: ''; display: block;
-      width: 28px; height: 1px;
-      background: var(--gold-gradient);
-    }
-    .blog-hero-title {
-      font-family: var(--font-display);
-      font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+    .masthead-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 4.8vw, 3.8rem);
+      font-weight: 700;
+      letter-spacing: -0.5px;
       color: #fff;
+      text-transform: uppercase;
       line-height: 1.1;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
-    .blog-hero-title span { color: var(--gold-300); }
-    .blog-hero-desc {
-      color: var(--w50);
-      font-size: 0.88rem;
-      max-width: 540px;
-      line-height: 1.5;
-    }
-
-    /* ── Filter Bar ── */
-    .filter-bar {
-      display: flex; align-items: center; gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 20px;
-    }
-    .filter-chip {
-      padding: 6px 18px;
-      border-radius: 999px;
-      border: 1px solid var(--gold-border);
-      background: transparent;
-      color: var(--w60);
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      cursor: pointer;
-      transition: all 0.25s;
-    }
-    .filter-chip:hover, .filter-chip.active {
+    .masthead-title span {
       background: var(--gold-gradient);
-      color: var(--black-900);
-      border-color: transparent;
-      box-shadow: 0 4px 16px rgba(212,175,55,0.3);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .masthead-sub {
+      font-family: var(--font-quote);
+      font-size: 1.15rem;
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.75);
+      letter-spacing: 1px;
     }
 
-    /* ── Layout ── */
-    .blog-page-layout {
+    /* ── Hero Power Combo (Bento + Cover Story Split) ── */
+    .hero-combo-grid {
       display: grid;
-      grid-template-columns: 1fr 320px;
-      gap: 40px;
-      align-items: start;
+      grid-template-columns: 1.65fr 1fr;
+      gap: 24px;
+      margin-bottom: 56px;
     }
-
-    /* ── Featured Card (Medium Size, 2-Column Split) ── */
-    .blog-featured {
-      position: relative;
-      border-radius: var(--radius-xl);
-      overflow: hidden;
-      cursor: pointer;
-      margin-bottom: 28px;
+    .hero-cover-story {
+      background: var(--card-bg);
       border: 1px solid var(--gold-border);
-      background: rgba(255, 255, 255, 0.02);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
       transition: all 0.35s ease;
-      display: grid;
-      grid-template-columns: 310px 1fr;
-      align-items: stretch;
-      min-height: 280px;
-      max-height: 330px;
+      cursor: pointer;
+      text-decoration: none;
     }
-    .blog-featured:hover {
-      border-color: var(--gold-300);
+    .hero-cover-story:hover {
+      border-color: var(--gold-primary);
       box-shadow: var(--gold-glow);
       transform: translateY(-3px);
     }
-    .blog-featured-media {
+
+    /* Lead Cover Media Box with Ambient Blur Backdrop (NO BLACK CORNERS) */
+    .cover-media-box {
+      height: 350px;
       position: relative;
-      background: #0a0a0a;
       overflow: hidden;
+      background: #000;
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 100%;
-      min-height: 280px;
     }
-    .blog-featured-media-blur {
+    .cover-media-blur {
       position: absolute;
-      inset: -15px;
+      inset: -25px;
       background-size: cover;
       background-position: center;
-      filter: blur(20px);
-      opacity: 0.28;
+      filter: blur(28px) brightness(0.62);
+      transform: scale(1.15);
       pointer-events: none;
+      z-index: 0;
     }
-    .blog-featured-img {
+    .cover-media-img {
       position: relative;
       z-index: 1;
       width: 100%;
       height: 100%;
-      max-height: 320px;
       object-fit: contain;
-      display: block;
-      transition: transform 0.6s cubic-bezier(0.2,0.8,0.2,1);
+      transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
-    .blog-featured:hover .blog-featured-img {
+    .hero-cover-story:hover .cover-media-img {
       transform: scale(1.03);
     }
-    .blog-featured-body {
-      padding: 22px 26px;
-      background: rgba(14, 14, 14, 0.98);
-      border-left: 1px solid rgba(212, 175, 55, 0.18);
+    .cover-badge {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      background: rgba(0, 0, 0, 0.85);
+      border: 1px solid var(--gold-primary);
+      color: var(--gold-primary);
+      padding: 5px 14px;
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      border-radius: 999px;
+      z-index: 2;
+    }
+    .cover-overlay-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(9, 9, 11, 0.95) 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+    .cover-body {
+      padding: 28px 32px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      position: relative;
+      z-index: 2;
+    }
+    .cover-category {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold-primary);
+      margin-bottom: 8px;
+    }
+    .cover-headline {
+      font-family: var(--font-serif);
+      font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+      line-height: 1.25;
+      color: #fff;
+      margin-bottom: 12px;
+      transition: color 0.25s;
+    }
+    .hero-cover-story:hover .cover-headline {
+      color: var(--gold-primary);
+    }
+    .cover-excerpt {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.65);
+      line-height: 1.55;
+      margin-bottom: 20px;
+    }
+    .cover-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 14px;
+      margin-top: auto;
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.45);
+    }
+    .cover-author {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #fff;
+      font-weight: 600;
+    }
+    .cover-author-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid var(--gold-primary);
+    }
+    .cover-read-cta {
+      color: var(--gold-primary);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Right Stack */
+    .hero-side-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      justify-content: flex-start;
+    }
+
+    /* Video Spotlight Bento Card (YouTube & Orientation Responsive) */
+    .side-video-card {
+      background: linear-gradient(135deg, rgba(20, 20, 25, 0.95) 0%, rgba(10, 10, 12, 0.95) 100%);
+      border: 1px solid var(--gold-border);
+      border-radius: var(--radius-lg);
+      padding: 20px 22px;
+      height: 235px;
+      box-sizing: border-box;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      cursor: default;
+      overflow: hidden;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      flex-shrink: 0;
+      /* NO blur background — clean thumbnail display */
+      background-size: cover;
+      background-position: center;
+    }
+    .side-video-card.has-video {
+      cursor: pointer;
+    }
+    .side-video-card.has-video:hover {
+      border-color: var(--gold-primary);
+      box-shadow: var(--gold-glow);
+    }
+    .reel-spotlight-logo-wrap {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .reel-spotlight-logo {
+      max-width: 140px;
+      max-height: 90px;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 15px rgba(212, 175, 55, 0.25));
+      opacity: 0.85;
+      transition: all 0.3s ease;
+    }
+    /* Blur element kept in DOM but permanently hidden — no blur on spotlight card */
+    .video-card-bg-blur {
+      display: none !important;
+    }
+    .play-btn-circle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.60);
+      border: 2px solid var(--gold-primary);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold-primary);
+      transition: all 0.3s ease;
+      z-index: 2;
+    }
+    .side-video-card.has-video:hover .play-btn-circle {
+      background: var(--gold-gradient);
+      color: #000;
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+    .video-card-tag {
+      font-size: 0.68rem;
+      font-weight: 800;
+      color: var(--gold-primary);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
       position: relative;
       z-index: 2;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
+      align-items: center;
+      gap: 6px;
     }
-    .blog-featured-tag {
-      align-self: flex-start;
-      display: inline-block;
-      padding: 3px 12px;
-      border-radius: 999px;
-      background: var(--gold-fill);
+    .video-card-title {
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.35;
+      position: relative;
+      z-index: 2;
+      display: none;
+    }
+
+    /* ── Dedicated Strategic Alliances Continuous Wheel Showcase (Compact) ── */
+    .side-alliances-card {
+      background: linear-gradient(135deg, rgba(18, 18, 22, 0.95) 0%, rgba(10, 10, 12, 0.95) 100%);
       border: 1px solid var(--gold-border);
-      color: var(--gold-300);
-      font-size: 0.65rem;
+      border-radius: var(--radius-lg);
+      padding: 12px 16px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      height: 185px;
+      box-sizing: border-box;
+      flex-shrink: 0;
+    }
+    .alliances-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+      flex-shrink: 0;
+    }
+    .alliances-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .alliances-title {
+      font-size: 0.66rem;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--gold-primary);
+    }
+    .alliances-status-pill {
+      font-size: 0.60rem;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: var(--gold-primary);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      padding: 2px 7px;
+      border-radius: 20px;
+    }
+    .alliances-status-pill .pill-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--gold-primary);
+      box-shadow: 0 0 6px var(--gold-primary);
+      animation: alliancePillPulse 2s infinite ease-in-out;
+    }
+    @keyframes alliancePillPulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
+    }
+    .alliances-vertical-viewport {
+      height: 125px;
+      overflow: hidden;
+      position: relative;
+      mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+      flex-shrink: 0;
+    }
+    .alliances-wheel-track {
+      display: flex;
+      flex-direction: column;
+      animation: allianceWheelScroll 12s linear infinite;
+      will-change: transform;
+    }
+    @keyframes allianceWheelScroll {
+      0% {
+        transform: translateY(-50%);
+      }
+      100% {
+        transform: translateY(0%);
+      }
+    }
+    .alliance-wheel-group {
+      display: flex;
+      flex-direction: column;
+    }
+    .alliance-logo-card {
+      height: 46px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(212, 175, 55, 0.16);
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5px 16px;
+      margin-bottom: 8px;
+      box-sizing: border-box;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(8px);
+      flex-shrink: 0;
+    }
+    .alliance-logo-card:hover {
+      border-color: var(--gold-primary);
+      background: rgba(212, 175, 55, 0.08);
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.12);
+    }
+    .alliance-logo-card img {
+      max-height: 28px;
+      max-width: 100%;
+      object-fit: contain;
+      filter: brightness(0.95) contrast(1.05);
+      border-radius: 3px;
+    }
+    .alliance-logo-card img {
+      max-height: 40px;
+      max-width: 100%;
+      object-fit: contain;
+      filter: brightness(0.95) contrast(1.05);
+      border-radius: 4px;
+    }
+
+    /* ── The Founder's Journal ── */
+    .founder-journal-section {
+      background: linear-gradient(135deg, #101012 0%, #181510 100%);
+      border: 1.5px solid var(--gold-primary);
+      border-radius: var(--radius-xl);
+      padding: 38px 44px;
+      margin-bottom: 56px;
+      display: grid;
+      grid-template-columns: 210px 1fr;
+      gap: 36px;
+      align-items: center;
+      position: relative;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
+    }
+    .founder-journal-section::before {
+      content: '“';
+      position: absolute;
+      top: 10px;
+      right: 36px;
+      font-family: var(--font-quote);
+      font-size: 8rem;
+      color: rgba(212, 175, 55, 0.08);
+      line-height: 1;
+      pointer-events: none;
+    }
+    .founder-pic-box {
+      width: 200px;
+      height: 250px;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 2px solid var(--gold-border);
+      position: relative;
+    }
+    .founder-pic {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+    .founder-badge-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(10, 10, 10, 0.95);
+      text-align: center;
+      padding: 5px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--gold-primary);
+      border-top: 1px solid var(--gold-border);
+    }
+    .founder-text-box {
+      display: flex;
+      flex-direction: column;
+    }
+    .founder-tag {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--gold-primary);
+      margin-bottom: 8px;
+    }
+    .founder-quote {
+      font-family: var(--font-quote);
+      font-size: clamp(1.25rem, 1.8vw, 1.55rem);
+      font-style: italic;
+      line-height: 1.45;
+      color: #fff;
+      margin-bottom: 14px;
+    }
+    .founder-article-title {
+      font-size: 0.96rem;
+      font-weight: 700;
+      color: #fce79a;
+      margin-bottom: 6px;
+    }
+    .founder-article-desc {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.65);
+      line-height: 1.55;
+      margin-bottom: 18px;
+    }
+    .btn-gold-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold-gradient);
+      color: #0b0b0b;
+      font-weight: 700;
+      font-size: 0.82rem;
+      padding: 9px 22px;
+      border-radius: 999px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      align-self: flex-start;
+      transition: all 0.25s;
+    }
+    .btn-gold-action:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 18px rgba(212, 175, 55, 0.4);
+    }
+
+    /* ── Section Dividers & Headers ── */
+    .section-headline-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 22px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 12px;
+    }
+    .section-headline-title {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-headline-title::before {
+      content: '';
+      display: block;
+      width: 10px;
+      height: 10px;
+      background: var(--gold-primary);
+      rotate: 45deg;
+    }
+
+    /* ── Division Filters Bar ── */
+    .division-filter-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 26px;
+    }
+    .div-chip {
+      padding: 7px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--gold-border);
+      background: transparent;
+      color: rgba(255, 255, 255, 0.65);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: all 0.25s;
+      font-family: inherit;
+    }
+    .div-chip:hover, .div-chip.active {
+      background: var(--gold-gradient);
+      color: #0b0b0b;
+      border-color: transparent;
+      box-shadow: 0 4px 16px rgba(212, 175, 55, 0.3);
+    }
+
+    /* ── Dynamic Articles Grid with Blur Backdrop (NO BLACK CORNERS) ── */
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+    .article-magazine-card {
+      background: var(--card-bg);
+      border: 1px solid var(--gold-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .article-magazine-card:hover {
+      border-color: var(--gold-primary);
+      box-shadow: var(--gold-glow);
+      transform: translateY(-4px);
+    }
+    .card-thumb-wrap {
+      height: 220px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #000;
+    }
+    .card-thumb-blur {
+      position: absolute;
+      inset: -20px;
+      background-size: cover;
+      background-position: center;
+      filter: blur(25px) brightness(0.6);
+      transform: scale(1.2);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .card-thumb-img {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .article-magazine-card:hover .card-thumb-img {
+      transform: scale(1.04);
+    }
+    .card-body-wrap {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      position: relative;
+      z-index: 2;
+    }
+    .card-tag {
+      font-size: 0.68rem;
       font-weight: 700;
       letter-spacing: 1.5px;
       text-transform: uppercase;
+      color: var(--gold-primary);
       margin-bottom: 8px;
     }
-    .blog-featured-title {
-      font-family: var(--font-display);
-      font-size: clamp(1.15rem, 1.8vw, 1.45rem);
-      font-weight: 800 !important;
+    .card-title {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 700;
+      line-height: 1.35;
       color: #fff;
-      line-height: 1.3;
       margin-bottom: 8px;
-      transition: color 0.3s;
+      transition: color 0.2s;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
-    .blog-featured:hover .blog-featured-title {
-      color: var(--gold-300);
+    .article-magazine-card:hover .card-title {
+      color: var(--gold-primary);
     }
-    .blog-featured-excerpt {
+    .card-excerpt {
       font-size: 0.82rem;
-      color: var(--w60);
-      line-height: 1.55;
+      color: rgba(255, 255, 255, 0.6);
+      line-height: 1.5;
       margin-bottom: 14px;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
-    .blog-featured-footer {
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: 12px;
+      margin-top: auto;
+      font-size: 0.76rem;
+      color: rgba(255, 255, 255, 0.45);
+    }
+    .card-read-link {
+      color: var(--gold-primary);
+      font-weight: 700;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      margin-top: auto;
-      padding-top: 10px;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-      font-size: 0.78rem;
-      color: rgba(255, 255, 255, 0.55);
+      gap: 4px;
     }
-    .blog-featured-read {
+
+    /* ── Official Press Releases Table ── */
+    .press-releases-section {
+      margin-bottom: 60px;
+    }
+    .press-table-wrap {
+      background: var(--card-bg);
+      border: 1px solid var(--gold-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .press-row {
+      display: grid;
+      grid-template-columns: 110px 140px 1fr 140px;
+      align-items: center;
+      padding: 16px 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      transition: background-color 0.2s;
+    }
+    .press-row:last-child { border-bottom: none; }
+    .press-row:hover { background-color: rgba(212, 175, 55, 0.04); }
+    .press-date-cell { font-size: 0.78rem; color: rgba(255, 255, 255, 0.45); font-weight: 500; }
+    .press-badge-cell {
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--gold-primary);
+      background: rgba(212, 175, 55, 0.1);
+      padding: 3px 8px;
+      border-radius: 4px;
+      width: fit-content;
+    }
+    .press-title-cell {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #fff;
+      padding-right: 20px;
+    }
+    .press-pdf-btn {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      color: var(--gold-300);
-      font-weight: 700;
-      font-size: 0.8rem;
-      transition: gap 0.2s;
-    }
-    .blog-featured:hover .blog-featured-read {
-      gap: 10px;
-    }
-    .blog-featured-label {
-      font-size: 0.65rem;
-      font-weight: 800;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--gold-300);
-      margin-bottom: 10px;
-      display: flex; align-items: center; gap: 8px;
-    }
-    .blog-featured-label::before {
-      content: '';
-      width: 20px; height: 1px;
-      background: var(--gold-300);
-    }
-
-    @media (max-width: 900px) {
-      .blog-featured {
-        grid-template-columns: 1fr;
-        max-height: none;
-      }
-      .blog-featured-media {
-        min-height: 220px;
-        max-height: 280px;
-      }
-      .blog-featured-body {
-        border-left: none;
-        border-top: 1px solid rgba(212, 175, 55, 0.18);
-        padding: 20px;
-      }
-    }
-
-    /* ── Blog Card ── */
-    .blog-list { display: flex; flex-direction: column; gap: 16px; }
-    .blog-card {
-      display: grid;
-      grid-template-columns: 140px 1fr;
-      gap: 0;
-      background: rgba(255,255,255,0.025);
-      border: 1px solid var(--gold-border);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      cursor: pointer;
-      transition: all 0.3s;
-      text-decoration: none;
-    }
-    .blog-card:hover {
-      border-color: var(--gold-300);
-      box-shadow: var(--gold-glow-sm);
-      transform: translateX(4px);
-    }
-    .blog-card-thumb {
-      background: var(--black-700);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 2.2rem;
-      min-height: 130px;
-      overflow: hidden;
-      position: relative;
-    }
-    .blog-card-thumb img {
-      width: 100%; height: 100%;
-      object-fit: contain;
-      background: #08090d;
-      position: absolute; inset: 0;
-      transition: transform 0.5s ease;
-    }
-    .blog-card:hover .blog-card-thumb img { transform: scale(1.06); }
-    .blog-card-body {
-      padding: 16px 20px;
-      display: flex; flex-direction: column; justify-content: center;
-    }
-    .blog-card-tag {
-      font-size: 0.62rem;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--gold-300);
-      margin-bottom: 6px;
-    }
-    .blog-card-title {
-      font-family: var(--font-display);
-      font-size: 1.05rem;
-      font-weight: 800 !important;
-      white-space: nowrap !important;
-      overflow: hidden !important;
-      text-overflow: ellipsis !important;
-      color: #fff;
-      line-height: 1.35;
-      margin-bottom: 6px;
-      transition: color 0.3s;
-    }
-    .blog-card:hover .blog-card-title { color: var(--gold-300); }
-    .blog-card-excerpt {
-      font-size: 0.8rem;
-      color: var(--w50);
-      line-height: 1.5;
-      margin-bottom: 8px;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-    .blog-card-date { font-size: 0.72rem; color: var(--w40); }
-
-    /* ── Sidebar ── */
-    .blog-sidebar { position: sticky; top: 100px; }
-    .sidebar-widget {
-      background: rgba(255,255,255,0.025);
-      border: 1px solid var(--gold-border);
-      border-radius: var(--radius-lg);
-      padding: 28px;
-      margin-bottom: 28px;
-    }
-    .widget-title {
       font-size: 0.72rem;
-      font-weight: 800;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: var(--gold-300);
-      margin-bottom: 20px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--gold-border);
-    }
-    .recent-post { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 18px; padding-bottom: 18px; border-bottom: 1px solid rgba(255,255,255,0.04); }
-    .recent-post:last-child { margin-bottom: 0; padding-bottom: 0; border: none; }
-    .rp-thumb {
-      width: 58px; height: 58px;
-      border-radius: var(--radius-sm);
-      background: var(--black-700);
+      font-weight: 700;
+      color: var(--gold-primary);
+      text-decoration: none;
       border: 1px solid var(--gold-border);
-      flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.4rem; overflow: hidden; position: relative;
-    }
-    .rp-thumb img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
-    .rp-text a {
-      font-size: 0.83rem; color: var(--w70); line-height: 1.4;
-      transition: color 0.3s; text-decoration: none;
-    }
-    .rp-text a:hover { color: var(--gold-300); }
-    .rp-date { font-size: 0.73rem; color: var(--w40); margin-top: 4px; }
-
-    .cat-list { display: flex; flex-wrap: wrap; gap: 8px; }
-    .cat-chip {
-      padding: 6px 16px;
-      border-radius: 999px;
-      border: 1px solid var(--gold-border);
-      color: var(--w60);
-      font-size: 0.78rem;
-      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 4px;
+      transition: all 0.2s;
+      justify-self: end;
       cursor: pointer;
-      transition: all 0.25s;
-      background: transparent;
     }
-    .cat-chip:hover { background: var(--gold-fill); color: var(--gold-300); }
-
-    /* ── Skeleton ── */
-    .skeleton {
-      background: linear-gradient(90deg, var(--black-700) 25%, rgba(255,255,255,0.04) 50%, var(--black-700) 75%);
-      background-size: 200% 100%;
-      animation: skeletonLoading 1.5s infinite;
-      border-radius: 6px;
+    .press-pdf-btn:hover {
+      background: var(--gold-primary);
+      color: #0b0b0b;
     }
-    @keyframes skeletonLoading { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
 
-    .skeleton-card {
-      display: grid; grid-template-columns: 160px 1fr;
-      gap: 0;
+    /* ── Digital Press Kit (Downloadable Media Assets) ── */
+    .media-kit-box {
+      background: linear-gradient(180deg, rgba(20, 20, 24, 0.7) 0%, rgba(10, 10, 12, 0.95) 100%);
       border: 1px solid var(--gold-border);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
+      border-radius: var(--radius-xl);
+      padding: 36px 40px;
+      margin-bottom: 60px;
+    }
+    .media-kit-header {
       margin-bottom: 24px;
     }
-    .sk-thumb { min-height: 160px; }
-    .sk-body { padding: 22px 24px; display: flex; flex-direction: column; gap: 10px; justify-content: center; }
+    .media-kit-title {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .media-kit-desc {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.65);
+    }
+    .kit-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .kit-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.25s;
+    }
+    .kit-card:hover {
+      border-color: var(--gold-primary);
+      background: rgba(212, 175, 55, 0.03);
+    }
+    .kit-icon {
+      font-size: 1.7rem;
+      color: var(--gold-primary);
+      margin-bottom: 12px;
+    }
+    .kit-name {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .kit-info {
+      font-size: 0.76rem;
+      color: rgba(255, 255, 255, 0.45);
+      margin-bottom: 16px;
+      line-height: 1.4;
+    }
+    .btn-kit-download {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 1px solid var(--gold-primary);
+      background: rgba(0, 0, 0, 0.5);
+      color: var(--gold-primary);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 8px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.25s;
+      text-decoration: none;
+    }
+    .btn-kit-download:hover {
+      background: var(--gold-primary);
+      color: #0b0b0b;
+    }
 
-    /* ── Empty State ── */
-    .empty-state {
-      text-align: center; padding: 80px 40px;
-      border: 1px dashed rgba(212,175,55,0.2);
+    /* ── PR & Media Inquiries Desk ── */
+    .pr-inquiry-box {
+      background: linear-gradient(135deg, #101012 0%, #17140e 100%);
+      border: 1.5px solid var(--gold-primary);
       border-radius: var(--radius-xl);
+      padding: 38px 44px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      align-items: center;
+      margin-bottom: 70px;
     }
-    .empty-state svg { width: 48px; height: 48px; color: rgba(212,175,55,0.3); margin: 0 auto 16px; display: block; }
-    .empty-state h3 { font-family: var(--font-display); font-size: 1.6rem; color: #fff; margin-bottom: 10px; }
-    .empty-state p { color: var(--w40); font-size: 0.9rem; }
-
-    /* ── Social links ── */
-    .social-link {
-      display: flex; align-items: center; gap: 12px;
-      color: var(--w70); font-size: 0.9rem; font-weight: 500;
-      text-decoration: none; transition: color 0.3s; margin-bottom: 14px;
+    .pr-inquiry-info h3 {
+      font-family: var(--font-serif);
+      font-size: 1.55rem;
+      color: #fff;
+      margin-bottom: 8px;
     }
-    .social-link:last-child { margin-bottom: 0; }
-    .social-link:hover { color: var(--gold-300); }
-    .social-icon {
-      width: 36px; height: 36px;
-      background: var(--black-700);
+    .pr-inquiry-info p {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.65);
+      line-height: 1.55;
+      margin-bottom: 20px;
+    }
+    .pr-lines-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .pr-line-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.84rem;
+      color: #fff;
+    }
+    .pr-line-item svg {
+      color: var(--gold-primary);
+      flex-shrink: 0;
+    }
+    .pr-form-card {
+      background: rgba(0, 0, 0, 0.45);
       border: 1px solid var(--gold-border);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      color: var(--gold-300); flex-shrink: 0;
+      border-radius: var(--radius-lg);
+      padding: 24px;
+    }
+    .pr-form-card h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #fce79a;
+      margin-bottom: 12px;
+    }
+    .pr-input-field {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius-sm);
+      padding: 9px 12px;
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.82rem;
+      margin-bottom: 10px;
+    }
+    .pr-input-field:focus {
+      outline: none;
+      border-color: var(--gold-primary);
     }
 
-    @media (max-width: 1100px) { .blog-page-layout { grid-template-columns: 1fr; } .blog-sidebar { position: static; } }
-    @media (max-width: 640px) { 
-      .blog-card { grid-template-columns: 1fr; } 
-      .blog-card-thumb { min-height: 220px; height: 220px; } 
-      .blog-featured-img { height: 220px; }
-      .blog-featured-title { font-size: 1.6rem; }
+    /* ── Responsive Rules ── */
+    @media (max-width: 1024px) {
+      .hero-combo-grid { grid-template-columns: 1fr; }
+      .founder-journal-section { grid-template-columns: 1fr; text-align: center; }
+      .founder-pic-box { margin: 0 auto; }
+      .articles-grid { grid-template-columns: repeat(2, 1fr); }
+      .kit-cards-grid { grid-template-columns: 1fr; }
+      .pr-inquiry-box { grid-template-columns: 1fr; }
+      .press-row { grid-template-columns: 90px 110px 1fr 110px; }
+    }
+    @media (max-width: 640px) {
+      .articles-grid { grid-template-columns: 1fr; }
+      .press-row { grid-template-columns: 1fr; gap: 6px; }
+      .cover-media-box { height: 260px; }
+      .founder-journal-section, .pr-inquiry-box, .media-kit-box { padding: 24px; }
+    }
+
+    /* ── Video Modal (Supports Landscape 16:9 & Portrait 9:16) ── */
+    .video-modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.90);
+      z-index: 99999;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      box-sizing: border-box;
+    }
+    .video-modal-backdrop.open { display: flex; }
+
+    /* ── Landscape box: max 720px wide, never taller than 90vh ── */
+    .video-modal-box {
+      width: 100%;
+      max-width: 720px;
+      max-height: 90vh;
+      background: #0d0d0f;
+      border: 1.5px solid var(--gold-primary);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 10px 50px rgba(0, 0, 0, 0.9);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Portrait box: narrow, fits phone-sized Shorts ── */
+    .video-modal-box.portrait {
+      max-width: 340px;
+      /* height driven by viewport so it doesn't overflow */
+    }
+
+    .video-modal-header {
+      padding: 10px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--gold-border);
+      background: #111;
+      flex-shrink: 0;
+    }
+    .video-modal-close {
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-size: 1.4rem;
+      cursor: pointer;
+      line-height: 1;
+      padding: 2px 6px;
+    }
+
+    /* ── Landscape: 16:9 ratio, capped to remaining vh ── */
+    .video-modal-container {
+      position: relative;
+      width: 100%;
+      background: #000;
+      flex: 1;
+      min-height: 0;
+    }
+    .video-modal-container.landscape {
+      /* Use aspect-ratio so it stays 16:9, but cap height */
+      aspect-ratio: 16 / 9;
+      max-height: calc(90vh - 48px); /* subtract header height */
+    }
+    /* ── Portrait: 9:16 ratio, cap by viewport height ── */
+    .video-modal-container.portrait {
+      aspect-ratio: 9 / 16;
+      max-height: calc(90vh - 48px);
+    }
+    .video-modal-container iframe,
+    .video-modal-container video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
     }
   </style>
 
@@ -491,7 +1071,7 @@
   <div class="nav-inner">
     <a href="index.html" class="nav-logo" aria-label="REEL Home">
       <div class="nav-logo-img-wrap">
-        <img loading="eager" fetchpriority="high" src="Images/BG/reel_logo.png" alt="REEL Logo" class="nav-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" fetchpriority="high">
+        <img loading="eager" fetchpriority="high" src="Images/BG/reel_logo.png" alt="REEL Logo" class="nav-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="nav-logo-crown" style="display:none">&#9884;</div>
       </div>
       <div class="nav-logo-text">
@@ -501,10 +1081,24 @@
     </a>
     <ul class="nav-links" id="nav-links" role="list">
       <li><a href="index.html#divisions" class="nav-link">Our Divisions</a></li>
+      <li><a href="leadership.html" class="nav-link">Leadership</a></li>
     </ul>
     <div class="nav-actions">
+      <a href="blog.html" class="nav-icon nav-news-icon-btn active" id="mobile-nav-news-btn" aria-label="News &amp; Media" title="News &amp; Media">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#D4AF37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4v16a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7.5L16.5 2H6a2 2 0 0 0-2 2Z"></path>
+          <polyline points="16 2 16 8 22 8"></polyline>
+          <polygon points="10 12 10 16 14 14" fill="#D4AF37"></polygon>
+          <line x1="8" y1="18" x2="16" y2="18"></line>
+        </svg>
+      </a>
       <a href="blog.html" class="nav-btn-news active">News &amp; Media</a>
       <a href="contact.html" class="nav-btn-contact">Contact Us</a>
+      <a href="contact.html" class="nav-icon nav-contact-icon-btn" id="mobile-nav-contact-btn" aria-label="Contact Us" title="Contact Us">
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#D4AF37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+        </svg>
+      </a>
     </div>
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
       <span class="ham-line"></span><span class="ham-line"></span><span class="ham-line"></span>
@@ -513,100 +1107,315 @@
   <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
 </nav>
 
-<!-- HERO -->
-<section class="blog-hero">
-  <div class="container blog-hero-inner reveal-up">
-    <div class="blog-hero-eyebrow">REEL Insights</div>
-    <h1 class="blog-hero-title">REEL <span>News &amp; Media</span></h1>
-    <p class="blog-hero-desc">Latest trends, inspiration, and innovations from Royalty Executive Empire Limited and our global partners.</p>
-  </div>
-</section>
-
-<!-- MAIN CONTENT -->
-<section class="section section--dark" style="padding: 18px 0 80px;">
+<!-- 02. EDITORIAL MASTHEAD (Live Wire removed, Clean Top Title) -->
+<header class="editorial-masthead">
   <div class="container">
-    <!-- Filter chips -->
-    <div class="filter-bar" id="filter-bar">
-      <button class="filter-chip active" data-cat="all">All Insights</button>
-      <button class="filter-chip" data-cat="REEL Properties">REEL Properties</button>
-      <button class="filter-chip" data-cat="Technology">Technology &amp; Hardware</button>
-      <button class="filter-chip" data-cat="REEL Power">REEL Power</button>
-      <button class="filter-chip" data-cat="REEL Branding">Branding &amp; Identity</button>
-      <button class="filter-chip" data-cat="REEL Business">Business &amp; Advisory</button>
-      <button class="filter-chip" data-cat="Executive Lifestyle">Executive Lifestyle</button>
+    <div class="masthead-meta-bar">
+      <span>ROYALTY EXECUTIVE EMPIRE LIMITED</span>
+    </div>
+    <h1 class="masthead-title">The REEL <span>Chronicle</span></h1>
+    <div class="masthead-sub">Official Dispatches on Imperial Infrastructure, Sovereign Mobility, Clean Power &amp; African Enterprise</div>
+  </div>
+</header>
+
+<!-- MAIN CONTENT CONTAINER -->
+<div class="container">
+
+  <!-- 03. HERO POWER COMBO: MAGAZINE COVER (LEFT) + BENTO REELS & ALLIANCES (RIGHT) -->
+  <section class="hero-combo-grid">
+    <!-- Left 60%: Dynamic Cover Story with Ambient Blur Backdrop -->
+    <div id="featured-article-wrap">
+      <!-- Fallback / Initial Static Luxury Cover Story -->
+      <a href="article.html" class="hero-cover-story">
+        <div class="cover-media-box">
+          <div class="cover-media-blur" style="background-image: url('Images/real_estate_hero.webp');"></div>
+          <img src="Images/real_estate_hero.webp" alt="REEL Architecture &amp; Properties" class="cover-media-img" onerror="this.src='Images/BG/reel_logo.png'" />
+          <div class="cover-overlay-gradient"></div>
+          <span class="cover-badge">Lead Cover Story &bull; 6 Min Read</span>
+        </div>
+        <div class="cover-body">
+          <div class="cover-category">Prime Architecture &bull; REEL Properties</div>
+          <h2 class="cover-headline">The Architectural Renaissance: How REEL is Shaping Prime Urban Enclaves in Lagos</h2>
+          <p class="cover-excerpt">
+            In an era defined by transient trends, true luxury is rooted in permanence. An in-depth analysis of how REEL Properties balances timeless classical architecture with sustainable modern engineering across West Africa.
+          </p>
+          <div class="cover-meta-row">
+            <div class="cover-author">
+              <img src="Images/Prince Ose/About/DSC_4985 copy.webp" alt="Israel Ose" class="cover-author-avatar" onerror="this.src='Images/BG/reel_logo.png'" />
+              <span>Israel Ose &bull; Founder &amp; Executive Chairman</span>
+            </div>
+            <span class="cover-read-cta">Read Cover Story &rarr;</span>
+          </div>
+        </div>
+      </a>
     </div>
 
-    <div class="blog-page-layout">
-      <!-- Main Content -->
-      <main>
-        <!-- Featured article (dynamically filled) -->
-        <div id="featured-article-wrap"></div>
-        <!-- Blog Cards -->
-        <div class="blog-list" id="blog-list">
-          <!-- Skeletons -->
-          <div class="skeleton-card"><div class="skeleton sk-thumb"></div><div class="sk-body"><div class="skeleton" style="height:12px;width:60px"></div><div class="skeleton" style="height:20px;width:85%"></div><div class="skeleton" style="height:14px;width:100%"></div><div class="skeleton" style="height:14px;width:70%"></div></div></div>
-          <div class="skeleton-card"><div class="skeleton sk-thumb"></div><div class="sk-body"><div class="skeleton" style="height:12px;width:60px"></div><div class="skeleton" style="height:20px;width:80%"></div><div class="skeleton" style="height:14px;width:100%"></div><div class="skeleton" style="height:14px;width:65%"></div></div></div>
-          <div class="skeleton-card"><div class="skeleton sk-thumb"></div><div class="sk-body"><div class="skeleton" style="height:12px;width:55px"></div><div class="skeleton" style="height:20px;width:90%"></div><div class="skeleton" style="height:14px;width:100%"></div><div class="skeleton" style="height:14px;width:75%"></div></div></div>
+    <!-- Right 40%: REEL Spotlight & Dedicated Strategic Alliances Wheel -->
+    <div class="hero-side-stack">
+      <!-- REEL Spotlight Box (Shows REEL logo only when no video; shows video + title + play button when video is published) -->
+      <div class="side-video-card" id="video-spotlight-card" onclick="triggerSpotlightPlay()" title="REEL Spotlight">
+        <div class="video-card-bg-blur" id="video-spotlight-blur"></div>
+        <div class="reel-spotlight-logo-wrap" id="video-spotlight-logo-wrap">
+          <img src="Images/BG/reel_logo.png" alt="Royal Executive Empire" class="reel-spotlight-logo" />
         </div>
-      </main>
+        <div class="play-btn-circle" id="video-spotlight-play-btn" aria-label="Play Video" style="display:none;">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg>
+        </div>
+        <div class="video-card-tag" id="video-spotlight-tag">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          <span id="video-spotlight-tag-text">REEL SPOTLIGHT</span>
+        </div>
+        <div class="video-card-title" id="video-spotlight-title" style="display:none;"></div>
+      </div>
 
-      <!-- Sidebar -->
-      <aside class="blog-sidebar">
-        <div class="sidebar-widget reveal-right">
-          <div class="widget-title">Recent Posts</div>
-          <div id="recent-posts-widget">
-            <div style="display:flex;gap:14px;margin-bottom:16px"><div class="skeleton rp-thumb"></div><div style="flex:1"><div class="skeleton" style="height:14px;width:90%;margin-bottom:6px"></div><div class="skeleton" style="height:10px;width:50%"></div></div></div>
-            <div style="display:flex;gap:14px;margin-bottom:16px"><div class="skeleton rp-thumb"></div><div style="flex:1"><div class="skeleton" style="height:14px;width:85%;margin-bottom:6px"></div><div class="skeleton" style="height:10px;width:45%"></div></div></div>
+      <!-- Dedicated Strategic Alliances Wheel Box (Non-stop Up-to-Down Movement) -->
+      <div class="side-alliances-card">
+        <div class="alliances-card-header">
+          <div class="alliances-title-wrap">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="var(--gold-primary)" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span class="alliances-title">Strategic Alliances</span>
+          </div>
+          <span class="alliances-status-pill"><span class="pill-dot"></span>Enterprise Network</span>
+        </div>
+        <div class="alliances-vertical-viewport">
+          <div class="alliances-wheel-track" aria-label="Strategic Alliances revolving continuously">
+            <!-- Set 1 -->
+            <div class="alliance-wheel-group">
+              <div class="alliance-logo-card"><img src="Images/Strategic%20Patnerships/Erolins%20Properties%20LTD.jpeg" alt="Erolins Properties LTD" loading="lazy" /></div>
+              <div class="alliance-logo-card"><img src="Images/Strategic%20Patnerships/Pedani.jpeg" alt="Pedani" loading="lazy" /></div>
+              <div class="alliance-logo-card"><img src="Images/Strategic%20Patnerships/Prese's%20Bag's%20&%20Shoes.jpeg" alt="Prese's Bags &amp; Shoes" loading="lazy" /></div>
+              <div class="alliance-logo-card"><img src="Images/Strategic%20Patnerships/Service%20Connect.jpeg" alt="Service Connect" loading="lazy" /></div>
+            </div>
+            <!-- Set 2 (Seamless loop clone) -->
+            <div class="alliance-wheel-group" aria-hidden="true">
+              <div class="alliance-logo-card"><img src="Images/Strategic%20Patnerships/Erolins%20Properties%20LTD.jpeg" alt="Erolins Properties LTD" loading="lazy" /></div>
+              <div class="alliance-logo-card"><img src="Images/Strategic%20Patnerships/Pedani.jpeg" alt="Pedani" loading="lazy" /></div>
+              <div class="alliance-logo-card"><img src="Images/Strategic%20Patnerships/Prese's%20Bag's%20&%20Shoes.jpeg" alt="Prese's Bags &amp; Shoes" loading="lazy" /></div>
+              <div class="alliance-logo-card"><img src="Images/Strategic%20Patnerships/Service%20Connect.jpeg" alt="Service Connect" loading="lazy" /></div>
+            </div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="sidebar-widget reveal-right" style="transition-delay:0.1s">
-          <div class="widget-title">Categories</div>
-          <div class="cat-list">
-            <button class="cat-chip" onclick="filterBlogBy('all')">All Insights</button>
-            <button class="cat-chip" onclick="filterBlogBy('REEL Properties')">REEL Properties</button>
-            <button class="cat-chip" onclick="filterBlogBy('Technology')">Technology &amp; Hardware</button>
-            <button class="cat-chip" onclick="filterBlogBy('REEL Power')">REEL Power</button>
-            <button class="cat-chip" onclick="filterBlogBy('REEL Branding')">Branding &amp; Identity</button>
-            <button class="cat-chip" onclick="filterBlogBy('REEL Business')">Business &amp; Advisory</button>
-            <button class="cat-chip" onclick="filterBlogBy('Executive Lifestyle')">Executive Lifestyle</button>
+  <!-- 04. THE FOUNDER'S JOURNAL (Thought Leadership Box) -->
+  <section class="founder-journal-section">
+    <div class="founder-pic-box">
+      <img src="Images/Prince Ose/About/DSC_4985 copy.webp" alt="Prince Israel Ose" class="founder-pic" onerror="this.src='Images/BG/reel_logo.png'" />
+      <div class="founder-badge-bottom">Israel Ose &bull; Founder &amp; CEO</div>
+    </div>
+    <div class="founder-text-box">
+      <div class="founder-tag">The Founder's Journal &bull; Executive Perspectives</div>
+      <blockquote class="founder-quote">
+        “True infrastructure is not merely steel and concrete—it is the silent, dependable foundation upon which sovereign wealth and generational enterprise are constructed.”
+      </blockquote>
+      <div class="founder-article-title">On Building Across Multiple Frontiers: The Holding Philosophy</div>
+      <p class="founder-article-desc">
+        A quarterly strategic letter detailing REEL’s vision across clean mobility, smart power, luxury real estate, and high-impact digital enterprise—and why synergy across distinct industries is Africa's greatest economic multiplier.
+      </p>
+      <a href="leadership.html" class="btn-gold-action">Explore Executive Leadership &rarr;</a>
+    </div>
+  </section>
+
+  <!-- 05. DIVISION DISPATCHES (Filter Bar + Dynamic Articles Grid) -->
+  <div class="section-headline-bar">
+    <h3 class="section-headline-title">Division Dispatches &amp; Insights</h3>
+    <span style="font-size: 0.8rem; color: var(--gold-primary); text-transform: uppercase; letter-spacing: 1px;">Showing All Categories</span>
+  </div>
+
+  <!-- Filter chips -->
+  <div class="division-filter-bar" id="filter-bar">
+    <button class="div-chip active" data-cat="all">All Dispatches</button>
+    <button class="div-chip" data-cat="REEL Properties">REEL Properties</button>
+    <button class="div-chip" data-cat="Technology">Technology &amp; Hardware</button>
+    <button class="div-chip" data-cat="REEL Power">REEL Power &amp; Charging</button>
+    <button class="div-chip" data-cat="REEL Branding">Branding &amp; Identity</button>
+    <button class="div-chip" data-cat="REEL Business">Business &amp; Advisory</button>
+    <button class="div-chip" data-cat="Executive Lifestyle">Executive Lifestyle &amp; Auto</button>
+  </div>
+
+  <!-- Dynamic Articles List (Equipped with Ambient Blur Backdrop - NO BLACK CORNERS) -->
+  <main>
+    <div class="articles-grid" id="blog-list">
+      <!-- Initial Cards -->
+      <a href="article.html" class="article-magazine-card">
+        <div class="card-thumb-wrap">
+          <div class="card-thumb-blur" style="background-image:url('Images/efuas_auto_center_hero.webp');"></div>
+          <img src="Images/efuas_auto_center_hero.webp" alt="REEL Auto Center" class="card-thumb-img" />
+        </div>
+        <div class="card-body-wrap">
+          <div class="card-tag">Sovereign Mobility &bull; REEL Auto</div>
+          <h4 class="card-title">Silent Luxury: Inside the 2026 Armored SUV Consignment for High-Profile Principals</h4>
+          <p class="card-excerpt">A breakdown of certified safety standards, custom armored ballistics, and genuine customs clearance protocols on imported luxury fleets.</p>
+          <div class="card-footer">
+            <span>Nov 18, 2026</span>
+            <span class="card-read-link">Read Dispatch &rarr;</span>
           </div>
         </div>
+      </a>
 
-        <div class="sidebar-widget reveal-right" style="transition-delay:0.15s">
-          <div class="widget-title">Popular Tags</div>
-          <div class="cat-list" style="display:flex; flex-wrap:wrap; gap:8px;">
-            <button class="cat-chip" style="font-size:0.75rem; padding:4px 11px; border-radius:20px;" onclick="filterBlogByTag('Luxury')">#Luxury</button>
-            <button class="cat-chip" style="font-size:0.75rem; padding:4px 11px; border-radius:20px;" onclick="filterBlogByTag('RealEstate')">#RealEstate</button>
-            <button class="cat-chip" style="font-size:0.75rem; padding:4px 11px; border-radius:20px;" onclick="filterBlogByTag('Tech')">#Tech</button>
-            <button class="cat-chip" style="font-size:0.75rem; padding:4px 11px; border-radius:20px;" onclick="filterBlogByTag('Hardware')">#Hardware</button>
-            <button class="cat-chip" style="font-size:0.75rem; padding:4px 11px; border-radius:20px;" onclick="filterBlogByTag('Power')">#Power</button>
-            <button class="cat-chip" style="font-size:0.75rem; padding:4px 11px; border-radius:20px;" onclick="filterBlogByTag('Solar')">#Solar</button>
-            <button class="cat-chip" style="font-size:0.75rem; padding:4px 11px; border-radius:20px;" onclick="filterBlogByTag('Branding')">#Branding</button>
-            <button class="cat-chip" style="font-size:0.75rem; padding:4px 11px; border-radius:20px;" onclick="filterBlogByTag('Leadership')">#Leadership</button>
-            <button class="cat-chip" style="font-size:0.75rem; padding:4px 11px; border-radius:20px;" onclick="filterBlogByTag('Africa')">#Africa</button>
-            <button class="cat-chip" style="font-size:0.75rem; padding:4px 11px; border-radius:20px;" onclick="filterBlogByTag('Investment')">#Investment</button>
+      <a href="article.html" class="article-magazine-card">
+        <div class="card-thumb-wrap">
+          <div class="card-thumb-blur" style="background-image:url('Images/reel_power_hero.webp');"></div>
+          <img src="Images/reel_power_hero.webp" alt="REEL Power" class="card-thumb-img" />
+        </div>
+        <div class="card-body-wrap">
+          <div class="card-tag">Infrastructure &bull; REEL Power</div>
+          <h4 class="card-title">The 2026 Energy Protocol: Powering Premium Venues with Smart Mobile Charging</h4>
+          <p class="card-excerpt">How REEL Power is revolutionizing public battery availability across airports, malls, and luxury hospitality centers across Lagos.</p>
+          <div class="card-footer">
+            <span>Nov 12, 2026</span>
+            <span class="card-read-link">Read Dispatch &rarr;</span>
           </div>
         </div>
+      </a>
 
-        <div class="sidebar-widget reveal-right" style="transition-delay:0.2s">
-          <div class="widget-title">Follow Us</div>
-          <a href="https://web.facebook.com/ReelHolding/" target="_blank" rel="noopener" class="social-link"><span class="social-icon"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg></span> Facebook</a>
-          <a href="https://x.com/ReelHolding" target="_blank" rel="noopener" class="social-link"><span class="social-icon"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.74l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg></span> X (Twitter)</a>
-          <a href="https://www.instagram.com/reelholding/" target="_blank" rel="noopener" class="social-link"><span class="social-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" /></svg></span> Instagram</a>
-          <a href="https://www.youtube.com/@ReelHolding" target="_blank" rel="noopener" class="social-link"><span class="social-icon"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.41 19.1C5.12 19.56 12 19.56 12 19.56s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.48z" /><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" style="fill:#0B0B0B" /></svg></span> YouTube</a>
-          <a href="https://whatsapp.com/channel/0029Vb8f98uFsn0ZxQtIix05" target="_blank" rel="noopener" class="social-link"><span class="social-icon"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" /></svg></span> WhatsApp Channel</a>
+      <a href="article.html" class="article-magazine-card">
+        <div class="card-thumb-wrap">
+          <div class="card-thumb-blur" style="background-image:url('Images/glorious_global_palace_hero.webp');"></div>
+          <img src="Images/glorious_global_palace_hero.webp" alt="Global Palace" class="card-thumb-img" />
         </div>
-      </aside>
+        <div class="card-body-wrap">
+          <div class="card-tag">Executive Lifestyle &bull; Global Palace</div>
+          <h4 class="card-title">Global Palace: Redefining High-Net-Worth Wellness and Executive Grooming</h4>
+          <p class="card-excerpt">Inside the discreet VIP sanctuary tailored for corporate executives and leaders who command discretion, luxury, and holistic rejuvenation.</p>
+          <div class="card-footer">
+            <span>Nov 10, 2026</span>
+            <span class="card-read-link">Read Dispatch &rarr;</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </main>
+
+  <!-- 06. OFFICIAL PRESS RELEASES & REGULATORY STATEMENTS -->
+  <section class="press-releases-section">
+    <div class="section-headline-bar">
+      <h3 class="section-headline-title">Official Corporate Statements &amp; Regulatory Releases</h3>
+    </div>
+    <div class="press-table-wrap">
+      <div class="press-row">
+        <span class="press-date-cell">Nov 21, 2026</span>
+        <span class="press-badge-cell">Governance</span>
+        <div class="press-title-cell">REEL Holding Publishes 2026 Governance &amp; Multi-Division Operational Review</div>
+        <a href="leadership.html" class="press-pdf-btn">View Statement</a>
+      </div>
+      <div class="press-row">
+        <span class="press-date-cell">Nov 15, 2026</span>
+        <span class="press-badge-cell" style="color:#60a5fa; background:rgba(96,165,250,0.1);">REEL Power</span>
+        <div class="press-title-cell">REEL Power Announces Strategic Venue Partnership Program for Shopping Malls and Airports</div>
+        <a href="contact.html" class="press-pdf-btn">Partner Program</a>
+      </div>
+      <div class="press-row">
+        <span class="press-date-cell">Nov 08, 2026</span>
+        <span class="press-badge-cell" style="color:#f59e0b; background:rgba(245,158,11,0.1);">REEL Auto</span>
+        <div class="press-title-cell">REEL Auto Expands Luxury Import Concierge with 150-Point Certified Inspection Warranty</div>
+        <a href="https://reelauto.reelholding.com.ng" class="press-pdf-btn" target="_blank" rel="noopener">Explore Inventory</a>
+      </div>
+      <div class="press-row">
+        <span class="press-date-cell">Oct 30, 2026</span>
+        <span class="press-badge-cell" style="color:#34d399; background:rgba(52,211,153,0.1);">Properties</span>
+        <div class="press-title-cell">REEL Properties Secures Strategic Commercial Acreage in Lekki Free Trade Zone Corridor</div>
+        <a href="https://reelproperties.reelholding.com.ng" class="press-pdf-btn" target="_blank" rel="noopener">Property Dossier</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07. DIGITAL PRESS KIT & DOWNLOADABLE MEDIA ASSETS -->
+  <section class="media-kit-box">
+    <div class="media-kit-header">
+      <div class="card-tag">Press Room Resources</div>
+      <h3 class="media-kit-title">Accredited Media Kit &amp; Brand Assets</h3>
+      <p class="media-kit-desc">Official high-resolution branding, executive imagery, and corporate fact sheets for accredited journalists, publishers, and institutional partners.</p>
+    </div>
+    <div class="kit-cards-grid">
+      <!-- Card 1 -->
+      <div class="kit-card">
+        <div>
+          <div class="kit-icon">👑</div>
+          <div class="kit-name">Official Brand Identity Package</div>
+          <div class="kit-info">Vector Logos (SVG, PNG, EPS), typography specifications, and black &amp; gold color standards.</div>
+        </div>
+        <a href="Images/BG/reel_logo.png" download="REEL_Official_Logo.png" class="btn-kit-download">Download Brand Asset</a>
+      </div>
+      <!-- Card 2 -->
+      <div class="kit-card">
+        <div>
+          <div class="kit-icon">📸</div>
+          <div class="kit-name">Executive Leadership Portraits</div>
+          <div class="kit-info">High-resolution studio photography of Founder Israel Ose and General Management.</div>
+        </div>
+        <a href="Images/Prince Ose/About/DSC_4985 copy.webp" download="Israel_Ose_Portrait.webp" class="btn-kit-download">Download Portraits</a>
+      </div>
+      <!-- Card 3 -->
+      <div class="kit-card">
+        <div>
+          <div class="kit-icon">📊</div>
+          <div class="kit-name">2026 Corporate Factsheet</div>
+          <div class="kit-info">Single-page strategic overview of all 4 divisions, operating footprints, and corporate governance.</div>
+        </div>
+        <a href="leadership.html" class="btn-kit-download">View Factsheet</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08. ACCREDITED MEDIA DESK & INQUIRY FORM -->
+  <section class="pr-inquiry-box">
+    <div class="pr-inquiry-info">
+      <div class="card-tag">Media Relations</div>
+      <h3>Media Inquiries &amp; Interview Requests</h3>
+      <p>
+        Members of the press, financial analysts, and conference organizers seeking official commentary, executive interviews with Founder Israel Ose, or event credentials may contact our corporate desk directly.
+      </p>
+      <div class="pr-lines-list">
+        <div class="pr-line-item">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          <span>admin@reelholding.com.ng</span>
+        </div>
+        <div class="pr-line-item">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.23h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.77a16 16 0 0 0 6 6l.97-.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2z"></path></svg>
+          <span>+234 911 802 4521 (Corporate Desk)</span>
+        </div>
+        <div class="pr-line-item">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          <span>Ibeju Lekki &bull; Lagos State, Nigeria</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Direct PR Contact Form -->
+    <div class="pr-form-card">
+      <h4>Direct Media Desk Inquiry</h4>
+      <form onsubmit="handlePRSubmit(event)">
+        <input type="text" id="pr-name" class="pr-input-field" placeholder="Full Name &amp; Title" required />
+        <input type="text" id="pr-org" class="pr-input-field" placeholder="Media House / Publication" required />
+        <input type="email" id="pr-email" class="pr-input-field" placeholder="Corporate Email Address" required />
+        <textarea id="pr-inquiry" class="pr-input-field" rows="3" placeholder="Nature of interview or press inquiry..." style="resize:none;" required></textarea>
+        <button type="submit" class="btn-gold-action" style="width:100%; justify-content:center;">Submit to Press Desk &rarr;</button>
+      </form>
+    </div>
+  </section>
+
+</div>
+
+<!-- VIDEO SHOWCASE MODAL (Supports YouTube, Landscape 16:9 & Portrait 9:16) -->
+<div class="video-modal-backdrop" id="video-modal" onclick="if(event.target===this) closeVideoModal()">
+  <div class="video-modal-box" id="video-modal-box">
+    <div class="video-modal-header">
+      <span style="font-size:0.86rem; font-weight:700; color:var(--gold-primary); letter-spacing:1px; text-transform:uppercase;" id="video-modal-title-bar">REEL Video Spotlight</span>
+      <button class="video-modal-close" onclick="closeVideoModal()">&times;</button>
+    </div>
+    <div class="video-modal-container landscape" id="video-modal-container">
+      <div id="video-modal-player-slot"></div>
     </div>
   </div>
-</section>
+</div>
 
 <!-- ============================================================ -->
 <!-- FOOTER                                                         -->
 <!-- ============================================================ -->
 <footer class="site-footer" role="contentinfo">
-
   <div class="footer-body">
     <div class="footer-glow-l" aria-hidden="true"></div>
     <div class="footer-glow-r" aria-hidden="true"></div>
@@ -622,196 +1431,43 @@
           </a>
           <p class="footer-brand-desc">Royalty Executive Empire Limited &mdash; Building Empires, Shaping Futures, Leading Innovation across Africa and beyond.</p>
           <div class="footer-social-row" aria-label="Social media links">
-            <a href="https://web.facebook.com/ReelHolding/" target="_blank" rel="noopener" class="fsoc"
-              id="fsoc-fb" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-              </svg></a>
-            <a href="https://x.com/ReelHolding" target="_blank" rel="noopener" class="fsoc" id="fsoc-x"
-              aria-label="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.74l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-              </svg></a>
-            <a href="https://www.instagram.com/reelholding/" target="_blank" rel="noopener" class="fsoc"
-              id="fsoc-ig" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-width="2" aria-hidden="true">
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-              </svg></a>
-            <a href="https://www.youtube.com/@ReelHolding" target="_blank" rel="noopener" class="fsoc"
-              id="fsoc-yt" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.41 19.1C5.12 19.56 12 19.56 12 19.56s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.48z" />
-                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" style="fill:#0B0B0B" />
-              </svg></a>
-            <a href="https://www.tiktok.com/@reelholding" target="_blank" rel="noopener" class="fsoc"
-              id="fsoc-tt" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.28 6.28 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.2 8.2 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z" />
-              </svg></a>
-            <a href="https://linkedin.com/company/reelholding" target="_blank" rel="noopener" class="fsoc" id="fsoc-li" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" /></svg></a>
-            <a href="https://whatsapp.com/channel/0029Vb8f98uFsn0ZxQtIix05" id="fsoc-wa" aria-label="WhatsApp Channel"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" /></svg></a>
+            <a href="https://web.facebook.com/ReelHolding/" target="_blank" rel="noopener" class="fsoc" id="fsoc-fb" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg></a>
+            <a href="https://x.com/ReelHolding" target="_blank" rel="noopener" class="fsoc" id="fsoc-x" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.74l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg></a>
+            <a href="https://www.instagram.com/reelholding/" target="_blank" rel="noopener" class="fsoc" id="fsoc-ig" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" /></svg></a>
+            <a href="https://www.youtube.com/@ReelHolding" target="_blank" rel="noopener" class="fsoc" id="fsoc-yt" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.41 19.1C5.12 19.56 12 19.56 12 19.56s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.48z" /><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" style="fill:#0B0B0B" /></svg></a>
+            <a href="https://linkedin.com/company/reelholding" target="_blank" rel="noopener" class="fsoc" id="fsoc-li" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" /></svg></a>
+            <a href="https://whatsapp.com/channel/0029Vb8f98uFsn0ZxQtIix05" id="fsoc-wa" aria-label="WhatsApp Channel"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" /></svg></a>
           </div>
-            <!-- Join Our WhatsApp Channel Button -->
-            <div class="footer-channel-btn-wrap" style="margin-top: 16px;">
-              <a href="https://whatsapp.com/channel/0029Vb8f98uFsn0ZxQtIix05" target="_blank" rel="noopener noreferrer" class="btn-join-channel" aria-label="Join our WhatsApp Channel">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-                <span>Join Our WhatsApp Channel</span>
-              </a>
-            </div>
         </div>
 
-                            <!-- Footer Instagram Feed -->
-          <div class="footer-col footer-insta-col">
-            <h3 class="footer-heading">Instagram</h3>
-            <div class="footer-insta-card" aria-label="Official Instagram feed">
-              <div class="insta-header">
-                <a href="https://www.instagram.com/reelholding/" target="_blank" rel="noopener noreferrer" class="insta-user-info" style="text-decoration:none;">
-                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" class="insta-icon">
-                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                  </svg>
-                  <div style="display:flex;flex-direction:column;line-height:1.2;">
-                    <span style="font-weight:900;text-transform:uppercase;color:#fff;font-size:10px;letter-spacing:0.5px;">ROYALTY EXECUTIVE EMPIRE LIMITED</span>
-                    <span class="insta-handle" style="font-size:12px;color:rgba(255,255,255,0.7);">@reelholding</span>
-                  </div>
-                </a>
-                <span class="insta-badge"><span class="insta-live-dot"></span> Live</span>
-              </div>
-              <div class="insta-grid">
-                <a href="https://www.instagram.com/reelholding/" target="_blank" rel="noopener noreferrer" class="insta-tile" title="View REEL Properties post on Instagram">
-                  <img src="Images/real_estate_hero.webp" alt="REEL Luxury Properties" loading="lazy" />
-                  <span class="insta-type-icon">
-                    <svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M4 4h16v16H4z"/></svg>
-                  </span>
-                  <div class="insta-overlay">
-                    <div class="insta-overlay-inner">
-                      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                      <span>View</span>
-                    </div>
-                  </div>
-                </a>
-                <a href="https://www.instagram.com/reelholding/" target="_blank" rel="noopener noreferrer" class="insta-tile" title="View REEL Auto post on Instagram">
-                  <img src="Images/efuas_auto_center_hero.webp" alt="REEL Auto Centre" loading="lazy" />
-                  <span class="insta-type-icon">
-                    <svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
-                  </span>
-                  <div class="insta-overlay">
-                    <div class="insta-overlay-inner">
-                      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                      <span>View</span>
-                    </div>
-                  </div>
-                </a>
-                <a href="https://www.instagram.com/reelholding/" target="_blank" rel="noopener noreferrer" class="insta-tile" title="View REEL Tech Hub post on Instagram">
-                  <img src="Images/vannys_tech_hub_hero.webp" alt="REEL Tech Hub" loading="lazy" />
-                  <span class="insta-type-icon">
-                    <svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M4 4h16v16H4z"/></svg>
-                  </span>
-                  <div class="insta-overlay">
-                    <div class="insta-overlay-inner">
-                      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                      <span>View</span>
-                    </div>
-                  </div>
-                </a>
-                <a href="https://www.instagram.com/reelholding/" target="_blank" rel="noopener noreferrer" class="insta-tile" title="View REEL Global Palace post on Instagram">
-                  <img src="Images/glorious_global_palace_hero.webp" alt="REEL Global Palace" loading="lazy" />
-                  <span class="insta-type-icon">
-                    <svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
-                  </span>
-                  <div class="insta-overlay">
-                    <div class="insta-overlay-inner">
-                      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                      <span>View</span>
-                    </div>
-                  </div>
-                </a>
-                <a href="https://www.instagram.com/reelholding/" target="_blank" rel="noopener noreferrer" class="insta-tile" title="View REEL Leadership post on Instagram">
-                  <img src="Images/Prince Ose/About/DSC_4985 copy.webp" alt="REEL Executive Leadership" loading="lazy" />
-                  <span class="insta-type-icon">
-                    <svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M4 4h16v16H4z"/></svg>
-                  </span>
-                  <div class="insta-overlay">
-                    <div class="insta-overlay-inner">
-                      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                      <span>View</span>
-                    </div>
-                  </div>
-                </a>
-                <a href="https://www.instagram.com/reelholding/" target="_blank" rel="noopener noreferrer" class="insta-tile" title="View REEL Power & Energy post on Instagram">
-                  <img src="Images/reel_power_hero.webp" alt="REEL Power Infrastructure" loading="lazy" />
-                  <span class="insta-type-icon">
-                    <svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
-                  </span>
-                  <div class="insta-overlay">
-                    <div class="insta-overlay-inner">
-                      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                      <span>View</span>
-                    </div>
-                  </div>
-                </a>
-              </div>
-              <a href="https://www.instagram.com/reelholding/" target="_blank" rel="noopener noreferrer" class="insta-follow-btn">
-                <span>View Instagram Posts</span>
-                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </a>
-            </div>
-          </div>
-
-        <!-- Services Links -->
+        <!-- Quick Links -->
         <div class="footer-col">
-          <h3 class="footer-heading">Quick Links</h3>
+          <h3 class="footer-heading">Subsidiaries</h3>
           <nav aria-label="Footer divisions links">
-              <ul class="footer-links-list">
-                <li><a href="https://reeltech.reelholding.com.ng" >REEL Tech Hub</a></li>
-                <li><a href="https://reelauto.reelholding.com.ng" >REEL Auto Centre</a></li>
-                <li><a href="https://reelproperties.reelholding.com.ng" >REEL Properties</a></li>
-                <li><a href="https://reelglobal.reelholding.com.ng" >REEL Global Palace</a></li>
-                <li><a href="leadership.html">Meet Our Leadership</a></li>
-              </ul>
-            </nav>
+            <ul class="footer-links-list">
+              <li><a href="https://reeltech.reelholding.com.ng">REEL Tech Hub</a></li>
+              <li><a href="https://reelauto.reelholding.com.ng">REEL Auto Centre</a></li>
+              <li><a href="https://reelproperties.reelholding.com.ng">REEL Properties</a></li>
+              <li><a href="https://reelglobal.reelholding.com.ng">REEL Global Palace</a></li>
+              <li><a href="leadership.html">Leadership &amp; Governance</a></li>
+            </ul>
+          </nav>
         </div>
 
         <!-- Newsletter & Contact -->
         <div class="footer-col footer-news-col">
-          <h3 class="footer-heading">Stay Connected</h3>
-          <p class="footer-news-desc">Subscribe to receive updates, news, and exclusive opportunities from REEL.</p>
-          <form class="footer-newsletter" id="footer-newsletter-form" novalidate aria-label="Newsletter signup" onsubmit="handleNewsletterSubmit(event)">
-            <input type="email" id="footer-email" name="email" placeholder="Enter your email address" required
-              aria-label="Email address for newsletter" />
-            <button type="submit" id="footer-newsletter-btn" aria-label="Subscribe to newsletter">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <line x1="22" y1="2" x2="11" y2="13" />
-                <polygon points="22 2 15 22 11 13 2 9 22 2" />
-              </svg>
+          <h3 class="footer-heading">Executive Dispatch</h3>
+          <p class="footer-news-desc">Subscribe to receive strategic updates, sovereign investments, and media releases from REEL.</p>
+          <form class="footer-newsletter" id="footer-newsletter-form" novalidate onsubmit="handleNewsletterSubmit(event)">
+            <input type="email" id="footer-email" name="email" placeholder="Enter corporate email" required aria-label="Email address" />
+            <button type="submit" id="footer-newsletter-btn" aria-label="Subscribe">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13" /><polygon points="22 2 15 22 11 13 2 9 22 2" /></svg>
             </button>
           </form>
-          <script>
-          function handleNewsletterSubmit(e) {
-            e.preventDefault();
-            var email = document.getElementById('footer-email').value;
-            if (!email) return;
-            var subject = encodeURIComponent('Newsletter Subscription Request');
-            var body = encodeURIComponent('Hello REEL Team,\n\nI would like to subscribe to your newsletter.\n\nEmail: ' + email + '\n\nThank you.');
-            window.location.href = 'mailto:admin@reelholding.com.ng?subject=' + subject + '&body=' + body;
-            document.getElementById('footer-email').value = '';
-          }
-          </script>
-          <div class="footer-contact-details">
-            <p>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.23h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.77a16 16 0 0 0 6 6l.97-.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2z" />
-                </svg>
-                <a href="tel:+2348067029444">+234 806 702 9444</a>
-              </p>
-              <p>
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="color:#25D366;width:18px;height:18px;flex-shrink:0;"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.03-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-                <a href="https://wa.me/2349118024521" target="_blank" rel="noopener noreferrer">+234 911 802 4521</a>
-              </p>
-            <p>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                <circle cx="12" cy="10" r="3" />
-              </svg>
-              <span>Ibeju Lekki - Lagos State, Nigeria</span>
-            </p>
+          <div class="footer-contact-details" style="margin-top:16px;">
+            <p><a href="tel:+2348067029444">+234 806 702 9444</a></p>
+            <p><a href="https://wa.me/2349118024521" target="_blank" rel="noopener noreferrer">+234 911 802 4521</a></p>
+            <p>Ibeju Lekki &mdash; Lagos State, Nigeria</p>
           </div>
         </div>
 
@@ -819,7 +1475,6 @@
     </div>
   </div>
 
-  <!-- Footer Bottom Bar -->
   <div class="footer-bar">
     <div class="container">
       <div class="footer-bar-inner">
@@ -834,40 +1489,38 @@
       </div>
     </div>
   </div>
-
 </footer>
 
-<!-- Footer Calendar JS -->
-
-
-<!-- Firebase -->
+<!-- Firebase SDKs -->
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging-compat.js"></script>
-  <script src="js/firebase-init.js"></script>
-<script src="js/main.js?v=13"></script>
+<script src="js/firebase-init.js"></script>
+<script src="js/main.js?v=14"></script>
 
 <script>
   let allBlogs = [];
   let currentFilter = 'all';
 
+  // REEL Spotlight State (Default: No video posted -> logo only, no play button)
+  let activeVideo = {
+    id: null,
+    url: null,
+    title: "",
+    orientation: "landscape",
+    poster: null,
+    localVideo: null
+  };
+
   document.getElementById('footer-year').textContent = new Date().getFullYear();
 
-  // Reset scroll to top on initial page load
-  if ('scrollRestoration' in history) {
-    history.scrollRestoration = 'manual';
-  }
-  window.scrollTo(0, 0);
-
-  function getExcerpt(text, len = 120) {
+  function getExcerpt(text, len = 130) {
     if (!text) return '';
-    text = text.replace(/<[^>]*>?/gm, ''); // Strip HTML tags
+    text = text.replace(/<[^>]*>?/gm, '');
     return text.length > len ? text.substring(0, len).trimEnd() + '…' : text;
   }
 
-
-  // ── SEO Slug helper ──────────────────────────────────────────────────────────
   function slugify(text) {
     if (!text) return '';
     return text
@@ -879,62 +1532,123 @@
       .replace(/^-+|-+$/, '');
   }
 
+  // Parse YouTube URL to extract 11-character video ID
+  function extractYouTubeId(url) {
+    if (!url) return null;
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=|shorts\/)([^#&?]*).*/;
+    const match = url.match(regExp);
+    return (match && match[2].length === 11) ? match[2] : null;
+  }
+
+  // Render REEL Spotlight Card in Hero
+  function updateVideoSpotlightUI() {
+    const card = document.getElementById('video-spotlight-card');
+    const logoWrap = document.getElementById('video-spotlight-logo-wrap');
+    const playBtn = document.getElementById('video-spotlight-play-btn');
+    const titleEl = document.getElementById('video-spotlight-title');
+    const tagText = document.getElementById('video-spotlight-tag-text');
+
+    if (!card) return;
+
+    if (activeVideo && activeVideo.id) {
+      // ── ACTIVE STATE: A video URL was published ──
+      card.classList.add('has-video');
+      if (logoWrap) logoWrap.style.display = 'none';
+      if (playBtn) playBtn.style.display = 'flex';
+
+      // Show clean thumbnail as background (NO blur overlay)
+      const thumb = activeVideo.poster || `https://img.youtube.com/vi/${activeVideo.id}/maxresdefault.jpg`;
+      card.style.backgroundImage = `linear-gradient(180deg, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.70) 100%), url('${thumb}')`;
+      card.style.backgroundSize = 'cover';
+      card.style.backgroundPosition = 'center';
+
+      if (titleEl) {
+        titleEl.textContent = activeVideo.title || "REEL Spotlight";
+        titleEl.style.display = 'block';
+      }
+      if (tagText) {
+        tagText.textContent = activeVideo.orientation === 'portrait' ? 'REEL SPOTLIGHT • SHORTS' : 'REEL SPOTLIGHT';
+      }
+      card.title = `Watch: ${activeVideo.title || 'REEL Spotlight'}`;
+    } else {
+      // ── DEFAULT STATE: No video URL posted ── logo only
+      card.classList.remove('has-video');
+      card.style.backgroundImage = 'linear-gradient(135deg, rgba(20, 20, 25, 0.95) 0%, rgba(10, 10, 12, 0.95) 100%)';
+      card.style.backgroundSize = '';
+      card.style.backgroundPosition = '';
+      if (logoWrap) logoWrap.style.display = 'flex';
+      if (playBtn) playBtn.style.display = 'none';
+      if (titleEl) {
+        titleEl.textContent = '';
+        titleEl.style.display = 'none';
+      }
+      if (tagText) tagText.textContent = 'REEL SPOTLIGHT';
+      card.title = 'REEL Spotlight';
+    }
+  }
+
+  // Initial call to ensure logo-only state displays immediately
+  updateVideoSpotlightUI();
+
+  // Render Cover Story with Ambient Blur Backdrop (NO BLACK CORNERS)
   function renderFeatured(blog) {
     const wrap = document.getElementById('featured-article-wrap');
-    if (!blog) { wrap.innerHTML = ''; return; }
+    if (!blog) return; // Keep initial fallback if empty
+    const imgUrl = blog.image || 'Images/real_estate_hero.webp';
     wrap.innerHTML = `
-      <div class="blog-featured-label">Featured Article</div>
-      <a href="/article/${slugify(blog.title)}/" class="blog-featured" style="text-decoration:none;">
-        <div class="blog-featured-media">
-          ${blog.image ? `
-            <div class="blog-featured-media-blur" style="background-image:url('${blog.image}')"></div>
-            <img src="${blog.image}" alt="${blog.title}" class="blog-featured-img" decoding="async" loading="eager" referrerpolicy="no-referrer" onerror="this.onerror=null; if(this.src.endsWith('.png')){this.src=this.src.replace(/\\.png$/, '.webp');}else if(this.src.endsWith('.webp')){this.src=this.src.replace(/\\.webp$/, '.png');}else{this.src='Images/BG/logo%20bg.png';}">
-          ` : `<div style="background:linear-gradient(135deg,#1a1000,#0d0800);display:flex;align-items:center;justify-content:center;color:rgba(212,175,55,0.4);width:100%;height:100%;min-height:280px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="64" height="64"><path d="M4 22h14a2 2 0 0 0 2-2V7.5L14.5 2H6a2 2 0 0 0-2 2v4"></path><polyline points="14 2 14 8 20 8"></polyline><path d="M2 15h10"></path><path d="M2 19h10"></path></svg></div>`}
+      <a href="article.html?slug=${slugify(blog.title)}" class="hero-cover-story">
+        <div class="cover-media-box">
+          <div class="cover-media-blur" style="background-image: url('${imgUrl}');"></div>
+          <img src="${imgUrl}" alt="${blog.title}" class="cover-media-img" decoding="async" loading="eager" onerror="this.onerror=null; this.src='Images/real_estate_hero.webp';">
+          <div class="cover-overlay-gradient"></div>
+          <span class="cover-badge">Lead Cover Story &bull; 5 Min Read</span>
         </div>
-        <div class="blog-featured-body">
-          <div class="blog-featured-tag">${blog.category || 'Uncategorized'}</div>
-          <div class="blog-featured-title">${blog.title}</div>
-          <div class="blog-featured-excerpt">${getExcerpt(blog.content, 140)}</div>
-          <div class="blog-featured-footer">
-            <span>${blog.date || ''}</span>
-            <span class="blog-featured-read">Read Article <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        <div class="cover-body">
+          <div class="cover-category">${blog.category || 'Executive Dispatch'}</div>
+          <h2 class="cover-headline">${blog.title}</h2>
+          <p class="cover-excerpt">${getExcerpt(blog.content, 160)}</p>
+          <div class="cover-meta-row">
+            <div class="cover-author">
+              <img src="Images/Prince Ose/About/DSC_4985 copy.webp" alt="Israel Ose" class="cover-author-avatar" onerror="this.src='Images/BG/reel_logo.png'" />
+              <span>Israel Ose &bull; Founder &amp; Executive Chairman</span>
+            </div>
+            <span class="cover-read-cta">Read Cover Story &rarr;</span>
           </div>
         </div>
       </a>
     `;
   }
 
+  // Render Grid Cards with Ambient Blur Backdrop (NO BLACK CORNERS)
   function renderCards(blogs) {
     const list = document.getElementById('blog-list');
     if (!blogs.length) {
-      list.innerHTML = `<div class="empty-state"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg><h3>No Articles Yet</h3><p>Check back soon for insights and updates.</p></div>`;
+      if (allBlogs.length > 0) {
+        list.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; border: 1px dashed var(--gold-border); border-radius: var(--radius-lg);"><h4 style="font-family:var(--font-serif); font-size:1.4rem; color:#fff; margin-bottom:8px;">No Dispatches Found in this Category</h4><p style="color:rgba(255,255,255,0.5); font-size:0.85rem;">Select another category above or view all dispatches.</p></div>`;
+      }
       return;
     }
-    list.innerHTML = blogs.map(b => `
-      <a href="/article/${slugify(b.title)}/" class="blog-card" style="text-decoration:none;">
-        <div class="blog-card-thumb">
-          ${b.image ? `<img src="${b.image}" alt="${b.title}" style="width:100%;height:100%;object-fit:contain;background:#08090d;object-position:${b.imagePos || 'center center'};" decoding="async" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='/Images/BG/reel_logo.png'; this.style.objectFit='contain'; this.style.padding='20px';">` : '<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.02);color:rgba(212,175,55,0.4);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48"><path d="M4 22h14a2 2 0 0 0 2-2V7.5L14.5 2H6a2 2 0 0 0-2 2v4"></path><polyline points="14 2 14 8 20 8"></polyline><path d="M2 15h10"></path><path d="M2 19h10"></path></svg></div>'}
-        </div>
-        <div class="blog-card-body">
-          <div class="blog-card-tag">${b.category || ''}</div>
-          <div class="blog-card-title">${b.title}</div>
-          <div class="blog-card-excerpt">${getExcerpt(b.content)}</div>
-          <div class="blog-card-date">${b.date || ''}</div>
-        </div>
-      </a>
-    `).join('');
-  }
 
-  function renderRecentWidget(blogs) {
-    const el = document.getElementById('recent-posts-widget');
-    const recent = blogs.slice(0, 4);
-    if (!recent.length) { el.innerHTML = '<p style="color:var(--w40);font-size:0.85rem;">No posts yet.</p>'; return; }
-    el.innerHTML = recent.map(b => `
-      <div class="recent-post">
-        <div class="rp-thumb">${b.image ? `<img src="${b.image}" alt="${b.title}" style="object-fit:cover;object-position:${b.imagePos||'center'};width:100%;height:100%;" decoding="async" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='/Images/BG/reel_logo.png'; this.style.objectFit='contain';">` : '<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.02);color:rgba(212,175,55,0.4);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24"><path d="M4 22h14a2 2 0 0 0 2-2V7.5L14.5 2H6a2 2 0 0 0-2 2v4"></path><polyline points="14 2 14 8 20 8"></polyline><path d="M2 15h10"></path><path d="M2 19h10"></path></svg></div>'}</div>
-        <div class="rp-text"><a href="/article/${slugify(b.title)}/">${b.title}</a><div class="rp-date">${b.date || ''}</div></div>
-      </div>
-    `).join('');
+    list.innerHTML = blogs.map(b => {
+      const imgUrl = b.image || 'Images/BG/reel_logo.png';
+      return `
+        <a href="article.html?slug=${slugify(b.title)}" class="article-magazine-card">
+          <div class="card-thumb-wrap">
+            <div class="card-thumb-blur" style="background-image: url('${imgUrl}');"></div>
+            <img src="${imgUrl}" alt="${b.title}" class="card-thumb-img" decoding="async" loading="lazy" onerror="this.onerror=null; this.src='Images/BG/reel_logo.png';">
+          </div>
+          <div class="card-body-wrap">
+            <div class="card-tag">${b.category || 'Executive Insight'}</div>
+            <h4 class="card-title">${b.title}</h4>
+            <p class="card-excerpt">${getExcerpt(b.content, 110)}</p>
+            <div class="card-footer">
+              <span>${b.date || 'Recent'}</span>
+              <span class="card-read-link">Read Dispatch &rarr;</span>
+            </div>
+          </div>
+        </a>
+      `;
+    }).join('');
   }
 
   const categoryAliases = {
@@ -942,12 +1656,12 @@
     'REEL Properties': ['Real Estate', 'REEL Properties', 'Properties'],
     'Technology': ['Technology', 'REEL Tech Hub', 'Tech'],
     'REEL Tech Hub': ['Technology', 'REEL Tech Hub', 'Tech'],
-    'Branding & Marketing': ['Branding & Marketing', 'REEL Branding', 'Branding'],
+    'Branding & Identity': ['Branding & Marketing', 'REEL Branding', 'Branding'],
     'REEL Branding': ['Branding & Marketing', 'REEL Branding', 'Branding'],
-    'Business': ['Business', 'REEL Business', 'Corporate'],
+    'Business & Advisory': ['Business', 'REEL Business', 'Corporate'],
     'REEL Business': ['Business', 'REEL Business', 'Corporate'],
     'REEL Power': ['REEL Power', 'Power', 'Energy'],
-    'Executive Lifestyle': ['Executive Lifestyle', 'REEL Global Palace', 'Lifestyle'],
+    'Executive Lifestyle': ['Executive Lifestyle', 'REEL Global Palace', 'Lifestyle', 'Auto', 'REEL Auto'],
   };
 
   function matchesCategory(b, cat) {
@@ -960,32 +1674,17 @@
 
   function filterBlogBy(cat) {
     currentFilter = cat;
-    document.querySelectorAll('.filter-chip').forEach(c => {
+    document.querySelectorAll('.div-chip').forEach(c => {
       c.classList.toggle('active', c.dataset.cat === cat || (cat === 'all' && c.dataset.cat === 'all'));
     });
+    if (!allBlogs.length) return;
     const filtered = allBlogs.filter(b => matchesCategory(b, cat));
-    renderFeatured(filtered[0] || null);
-    renderCards(filtered.length > 1 ? filtered.slice(1) : []);
+    renderFeatured(filtered[0] || allBlogs[0] || null);
+    renderCards(filtered.length > 1 ? filtered.slice(1) : filtered);
   }
 
-  function filterBlogByTag(tag) {
-    currentFilter = tag;
-    document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
-    const tLower = tag.toLowerCase().replace(/^#/, '');
-    const filtered = allBlogs.filter(b => {
-      const titleMatch = (b.title || '').toLowerCase().includes(tLower);
-      const catMatch = (b.category || '').toLowerCase().includes(tLower);
-      const tagMatch = (b.tags || '').toLowerCase().includes(tLower);
-      const contentMatch = (b.content || '').toLowerCase().includes(tLower);
-      return titleMatch || catMatch || tagMatch || contentMatch;
-    });
-    renderFeatured(filtered[0] || null);
-    renderCards(filtered.length > 1 ? filtered.slice(1) : []);
-  }
-
-  // Wire filter chips
   document.getElementById('filter-bar').addEventListener('click', e => {
-    const chip = e.target.closest('.filter-chip');
+    const chip = e.target.closest('.div-chip');
     if (!chip) return;
     filterBlogBy(chip.dataset.cat);
   });
@@ -1020,7 +1719,7 @@
         const snap = await window.db.collection('blogs').orderBy('timestamp', 'desc').get();
         _fetched = snap.docs.map(d => ({ id: d.id, ...d.data() }));
       } catch (err) {
-        console.warn('SDK fetch error in blog.html:', err);
+        console.warn('SDK fetch error:', err);
       }
     }
 
@@ -1037,25 +1736,211 @@
         if(item.status === 'draft') return false;
         return true;
       });
-      renderFeatured(allBlogs[0] || null);
-      renderCards(allBlogs.length > 1 ? allBlogs.slice(1) : []);
-      renderRecentWidget(allBlogs);
-      window.scrollTo(0, 0);
-    } else if (!window.db && typeof firebase !== 'undefined') {
-      setTimeout(loadBlogs, 60);
-    } else {
-      document.getElementById('blog-list').innerHTML = `<div class="empty-state"><h3>Could not load articles</h3><p>Please check your connection and refresh.</p></div>`;
+
+      if (allBlogs.length > 0) {
+        renderFeatured(allBlogs[0]);
+        renderCards(allBlogs.slice(1));
+      }
     }
   }
 
+  // ── REEL Spotlight Loader (Standalone from Admin "Publish Spotlight") ──
+  // When no video is published: shows REEL logo only, no play button, clicking does nothing.
+  // When video URL is published: shows poster, title, play button, and clicking opens the video modal.
+  async function loadVideoSpotlight() {
+    let spotlightData = null;
+
+    // 1. Check Firebase Firestore SDK
+    if (window.db) {
+      try {
+        const snap = await window.db.collection('site_settings').doc('video_spotlight').get();
+        if (snap.exists) {
+          spotlightData = snap.data();
+        }
+      } catch (err) {
+        console.warn('Firestore spotlight read failed, trying fallbacks:', err);
+      }
+    }
+
+    // 2. Fallback: Firestore REST API
+    if (!spotlightData) {
+      try {
+        const res = await fetch('https://firestore.googleapis.com/v1/projects/royal-executive-empire-ree/databases/(default)/documents/site_settings/video_spotlight');
+        if (res.ok) {
+          const doc = await res.json();
+          if (doc && doc.fields) {
+            spotlightData = {
+              videoUrl: doc.fields.videoUrl ? doc.fields.videoUrl.stringValue : null,
+              videoOrientation: doc.fields.videoOrientation ? doc.fields.videoOrientation.stringValue : 'landscape',
+              videoTitle: doc.fields.videoTitle ? doc.fields.videoTitle.stringValue : ''
+            };
+          }
+        }
+      } catch (e) {}
+    }
+
+    // 3. Fallback: localStorage
+    if (!spotlightData) {
+      try {
+        const cached = localStorage.getItem('reel_video_spotlight');
+        if (cached) spotlightData = JSON.parse(cached);
+      } catch (e) {}
+    }
+
+    // Apply spotlight data if valid YouTube URL is present
+    if (spotlightData && spotlightData.videoUrl && spotlightData.videoUrl.trim()) {
+      const vUrl = spotlightData.videoUrl.trim();
+      const yId = extractYouTubeId(vUrl);
+      if (yId) {
+        activeVideo = {
+          id: yId,
+          url: vUrl,
+          title: spotlightData.videoTitle || "REEL Spotlight",
+          orientation: spotlightData.videoOrientation || 'landscape',
+          // maxresdefault = highest quality thumbnail, loads fast
+          poster: `https://img.youtube.com/vi/${yId}/maxresdefault.jpg`,
+          localVideo: null
+        };
+        updateVideoSpotlightUI();
+        return;
+      }
+    }
+
+    // Default: Reset to golden REEL logo only (no video active, no play button, clicking does nothing)
+    activeVideo = {
+      id: null,
+      url: null,
+      title: "",
+      orientation: "landscape",
+      poster: null,
+      localVideo: null
+    };
+    updateVideoSpotlightUI();
+  }
+
+  // Real-time synchronization for REEL Spotlight
+  function initSpotlightLiveSync() {
+    if (window.db) {
+      try {
+        window.db.collection('site_settings').doc('video_spotlight').onSnapshot((doc) => {
+          if (doc.exists) {
+            const d = doc.data();
+            if (d && d.videoUrl && d.videoUrl.trim()) {
+              const yId = extractYouTubeId(d.videoUrl.trim());
+              if (yId) {
+                activeVideo = {
+                  id: yId,
+                  url: d.videoUrl.trim(),
+                  title: d.videoTitle || "REEL Spotlight",
+                  orientation: d.videoOrientation || 'landscape',
+                  poster: `https://img.youtube.com/vi/${yId}/maxresdefault.jpg`,
+                  localVideo: null
+                };
+                updateVideoSpotlightUI();
+                return;
+              }
+            }
+          }
+          activeVideo = { id: null, url: null, title: "", orientation: "landscape", poster: null, localVideo: null };
+          updateVideoSpotlightUI();
+        }, (err) => console.warn('Spotlight onSnapshot warning:', err));
+      } catch(e) {}
+    }
+
+    window.addEventListener('storage', (e) => {
+      if (e.key === 'reel_video_spotlight') {
+        loadVideoSpotlight();
+      }
+    });
+  }
+
   loadBlogs();
+  loadVideoSpotlight();
+  initSpotlightLiveSync();
+
+  // Video Modal Handlers with YouTube Landscape vs Portrait Orientation
+  function triggerSpotlightPlay() {
+    if (!activeVideo || !activeVideo.id) {
+      // When no video URL posted: does nothing!
+      return;
+    }
+    openVideoModal(activeVideo.id, activeVideo.orientation, null);
+  }
+
+  function openVideoModal(youtubeId, orientation = 'landscape', localSrc = null) {
+    const modal = document.getElementById('video-modal');
+    const box = document.getElementById('video-modal-box');
+    const container = document.getElementById('video-modal-container');
+    const slot = document.getElementById('video-modal-player-slot');
+    const titleBar = document.getElementById('video-modal-title-bar');
+
+    // Adapt orientation (Landscape 16:9 vs Portrait 9:16)
+    const isPortrait = orientation === 'portrait';
+    box.classList.toggle('portrait', isPortrait);
+    container.classList.remove('landscape', 'portrait');
+    container.classList.add(isPortrait ? 'portrait' : 'landscape');
+
+    if (titleBar) {
+      titleBar.textContent = isPortrait ? 'REEL Spotlight • Shorts' : 'REEL Spotlight';
+    }
+
+    // Preload iframe immediately so it loads fast
+    if (youtubeId) {
+      // Use youtube-nocookie for privacy, autoplay=1 to start immediately
+      slot.innerHTML = `<iframe
+        src="https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&rel=0&modestbranding=1&playsinline=1"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+        allowfullscreen
+        loading="eager"
+        style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;"
+      ></iframe>`;
+    } else {
+      const src = localSrc || '';
+      if (src) {
+        slot.innerHTML = `<video controls autoplay playsinline style="position:absolute;top:0;left:0;width:100%;height:100%;"><source src="${src}" type="video/mp4" />Your browser does not support video.</video>`;
+      }
+    }
+
+    modal.classList.add('open');
+  }
+
+  function closeVideoModal() {
+    const modal = document.getElementById('video-modal');
+    const slot = document.getElementById('video-modal-player-slot');
+    modal.classList.remove('open');
+    if (slot) slot.innerHTML = ''; // Stop video playback immediately
+  }
+
+  // PR Form Handler
+  function handlePRSubmit(e) {
+    e.preventDefault();
+    const name = document.getElementById('pr-name').value;
+    const org = document.getElementById('pr-org').value;
+    const email = document.getElementById('pr-email').value;
+    const inquiry = document.getElementById('pr-inquiry').value;
+    const subject = encodeURIComponent('Media Inquiry from ' + name + ' (' + org + ')');
+    const body = encodeURIComponent('Media Representative: ' + name + '\nPublication/Org: ' + org + '\nEmail: ' + email + '\n\nInquiry Details:\n' + inquiry);
+    window.location.href = 'mailto:admin@reelholding.com.ng?subject=' + subject + '&body=' + body;
+    alert('Opening your email client to send this inquiry directly to REEL Corporate Communications.');
+  }
+
+  // Newsletter Form Handler
+  function handleNewsletterSubmit(e) {
+    e.preventDefault();
+    const email = document.getElementById('footer-email').value;
+    if (!email) return;
+    const subject = encodeURIComponent('REEL Executive Gazette Subscription');
+    const body = encodeURIComponent('Please subscribe ' + email + ' to the REEL Executive Gazette & Media Releases.');
+    window.location.href = 'mailto:admin@reelholding.com.ng?subject=' + subject + '&body=' + body;
+    document.getElementById('footer-email').value = '';
+  }
 </script>
 
-  <script src="/js/pwa.js"></script>
+<script src="/js/pwa.js"></script>
 <script src="/js/notifications.js"></script>
 
 <script>
-  // __autopublish__ - Check every 60s if any scheduled items are now due
+  // Auto-publish polling check
   setInterval(function() {
     if (!window.db) return;
     var now = Date.now();
@@ -1066,18 +1951,15 @@
         snap.forEach(function(doc) {
           var data = doc.data();
           if (data.scheduleTime && new Date(data.scheduleTime).getTime() <= now) {
-            // Update status to published so it goes live
             doc.ref.update({ status: 'published' }).then(function() {
               console.log('Auto-published: ' + (data.title || data.name));
-              // Refresh the page to show the newly published item
               window.location.reload();
             });
           }
         });
       });
-  }, 30000); // Check every 30 seconds
+  }, 30000);
 </script>
 
 </body>
 </html>
-

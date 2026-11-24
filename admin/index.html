@@ -2334,6 +2334,7 @@
                 <div style="padding:6px 10px;font-size:0.68rem;color:rgba(212,175,55,0.55);text-align:center;letter-spacing:0.5px;">THUMBNAIL PREVIEW</div>
               </div>
             </div>
+
             <div class="form-group">
               <label style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
                 <span style="display:flex;align-items:center;gap:8px;">
@@ -2437,6 +2438,42 @@
               Publish Post
             </button>
           </form>
+
+          <!-- ═══ REEL SPOTLIGHT VIDEO (NEWS & MEDIA) ═══ -->
+          <div class="admin-spotlight-box" style="border-top:1px solid rgba(212,175,55,0.25); margin-top:24px; padding-top:20px;">
+            <label style="display:flex; align-items:center; gap:8px; margin-bottom:8px; color:var(--gold); font-size:0.82rem; font-weight:700;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polygon points="5,3 19,12 5,21"/></svg>
+              <span>REEL Spotlight Video (News &amp; Media)</span>
+            </label>
+            <div style="font-size:0.72rem; color:rgba(212,175,55,0.65); margin-bottom:12px; line-height:1.45;">
+              Paste a YouTube URL below and click <strong>Publish Spotlight</strong> to feature it immediately in the <strong>REEL SPOTLIGHT</strong> box on the News &amp; Media page. This operates independently from blog posts.
+            </div>
+            <input type="url" id="blog-video-url" placeholder="Paste YouTube link — e.g. https://www.youtube.com/watch?v=... or Shorts" style="width:100%; box-sizing:border-box; margin-bottom:10px;" />
+            
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+              <label style="font-size:0.75rem; color:var(--w60); white-space:nowrap;">Orientation:</label>
+              <select id="blog-video-orientation" style="flex:1; box-sizing:border-box;">
+                <option value="landscape">&#9635; Landscape (16:9) — Standard YouTube video</option>
+                <option value="portrait">&#9701; Portrait (9:16) — YouTube Shorts / vertical video</option>
+              </select>
+            </div>
+
+            <div style="margin-bottom:12px;">
+              <input type="text" id="blog-video-title" placeholder="Video Title / Caption (Optional — e.g. Inside REEL: Executive Tour)" style="width:100%; box-sizing:border-box;" />
+            </div>
+
+            <!-- Publish Spotlight Action Buttons -->
+            <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+              <button type="button" id="btn-publish-spotlight" style="background:var(--gold-gradient); color:#000; border:none; padding:10px 22px; border-radius:8px; font-weight:700; font-size:0.82rem; cursor:pointer; display:inline-flex; align-items:center; gap:8px; box-shadow:0 4px 15px rgba(212,175,55,0.25);">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+                Publish Spotlight
+              </button>
+              <button type="button" id="btn-clear-spotlight" style="background:rgba(239,68,68,0.12); color:#ef4444; border:1px solid rgba(239,68,68,0.3); padding:10px 16px; border-radius:8px; font-weight:600; font-size:0.78rem; cursor:pointer;">
+                Reset to Logo
+              </button>
+              <span id="spotlight-btn-status" style="font-size:0.74rem; color:#10b981; display:none; font-weight:600;">✓ Spotlight Live</span>
+            </div>
+          </div>
         </div>
         <div class="admin-card">
           <div class="card-title">
@@ -4697,6 +4734,133 @@
           btn.disabled = false;
         }
       });
+    })();
+
+    // ── REEL SPOTLIGHT PUBLISH BUTTON HANDLER ──
+    (function initSpotlightPublishHandler() {
+      const pubSpotBtn = document.getElementById('btn-publish-spotlight');
+      const clearSpotBtn = document.getElementById('btn-clear-spotlight');
+      const urlEl = document.getElementById('blog-video-url');
+      const orEl = document.getElementById('blog-video-orientation');
+      const titleEl = document.getElementById('blog-video-title');
+      const statusMsg = document.getElementById('spotlight-btn-status');
+
+      function extractYtId(url) {
+        if (!url) return null;
+        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=|shorts\/)([^#&?]*).*/;
+        const match = url.match(regExp);
+        return (match && match[2].length === 11) ? match[2] : null;
+      }
+
+      async function loadCurrentSpotlight() {
+        try {
+          if (!window.db) {
+            setTimeout(loadCurrentSpotlight, 400);
+            return;
+          }
+          const doc = await window.db.collection('site_settings').doc('video_spotlight').get();
+          if (doc.exists) {
+            const d = doc.data();
+            if (urlEl && !urlEl.value && d.videoUrl) urlEl.value = d.videoUrl;
+            if (orEl && d.videoOrientation) orEl.value = d.videoOrientation;
+            if (titleEl && !titleEl.value && d.videoTitle) titleEl.value = d.videoTitle;
+            if (statusMsg) {
+              statusMsg.style.display = 'inline-block';
+              statusMsg.textContent = '✓ Spotlight Live on Site';
+              statusMsg.style.color = '#10b981';
+            }
+          } else {
+            const cached = localStorage.getItem('reel_video_spotlight');
+            if (cached) {
+              const d = JSON.parse(cached);
+              if (urlEl && !urlEl.value && d.videoUrl) urlEl.value = d.videoUrl;
+              if (orEl && d.videoOrientation) orEl.value = d.videoOrientation;
+              if (titleEl && !titleEl.value && d.videoTitle) titleEl.value = d.videoTitle;
+            }
+          }
+        } catch(e) {
+          console.warn('Error loading spotlight:', e);
+        }
+      }
+      setTimeout(loadCurrentSpotlight, 400);
+
+      if (pubSpotBtn) {
+        pubSpotBtn.addEventListener('click', async (e) => {
+          e.preventDefault();
+          const vUrl = urlEl ? urlEl.value.trim() : '';
+          const vOr = orEl ? orEl.value : 'landscape';
+          const vTitle = titleEl ? titleEl.value.trim() : (document.getElementById('blog-title') ? document.getElementById('blog-title').value.trim() : '');
+
+          if (!vUrl) {
+            showToast('URL Required', 'Please paste a YouTube video or Shorts link first.', 'delete');
+            if (urlEl) urlEl.focus();
+            return;
+          }
+
+          const yId = extractYtId(vUrl);
+          if (!yId) {
+            showToast('Invalid YouTube Link', 'Please enter a valid YouTube link or YouTube Shorts URL.', 'delete');
+            if (urlEl) urlEl.focus();
+            return;
+          }
+
+          pubSpotBtn.disabled = true;
+          pubSpotBtn.innerHTML = 'Publishing...';
+
+          try {
+            const payload = {
+              videoUrl: vUrl,
+              videoOrientation: vOr,
+              videoTitle: vTitle || 'REEL Spotlight',
+              updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+            };
+
+            if (window.db) {
+              await window.db.collection('site_settings').doc('video_spotlight').set(payload, { merge: true });
+            }
+            localStorage.setItem('reel_video_spotlight', JSON.stringify({ videoUrl: vUrl, videoOrientation: vOr, videoTitle: vTitle || 'REEL Spotlight' }));
+
+            showToast('Spotlight Live!', 'The video is now active in the REEL SPOTLIGHT box on News & Media page.', 'info');
+
+            if (statusMsg) {
+              statusMsg.style.display = 'inline-block';
+              statusMsg.textContent = '✓ Live on News & Media Page';
+              statusMsg.style.color = '#10b981';
+            }
+          } catch(err) {
+            console.error(err);
+            showToast('Error', err.message || 'Failed to publish spotlight.', 'delete');
+          } finally {
+            pubSpotBtn.disabled = false;
+            pubSpotBtn.innerHTML = '<svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg> Publish Spotlight';
+          }
+        });
+      }
+
+      if (clearSpotBtn) {
+        clearSpotBtn.addEventListener('click', async (e) => {
+          e.preventDefault();
+          if (!confirm('Remove the spotlight video and reset to the REEL Logo?')) return;
+          try {
+            if (window.db) {
+              await window.db.collection('site_settings').doc('video_spotlight').delete();
+            }
+            localStorage.removeItem('reel_video_spotlight');
+            if (urlEl) urlEl.value = '';
+            if (titleEl) titleEl.value = '';
+            if (orEl) orEl.value = 'landscape';
+            if (statusMsg) {
+              statusMsg.style.display = 'inline-block';
+              statusMsg.textContent = 'Reset to Logo only';
+              statusMsg.style.color = 'var(--gold)';
+            }
+            showToast('Reset Complete', 'Spotlight reset to show REEL Logo.', 'info');
+          } catch(err) {
+            console.error(err);
+            showToast('Error', 'Failed to reset spotlight.', 'delete');
+          }
+        });
+      }
     })();
 
     // ── REEL Properties Subcategories Mapping ──

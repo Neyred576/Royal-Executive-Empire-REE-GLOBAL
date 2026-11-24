@@ -1,40 +1,75 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Inject Notification Bell into Header
   const navActions = document.querySelector('.nav-actions');
-  if (navActions) {
+
+  // 1. Inject Mobile News & Media Button if not already present
+  if (navActions && !document.getElementById('mobile-nav-news-btn')) {
+    const isBlog = window.location.pathname.includes('blog.html') || window.location.pathname.includes('article.html');
+    const newsBtnHtml = `
+      <a href="blog.html" class="nav-icon nav-news-icon-btn ${isBlog ? 'active' : ''}" id="mobile-nav-news-btn" aria-label="News &amp; Media" title="News &amp; Media">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#D4AF37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4v16a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7.5L16.5 2H6a2 2 0 0 0-2 2Z"></path>
+          <polyline points="16 2 16 8 22 8"></polyline>
+          <polygon points="10 12 10 16 14 14" fill="#D4AF37"></polygon>
+          <line x1="8" y1="18" x2="16" y2="18"></line>
+        </svg>
+      </a>
+    `;
+    navActions.insertAdjacentHTML('beforeend', newsBtnHtml);
+  }
+
+  // 2. Inject Notification Bell into Header
+  if (navActions && !document.getElementById('notif-btn')) {
     const bellHtml = `
-      <div class="nav-icon" id="notif-btn" style="cursor:pointer;">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px;">
+      <div class="nav-icon" id="notif-btn" style="cursor:pointer;" aria-label="Notifications" title="Notifications">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.8" style="width:18px;height:18px;">
           <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
         </svg>
         <span id="notif-badge" style="display:none; position:absolute; top:-6px; right:-6px; background:#D4AF37; color:#000; font-size:10px; font-weight:bold; padding:2px 6px; border-radius:10px;">0</span>
-        
-        <!-- Dropdown Panel -->
-        <div id="notif-panel" class="notif-dropdown-panel" style="display:none; white-space:normal; text-align:left; background:rgba(10,10,10,0.96); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border:1px solid rgba(212,175,55,0.3); border-radius:14px; box-shadow:0 16px 40px rgba(0,0,0,0.7); overflow:hidden;">
-          <div style="padding:15px; border-bottom:1px solid rgba(255,255,255,0.1); display:flex; justify-content:space-between; align-items:center;">
-            <h4 style="margin:0; font-family:'Cormorant Garamond', serif; color:#D4AF37;">Notifications</h4>
-            <button id="notif-enable-btn" style="background:transparent; border:1px solid #D4AF37; color:#D4AF37; padding:4px 8px; border-radius:4px; font-size:10px; cursor:pointer;">Enable Alerts</button>
-          </div>
-          
-          <!-- Pinned Install App -->
-          <div id="notif-install-app" style="padding:12px 15px; border-bottom:1px solid rgba(255,255,255,0.05); background:rgba(212,175,55,0.05); display:flex; justify-content:space-between; align-items:center; cursor:pointer; transition:background 0.2s;">
-            <div>
-              <strong style="display:flex; align-items:center; gap:6px; color:#D4AF37; font-size:13px; margin-bottom:2px;">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                Install REEL App
-              </strong>
-              <div style="color:rgba(255,255,255,0.7); font-size:11px;">Add to home screen for fast access</div>
-            </div>
-            <div style="background:#D4AF37; color:#000; padding:4px 8px; border-radius:4px; font-size:10px; font-weight:bold;">INSTALL</div>
-          </div>
-
-          <div id="notif-list" style="max-height:250px; overflow-y:auto; padding:10px;">
-            <div style="text-align:center; padding:20px; color:rgba(255,255,255,0.5); font-size:12px;">Loading...</div>
-          </div>
-        </div>
       </div>
     `;
     navActions.insertAdjacentHTML('beforeend', bellHtml);
+  }
+
+  // 3. Inject Mobile Contact Us (Call) Button if not already present
+  if (navActions && !document.getElementById('mobile-nav-contact-btn')) {
+    const isContact = window.location.pathname.includes('contact.html');
+    const contactBtnHtml = `
+      <a href="contact.html" class="nav-icon nav-contact-icon-btn ${isContact ? 'active' : ''}" id="mobile-nav-contact-btn" aria-label="Contact Us" title="Contact Us">
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#D4AF37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+        </svg>
+      </a>
+    `;
+    navActions.insertAdjacentHTML('beforeend', contactBtnHtml);
+  }
+
+  // 4. Dropdown Panel attached directly to document.body (prevents ancestor CSS transforms from crushing it)
+  if (!document.getElementById('notif-panel')) {
+    const panelHtml = `
+      <div id="notif-panel" class="notif-dropdown-panel" style="display:none; white-space:normal; text-align:left; background:rgba(10,10,10,0.96); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border:1px solid rgba(212,175,55,0.35); border-radius:14px; box-shadow:0 16px 40px rgba(0,0,0,0.85); overflow:hidden;">
+        <div style="padding:15px; border-bottom:1px solid rgba(255,255,255,0.1); display:flex; justify-content:space-between; align-items:center;">
+          <h4 style="margin:0; font-family:'Cormorant Garamond', serif; font-size:1.15rem; color:#D4AF37;">Notifications</h4>
+          <button id="notif-enable-btn" style="background:transparent; border:1px solid #D4AF37; color:#D4AF37; padding:4px 10px; border-radius:4px; font-size:10px; cursor:pointer; font-weight:600;">Enable Alerts</button>
+        </div>
+        
+        <!-- Pinned Install App -->
+        <div id="notif-install-app" style="padding:12px 15px; border-bottom:1px solid rgba(255,255,255,0.05); background:rgba(212,175,55,0.05); display:flex; justify-content:space-between; align-items:center; cursor:pointer; transition:background 0.2s;">
+          <div>
+            <strong style="display:flex; align-items:center; gap:6px; color:#D4AF37; font-size:13px; margin-bottom:2px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              Install REEL App
+            </strong>
+            <div style="color:rgba(255,255,255,0.7); font-size:11px;">Add to home screen for fast access</div>
+          </div>
+          <div style="background:#D4AF37; color:#000; padding:4px 8px; border-radius:4px; font-size:10px; font-weight:bold;">INSTALL</div>
+        </div>
+
+        <div id="notif-list" style="max-height:260px; overflow-y:auto; padding:10px;">
+          <div style="text-align:center; padding:20px; color:rgba(255,255,255,0.5); font-size:12px;">Loading...</div>
+        </div>
+      </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', panelHtml);
   }
 
   const notifBtn = document.getElementById('notif-btn');
@@ -57,17 +92,29 @@ document.addEventListener('DOMContentLoaded', () => {
   let lastSeenTimestamp = localStorage.getItem('ree_notif_last_seen') || 0;
   let unreadCount = 0;
 
-  if (notifBtn) {
+  if (notifBtn && notifPanel) {
     notifBtn.addEventListener('click', (e) => {
-      // Prevent bubbling to document so it doesn't close immediately
       e.stopPropagation();
       const isVisible = notifPanel.style.display === 'block';
-      notifPanel.style.display = isVisible ? 'none' : 'block';
-      
-      if (!isVisible) {
+      if (isVisible) {
+        notifPanel.style.display = 'none';
+      } else {
+        notifPanel.style.display = 'block';
+        if (window.innerWidth > 992) {
+          const rect = notifBtn.getBoundingClientRect();
+          notifPanel.style.top = `${rect.bottom + 12}px`;
+          notifPanel.style.right = `${Math.max(16, window.innerWidth - rect.right)}px`;
+          notifPanel.style.left = 'auto';
+        } else {
+          notifPanel.style.top = '72px';
+          notifPanel.style.left = '14px';
+          notifPanel.style.right = '14px';
+        }
         unreadCount = 0;
-        notifBadge.style.display = 'none';
-        notifBadge.textContent = '0';
+        if (notifBadge) {
+          notifBadge.style.display = 'none';
+          notifBadge.textContent = '0';
+        }
         localStorage.setItem('ree_notif_last_seen', Date.now().toString());
       }
     });

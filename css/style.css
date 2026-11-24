@@ -2644,18 +2644,33 @@ section,
   .container { padding: 0 18px; }
 
   /* Automatic Fluid Nav Scaling */
-  .main-nav,
-  .main-nav.scrolled {
+  .main-nav {
     height: var(--nav-h);
     overflow: visible;
+    background: transparent !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
-    background: rgba(10, 10, 10, 0.96) !important;
+    border-bottom: 1px solid transparent !important;
+    transition: background 0.35s ease, backdrop-filter 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease !important;
     transform: none !important;
     will-change: auto !important;
     perspective: none !important;
     filter: none !important;
     contain: none !important;
+  }
+  .main-nav.scrolled {
+    height: var(--nav-h);
+    overflow: visible;
+    background: rgba(10, 10, 10, 0.65) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.16) !important;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5) !important;
+  }
+  body.no-scroll .main-nav {
+    background: rgba(10, 10, 10, 0.96) !important;
+    backdrop-filter: blur(24px) !important;
+    -webkit-backdrop-filter: blur(24px) !important;
   }
   :root { --nav-h: 70px; }
   .nav-inner {
@@ -2726,15 +2741,135 @@ section,
     width: 17px !important;
     height: 17px !important;
   }
-  /* Hide wide text action buttons from top header on mobile screens to prevent squeezing */
+  /* Mobile News & Media and Contact Icon Buttons */
+  .nav-news-icon-btn,
+  .nav-contact-icon-btn {
+    display: none !important;
+  }
   @media (max-width: 768px) {
+    .nav-actions {
+      display: flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+    }
+    .nav-news-icon-btn {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      width: 36px !important;
+      height: 36px !important;
+      border-radius: 50% !important;
+      background: rgba(255, 255, 255, 0.04) !important;
+      border: 1px solid rgba(212, 175, 55, 0.25) !important;
+      color: var(--gold-300) !important;
+      text-decoration: none !important;
+      flex-shrink: 0 !important;
+      transition: all 0.2s ease !important;
+      order: 1 !important;
+    }
+    .nav-news-icon-btn.active {
+      background: rgba(212, 175, 55, 0.18) !important;
+      border-color: var(--gold-300) !important;
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.25) !important;
+    }
+    .nav-news-icon-btn svg {
+      width: 17px !important;
+      height: 17px !important;
+      stroke: var(--gold-300) !important;
+      color: var(--gold-300) !important;
+    }
+    .nav-news-icon-btn:hover,
+    .nav-news-icon-btn:focus,
+    .nav-news-icon-btn:active {
+      background: rgba(212, 175, 55, 0.16) !important;
+      border-color: rgba(212, 175, 55, 0.5) !important;
+      color: var(--gold-300) !important;
+      transform: none !important;
+    }
+
+    #notif-btn.nav-icon {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      width: 36px !important;
+      height: 36px !important;
+      border-radius: 50% !important;
+      background: rgba(255, 255, 255, 0.04) !important;
+      border: 1px solid rgba(212, 175, 55, 0.25) !important;
+      color: var(--gold-300) !important;
+      flex-shrink: 0 !important;
+      cursor: pointer !important;
+      order: 2 !important;
+    }
+    #notif-btn.nav-icon svg {
+      stroke: var(--gold-300) !important;
+      color: var(--gold-300) !important;
+    }
+    #notif-btn.nav-icon:hover,
+    #notif-btn.nav-icon:focus,
+    #notif-btn.nav-icon:active {
+      background: rgba(212, 175, 55, 0.16) !important;
+      border-color: rgba(212, 175, 55, 0.5) !important;
+      color: var(--gold-300) !important;
+      transform: none !important;
+    }
+    #notif-btn.nav-icon:hover svg,
+    #notif-btn.nav-icon:focus svg,
+    #notif-btn.nav-icon:active svg {
+      stroke: var(--gold-300) !important;
+      color: var(--gold-300) !important;
+    }
+
+    .nav-contact-icon-btn {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      width: 36px !important;
+      height: 36px !important;
+      border-radius: 50% !important;
+      background: rgba(255, 255, 255, 0.04) !important;
+      border: 1px solid rgba(212, 175, 55, 0.25) !important;
+      color: var(--gold-300) !important;
+      text-decoration: none !important;
+      flex-shrink: 0 !important;
+      transition: all 0.2s ease !important;
+      order: 3 !important;
+    }
+    .nav-contact-icon-btn.active {
+      background: rgba(212, 175, 55, 0.18) !important;
+      border-color: var(--gold-300) !important;
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.25) !important;
+    }
+    .nav-contact-icon-btn svg {
+      width: 17px !important;
+      height: 17px !important;
+      stroke: var(--gold-300) !important;
+      color: var(--gold-300) !important;
+    }
+    .nav-contact-icon-btn:hover,
+    .nav-contact-icon-btn:focus,
+    .nav-contact-icon-btn:active {
+      background: rgba(212, 175, 55, 0.16) !important;
+      border-color: rgba(212, 175, 55, 0.5) !important;
+      color: var(--gold-300) !important;
+      transform: none !important;
+    }
+
+    /* Hide wide text action buttons from top header on mobile screens to prevent squeezing */
     .nav-btn-contact,
     .nav-btn-news,
     .nav-btn-media {
       display: none !important;
     }
+    .nav-hamburger {
+      display: none !important;
+    }
   }
   @media (min-width: 769px) {
+    .nav-news-icon-btn,
+    .nav-contact-icon-btn {
+      display: none !important;
+    }
     .nav-btn-contact,
     .nav-btn-news,
     .nav-btn-media {
@@ -2749,21 +2884,14 @@ section,
       flex-shrink: 0;
     }
   }
-  .nav-hamburger {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    width: 38px !important;
-    height: 38px !important;
-    border-radius: 50% !important;
-    background: rgba(212, 175, 55, 0.08) !important;
-    border: 1px solid rgba(212, 175, 55, 0.25) !important;
-    padding: 8px !important;
-    flex-shrink: 0 !important;
-    margin-left: 2px !important;
-    z-index: 10002 !important;
-    position: relative !important;
+    height: 2px !important;
+    background: var(--gold-300) !important;
+    border-radius: 2px !important;
+    transition: all 0.3s ease !important;
   }
+  .nav-hamburger.open .ham-line:nth-child(1) { transform: rotate(45deg) translate(4px, 4px) !important; }
+  .nav-hamburger.open .ham-line:nth-child(2) { opacity: 0 !important; transform: scaleX(0) !important; }
+  .nav-hamburger.open .ham-line:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px) !important; }
   .nav-links {
     position: fixed !important;
     top: 0 !important;
