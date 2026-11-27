@@ -2453,8 +2453,8 @@
             <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
               <label style="font-size:0.75rem; color:var(--w60); white-space:nowrap;">Orientation:</label>
               <select id="blog-video-orientation" style="flex:1; box-sizing:border-box;">
+                <option value="portrait" selected>&#9701; Portrait (9:16) — YouTube Shorts / Vertical Video</option>
                 <option value="landscape">&#9635; Landscape (16:9) — Standard YouTube video</option>
-                <option value="portrait">&#9701; Portrait (9:16) — YouTube Shorts / vertical video</option>
               </select>
             </div>
 
@@ -4788,7 +4788,7 @@
         pubSpotBtn.addEventListener('click', async (e) => {
           e.preventDefault();
           const vUrl = urlEl ? urlEl.value.trim() : '';
-          const vOr = orEl ? orEl.value : 'landscape';
+          const vOr = orEl ? orEl.value : 'portrait';
           const vTitle = titleEl ? titleEl.value.trim() : (document.getElementById('blog-title') ? document.getElementById('blog-title').value.trim() : '');
 
           if (!vUrl) {
@@ -4848,7 +4848,7 @@
             localStorage.removeItem('reel_video_spotlight');
             if (urlEl) urlEl.value = '';
             if (titleEl) titleEl.value = '';
-            if (orEl) orEl.value = 'landscape';
+            if (orEl) orEl.value = 'portrait';
             if (statusMsg) {
               statusMsg.style.display = 'inline-block';
               statusMsg.textContent = 'Reset to Logo only';
