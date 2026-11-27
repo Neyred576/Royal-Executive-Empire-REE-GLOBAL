@@ -14,12 +14,16 @@ html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
   overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
 }
 
 body {
   overflow-x: hidden;
-  min-width: 320px;
+  min-width: 0;
   width: 100%;
+  max-width: 100vw;
+  position: relative;
 }
 
 /* ================================================================
@@ -29,10 +33,10 @@ body {
 
 /* Reduce expensive blur effects on small-screen devices */
 @media (max-width: 768px) {
-  /* Lighter blur on mobile nav — backdrop-filter is very GPU-heavy on mobile */
   .nav-links {
-    backdrop-filter: blur(12px) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    filter: none !important;
   }
   .mega-menu-panel,
   .nav-dropdown-menu {
@@ -203,23 +207,52 @@ table {
    320px - 479px: Extra-Small Phones
    =========================================== */
 @media (max-width: 479px) {
-  :root { --nav-h: 60px; --section-py: 60px; }
-  .container { padding-inline: 16px; }
+  :root { --nav-h: 60px; --section-py: 56px; }
+  .container { padding-inline: clamp(10px, 3.5vw, 16px); }
 
-  .hero-content { padding: calc(var(--nav-h) + 40px) 16px 60px; }
-  .hero-logo { width: clamp(140px, 55vw, 220px); height: clamp(140px, 55vw, 220px); }
-  .hero-title { font-size: clamp(1.5rem, 8vw, 2rem); }
-  .hero-subtitle { font-size: 0.92rem; margin-bottom: 32px; }
-  .hero-ctas { flex-direction: column; align-items: stretch; width: 100%; }
-  .hero-ctas .btn-primary, .hero-ctas .btn-secondary { width: 100%; justify-content: center; }
-  .hero-quick-stats { gap: 16px; flex-wrap: wrap; justify-content: center; }
+  .hero-content {
+    padding: calc(var(--nav-h) + 24px) clamp(10px, 3.5vw, 16px) 50px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .hero-logo { width: clamp(120px, 46vw, 190px); height: clamp(120px, 46vw, 190px); max-width: 78vw; }
+  .hero-title {
+    font-size: clamp(1.22rem, 5.8vw, 1.85rem);
+    line-height: 1.15;
+    max-width: 100%;
+    word-break: normal;
+    overflow-wrap: break-word;
+    margin-bottom: 12px;
+  }
+  .hero-subtitle { font-size: clamp(0.8rem, 2.7vw, 0.95rem); line-height: 1.45; margin-bottom: 22px; max-width: 100%; }
+  .hero-ctas {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    gap: 10px;
+    margin-bottom: 30px;
+  }
+  .hero-ctas .btn-primary, .hero-ctas .btn-secondary, .btn-primary {
+    width: 100%;
+    max-width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 12px 16px;
+    font-size: clamp(0.72rem, 2.5vw, 0.85rem);
+    letter-spacing: 0.8px;
+    white-space: normal;
+    text-align: center;
+  }
+  .hero-quick-stats { gap: 14px; flex-wrap: wrap; justify-content: center; }
   .hqs-sep { display: none; }
-  .hqs-item strong { font-size: 1.6rem; }
+  .hqs-item strong { font-size: 1.45rem; }
   .hero-scroll-cue { display: none; }
   .hero-bg-img { object-position: 25% center; }
 
-  .nav-brand-sub { display: none; }
-  .nav-hamburger { display: flex; }
+  .nav-brand-sub { display: none !important; }
+  .nav-hamburger { display: none !important; }
   .nav-btn-contact, .nav-btn-news, .nav-btn-media { display: none !important; }
 
   .section-header { margin-bottom: 36px; }
@@ -383,7 +416,7 @@ table {
   .why-grid { grid-template-columns: repeat(3, 1fr); gap: 22px; }
   .mvv-grid { grid-template-columns: repeat(3, 1fr); gap: 22px; }
   .contact-layout { grid-template-columns: 1fr 1.5fr; gap: 48px; }
-  .footer-grid { grid-template-columns: 1.8fr 1fr 1fr 1.4fr; gap: 40px; }
+  .footer-grid { grid-template-columns: 1.3fr 0.95fr 0.9fr 1.2fr; gap: 32px; }
   .alliance-cards-grid { grid-template-columns: repeat(4, 1fr); gap: 20px; }
 }
 
@@ -461,11 +494,66 @@ table {
     .nav-hamburger {
       display: none !important;
     }
-    .nav-links {
-      display: none !important;
-    }
     .nav-overlay {
       display: none !important;
+    }
+    /* Mobile "Our Divisions" centered navigation */
+    .nav-links {
+      display: flex !important;
+      position: static !important;
+      transform: none !important;
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      margin: 0 auto !important;
+      padding: 0 !important;
+      list-style: none !important;
+      align-items: center !important;
+      justify-content: center !important;
+      flex: 0 1 auto !important;
+      min-width: 0 !important;
+      text-align: center !important;
+      z-index: 10 !important;
+    }
+    .nav-links li {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      border: none !important;
+      background: transparent !important;
+    }
+    .nav-links li:not(:first-child) {
+      display: none !important;
+    }
+    .nav-link {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      border: none !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      padding: 6px clamp(4px, 1.2vw, 10px) !important;
+      color: rgba(255, 255, 255, 0.9) !important;
+      font-size: clamp(0.72rem, 2.5vw, 0.88rem) !important;
+      font-weight: 600 !important;
+      letter-spacing: 0.3px !important;
+      white-space: nowrap !important;
+      cursor: pointer !important;
+      text-decoration: none !important;
+      transition: color 0.2s ease, opacity 0.2s ease !important;
+    }
+    .nav-link::after {
+      display: none !important;
+    }
+    .nav-link:hover,
+    .nav-link:focus,
+    .nav-link.active {
+      color: var(--gold-300, #D4AF37) !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      border: none !important;
     }
   }
   @media (min-width: 769px) {
@@ -595,26 +683,169 @@ table {
     box-sizing: border-box !important;
   }
 
-  /* Mobile 3-Icon Header Navigation (News & Media, Notifications, Contact Us) */
-  .nav-actions {
-    display: flex !important;
-    align-items: center !important;
-    gap: 8px !important;
+  /* --- Fluid Autofit Mobile Header Navigation (News & Media, Notifications, Contact Us) --- */
+  .main-nav {
+    width: 100% !important;
+    max-width: 100vw !important;
+    left: 0 !important;
+    right: 0 !important;
+    box-sizing: border-box !important;
+    overflow-x: clip !important;
   }
 
-  .nav-news-icon-btn {
+  .nav-inner {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 0 clamp(8px, 2.8vw, 16px) !important;
+    gap: clamp(4px, 1.5vw, 10px) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+  }
+
+  .nav-logo {
+    display: flex !important;
+    align-items: center !important;
+    gap: clamp(4px, 1.2vw, 8px) !important;
+    flex-shrink: 0 !important;
+    min-width: 0 !important;
+  }
+
+  .nav-logo-img-wrap {
+    width: clamp(26px, 7vw, 36px) !important;
+    height: clamp(26px, 7vw, 36px) !important;
+    flex-shrink: 0 !important;
+    border-radius: 50% !important;
+  }
+
+  .nav-logo-text {
+    min-width: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .nav-brand-name {
+    font-size: clamp(0.92rem, 3.6vw, 1.15rem) !important;
+    white-space: nowrap !important;
+    line-height: 1 !important;
+  }
+
+  .nav-brand-sub {
+    display: none !important;
+  }
+
+  /* Centered "Our Divisions" in Middle */
+  .nav-links {
+    display: flex !important;
+    position: static !important;
+    transform: none !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    list-style: none !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 0 1 auto !important;
+    min-width: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    filter: none !important;
+    text-align: center !important;
+    z-index: 10 !important;
+  }
+
+  .nav-links li {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    width: 36px !important;
-    height: 36px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    background: transparent !important;
+  }
+
+  .nav-links li:not(:first-child) {
+    display: none !important;
+  }
+
+  .nav-link {
+    font-family: 'Outfit', sans-serif !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 6px clamp(4px, 1.5vw, 12px) !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-size: clamp(0.74rem, 2.6vw, 0.88rem) !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.4px !important;
+    white-space: nowrap !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    min-height: auto !important;
+    width: auto !important;
+    border-radius: 6px !important;
+    transition: color 0.2s ease, opacity 0.2s ease !important;
+  }
+
+  .nav-link::after {
+    display: none !important;
+  }
+
+  .nav-link:hover,
+  .nav-link:focus,
+  .nav-link.active {
+    color: var(--gold-300, #D4AF37) !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  .nav-actions {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: clamp(3px, 1.4vw, 8px) !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    flex-shrink: 0 !important;
+    max-width: 50% !important;
+  }
+
+  .nav-news-icon-btn,
+  #notif-btn.nav-icon,
+  .nav-contact-icon-btn {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: clamp(28px, 7.8vw, 36px) !important;
+    height: clamp(28px, 7.8vw, 36px) !important;
+    min-width: clamp(28px, 7.8vw, 36px) !important;
+    min-height: clamp(28px, 7.8vw, 36px) !important;
+    max-width: 36px !important;
+    max-height: 36px !important;
     border-radius: 50% !important;
     background: rgba(255, 255, 255, 0.04) !important;
     border: 1px solid rgba(212, 175, 55, 0.25) !important;
     color: var(--gold-300) !important;
     text-decoration: none !important;
     flex-shrink: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
     transition: all 0.2s ease !important;
+  }
+
+  .nav-news-icon-btn {
     order: 1 !important;
   }
   .nav-news-icon-btn.active {
@@ -623,10 +854,11 @@ table {
     box-shadow: 0 0 10px rgba(212, 175, 55, 0.25) !important;
   }
   .nav-news-icon-btn svg {
-    width: 17px !important;
-    height: 17px !important;
+    width: clamp(13px, 3.6vw, 17px) !important;
+    height: clamp(13px, 3.6vw, 17px) !important;
     stroke: var(--gold-300) !important;
     color: var(--gold-300) !important;
+    flex-shrink: 0 !important;
   }
   .nav-news-icon-btn:hover,
   .nav-news-icon-btn:focus,
@@ -638,22 +870,15 @@ table {
   }
 
   #notif-btn.nav-icon {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    width: 36px !important;
-    height: 36px !important;
-    border-radius: 50% !important;
-    background: rgba(255, 255, 255, 0.04) !important;
-    border: 1px solid rgba(212, 175, 55, 0.25) !important;
-    color: var(--gold-300) !important;
-    flex-shrink: 0 !important;
     cursor: pointer !important;
     order: 2 !important;
   }
   #notif-btn.nav-icon svg {
+    width: clamp(13px, 3.6vw, 17px) !important;
+    height: clamp(13px, 3.6vw, 17px) !important;
     stroke: var(--gold-300) !important;
     color: var(--gold-300) !important;
+    flex-shrink: 0 !important;
   }
   #notif-btn.nav-icon:hover,
   #notif-btn.nav-icon:focus,
@@ -671,18 +896,6 @@ table {
   }
 
   .nav-contact-icon-btn {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    width: 36px !important;
-    height: 36px !important;
-    border-radius: 50% !important;
-    background: rgba(255, 255, 255, 0.04) !important;
-    border: 1px solid rgba(212, 175, 55, 0.25) !important;
-    color: var(--gold-300) !important;
-    text-decoration: none !important;
-    flex-shrink: 0 !important;
-    transition: all 0.2s ease !important;
     order: 3 !important;
   }
   .nav-contact-icon-btn.active {
@@ -691,10 +904,11 @@ table {
     box-shadow: 0 0 10px rgba(212, 175, 55, 0.25) !important;
   }
   .nav-contact-icon-btn svg {
-    width: 17px !important;
-    height: 17px !important;
+    width: clamp(13px, 3.6vw, 17px) !important;
+    height: clamp(13px, 3.6vw, 17px) !important;
     stroke: var(--gold-300) !important;
     color: var(--gold-300) !important;
+    flex-shrink: 0 !important;
   }
   .nav-contact-icon-btn:hover,
   .nav-contact-icon-btn:focus,
@@ -703,6 +917,13 @@ table {
     border-color: rgba(212, 175, 55, 0.5) !important;
     color: var(--gold-300) !important;
     transform: none !important;
+  }
+
+  .nav-btn-news,
+  .nav-btn-contact,
+  .nav-btn-media,
+  .nav-hamburger {
+    display: none !important;
   }
 
   .nav-link::after { display: none; }
@@ -758,22 +979,74 @@ table {
 }
 
 /* ===========================================
-   GLOBAL OVERFLOW GUARD
+   GLOBAL OVERFLOW & AUTOFIT GUARD
    =========================================== */
-html, body {
+html {
   overflow-x: hidden;
-  max-width: 100%;
+  width: 100%;
+  max-width: 100vw;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  min-width: 0 !important;
+  width: 100%;
+  max-width: 100vw;
+  position: relative;
+}
+
+/* Ensure no container or section forces horizontal scrolling */
+section, article, header, footer, nav, main, .container, .section {
+  max-width: 100vw;
+  box-sizing: border-box;
 }
 
 .hero-orb, .bg-animated-glow, .footer-glow-l, .footer-glow-r, .stats-glow-l, .stats-glow-r, .hero-bg {
   pointer-events: none;
 }
 
-img { max-width: 100%; height: auto; display: block; }
+img, video, canvas, svg {
+  max-width: 100%;
+  height: auto;
+  box-sizing: border-box;
+}
 
 h1, h2, h3, h4, h5, h6, p, span, li, a {
   overflow-wrap: break-word;
-  word-break: break-word;
+  word-break: normal;
+}
+
+/* Mobile-specific overflow prevention */
+@media (max-width: 768px) {
+  /* Suppress wide fixed background glow that forces viewport scroll */
+  .bg-animated-glow {
+    display: none !important;
+  }
+  .hero-orb, .orb-1, .orb-2, .orb-3 {
+    display: none !important;
+  }
+  /* Prevent horizontal transform shifts from creating horizontal scrollbars */
+  .reveal-left,
+  .reveal-right {
+    transform: translateY(20px) !important;
+    transition: opacity 0.6s ease, transform 0.6s ease !important;
+  }
+  .reveal-left.in-view,
+  .reveal-right.in-view {
+    transform: translateY(0) !important;
+  }
+  /* Auto-shrink text that might exceed screen width */
+  .hero-title {
+    font-size: clamp(1.25rem, 6vw, 2.2rem) !important;
+    line-height: 1.15 !important;
+    max-width: 100% !important;
+  }
+  .btn-primary, .btn-secondary {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
 }
 
 /* ===========================================
@@ -851,5 +1124,19 @@ h1, h2, h3, h4, h5, h6, p, span, li, a {
   .auth-user-header { flex-wrap: wrap; gap: 14px; }
   .auth-signout-btn { margin-left: 0; width: 100%; text-align: center; }
   .auth-tabs { overflow-x: auto; }
+}
+
+
+/* ============================================================
+   KILL: Mobile nav call/contact icon � removed by client request
+   ============================================================ */
+#mobile-nav-contact-btn,
+.nav-contact-icon-btn {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
 }
 

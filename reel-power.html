@@ -1,1773 +1,3541 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>REEL Power | Premium Charging Infrastructure &mdash; REEL</title>
+
   <link rel="icon" type="image/png" href="/Images/BG/reel_logo.png" />
+
   <meta name="description" content="REEL Power delivers premium mobile charging infrastructure, corporate charging hubs, and power banks across Africa." />
+
   <meta name="author" content="Onosedeba Israel Ose" />
+
   <meta name="theme-color" content="#D4AF37" />
+
   <script type="application/ld+json">
+
   {
+
     "@context": "https://schema.org",
+
     "@graph": [
+
       {
+
         "@type": ["Organization", "LocalBusiness"],
+
         "name": "Royalty Executive Empire Limited",
+
         "alternateName": "REEL",
+
         "url": "https://reelholding.com.ng",
+
         "logo": "https://reelholding.com.ng/Images/BG/reel_logo.png",
+
         "description": "Premium Executive Infrastructure brand delivering mobile charging solutions, corporate branding, commercial real estate, and business growth advisory across Africa.",
+
         "address": {
+
           "@type": "PostalAddress",
+
           "addressLocality": "Lagos",
+
           "addressCountry": "NG"
+
         },
+
         "contactPoint": {
+
           "@type": "ContactPoint",
-          "telephone": ["+2348067029444", "+2349118024521"],
+
+          "telephone": ["+2348067029444", "+2348111166543", "+971561347581"],
+
           "contactType": "customer service",
-          "email": "admin@reelholding.com.ng"
+
+          "email": "Royaltyexecutiveempire@gmail.com"
+
         },
+
         "sameAs": [
+
           "https://web.facebook.com/ReelHolding/",
+
           "https://x.com/ReelHolding",
+
           "https://www.instagram.com/reelholding/",
+
           "https://linkedin.com/company/reelholding",
+
           "https://www.youtube.com/@ReelHolding",
+
           "https://www.tiktok.com/@reelholding"
+
         ]
+
       },
+
       {
+
         "@type": "ProfessionalService",
+
         "name": "REEL Power  Premium Charging Infrastructure",
+
         "url": "https://reelholding.com.ng/reel-power.html",
+
         "description": "Premium mobile charging infrastructure, corporate charging hubs, and power banks across Africa.",
+
         "parentOrganization": {
+
           "@type": "Organization",
+
           "name": "Royalty Executive Empire Limited"
+
         },
+
         "areaServed": ["Lagos", "Nigeria", "Africa"],
+
         "serviceType": ["Mobile Charging", "Charging Infrastructure", "Power Banks"]
+
       }
+
     ]
+
   }
+
   </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
+
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=13" />
-  <link rel="stylesheet" href="css/responsive.css?v=13" />
+
+  <link rel="stylesheet" href="css/style.css?v=30" />
+
+  <link rel="stylesheet" href="css/responsive.css?v=30" />
+
+
 
   <style>
+
     /* -------------------------------------------------------
+
        REEL POWER  LUXURY REDESIGN STYLES
+
     ------------------------------------------------------- */
 
+
+
     /* -- CSS VARIABLES -- */
+
     :root {
+
       --gold-300: #D4AF37;
+
       --gold-400: #B8960C;
+
       --gold-gradient: linear-gradient(135deg, #D4AF37 0%, #B8960C 50%, #D4AF37 100%);
+
       --font-display: 'Cormorant Garamond', serif;
+
       --font-body: 'Outfit', sans-serif;
+
     }
+
+
 
     /* -- HERO -- */
+
     .rp-hero {
+
       position: relative;
+
       min-height: 100vh;
+
       display: flex;
+
       align-items: center;
+
       overflow: hidden;
+
       background: #050505;
+
     }
+
+
 
     .rp-hero-bg {
+
       position: absolute;
+
       inset: 0;
+
       background: url('Images/reel_power_hero.webp') center center / cover no-repeat;
+
       animation: heroBgZoom 30s ease-in-out infinite alternate;
+
       z-index: 0;
+
       will-change: transform;
+
     }
+
+
 
     .rp-hero-bg::after {
+
       content: '';
+
       position: absolute;
+
       inset: 0;
+
       background:
+
         linear-gradient(90deg, rgba(5,5,5,0.96) 0%, rgba(5,5,5,0.75) 55%, rgba(5,5,5,0.25) 100%),
+
         linear-gradient(to top, rgba(5,5,5,0.9) 0%, transparent 40%);
+
     }
+
+
 
     @keyframes heroBgZoom {
+
       from { transform: scale(1); }
+
       to   { transform: scale(1.08); }
+
     }
+
+
 
     /* Floating products in hero background */
+
     .rp-hero-floats {
+
       position: absolute;
+
       inset: 0;
+
       z-index: 1;
+
       pointer-events: none;
+
     }
+
+
 
     .rp-float {
+
       position: absolute;
+
       opacity: 0;
+
       filter: blur(1px) brightness(0.6);
+
       animation: floatUp 6s ease-in-out infinite alternate;
+
       will-change: transform, opacity;
+
     }
+
+
 
     .rp-float.f1  { width: 180px; bottom: 0;   right: 8%;  animation-duration: 7s;  animation-delay: 0s;   opacity: 0.18; filter: blur(0px) brightness(0.75); }
+
     .rp-float.f2  { width: 110px; bottom: 10%; right: 22%; animation-duration: 9s;  animation-delay: 1.2s; opacity: 0.10; filter: blur(2px); }
+
     .rp-float.f3  { width: 140px; bottom: 5%;  right: 38%; animation-duration: 8s;  animation-delay: 0.5s; opacity: 0.08; filter: blur(3px); }
+
     .rp-float.f4  { width: 90px;  top: 15%;   right: 5%;  animation-duration: 11s; animation-delay: 2s;   opacity: 0.07; filter: blur(2px); }
+
     .rp-float.f5  { width: 200px; bottom: -20px; right: 2%; animation-duration: 6s; animation-delay: 0s;  opacity: 0.22; filter: blur(0px) brightness(0.8); }
 
+
+
     @keyframes floatUp {
+
       from { transform: translateY(0px) rotate(-2deg); }
+
       to   { transform: translateY(-18px) rotate(2deg); }
+
     }
 
+
+
     .rp-hero-inner {
+
       position: relative;
+
       z-index: 3;
+
       display: grid;
+
       grid-template-columns: 1fr 1fr;
+
       gap: 60px;
+
       align-items: center;
+
       padding-top: 100px;
+
       padding-bottom: 80px;
+
       width: 100%;
+
     }
+
+
 
     .rp-hero-left { display: flex; flex-direction: column; }
 
+
+
     .rp-hero-badge {
+
       display: inline-flex;
+
       align-items: center;
+
       gap: 12px;
+
       margin-bottom: 28px;
+
     }
+
+
 
     .rp-hero-badge-line {
+
       width: 40px;
+
       height: 1px;
+
       background: var(--gold-gradient);
+
     }
+
+
 
     .rp-hero-badge-text {
+
       font-size: 0.68rem;
+
       font-weight: 800;
+
       letter-spacing: 4px;
+
       text-transform: uppercase;
+
       color: var(--gold-300);
+
     }
+
+
 
     .rp-hero-title {
+
       font-family: var(--font-display);
+
       font-size: clamp(3rem, 5.5vw, 5.5rem);
+
       line-height: 1.1;
+
       color: #fff;
+
       margin-bottom: 10px;
+
       letter-spacing: -1px;
+
     }
+
+
 
     .rp-hero-title-accent {
+
       display: block;
+
       background: linear-gradient(135deg, #D4AF37 0%, #F5E08A 50%, #B8960C 100%);
+
       -webkit-background-clip: text;
+
       -webkit-text-fill-color: transparent;
+
       background-clip: text;
+
       padding-bottom: 0.15em;
+
     }
+
+
 
     .rp-hero-sub {
+
       font-size: 1rem;
+
       font-weight: 300;
+
       letter-spacing: 5px;
+
       text-transform: uppercase;
+
       color: rgba(255,255,255,0.35);
+
       margin-bottom: 32px;
+
     }
+
+
 
     .rp-hero-desc {
+
       color: rgba(255,255,255,0.65);
+
       font-size: 1.05rem;
+
       line-height: 1.85;
+
       max-width: 500px;
+
       margin-bottom: 48px;
+
     }
+
+
 
     .rp-hero-ctas {
+
       display: flex;
+
       gap: 16px;
+
       flex-wrap: wrap;
+
       margin-bottom: 56px;
+
     }
+
+
 
     .rp-hero-stats {
+
       display: flex;
+
       gap: 40px;
+
       padding-top: 36px;
+
       border-top: 1px solid rgba(212,175,55,0.15);
+
     }
+
+
 
     .rp-hero-stat strong {
+
       display: block;
+
       font-size: 2rem;
+
       font-weight: 800;
+
       color: var(--gold-300);
+
       line-height: 1;
+
     }
+
+
 
     .rp-hero-stat span {
+
       font-size: 0.72rem;
+
       color: rgba(255,255,255,0.4);
+
       text-transform: uppercase;
+
       letter-spacing: 1.5px;
+
       margin-top: 4px;
+
       display: block;
+
     }
+
+
 
     /* Hero Right  Product Visual Stack */
+
     .rp-hero-right {
+
       position: relative;
+
       display: flex;
+
       align-items: center;
+
       justify-content: center;
+
       height: 580px;
+
     }
+
+
 
     .rp-hero-prod-main {
+
       position: relative;
+
       z-index: 3;
+
       width: 280px;
+
       filter: drop-shadow(0 30px 60px rgba(212,175,55,0.25)) drop-shadow(0 0 80px rgba(212,175,55,0.1));
+
       animation: heroFloat 5s ease-in-out infinite alternate;
+
     }
+
+
 
     @keyframes heroFloat {
+
       from { transform: translateY(0); }
+
       to   { transform: translateY(-20px); }
+
     }
+
+
 
     .rp-hero-prod-side {
+
       position: absolute;
+
       z-index: 2;
+
       filter: drop-shadow(0 20px 40px rgba(0,0,0,0.6));
+
       opacity: 0.75;
+
     }
+
+
 
     .rp-hero-prod-side.left {
+
       width: 160px;
+
       left: 0;
+
       bottom: 60px;
+
       transform: rotate(-8deg);
+
       animation: heroFloat 7s ease-in-out 1s infinite alternate;
+
     }
+
+
 
     .rp-hero-prod-side.right {
+
       width: 140px;
+
       right: 10px;
+
       bottom: 40px;
+
       transform: rotate(8deg);
+
       animation: heroFloat 6s ease-in-out 0.5s infinite alternate;
+
     }
+
+
 
     .rp-hero-prod-top {
+
       position: absolute;
+
       top: 40px;
+
       right: 30px;
+
       z-index: 2;
+
       width: 120px;
+
       opacity: 0.65;
+
       filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5));
+
       animation: heroFloat 8s ease-in-out 2s infinite alternate;
+
     }
+
+
 
     .rp-hero-glow-ring {
+
       position: absolute;
+
       width: 360px;
+
       height: 360px;
+
       border-radius: 50%;
+
       border: 1px solid rgba(212,175,55,0.12);
+
       z-index: 1;
+
       animation: slowSpin 25s linear infinite;
+
     }
 
+
+
     .rp-hero-glow-ring::before {
+
       content: '';
+
       position: absolute;
+
       inset: 20px;
+
       border-radius: 50%;
+
       border: 1px solid rgba(212,175,55,0.07);
+
     }
+
+
 
     @keyframes slowSpin { to { transform: rotate(360deg); } }
 
+
+
     .rp-hero-glow-orb {
+
       position: absolute;
+
       width: 300px;
+
       height: 300px;
+
       border-radius: 50%;
+
       background: radial-gradient(circle, rgba(212,175,55,0.12) 0%, transparent 70%);
+
       z-index: 0;
+
     }
+
+
 
     /* -- SCROLL INDICATOR -- */
+
     .rp-scroll-hint {
+
       position: absolute;
+
       bottom: 36px;
+
       left: 50%;
+
       transform: translateX(-50%);
+
       z-index: 5;
+
       display: flex;
+
       flex-direction: column;
+
       align-items: center;
+
       gap: 8px;
+
       color: rgba(255,255,255,0.3);
+
       font-size: 0.65rem;
+
       letter-spacing: 3px;
+
       text-transform: uppercase;
+
       animation: fadeInUp 1s 1.5s both;
+
     }
+
+
 
     .rp-scroll-line {
+
       width: 1px;
+
       height: 50px;
+
       background: linear-gradient(to bottom, var(--gold-300), transparent);
+
       animation: scrollPulse 2s ease-in-out infinite;
+
     }
+
+
 
     @keyframes scrollPulse {
+
       0%, 100% { opacity: 0.3; transform: scaleY(1); }
+
       50%       { opacity: 1;   transform: scaleY(1.1); }
+
     }
+
+
 
     @keyframes fadeInUp {
+
       from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+
       to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+
     }
+
+
 
     /* -- SECTION FLOATING PRODUCTS BACKGROUND -- */
+
     .rp-bg-float-section {
+
       position: relative;
+
       overflow: hidden;
+
     }
+
+
 
     .rp-bg-products {
+
       position: absolute;
+
       inset: 0;
+
       pointer-events: none;
+
       z-index: 0;
+
       overflow: hidden;
+
     }
+
+
 
     .rp-bg-prod {
+
       position: absolute;
+
       opacity: 0.055;
+
       filter: blur(1.5px) grayscale(20%);
+
       animation: floatUp 8s ease-in-out infinite alternate;
+
     }
+
+
 
     .rp-bg-prod:nth-child(1)  { width: 200px; top: -30px; left: -40px;    animation-delay: 0s;   animation-duration: 9s;  transform: rotate(-15deg); }
+
     .rp-bg-prod:nth-child(2)  { width: 150px; top: 10%;   right: -30px;   animation-delay: 2s;   animation-duration: 11s; transform: rotate(12deg); }
+
     .rp-bg-prod:nth-child(3)  { width: 180px; bottom: -20px; left: 20%;   animation-delay: 1s;   animation-duration: 8s;  transform: rotate(-8deg); }
+
     .rp-bg-prod:nth-child(4)  { width: 120px; bottom: 5%;  right: 15%;    animation-delay: 3s;   animation-duration: 10s; transform: rotate(20deg); }
+
     .rp-bg-prod:nth-child(5)  { width: 220px; top: 30%;   left: -50px;    animation-delay: 0.5s; animation-duration: 7s;  transform: rotate(-5deg); }
+
     .rp-bg-prod:nth-child(6)  { width: 100px; top: 50%;   right: 5%;      animation-delay: 4s;   animation-duration: 12s; transform: rotate(25deg); }
 
+
+
     /* -- INTRO / ABOUT SECTION -- */
+
     .rp-intro {
+
       padding: 120px 0 80px;
+
       background: #080808;
+
     }
+
+
 
     .rp-intro-grid {
+
       display: grid;
+
       grid-template-columns: 1fr 1fr;
+
       gap: 80px;
+
       align-items: center;
+
     }
+
+
 
     .rp-intro-label {
+
       display: inline-flex;
+
       align-items: center;
+
       gap: 10px;
+
       font-size: 0.68rem;
+
       font-weight: 800;
+
       letter-spacing: 4px;
+
       text-transform: uppercase;
+
       color: var(--gold-300);
+
       margin-bottom: 20px;
+
     }
+
+
 
     .rp-intro-label::before {
+
       content: '';
+
       width: 30px;
+
       height: 1px;
+
       background: var(--gold-gradient);
+
     }
 
+
+
     .rp-intro h2 {
+
       font-family: var(--font-display);
+
       font-size: clamp(2.2rem, 4vw, 3.5rem);
+
       color: #fff;
+
       line-height: 1.1;
+
       margin-bottom: 28px;
+
     }
+
+
 
     .rp-intro h2 span { color: var(--gold-300); }
 
+
+
     .rp-intro-desc {
+
       color: rgba(255,255,255,0.6);
+
       font-size: 1rem;
+
       line-height: 1.9;
+
       margin-bottom: 40px;
+
     }
+
+
 
     .rp-intro-stats {
+
       display: grid;
+
       grid-template-columns: repeat(3, 1fr);
+
       gap: 1px;
+
       background: rgba(212,175,55,0.1);
+
       border-radius: 16px;
+
       overflow: hidden;
+
       border: 1px solid rgba(212,175,55,0.15);
+
     }
+
+
 
     .rp-intro-stat {
+
       background: #0a0a0a;
+
       padding: 28px 20px;
+
       text-align: center;
+
     }
+
+
 
     .rp-intro-stat strong {
+
       display: block;
+
       font-size: 2.2rem;
+
       font-weight: 800;
+
       color: var(--gold-300);
+
       line-height: 1;
+
       margin-bottom: 6px;
+
     }
+
+
 
     .rp-intro-stat span {
+
       font-size: 0.72rem;
+
       color: rgba(255,255,255,0.4);
+
       text-transform: uppercase;
+
       letter-spacing: 1.5px;
+
     }
+
+
 
     /* Intro Right  Product mosaic */
+
     .rp-intro-mosaic {
+
       display: grid;
+
       grid-template-columns: 1fr 1fr;
+
       grid-template-rows: auto auto;
+
       gap: 16px;
+
     }
+
+
 
     .rp-mosaic-card {
+
       background: rgba(255,255,255,0.03);
+
       border: 1px solid rgba(212,175,55,0.12);
+
       border-radius: 16px;
+
       overflow: hidden;
+
       display: flex;
+
       align-items: center;
+
       justify-content: center;
+
       padding: 28px 20px;
+
       transition: all 0.4s cubic-bezier(.22,1,.36,1);
+
       cursor: pointer;
+
     }
+
+
 
     .rp-mosaic-card:hover {
+
       background: rgba(212,175,55,0.06);
+
       border-color: rgba(212,175,55,0.35);
+
       transform: translateY(-4px);
+
       box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 30px rgba(212,175,55,0.08);
+
     }
+
+
 
     .rp-mosaic-card.span-2 {
+
       grid-column: span 2;
+
     }
 
+
+
     .rp-mosaic-card img {
+
       max-width: 100%;
+
       max-height: 180px;
+
       object-fit: contain;
+
       filter: drop-shadow(0 10px 30px rgba(212,175,55,0.2));
+
       transition: transform 0.5s ease;
+
     }
+
+
 
     .rp-mosaic-card.span-2 img { max-height: 200px; }
 
+
+
     .rp-mosaic-card:hover img {
+
       transform: scale(1.06);
+
     }
+
+
 
     /* -- PRODUCTS SHOWCASE -- */
+
     .rp-products {
+
       padding: 100px 0;
+
       background: linear-gradient(180deg, #080808 0%, #060606 100%);
+
     }
+
+
 
     .rp-products-header {
+
       text-align: center;
+
       margin-bottom: 70px;
+
     }
+
+
 
     .rp-products-header .section-eyebrow {
+
       justify-content: center;
+
       margin-bottom: 16px;
+
     }
 
+
+
     .rp-products-header h2 {
+
       font-family: var(--font-display);
+
       font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+
       color: #fff;
+
       line-height: 1.1;
+
       margin-bottom: 16px;
+
     }
+
+
 
     .rp-products-header h2 span { color: var(--gold-300); }
 
+
+
     .rp-products-header p {
+
       color: rgba(255,255,255,0.5);
+
       font-size: 1rem;
+
       max-width: 540px;
+
       margin: 0 auto;
+
       line-height: 1.75;
+
     }
+
+
 
     /* Category Tabs */
+
     .rp-prod-tabs {
+
       display: flex;
+
       justify-content: center;
+
       gap: 8px;
+
       margin-bottom: 50px;
+
       flex-wrap: wrap;
+
     }
+
+
 
     .rp-prod-tab {
+
       padding: 10px 24px;
+
       border-radius: 99px;
+
       border: 1px solid rgba(212,175,55,0.2);
+
       background: transparent;
+
       color: rgba(255,255,255,0.5);
+
       font-size: 0.82rem;
+
       font-weight: 600;
+
       letter-spacing: 0.5px;
+
       cursor: pointer;
+
       transition: all 0.3s;
+
     }
+
+
 
     .rp-prod-tab:hover,
+
     .rp-prod-tab.active {
+
       background: rgba(212,175,55,0.12);
+
       border-color: var(--gold-300);
+
       color: var(--gold-300);
+
     }
+
+
 
     /* Product Grid */
+
     .rp-prod-grid {
+
       display: grid;
+
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+
       gap: 24px;
+
     }
+
+
 
     /* Product Card  strong visible styling */
+
     .rp-prod-card {
+
       position: relative;
+
       background: #1a1a1a !important;
+
       border: 1px solid rgba(212,175,55,0.45) !important;
+
       border-radius: 20px;
+
       overflow: hidden;
+
       cursor: pointer;
+
       transition: all 0.4s cubic-bezier(.22,1,.36,1);
+
       display: flex;
+
       flex-direction: column;
+
       box-shadow: 0 4px 24px rgba(0,0,0,0.6), inset 0 1px 0 rgba(212,175,55,0.15);
+
     }
+
+
 
     .rp-prod-card::before {
+
       content: '';
+
       position: absolute;
+
       top: 0; left: 0; right: 0;
+
       height: 2px;
+
       background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+
       opacity: 1;
+
     }
+
+
 
     .rp-prod-card:hover {
+
       border-color: #D4AF37 !important;
+
       transform: translateY(-8px);
+
       box-shadow: 0 30px 60px rgba(0,0,0,0.6), 0 0 40px rgba(212,175,55,0.2);
+
     }
+
+
 
     .rp-prod-card-img {
+
       position: relative;
+
       height: 220px;
+
       display: flex;
+
       align-items: center;
+
       justify-content: center;
+
       padding: 24px 20px 16px;
+
       background: #111 !important;
+
       border-bottom: 1px solid rgba(212,175,55,0.2);
+
       overflow: hidden;
+
     }
+
+
 
     /* Placeholder shown when image fails */
+
     .rp-prod-card-img::before {
+
       content: '';
+
       position: absolute;
+
       left: 14px;
+
       top: 50%;
+
       transform: translateY(-50%);
+
       width: 14px;
+
       height: 14px;
+
       background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23d4af37" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>');
+
       background-repeat: no-repeat;
+
       background-position: center;
+
       font-size: 3rem;
+
       position: absolute;
+
       top: 50%; left: 50%;
+
       transform: translate(-50%, -50%);
+
       opacity: 0.15;
+
     }
+
+
 
     .rp-prod-card-img img {
+
       max-height: 190px;
+
       max-width: 100%;
+
       object-fit: contain;
+
       filter: drop-shadow(0 10px 30px rgba(212,175,55,0.18));
+
       transition: transform 0.5s cubic-bezier(.22,1,.36,1), filter 0.5s;
+
       position: relative;
+
       z-index: 1;
+
     }
+
+
 
     .rp-prod-card:hover .rp-prod-card-img img {
+
       transform: scale(1.08) translateY(-4px);
+
       filter: drop-shadow(0 20px 40px rgba(212,175,55,0.3));
+
     }
+
+
 
     .rp-prod-card-badge {
+
       position: absolute;
+
       top: 12px;
+
       left: 12px;
+
       background: rgba(212,175,55,0.2);
+
       border: 1px solid rgba(212,175,55,0.5);
+
       color: #D4AF37 !important;
+
       font-size: 0.62rem;
+
       font-weight: 700;
+
       letter-spacing: 1.5px;
+
       text-transform: uppercase;
+
       padding: 4px 10px;
+
       border-radius: 99px;
+
       z-index: 2;
+
     }
+
+
 
     .rp-prod-card-body {
+
       padding: 20px 20px 16px;
+
       flex: 1;
+
       display: flex;
+
       flex-direction: column;
+
       gap: 8px;
+
       background: #1a1a1a;
+
     }
+
+
 
     .rp-prod-card-cat {
+
       font-size: 0.65rem;
+
       font-weight: 700;
+
       letter-spacing: 2px;
+
       text-transform: uppercase;
+
       color: #D4AF37 !important;
+
     }
+
+
 
     .rp-prod-card-name {
+
       font-family: 'Cormorant Garamond', serif;
+
       font-size: 1.15rem;
+
       color: #ffffff !important;
+
       line-height: 1.3;
+
       flex: 1;
+
     }
+
+
 
     .rp-prod-card-desc {
+
       color: rgba(255,255,255,0.6) !important;
+
       font-size: 0.82rem;
+
       line-height: 1.6;
+
     }
+
+
 
     .rp-prod-card-footer {
+
       display: flex;
+
       gap: 8px;
+
       padding: 12px 20px 20px;
+
       background: #1a1a1a;
+
     }
+
+
 
     .rp-prod-card-btn {
+
       flex: 1;
+
       padding: 10px 12px;
+
       border-radius: 10px;
+
       border: 1px solid rgba(212,175,55,0.4) !important;
+
       background: rgba(212,175,55,0.08) !important;
+
       color: #D4AF37 !important;
+
       font-size: 0.78rem;
+
       font-weight: 600;
+
       cursor: pointer;
+
       transition: all 0.25s;
+
       text-align: center;
+
       text-decoration: none;
+
       display: flex;
+
       align-items: center;
+
       justify-content: center;
+
       gap: 6px;
+
     }
+
+
 
     .rp-prod-card-btn:hover {
+
       background: rgba(212,175,55,0.2) !important;
+
       border-color: #D4AF37 !important;
+
       transform: translateY(-1px);
+
     }
+
+
 
     .rp-prod-card-btn.wa {
+
       background: rgba(37,211,102,0.1) !important;
+
       border-color: rgba(37,211,102,0.35) !important;
+
       color: #25D366 !important;
+
     }
+
+
 
     .rp-prod-card-btn.wa:hover {
+
       background: rgba(37,211,102,0.2) !important;
+
       border-color: rgba(37,211,102,0.6) !important;
+
     }
+
+
 
     /* Featured Large Product */
+
     .rp-prod-card.featured {
+
       grid-column: span 2;
+
       flex-direction: row;
+
     }
+
+
 
     .rp-prod-card.featured .rp-prod-card-img {
+
       width: 260px;
+
       min-width: 260px;
+
       height: auto;
+
       border-bottom: none;
+
       border-right: 1px solid rgba(212,175,55,0.2);
+
     }
+
+
 
     .rp-prod-card.featured .rp-prod-card-right {
+
       flex: 1;
+
       display: flex;
+
       flex-direction: column;
+
     }
+
+
 
     .rp-prod-card.featured .rp-prod-card-body {
+
       flex: 1;
+
     }
+
+
 
     .rp-prod-card.featured .rp-prod-card-name {
+
       font-size: 1.4rem;
+
     }
+
+
 
     .rp-prod-card.featured .rp-prod-card-desc {
+
       font-size: 0.88rem;
+
     }
+
+
 
     /* -- WHO WE SERVE -- */
+
     .rp-serve {
+
       padding: 100px 0;
+
       background: #060606;
+
       position: relative;
+
       overflow: hidden;
+
     }
+
+
 
     .rp-serve-grid {
+
       display: grid;
+
       grid-template-columns: repeat(3, 1fr);
+
       gap: 16px;
+
       margin-top: 60px;
+
     }
+
+
 
     .rp-serve-card {
+
       background: rgba(255,255,255,0.02);
+
       border: 1px solid rgba(212,175,55,0.1);
+
       border-radius: 18px;
+
       padding: 32px 28px;
+
       transition: all 0.35s cubic-bezier(.22,1,.36,1);
+
       position: relative;
+
       overflow: hidden;
+
     }
+
+
 
     .rp-serve-card::before {
+
       content: '';
+
       position: absolute;
+
       bottom: 0; left: 0; right: 0;
+
       height: 2px;
+
       background: var(--gold-gradient);
+
       transform: scaleX(0);
+
       transform-origin: left;
+
       transition: transform 0.4s;
+
     }
 
+
+
     .rp-serve-card:hover {
+
       border-color: rgba(212,175,55,0.3);
+
       background: rgba(212,175,55,0.04);
+
       transform: translateY(-6px);
+
       box-shadow: 0 24px 50px rgba(0,0,0,0.4);
+
     }
+
+
 
     .rp-serve-card:hover::before { transform: scaleX(1); }
 
+
+
     .rp-serve-icon {
+
       width: 56px;
+
       height: 56px;
+
       border-radius: 14px;
+
       background: rgba(212,175,55,0.08);
+
       border: 1px solid rgba(212,175,55,0.15);
+
       display: flex;
+
       align-items: center;
+
       justify-content: center;
+
       margin-bottom: 22px;
+
       transition: all 0.3s;
+
     }
 
+
+
     .rp-serve-card:hover .rp-serve-icon {
+
       background: rgba(212,175,55,0.15);
+
       box-shadow: 0 0 20px rgba(212,175,55,0.15);
+
     }
+
+
 
     .rp-serve-icon svg { width: 26px; height: 26px; stroke: var(--gold-300); }
 
+
+
     .rp-serve-card h3 {
+
       font-family: var(--font-display);
+
       font-size: 1.2rem;
+
       color: #fff;
+
       margin-bottom: 10px;
+
     }
+
+
 
     .rp-serve-card p {
+
       color: rgba(255,255,255,0.45);
+
       font-size: 0.88rem;
+
       line-height: 1.7;
+
     }
+
+
 
     /* -- PRODUCT SPOTLIGHT STRIP -- */
+
     .rp-strip {
+
       padding: 80px 0;
+
       background: #050505;
+
       overflow: hidden;
+
     }
+
+
 
     .rp-strip-label {
+
       text-align: center;
+
       font-size: 0.68rem;
+
       font-weight: 800;
+
       letter-spacing: 5px;
+
       text-transform: uppercase;
+
       color: rgba(212,175,55,0.4);
+
       margin-bottom: 40px;
+
     }
 
+
+
     .rp-strip-track {
+
       display: flex;
+
       gap: 40px;
+
       align-items: center;
+
       animation: stripScroll 35s linear infinite;
+
       width: max-content;
+
     }
+
+
 
     .rp-strip-track:hover { animation-play-state: paused; }
 
+
+
     @keyframes stripScroll {
+
       from { transform: translateX(0); }
+
       to   { transform: translateX(-50%); }
+
     }
+
+
 
     .rp-strip-item {
+
       flex-shrink: 0;
+
       width: 140px;
+
       height: 160px;
+
       display: flex;
+
       align-items: center;
+
       justify-content: center;
+
       background: rgba(255,255,255,0.02);
+
       border: 1px solid rgba(212,175,55,0.08);
+
       border-radius: 16px;
+
       padding: 16px;
+
       transition: all 0.3s;
+
     }
+
+
 
     .rp-strip-item:hover {
+
       background: rgba(212,175,55,0.05);
+
       border-color: rgba(212,175,55,0.2);
+
       transform: translateY(-4px);
+
     }
+
+
 
     .rp-strip-item img {
+
       max-width: 100%;
+
       max-height: 130px;
+
       object-fit: contain;
+
       filter: drop-shadow(0 5px 20px rgba(212,175,55,0.15));
+
     }
+
+
 
     /* -- CTA SECTION -- */
+
     .rp-cta {
+
       position: relative;
+
       padding: 140px 0;
+
       text-align: center;
+
       overflow: hidden;
+
       background: #050505;
+
     }
+
+
 
     .rp-cta-bg {
+
       position: absolute;
+
       inset: 0;
+
       background: url('Images/reel_power_cta_bg.webp') center center / cover no-repeat;
+
       animation: heroBgZoom 25s ease-in-out infinite alternate;
+
       z-index: 0;
+
     }
+
+
 
     .rp-cta-bg::after {
+
       content: '';
+
       position: absolute;
+
       inset: 0;
+
       background:
+
         radial-gradient(ellipse at 50% 50%, rgba(212,175,55,0.06) 0%, transparent 60%),
+
         linear-gradient(rgba(5,5,5,0.85), rgba(5,5,5,0.85));
+
     }
+
+
 
     .rp-cta-inner {
+
       position: relative;
+
       z-index: 2;
+
     }
+
+
 
     .rp-cta-label {
+
       display: inline-flex;
+
       align-items: center;
+
       gap: 12px;
+
       font-size: 0.68rem;
+
       font-weight: 800;
+
       letter-spacing: 4px;
+
       text-transform: uppercase;
+
       color: var(--gold-300);
+
       margin-bottom: 24px;
+
     }
+
+
 
     .rp-cta-label::before,
+
     .rp-cta-label::after {
+
       content: '';
+
       width: 40px;
+
       height: 1px;
+
       background: var(--gold-gradient);
+
     }
 
+
+
     .rp-cta h2 {
+
       font-family: var(--font-display);
+
       font-size: clamp(2.5rem, 5vw, 4.5rem);
+
       color: #fff;
+
       line-height: 1.05;
+
       margin-bottom: 20px;
+
     }
+
+
 
     .rp-cta h2 span { color: var(--gold-300); }
 
+
+
     .rp-cta p {
+
       color: rgba(255,255,255,0.55);
+
       font-size: 1.05rem;
+
       max-width: 500px;
+
       margin: 0 auto 48px;
+
       line-height: 1.75;
+
     }
+
+
 
     .rp-cta-btns {
+
       display: flex;
+
       gap: 16px;
+
       justify-content: center;
+
       flex-wrap: wrap;
+
     }
+
+
 
     /* Floating CTA products */
+
     .rp-cta-floats {
+
       position: absolute;
+
       inset: 0;
+
       pointer-events: none;
+
       z-index: 1;
+
     }
+
+
 
     .rp-cta-float {
+
       position: absolute;
+
       opacity: 0.08;
+
       filter: blur(2px);
+
       animation: floatUp 8s ease-in-out infinite alternate;
+
     }
+
+
 
     .rp-cta-float:nth-child(1) { width: 160px; left: 5%;  bottom: 10%; animation-duration: 7s; }
+
     .rp-cta-float:nth-child(2) { width: 120px; right: 8%; top: 15%;    animation-duration: 9s; animation-delay: 1s; }
+
     .rp-cta-float:nth-child(3) { width: 100px; left: 20%; top: 10%;    animation-duration: 11s; animation-delay: 2s; }
+
     .rp-cta-float:nth-child(4) { width: 140px; right: 20%; bottom: 5%; animation-duration: 8s; animation-delay: 0.5s; }
 
+
+
     /* -- RESPONSIVE -- */
+
     @media (max-width: 1200px) {
+
       .rp-prod-grid { grid-template-columns: repeat(3, 1fr); }
+
       .rp-prod-card.featured { grid-column: span 3; }
+
     }
+
+
 
     @media (max-width: 1024px) {
+
       .rp-hero-inner { grid-template-columns: 1fr; }
+
       .rp-hero-right { display: none; }
+
       .rp-intro-grid { grid-template-columns: 1fr; gap: 50px; }
+
     }
+
+
 
     @media (max-width: 900px) {
+
       .rp-prod-grid { grid-template-columns: repeat(2, 1fr); }
+
       .rp-prod-card.featured { grid-column: span 2; flex-direction: column; }
+
       .rp-prod-card.featured .rp-prod-card-img { width: 100%; min-width: unset; height: 220px; }
+
       .rp-serve-grid { grid-template-columns: repeat(2, 1fr); }
+
     }
+
+
 
     @media (max-width: 600px) {
+
       .rp-prod-grid { grid-template-columns: 1fr; }
+
       .rp-prod-card.featured { grid-column: span 1; }
+
       .rp-serve-grid { grid-template-columns: 1fr; }
+
       .rp-intro-stats { grid-template-columns: 1fr; }
+
       .rp-hero-stats { gap: 24px; flex-wrap: wrap; }
+
     }
+
   </style>
 
+
+
   <link rel="manifest" href="/manifest.json" />
+
   <meta name="theme-color" content="#D4AF37" />
+
   <link rel="apple-touch-icon" href="/Images/icons/icon-192x192.png" />
+
 </head>
+
 <body>
+
 <div class="bg-animated-glow"></div>
+
 <!-- Custom Cursor -->
+
 <div class="cursor-dot" id="cursor-dot"></div>
+
 <div class="cursor-ring" id="cursor-ring"></div>
 
+
+
 <nav id="main-nav" class="main-nav scrolled" role="navigation" aria-label="Main navigation">
+
   <div class="nav-inner">
+
     <a href="index.html" class="nav-logo" aria-label="REEL Home">
+
       <div class="nav-logo-img-wrap">
+
         <img loading="eager" fetchpriority="high" src="Images/BG/reel_logo.png" alt="REEL Logo" class="nav-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" fetchpriority="high">
+
         <div class="nav-logo-crown" style="display:none">&#9884;</div>
+
       </div>
+
       <div class="nav-logo-text"><span class="nav-brand-name">REEL</span><span class="nav-brand-sub">Royalty Executive Empire Limited</span></div>
+
     </a>
+
     <ul class="nav-links" id="nav-links" role="list">
+
                 <li><a href="index.html#divisions" class="nav-link">Our Divisions</a></li>
+
         </ul>
+
     <div class="nav-actions">
+
         <a href="blog.html" class="nav-btn-news">News &amp; Media</a>
+
         <a href="contact.html" class="nav-btn-contact">Contact Us</a>
+
       </div>
+
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span class="ham-line"></span><span class="ham-line"></span><span class="ham-line"></span></button>
+
   </div>
+
   <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
+
 </nav>
 
+
+
 <!-- -------------------------------------------------------
+
      HERO
+
 ------------------------------------------------------- -->
+
 <section class="rp-hero" id="rp-hero" aria-label="REEL Power Hero">
 
+
+
   <!-- Background image -->
+
   <div class="rp-hero-bg"></div>
 
+
+
   <!-- Floating product silhouettes in bg -->
+
   <div class="rp-hero-floats" aria-hidden="true">
+
     <img class="rp-float f1" src="Images/PowerProducts/prod-04-kiosk-display.webp" alt="" decoding="async" loading="lazy">
+
     <img class="rp-float f2" src="Images/PowerProducts/prod-02-kiosk-tall.png"    alt="" decoding="async" loading="lazy">
+
     <img class="rp-float f3" src="Images/PowerProducts/prod-07-station-white.webp"  alt="" decoding="async" loading="lazy">
+
     <img class="rp-float f4" src="Images/PowerProducts/prod-10-powerbank-12slot.webp" alt="" decoding="async" loading="lazy">
+
     <img class="rp-float f5" src="Images/PowerProducts/prod-11-kiosk-smart.webp"   alt="" decoding="async" loading="lazy">
+
   </div>
+
+
 
   <!-- Content -->
+
   <div class="container rp-hero-inner reveal-up">
 
+
+
     <!-- Left: Text -->
+
     <div class="rp-hero-left">
+
       <div class="rp-hero-badge">
+
         <div class="rp-hero-badge-line"></div>
+
         <div class="rp-hero-badge-text">Division 01 &mdash; REEL Power</div>
-      </div>
-      <h1 class="rp-hero-title">
-        Premium
-        <span class="rp-hero-title-accent">Charging</span>
-        <span style="white-space: nowrap;">Infrastructure</span>
-      </h1>
-      <p class="rp-hero-sub">Power on. Stay connected.</p>
-      <p class="rp-hero-desc">
-        REEL Power delivers next-generation mobile charging kiosks, smart power bank stations, and branded charging hubs engineered for Africa's most prestigious venues and executive environments.
-      </p>
-      <div class="rp-hero-ctas">
-        <a href="contact.html" class="btn-gold" id="power-cta-main">
-          <span>Get a Quote</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-        <a href="#rp-products" class="btn-ghost" id="power-shop-cta"><span>View Products</span></a>
+
       </div>
 
+      <h1 class="rp-hero-title">
+
+        Premium
+
+        <span class="rp-hero-title-accent">Charging</span>
+
+        <span style="white-space: nowrap;">Infrastructure</span>
+
+      </h1>
+
+      <p class="rp-hero-sub">Power on. Stay connected.</p>
+
+      <p class="rp-hero-desc">
+
+        REEL Power delivers next-generation mobile charging kiosks, smart power bank stations, and branded charging hubs engineered for Africa's most prestigious venues and executive environments.
+
+      </p>
+
+      <div class="rp-hero-ctas">
+
+        <a href="contact.html" class="btn-gold" id="power-cta-main">
+
+          <span>Get a Quote</span>
+
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+
+        </a>
+
+        <a href="#rp-products" class="btn-ghost" id="power-shop-cta"><span>View Products</span></a>
+
+      </div>
+
+
+
     </div>
+
+
 
     <!-- Right: Product Visual -->
+
     <div class="rp-hero-right" aria-hidden="true">
+
       <div class="rp-hero-glow-orb"></div>
+
       <div class="rp-hero-glow-ring"></div>
+
       <img class="rp-hero-prod-main"
+
            src="Images/PowerProducts/prod-11-kiosk-smart.webp"
+
            alt="REEL Smart Charging Kiosk" decoding="async" loading="lazy">
+
       <img class="rp-hero-prod-side left"
+
            src="Images/PowerProducts/prod-04-kiosk-display.webp"
+
            alt="REEL Display Kiosk" decoding="async" loading="lazy">
+
       <img class="rp-hero-prod-side right"
+
            src="Images/PowerProducts/prod-08-powerbank-8slot.webp"
+
            alt="REEL Power Bank Station" decoding="async" loading="lazy">
+
       <img class="rp-hero-prod-top"
+
            src="Images/PowerProducts/prod-09-powerbank-4slot.webp"
+
            alt="REEL Compact Station" decoding="async" loading="lazy">
+
     </div>
 
+
+
   </div>
+
+
 
   <!-- Scroll hint -->
+
   <div class="rp-scroll-hint" aria-hidden="true">
+
     <div class="rp-scroll-line"></div>
+
     <span>Scroll</span>
+
   </div>
+
+
 
 </section>
 
+
+
 <!-- -------------------------------------------------------
+
      INTRO / ABOUT
+
 ------------------------------------------------------- -->
+
 <section class="rp-intro rp-bg-float-section" id="rp-about">
+
   <!-- Floating background products -->
+
   <div class="rp-bg-products" aria-hidden="true">
+
     <img class="rp-bg-prod" src="Images/PowerProducts/prod-01-kiosk-small.png" alt="" decoding="async" loading="lazy">
+
     <img class="rp-bg-prod" src="Images/PowerProducts/prod-03-kiosk-wide.webp"  alt="" decoding="async" loading="lazy">
+
     <img class="rp-bg-prod" src="Images/PowerProducts/prod-05-kiosk-premium.webp" alt="" decoding="async" loading="lazy">
+
     <img class="rp-bg-prod" src="Images/PowerProducts/prod-06-kiosk-tall2.webp" alt="" decoding="async" loading="lazy">
+
     <img class="rp-bg-prod" src="Images/PowerProducts/prod-10-powerbank-12slot.webp" alt="" decoding="async" loading="lazy">
+
     <img class="rp-bg-prod" src="Images/PowerProducts/prod-02-kiosk-tall.png"  alt="" decoding="async" loading="lazy">
+
   </div>
 
+
+
   <div class="container" style="position:relative;z-index:2;">
+
     <div class="rp-intro-grid">
 
+
+
       <!-- Left: Text & Stats -->
+
       <div class="reveal-up">
+
         <div class="rp-intro-label">What We Deliver</div>
+
         <h2>Charging <span>Solutions</span> Built for Prestige</h2>
+
         <p class="rp-intro-desc">
+
           From high-traffic public venues to exclusive executive environments, REEL Power delivers reliable, premium-quality charging infrastructure engineered to keep people powered and connected across Africa. Our products combine cutting-edge technology with luxury aesthetics.
+
         </p>
 
+
+
       </div>
+
+
 
       <!-- Right: Product Mosaic -->
+
       <div class="rp-intro-mosaic reveal-up">
+
         <div class="rp-mosaic-card">
+
           <img src="Images/PowerProducts/prod-08-powerbank-8slot.webp" alt="REEL 8-Slot Power Bank Station" decoding="async" loading="lazy">
+
         </div>
+
         <div class="rp-mosaic-card">
+
           <img src="Images/PowerProducts/prod-09-powerbank-4slot.webp" alt="REEL 4-Slot Station" decoding="async" loading="lazy">
+
         </div>
+
         <div class="rp-mosaic-card span-2">
+
           <img src="Images/PowerProducts/prod-04-kiosk-display.webp" alt="REEL Display Kiosk" decoding="async" loading="lazy">
+
         </div>
+
       </div>
 
+
+
     </div>
+
   </div>
+
 </section>
 
+
+
 <!-- -------------------------------------------------------
+
      PRODUCT SHOWCASE
+
 ------------------------------------------------------- -->
+
 <section class="rp-products rp-bg-float-section" id="rp-products">
 
+
+
   <!-- Floating background products -->
+
   <div class="rp-bg-products" aria-hidden="true">
+
     <img class="rp-bg-prod" src="Images/PowerProducts/prod-07-station-white.webp" alt="" decoding="async" loading="lazy">
+
     <img class="rp-bg-prod" src="Images/PowerProducts/prod-11-kiosk-smart.webp"   alt="" decoding="async" loading="lazy">
+
     <img class="rp-bg-prod" src="Images/PowerProducts/prod-03-kiosk-wide.webp"    alt="" decoding="async" loading="lazy">
+
     <img class="rp-bg-prod" src="Images/PowerProducts/prod-02-kiosk-tall.png"    alt="" decoding="async" loading="lazy">
+
     <img class="rp-bg-prod" src="Images/PowerProducts/prod-01-kiosk-small.png"   alt="" decoding="async" loading="lazy">
+
     <img class="rp-bg-prod" src="Images/PowerProducts/prod-05-kiosk-premium.webp" alt="" decoding="async" loading="lazy">
+
   </div>
 
+
+
   <div class="container" style="position:relative;z-index:2;">
+
+
 
     <!-- Header -->
+
     <div class="rp-products-header reveal-up">
+
       <div class="section-eyebrow">Our Lineup</div>
+
       <h2>The REEL Power <span>Collection</span></h2>
+
       <p>Every product engineered for reliability, branded for prestige, and designed to elevate every space it occupies.</p>
+
     </div>
+
+
 
     <div id="rp-prod-grid" class="rp-prod-grid">
+
     </div><!-- /.rp-prod-grid -->
+
   </div>
+
 </section>
 
+
+
 <!-- -------------------------------------------------------
+
      PRODUCT STRIP / MARQUEE
+
 ------------------------------------------------------- -->
+
 <section class="rp-strip" aria-label="Product lineup carousel">
+
   <div class="rp-strip-label">REEL Power &mdash; Full Product Lineup</div>
+
   <div style="overflow:hidden;">
+
     <div class="rp-strip-track" id="rp-strip-track">
+
       <!-- Products injected dynamically from Firebase -->
+
     </div>
+
   </div>
+
 </section>
 
+
+
 <!-- -------------------------------------------------------
+
      WHO WE SERVE
+
 ------------------------------------------------------- -->
+
 <section class="rp-serve rp-bg-float-section" id="rp-serve">
+
   <div class="rp-bg-products" aria-hidden="true">
+
     <img class="rp-bg-prod" src="Images/PowerProducts/prod-04-kiosk-display.webp" alt="" decoding="async" loading="lazy">
+
     <img class="rp-bg-prod" src="Images/PowerProducts/prod-11-kiosk-smart.webp"   alt="" decoding="async" loading="lazy">
+
     <img class="rp-bg-prod" src="Images/PowerProducts/prod-08-powerbank-8slot.webp" alt="" decoding="async" loading="lazy">
+
     <img class="rp-bg-prod" src="Images/PowerProducts/prod-01-kiosk-small.png"   alt="" decoding="async" loading="lazy">
+
     <img class="rp-bg-prod" src="Images/PowerProducts/prod-07-station-white.webp" alt="" decoding="async" loading="lazy">
+
     <img class="rp-bg-prod" src="Images/PowerProducts/prod-09-powerbank-4slot.webp" alt="" decoding="async" loading="lazy">
+
   </div>
+
   <div class="container" style="position:relative;z-index:2;">
+
     <div class="reveal-up" style="text-align:center;margin-bottom:0">
+
       <div class="section-eyebrow" style="justify-content:center">Ideal Clients</div>
+
       <h2 class="section-heading">Who We <span class="gold-text">Power</span></h2>
+
       <div class="gold-rule center-rule"></div>
+
       <p class="section-desc">REEL Power serves venues and organisations that demand premium, reliable charging infrastructure for their clients and staff.</p>
+
     </div>
+
     <div class="rp-serve-grid">
+
       <div class="rp-serve-card reveal-up">
+
         <div class="rp-serve-icon">
+
           <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.2-1.1.6L2.6 9l7.9 3.1-4.3 4.3-3.1-.8c-.4-.1-.8.1-1 .5l-1.1 1.1 4.5 1.7 1.7 4.5 1.1-1.1c.4-.2.6-.6.5-1l-.8-3.1 4.3-4.3 3.1 7.9 2.2-1.1c.4-.2.7-.6.6-1.1z"/></svg>
+
         </div>
+
         <h3>Airports &amp; Transit Hubs</h3>
+
         <p>Keep international travellers charged from arrival to departure. Our kiosks handle massive daily throughput with zero downtime.</p>
+
       </div>
+
       <div class="rp-serve-card reveal-up">
+
         <div class="rp-serve-icon">
+
           <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M3 21h18M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16M9 21v-4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v4M9 7h6M9 11h6"/></svg>
+
         </div>
+
         <h3>Hotels &amp; Hospitality</h3>
+
         <p>Elevate the guest experience with in-room and lobby charging solutions that carry the REEL premium brand identity.</p>
+
       </div>
+
       <div class="rp-serve-card reveal-up">
+
         <div class="rp-serve-icon">
+
           <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+
         </div>
+
         <h3>Malls &amp; Retail</h3>
+
         <p>Increase dwell time and shopper satisfaction with stylish, accessible kiosks placed at high-traffic points.</p>
+
       </div>
+
       <div class="rp-serve-card reveal-up">
+
         <div class="rp-serve-icon">
+
           <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+
         </div>
+
         <h3>Universities &amp; Institutions</h3>
+
         <p>Keep students and staff connected across campuses, libraries, and study halls with reliable long-term infrastructure.</p>
+
       </div>
+
       <div class="rp-serve-card reveal-up">
+
         <div class="rp-serve-icon">
+
           <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 2l3 6 6 1-4 4 1 6-6-3-6 3 1-6-4-4 6-1 3-6z"/></svg>
+
         </div>
+
         <h3>Events &amp; Conferences</h3>
+
         <p>Ensure every delegate stays powered at summits, expos, galas, and product launches with portable branded stations.</p>
+
       </div>
+
       <div class="rp-serve-card reveal-up">
+
         <div class="rp-serve-icon">
+
           <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12" y2="18.01"/><path d="M8 6h8M8 10h8M8 14h8"/></svg>
+
         </div>
+
         <h3>Corporate Offices</h3>
+
         <p>Premium branded infrastructure for boardrooms, reception areas, and executive open offices.</p>
+
       </div>
+
     </div>
+
   </div>
+
 </section>
 
+
+
 <!-- -------------------------------------------------------
+
      CTA SECTION
+
 ------------------------------------------------------- -->
+
 <section class="rp-cta" id="rp-cta">
+
   <div class="rp-cta-bg"></div>
 
+
+
   <!-- Floating product decorations -->
+
   <div class="rp-cta-floats" aria-hidden="true">
+
     <img class="rp-cta-float" src="Images/PowerProducts/prod-04-kiosk-display.webp" alt="" decoding="async" loading="lazy">
+
     <img class="rp-cta-float" src="Images/PowerProducts/prod-11-kiosk-smart.webp"   alt="" decoding="async" loading="lazy">
+
     <img class="rp-cta-float" src="Images/PowerProducts/prod-08-powerbank-8slot.webp" alt="" decoding="async" loading="lazy">
+
     <img class="rp-cta-float" src="Images/PowerProducts/prod-10-powerbank-12slot.webp" alt="" decoding="async" loading="lazy">
+
   </div>
+
+
 
   <div class="container rp-cta-inner reveal-up">
+
     <div class="rp-cta-label">Power Up Today</div>
+
     <h2>Ready to <span>Power Up?</span></h2>
+
     <p>Contact our team to discuss a custom REEL Power solution tailored for your venue, event, or enterprise.</p>
+
     <div class="rp-cta-btns">
+
       <a href="contact.html" class="btn-gold" id="power-contact-cta">
+
         <span>Get In Touch</span>
+
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+
       </a>
 
+
+
     </div>
+
   </div>
+
 </section>
 
+
+
 <!-- -------------------------------------------------------
+
      PRODUCT MODAL
+
 ------------------------------------------------------- -->
+
 <div id="rp-modal-overlay" role="dialog" aria-modal="true" aria-label="Product details" style="position:fixed;inset:0;background:rgba(0,0,0,0.88);backdrop-filter:blur(12px);z-index:10000;display:none;align-items:center;justify-content:center;padding:20px;">
+
   <div id="rp-modal" style="background:#0d0d0d;border:1px solid rgba(212,175,55,0.2);border-radius:24px;max-width:780px;width:100%;max-height:92vh;overflow-y:auto;position:relative;scrollbar-width:thin;scrollbar-color:rgba(212,175,55,0.2) transparent;">
+
     <!-- Close -->
+
     <button id="rp-modal-close" aria-label="Close modal" style="position:absolute;top:18px;right:18px;width:38px;height:38px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:5;transition:background 0.2s;">
+
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+
     </button>
+
     <!-- Image -->
+
     <div id="rp-modal-img-wrap" style="height:360px;background:radial-gradient(circle at 50% 70%,rgba(212,175,55,0.08),transparent 60%),#080808;border-radius:24px 24px 0 0;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:32px;">
+
       <img id="rp-modal-img" src="" alt="" style="max-height:300px;max-width:100%;object-fit:contain;filter:drop-shadow(0 20px 50px rgba(212,175,55,0.2));" decoding="async" loading="lazy">
+
     </div>
+
     <!-- Body -->
+
     <div style="padding:36px 40px 40px;">
+
       <div id="rp-modal-badge" style="font-size:0.68rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--gold-300);display:flex;align-items:center;gap:8px;margin-bottom:10px;"><span style="width:20px;height:1px;background:linear-gradient(90deg,#D4AF37,#B8960C);display:block;"></span></div>
+
       <h2 id="rp-modal-title" style="font-family:var(--font-display);font-size:clamp(1.6rem,4vw,2.4rem);color:#fff;line-height:1.1;margin-bottom:20px;"></h2>
+
       <div style="height:1px;background:rgba(212,175,55,0.12);margin-bottom:24px;"></div>
+
       <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--gold-300);margin-bottom:10px;">About This Product</div>
+
       <p id="rp-modal-desc" style="color:rgba(255,255,255,0.6);font-size:0.95rem;line-height:1.9;white-space:pre-line;"></p>
+
       <div style="display:flex;gap:14px;margin-top:32px;flex-wrap:wrap;">
+
         <a id="rp-modal-wa" href="#" target="_blank" style="flex:1;display:flex;align-items:center;justify-content:center;gap:10px;padding:15px 24px;background:rgba(37,211,102,0.1);border:1px solid rgba(37,211,102,0.35);border-radius:14px;color:#25D366;font-weight:700;font-size:0.95rem;text-decoration:none;transition:all 0.25s;min-width:180px;">
+
           <svg width="22" height="22" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+
           Enquire on WhatsApp
+
         </a>
+
         <a href="contact.html" style="flex:1;display:flex;align-items:center;justify-content:center;gap:10px;padding:15px 24px;background:rgba(212,175,55,0.08);border:1px solid rgba(212,175,55,0.25);border-radius:14px;color:var(--gold-300);font-weight:700;font-size:0.95rem;text-decoration:none;transition:all 0.25s;min-width:180px;">
+
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+
           Get a Quote
+
         </a>
+
       </div>
+
     </div>
+
   </div>
+
 </div>
 
+
+
 <!-- ============================================================ -->
+
 <!-- FOOTER                                                         -->
+
 <!-- ============================================================ -->
+
 <footer class="site-footer" role="contentinfo">
 
+
+
   <div class="footer-body">
+
     <div class="footer-glow-l" aria-hidden="true"></div>
+
     <div class="footer-glow-r" aria-hidden="true"></div>
+
     <div class="container">
+
       <div class="footer-grid">
 
+
+
         <!-- Brand Column -->
+
         <div class="footer-col footer-brand-col">
+
           <a href="index.html" class="footer-logo-link" aria-label="REEL Home">
+
             <img loading="lazy" decoding="async" src="Images/BG/reel_logo.png" alt="REEL" class="footer-logo"
+
               onerror="this.style.display='none';this.nextElementSibling.style.display='block'" fetchpriority="high">
+
             <div class="footer-logo-fallback" style="display:none">&#9884; REEL</div>
+
           </a>
+
           <p class="footer-brand-desc">Royalty Executive Empire Limited &mdash; Building Empires, Shaping Futures, Leading Innovation across Africa and beyond.</p>
+
           <div class="footer-social-row" aria-label="Social media links">
+
             <a href="https://web.facebook.com/ReelHolding/" target="_blank" rel="noopener" class="fsoc"
+
               id="fsoc-fb" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+
                 <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+
               </svg></a>
+
             <a href="https://x.com/ReelHolding" target="_blank" rel="noopener" class="fsoc" id="fsoc-x"
+
               aria-label="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+
                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.74l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+
               </svg></a>
+
             <a href="https://www.instagram.com/reelholding/" target="_blank" rel="noopener" class="fsoc"
+
               id="fsoc-ig" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+
                 stroke-width="2" aria-hidden="true">
+
                 <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+
                 <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+
                 <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+
               </svg></a>
+
             <a href="https://www.youtube.com/@ReelHolding" target="_blank" rel="noopener" class="fsoc"
+
               id="fsoc-yt" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+
                 <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.41 19.1C5.12 19.56 12 19.56 12 19.56s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.48z" />
+
                 <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" style="fill:#0B0B0B" />
+
               </svg></a>
+
             <a href="https://www.tiktok.com/@reelholding" target="_blank" rel="noopener" class="fsoc"
+
               id="fsoc-tt" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+
                 <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.28 6.28 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.2 8.2 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z" />
+
               </svg></a>
+
             <a href="https://linkedin.com/company/reelholding" target="_blank" rel="noopener" class="fsoc" id="fsoc-li" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" /></svg></a>
+
             <a href="https://whatsapp.com/channel/0029Vb8f98uFsn0ZxQtIix05" id="fsoc-wa" aria-label="WhatsApp Channel"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" /></svg></a>
+
           </div>
+
             <!-- Join Our WhatsApp Channel Button -->
+
             <div class="footer-channel-btn-wrap" style="margin-top: 16px;">
+
               <a href="https://whatsapp.com/channel/0029Vb8f98uFsn0ZxQtIix05" target="_blank" rel="noopener noreferrer" class="btn-join-channel" aria-label="Join our WhatsApp Channel">
+
                 <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+
                 <span>Join Our WhatsApp Channel</span>
+
               </a>
+
             </div>
+
         </div>
+
+
 
                             <!-- Footer Instagram Feed -->
+
           <div class="footer-col footer-insta-col">
+
             <h3 class="footer-heading">Instagram</h3>
+
             <div class="footer-insta-card" aria-label="Official Instagram feed">
+
               <div class="insta-header">
+
                 <a href="https://www.instagram.com/reelholding/" target="_blank" rel="noopener noreferrer" class="insta-user-info" style="text-decoration:none;">
+
                   <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" class="insta-icon">
+
                     <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+
                   </svg>
+
                   <div style="display:flex;flex-direction:column;line-height:1.2;">
+
                     <span style="font-weight:900;text-transform:uppercase;color:#fff;font-size:10px;letter-spacing:0.5px;">ROYALTY EXECUTIVE EMPIRE LIMITED</span>
+
                     <span class="insta-handle" style="font-size:12px;color:rgba(255,255,255,0.7);">@reelholding</span>
+
                   </div>
+
                 </a>
+
                 <span class="insta-badge"><span class="insta-live-dot"></span> Live</span>
+
               </div>
+
               <div class="insta-grid">
+
                 <a href="https://www.instagram.com/reelholding/" target="_blank" rel="noopener noreferrer" class="insta-tile" title="View REEL Properties post on Instagram">
+
                   <img src="Images/real_estate_hero.webp" alt="REEL Luxury Properties" loading="lazy" />
+
                   <span class="insta-type-icon">
+
                     <svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M4 4h16v16H4z"/></svg>
+
                   </span>
+
                   <div class="insta-overlay">
+
                     <div class="insta-overlay-inner">
+
                       <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+
                       <span>View</span>
+
                     </div>
+
                   </div>
+
                 </a>
+
                 <a href="https://www.instagram.com/reelholding/" target="_blank" rel="noopener noreferrer" class="insta-tile" title="View REEL Auto post on Instagram">
+
                   <img src="Images/efuas_auto_center_hero.webp" alt="REEL Auto Centre" loading="lazy" />
+
                   <span class="insta-type-icon">
+
                     <svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+
                   </span>
+
                   <div class="insta-overlay">
+
                     <div class="insta-overlay-inner">
+
                       <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+
                       <span>View</span>
+
                     </div>
+
                   </div>
+
                 </a>
+
                 <a href="https://www.instagram.com/reelholding/" target="_blank" rel="noopener noreferrer" class="insta-tile" title="View REEL Tech Hub post on Instagram">
+
                   <img src="Images/vannys_tech_hub_hero.webp" alt="REEL Tech Hub" loading="lazy" />
+
                   <span class="insta-type-icon">
+
                     <svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M4 4h16v16H4z"/></svg>
+
                   </span>
+
                   <div class="insta-overlay">
+
                     <div class="insta-overlay-inner">
+
                       <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+
                       <span>View</span>
+
                     </div>
+
                   </div>
+
                 </a>
+
                 <a href="https://www.instagram.com/reelholding/" target="_blank" rel="noopener noreferrer" class="insta-tile" title="View REEL Global Palace post on Instagram">
+
                   <img src="Images/glorious_global_palace_hero.webp" alt="REEL Global Palace" loading="lazy" />
+
                   <span class="insta-type-icon">
+
                     <svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+
                   </span>
+
                   <div class="insta-overlay">
+
                     <div class="insta-overlay-inner">
+
                       <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+
                       <span>View</span>
+
                     </div>
+
                   </div>
+
                 </a>
+
                 <a href="https://www.instagram.com/reelholding/" target="_blank" rel="noopener noreferrer" class="insta-tile" title="View REEL Leadership post on Instagram">
+
                   <img src="Images/Prince Ose/About/DSC_4985 copy.webp" alt="REEL Executive Leadership" loading="lazy" />
+
                   <span class="insta-type-icon">
+
                     <svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M4 4h16v16H4z"/></svg>
+
                   </span>
+
                   <div class="insta-overlay">
+
                     <div class="insta-overlay-inner">
+
                       <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+
                       <span>View</span>
+
                     </div>
+
                   </div>
+
                 </a>
+
                 <a href="https://www.instagram.com/reelholding/" target="_blank" rel="noopener noreferrer" class="insta-tile" title="View REEL Power & Energy post on Instagram">
+
                   <img src="Images/reel_power_hero.webp" alt="REEL Power Infrastructure" loading="lazy" />
+
                   <span class="insta-type-icon">
+
                     <svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+
                   </span>
+
                   <div class="insta-overlay">
+
                     <div class="insta-overlay-inner">
+
                       <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+
                       <span>View</span>
+
                     </div>
+
                   </div>
+
                 </a>
+
               </div>
+
               <a href="https://www.instagram.com/reelholding/" target="_blank" rel="noopener noreferrer" class="insta-follow-btn">
+
                 <span>View Instagram Posts</span>
+
                 <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+
               </a>
+
             </div>
+
           </div>
 
+
+
         <!-- Services Links -->
+
         <div class="footer-col">
+
           <h3 class="footer-heading">Quick Links</h3>
+
           <nav aria-label="Footer divisions links">
+
               <ul class="footer-links-list">
+
                 <li><a href="https://reeltech.reelholding.com.ng" >REEL Tech Hub</a></li>
+
                 <li><a href="https://reelauto.reelholding.com.ng" >REEL Auto Centre</a></li>
+
                 <li><a href="https://reelproperties.reelholding.com.ng" >REEL Properties</a></li>
+
                 <li><a href="https://reelglobal.reelholding.com.ng" >REEL Global Palace</a></li>
+
                 <li><a href="leadership.html">Meet Our Leadership</a></li>
+
               </ul>
+
             </nav>
+
         </div>
 
+
+
         <!-- Newsletter & Contact -->
+
         <div class="footer-col footer-news-col">
+
           <h3 class="footer-heading">Stay Connected</h3>
+
           <p class="footer-news-desc">Subscribe to receive updates, news, and exclusive opportunities from REEL.</p>
+
           <form class="footer-newsletter" id="footer-newsletter-form" novalidate aria-label="Newsletter signup" onsubmit="handleNewsletterSubmit(event)">
+
             <input type="email" id="footer-email" name="email" placeholder="Enter your email address" required
+
               aria-label="Email address for newsletter" />
+
             <button type="submit" id="footer-newsletter-btn" aria-label="Subscribe to newsletter">
+
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+
                 <line x1="22" y1="2" x2="11" y2="13" />
+
                 <polygon points="22 2 15 22 11 13 2 9 22 2" />
+
               </svg>
+
             </button>
+
           </form>
+
           <script>
+
           function handleNewsletterSubmit(e) {
+
             e.preventDefault();
+
             var email = document.getElementById('footer-email').value;
+
             if (!email) return;
+
             var subject = encodeURIComponent('Newsletter Subscription Request');
+
             var body = encodeURIComponent('Hello REEL Team,\n\nI would like to subscribe to your newsletter.\n\nEmail: ' + email + '\n\nThank you.');
-            window.location.href = 'mailto:admin@reelholding.com.ng?subject=' + subject + '&body=' + body;
+
+            window.location.href = 'mailto:Royaltyexecutiveempire@gmail.com?subject=' + subject + '&body=' + body;
+
             document.getElementById('footer-email').value = '';
+
           }
+
           </script>
+
           <div class="footer-contact-details">
             <p>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.23h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.77a16 16 0 0 0 6 6l.97-.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2z" />
-                </svg>
-                <a href="tel:+2348067029444">+234 806 702 9444</a>
-              </p>
-              <p>
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="color:#25D366;width:18px;height:18px;flex-shrink:0;"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.03-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-                <a href="https://wa.me/2349118024521" target="_blank" rel="noopener noreferrer">+234 911 802 4521</a>
-              </p>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+              <a href="mailto:Royaltyexecutiveempire@gmail.com">Royaltyexecutiveempire@gmail.com</a>
+            </p>
+            <p>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.23h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.77a16 16 0 0 0 6 6l.97-.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+              </svg>
+              <span><strong>CALL US (NIG):</strong> <a href="tel:+2348067029444">+234 806 702 9444</a> | <a href="tel:+2348111166543">+234 811 116 6543</a></span>
+            </p>
+            <p>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.23h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.77a16 16 0 0 0 6 6l.97-.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+              </svg>
+              <span><strong>CALL US (UAE):</strong> <a href="tel:+971561347581">+971 561 347 581</a></span>
+            </p>
             <p>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
                 <circle cx="12" cy="10" r="3" />
               </svg>
-              <span>Ibeju Lekki - Lagos State, Nigeria</span>
+              <span>Head Office: Ibeju Lekki &mdash; Lagos State, Nigeria</span>
             </p>
-          </div>
-        </div>
+            <p>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+              </svg>
+              <span>Branch Office: Electra Street, Abu Dhabi, UAE</span>
+            </p>
+          </div></div>
+
+
 
       </div>
+
     </div>
+
   </div>
+
+
 
   <!-- Footer Bottom Bar -->
+
   <div class="footer-bar">
+
     <div class="container">
+
       <div class="footer-bar-inner">
+
         <p class="footer-copy">&copy; <span id="footer-year"></span> Royalty Executive Empire Limited (REEL). All Rights Reserved.</p>
+
         <nav aria-label="Legal links">
+
           <ul class="footer-legal">
+
             <li><a href="privacy.html">Privacy Policy</a></li>
+
             <li><a href="terms.html">Terms of Service</a></li>
+
             <li><a href="cookies.html">Cookie Policy</a></li>
+
           </ul>
+
         </nav>
+
       </div>
+
     </div>
+
   </div>
 
+
+
 </footer>
+
+
 
 <!-- Footer Calendar JS -->
 
 
+
+
+
 <!-- Firebase SDKs -->
+
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
+
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging-compat.js"></script>
+
 <script src="js/firebase-init.js"></script>
 
-<script src="js/main.js?v=13"></script>
+
+
+<script src="js/main.js?v=30"></script>
+
 <script>
+
   document.getElementById('footer-year').textContent = new Date().getFullYear();
 
+
+
   /* -- WhatsApp SVG helper -- */
+
   const WA_SVG = `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>`;
 
+
+
   /* -- Modal state -- */
+
   let RP_MODAL_DATA = {};
 
+
+
   function rpOpenModal(data) {
+
     RP_MODAL_DATA = data;
+
     const prodName = data.title || data.name || 'Untitled';
+
     document.getElementById('rp-modal-img').src = data.image || '';
+
     document.getElementById('rp-modal-img').alt = prodName;
+
     document.getElementById('rp-modal-badge').innerHTML =
+
       `<span style="width:20px;height:1px;background:linear-gradient(90deg,#D4AF37,#B8960C);display:block;"></span>${data.caption || data.cat || ''}`;
+
     document.getElementById('rp-modal-title').textContent = prodName;
+
     document.getElementById('rp-modal-desc').textContent  = data.details || data.desc || '';
+
     const waText = `Hi, I'm interested in the ${prodName}. Please send me more details.`;
+
     document.getElementById('rp-modal-wa').href = `https://wa.me/2348067029444?text=${encodeURIComponent(waText)}`;
+
     const overlay = document.getElementById('rp-modal-overlay');
+
     overlay.style.display = 'flex';
+
     document.body.style.overflow = 'hidden';
+
   }
+
+
 
   function rpCloseModal() {
+
     document.getElementById('rp-modal-overlay').style.display = 'none';
+
     document.body.style.overflow = '';
+
   }
 
+
+
   document.getElementById('rp-modal-close').addEventListener('click', rpCloseModal);
+
   document.getElementById('rp-modal-overlay').addEventListener('click', function(e) {
+
     if (e.target === this) rpCloseModal();
+
   });
+
   document.addEventListener('keydown', function(e) {
+
     if (e.key === 'Escape') rpCloseModal();
+
   });
+
+
 
   /* -- Firebase-powered product renderer -- */
+
   function renderPowerProducts(products) {
+
     const grid = document.getElementById('rp-prod-grid');
+
     const strip = document.getElementById('rp-strip-track');
+
     if (!grid) return;
 
+
+
     if (products.length === 0) {
+
       grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:rgba(255,255,255,0.3);">
+
         <div style="width:60px;height:60px;margin:0 auto 16px;color:var(--gold-400);display:flex;align-items:center;justify-content:center;">
+
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+
         </div>
+
         <div style="font-size:1.1rem;">Products coming soon. Check back shortly.</div>
+
       </div>`;
+
       if (strip) strip.innerHTML = '';
+
       return;
+
     }
 
+
+
     // Make the grid itself styled inline too
+
     grid.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px;width:100%;';
+
+
 
     let stripHtml = '';
 
+
+
     products.forEach(function(p) {
+
       const prodName = p.title || p.name || 'Untitled';
+
       const prodDesc = (p.details || p.desc || '');
+
       const prodPrice = p.price ? `<div style="font-size:1.1rem;font-weight:700;color:#D4AF37;margin-top:4px;">${p.price}</div>` : '';
+
       const waText = encodeURIComponent(`Hi, I'm interested in the ${prodName}. Please send me more details.`);
+
       const imgSrc = p.image || '';
 
+
+
       const card = document.createElement('div');
+
       card.setAttribute('data-prod-id', p.id);
+
       card.style.cssText = [
+
         'background:#1c1c1c',
+
         'border:2px solid #D4AF37',
+
         'border-radius:16px',
+
         'overflow:hidden',
+
         'cursor:pointer',
+
         'display:flex',
+
         'flex-direction:column',
+
         'transition:transform 0.3s,box-shadow 0.3s',
+
         'box-shadow:0 4px 20px rgba(212,175,55,0.2)',
+
         'font-family:Outfit,sans-serif'
+
       ].join(';');
 
+
+
       card.addEventListener('mouseenter', function() {
+
         card.style.transform = 'translateY(-6px)';
+
         card.style.boxShadow = '0 16px 40px rgba(212,175,55,0.35)';
+
       });
+
       card.addEventListener('mouseleave', function() {
+
         card.style.transform = '';
+
         card.style.boxShadow = '0 4px 20px rgba(212,175,55,0.2)';
+
       });
+
+
 
       card.innerHTML = `
+
         <div style="height:200px;background:#111;display:flex;align-items:center;justify-content:center;border-bottom:1px solid rgba(212,175,55,0.3);overflow:hidden;position:relative;">
+
           ${imgSrc
+
             ? `<img src="${imgSrc}" alt="${prodName}" style="max-height:180px;max-width:90%;object-fit:contain;display:block;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" decoding="async" loading="lazy">
+
                <div style="display:none;flex-direction:column;align-items:center;gap:8px;color:rgba(212,175,55,0.5);">
+
                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
+
                  <span style="font-size:0.75rem;">Image unavailable</span>
+
                </div>`
+
             : `<div style="display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(212,175,55,0.4);">
+
                  <span style="display:flex;align-items:center;color:var(--gold-400);">
+
                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+
                  </span>
+
                  <span style="font-size:0.75rem;">No image</span>
+
                </div>`
+
           }
+
         </div>
+
         <div style="padding:20px;flex:1;display:flex;flex-direction:column;gap:8px;">
+
           ${p.caption ? `<div style="font-size:0.65rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#D4AF37;">${p.caption}</div>` : ''}
+
           <div style="font-size:1.1rem;font-weight:600;color:#ffffff;line-height:1.3;">${prodName}</div>
+
           ${prodPrice}
+
           ${prodDesc ? `<div style="font-size:0.82rem;color:rgba(255,255,255,0.6);line-height:1.6;margin-top:4px;">${prodDesc.substring(0, 120)}</div>` : ''}
+
         </div>
+
         <div style="display:flex;gap:8px;padding:0 20px 20px;">
+
           <button data-prod-id="${p.id}" style="flex:1;padding:10px;border-radius:10px;border:1px solid rgba(212,175,55,0.5);background:rgba(212,175,55,0.1);color:#D4AF37;font-size:0.8rem;font-weight:600;cursor:pointer;font-family:inherit;">
+
             View Details
+
           </button>
+
           <a href="https://wa.me/2348067029444?text=${waText}" target="_blank" rel="noopener" style="flex:1;padding:10px;border-radius:10px;border:1px solid rgba(37,211,102,0.4);background:rgba(37,211,102,0.08);color:#25D366;font-size:0.8rem;font-weight:600;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:6px;font-family:inherit;">
+
             WhatsApp
+
           </a>
+
         </div>`;
 
+
+
       card.addEventListener('click', function(e) {
+
         if (!e.target.closest('a')) rpOpenModal(p);
+
       });
+
       card.querySelector('[data-prod-id]').addEventListener('click', function(e) {
+
         e.stopPropagation();
+
         rpOpenModal(p);
+
       });
+
+
 
       grid.appendChild(card);
+
       stripHtml += `<div class="rp-strip-item"><img src="${imgSrc}" alt="${prodName}" style="height:80px;width:auto;object-fit:contain;" decoding="async" loading="lazy"></div>`;
+
     });
 
+
+
     // Duplicate strip for seamless loop
+
     if (strip) strip.innerHTML = stripHtml + stripHtml;
+
+
 
   }
 
+
+
   /* -- Wait for Firebase then subscribe -- */
+
   (function waitAndLoad() {
+
     if (window.db) {
+
       window.db.collection('power_products')
+
         .onSnapshot(function(snap) {
+
           const products = [];
+
           snap.docs.forEach(function(doc) {
+
             const data = doc.data();
+
             if (data.status === 'published' || !data.status) {
+
               products.push(Object.assign({ id: doc.id }, data));
+
             }
+
           });
+
           // Sort by timestamp descending
+
           products.sort(function(a, b) {
+
             return (b.timestamp || 0) - (a.timestamp || 0);
+
           });
+
           renderPowerProducts(products);
+
         }, function(error) {
+
           console.error("Firebase error: ", error);
+
         });
+
     } else {
+
       setTimeout(waitAndLoad, 150);
+
     }
+
   })();
+
+
 
 </script>
 
+
+
   <script src="/js/pwa.js"></script>
+
 <script src="/js/notifications.js"></script>
+
 </body>
+
 </html>
+
