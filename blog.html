@@ -47,8 +47,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=31" />
-  <link rel="stylesheet" href="css/responsive.css?v=31" />
+  <link rel="stylesheet" href="css/style.css?v=32" />
+  <link rel="stylesheet" href="css/responsive.css?v=32" />
 
   <style>
     /* ══════════════════════════════════════════════════════════════
@@ -711,8 +711,16 @@
     }
     .kit-cards-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+    .press-title-cell a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .press-title-cell a:hover {
+      color: var(--gold-primary);
     }
     .kit-card {
       background: rgba(255, 255, 255, 0.02);
@@ -995,13 +1003,13 @@
       </div>
       <div class="press-row">
         <span class="press-badge-cell" style="color:#f59e0b; background:rgba(245,158,11,0.1);">REEL Auto</span>
-        <div class="press-title-cell">REEL Auto Expands Luxury Import Concierge with 150-Point Certified Inspection Warranty</div>
-        <a href="javascript:void(0)" class="press-pdf-btn btn-coming-soon" onclick="event.preventDefault()">Coming Soon</a>
+        <div class="press-title-cell"><a href="https://reelauto.reelholding.com.ng" target="_blank" rel="noopener">REEL Auto Expands Luxury Import Concierge with 150-Point Certified Inspection Warranty</a></div>
+        <a href="https://reelauto.reelholding.com.ng" class="press-pdf-btn" target="_blank" rel="noopener">Explore Inventory</a>
       </div>
       <div class="press-row">
         <span class="press-badge-cell" style="color:#34d399; background:rgba(52,211,153,0.1);">Properties</span>
-        <div class="press-title-cell">REEL Properties Secures Strategic Commercial Acreage in Lekki Free Trade Zone Corridor</div>
-        <a href="javascript:void(0)" class="press-pdf-btn btn-coming-soon" onclick="event.preventDefault()">Coming Soon</a>
+        <div class="press-title-cell"><a href="https://reelproperties.reelholding.com.ng" target="_blank" rel="noopener">REEL Properties Secures Strategic Commercial Acreage in Lekki Free Trade Zone Corridor</a></div>
+        <a href="https://reelproperties.reelholding.com.ng" class="press-pdf-btn" target="_blank" rel="noopener">Property Dossier</a>
       </div>
     </div>
   </section>
@@ -1011,7 +1019,7 @@
     <div class="media-kit-header">
       <div class="card-tag">Press Room Resources</div>
       <h3 class="media-kit-title">Accredited Media Kit &amp; Brand Assets</h3>
-      <p class="media-kit-desc">Official high-resolution branding, executive imagery, and corporate fact sheets for accredited journalists, publishers, and institutional partners.</p>
+      <p class="media-kit-desc">Official high-resolution branding and corporate fact sheets for accredited journalists, publishers, and institutional partners.</p>
     </div>
     <div class="kit-cards-grid">
       <!-- Card 1 -->
@@ -1020,15 +1028,6 @@
           <div class="kit-icon">👑</div>
           <div class="kit-name">Official Brand Identity Package</div>
           <div class="kit-info">Vector Logos (SVG, PNG, EPS), typography specifications, and black &amp; gold color standards.</div>
-        </div>
-        <a href="javascript:void(0)" class="btn-kit-download btn-coming-soon" onclick="event.preventDefault()">Coming Soon</a>
-      </div>
-      <!-- Card 2 -->
-      <div class="kit-card">
-        <div>
-          <div class="kit-icon">📸</div>
-          <div class="kit-name">Executive Leadership Portraits</div>
-          <div class="kit-info">High-resolution studio photography of Founder Israel Ose and General Management.</div>
         </div>
         <a href="javascript:void(0)" class="btn-kit-download btn-coming-soon" onclick="event.preventDefault()">Coming Soon</a>
       </div>
@@ -1529,7 +1528,7 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging-compat.js"></script>
 <script src="js/firebase-init.js"></script>
-<script src="js/main.js?v=31"></script>
+<script src="js/main.js?v=32"></script>
 
 <script>
   let allBlogs = [];
