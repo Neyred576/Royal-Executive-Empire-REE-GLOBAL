@@ -47,8 +47,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=30" />
-  <link rel="stylesheet" href="css/responsive.css?v=30" />
+  <link rel="stylesheet" href="css/style.css?v=31" />
+  <link rel="stylesheet" href="css/responsive.css?v=31" />
 
   <style>
     /* ══════════════════════════════════════════════════════════════
@@ -633,15 +633,24 @@
     }
     .press-row {
       display: grid;
-      grid-template-columns: 110px 140px 1fr 140px;
+      grid-template-columns: 140px 1fr auto;
       align-items: center;
       padding: 16px 24px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       transition: background-color 0.2s;
     }
+    .btn-coming-soon {
+      opacity: 0.8;
+      cursor: default !important;
+      letter-spacing: 0.5px;
+    }
+    .btn-coming-soon:hover {
+      background: rgba(212, 175, 55, 0.12) !important;
+      color: var(--gold-primary) !important;
+      border-color: var(--gold-primary) !important;
+    }
     .press-row:last-child { border-bottom: none; }
     .press-row:hover { background-color: rgba(212, 175, 55, 0.04); }
-    .press-date-cell { font-size: 0.78rem; color: rgba(255, 255, 255, 0.45); font-weight: 500; }
     .press-badge-cell {
       font-size: 0.68rem;
       font-weight: 800;
@@ -764,7 +773,7 @@
       .articles-grid { grid-template-columns: repeat(2, 1fr); }
       .kit-cards-grid { grid-template-columns: 1fr; }
       
-      .press-row { grid-template-columns: 90px 110px 1fr 110px; }
+      .press-row { grid-template-columns: 120px 1fr auto; }
     }
     @media (max-width: 640px) {
       .articles-grid { grid-template-columns: 1fr; }
@@ -975,28 +984,24 @@
     </div>
     <div class="press-table-wrap">
       <div class="press-row">
-        <span class="press-date-cell">Nov 21, 2026</span>
         <span class="press-badge-cell">Governance</span>
         <div class="press-title-cell">REEL Holding Publishes 2026 Governance &amp; Multi-Division Operational Review</div>
-        <a href="leadership.html" class="press-pdf-btn">View Statement</a>
+        <a href="javascript:void(0)" class="press-pdf-btn btn-coming-soon" onclick="event.preventDefault()">Coming Soon</a>
       </div>
       <div class="press-row">
-        <span class="press-date-cell">Nov 15, 2026</span>
         <span class="press-badge-cell" style="color:#60a5fa; background:rgba(96,165,250,0.1);">REEL Power</span>
         <div class="press-title-cell">REEL Power Announces Strategic Venue Partnership Program for Shopping Malls and Airports</div>
-        <a href="contact.html" class="press-pdf-btn">Partner Program</a>
+        <a href="javascript:void(0)" class="press-pdf-btn btn-coming-soon" onclick="event.preventDefault()">Coming Soon</a>
       </div>
       <div class="press-row">
-        <span class="press-date-cell">Nov 08, 2026</span>
         <span class="press-badge-cell" style="color:#f59e0b; background:rgba(245,158,11,0.1);">REEL Auto</span>
         <div class="press-title-cell">REEL Auto Expands Luxury Import Concierge with 150-Point Certified Inspection Warranty</div>
-        <a href="https://reelauto.reelholding.com.ng" class="press-pdf-btn" target="_blank" rel="noopener">Explore Inventory</a>
+        <a href="javascript:void(0)" class="press-pdf-btn btn-coming-soon" onclick="event.preventDefault()">Coming Soon</a>
       </div>
       <div class="press-row">
-        <span class="press-date-cell">Oct 30, 2026</span>
         <span class="press-badge-cell" style="color:#34d399; background:rgba(52,211,153,0.1);">Properties</span>
         <div class="press-title-cell">REEL Properties Secures Strategic Commercial Acreage in Lekki Free Trade Zone Corridor</div>
-        <a href="https://reelproperties.reelholding.com.ng" class="press-pdf-btn" target="_blank" rel="noopener">Property Dossier</a>
+        <a href="javascript:void(0)" class="press-pdf-btn btn-coming-soon" onclick="event.preventDefault()">Coming Soon</a>
       </div>
     </div>
   </section>
@@ -1016,7 +1021,7 @@
           <div class="kit-name">Official Brand Identity Package</div>
           <div class="kit-info">Vector Logos (SVG, PNG, EPS), typography specifications, and black &amp; gold color standards.</div>
         </div>
-        <a href="Images/BG/reel_logo.png" download="REEL_Official_Logo.png" class="btn-kit-download">Download Brand Asset</a>
+        <a href="javascript:void(0)" class="btn-kit-download btn-coming-soon" onclick="event.preventDefault()">Coming Soon</a>
       </div>
       <!-- Card 2 -->
       <div class="kit-card">
@@ -1025,7 +1030,7 @@
           <div class="kit-name">Executive Leadership Portraits</div>
           <div class="kit-info">High-resolution studio photography of Founder Israel Ose and General Management.</div>
         </div>
-        <a href="Images/Prince Ose/About/DSC_4985 copy.webp" download="Israel_Ose_Portrait.webp" class="btn-kit-download">Download Portraits</a>
+        <a href="javascript:void(0)" class="btn-kit-download btn-coming-soon" onclick="event.preventDefault()">Coming Soon</a>
       </div>
       <!-- Card 3 -->
       <div class="kit-card">
@@ -1034,7 +1039,7 @@
           <div class="kit-name">2026 Corporate Factsheet</div>
           <div class="kit-info">Single-page strategic overview of all 4 divisions, operating footprints, and corporate governance.</div>
         </div>
-        <a href="leadership.html" class="btn-kit-download">View Factsheet</a>
+        <a href="javascript:void(0)" class="btn-kit-download btn-coming-soon" onclick="event.preventDefault()">Coming Soon</a>
       </div>
     </div>
   </section>
@@ -1524,7 +1529,7 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging-compat.js"></script>
 <script src="js/firebase-init.js"></script>
-<script src="js/main.js?v=30"></script>
+<script src="js/main.js?v=31"></script>
 
 <script>
   let allBlogs = [];
