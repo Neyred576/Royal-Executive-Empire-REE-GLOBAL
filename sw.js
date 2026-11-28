@@ -1,4 +1,4 @@
-const CACHE_NAME = 'reel-cache-v3';
+const CACHE_NAME = 'reel-cache-v4';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -12,8 +12,9 @@ const urlsToCache = [
   'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700&family=Outfit:wght@300;400;500;600;700;800&display=swap'
 ];
 
-// Install event
+// Install event — skipWaiting forces immediate activation on all clients
 self.addEventListener('install', event => {
+  self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
@@ -60,18 +61,21 @@ self.addEventListener('fetch', event => {
   );
 });
 
-// Activate event
+// Activate event — claims all open tabs immediately so the new SW takes over
 self.addEventListener('activate', event => {
   const cacheWhitelist = [CACHE_NAME];
   event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames.map(cacheName => {
-          if (cacheWhitelist.indexOf(cacheName) === -1) {
-            return caches.delete(cacheName);
-          }
-        })
-      );
-    })
+    Promise.all([
+      caches.keys().then(cacheNames => {
+        return Promise.all(
+          cacheNames.map(cacheName => {
+            if (cacheWhitelist.indexOf(cacheName) === -1) {
+              return caches.delete(cacheName);
+            }
+          })
+        );
+      }),
+      self.clients.claim()   // Take control of all open tabs immediately
+    ])
   );
 });
